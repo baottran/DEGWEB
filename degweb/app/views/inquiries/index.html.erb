@@ -1,0 +1,15 @@
+<h1>Listing Inquiries</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @inquiries.each do |inquiry| %>
+    <tr>
+      <td><%= inquiry.title %></td>
+      <td><%= inquiry.text %></td>
+    </tr>
+  <% end %>
+</table>
