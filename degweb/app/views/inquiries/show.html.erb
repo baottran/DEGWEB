@@ -1,11 +1,18 @@
+<h2>Inquiry <%= @inquiry.id%></h2>
+
 <p>
   <strong>Title:</strong>
   <%= @inquiry.title %>
 </p>
- 
+
 <p>
   <strong>Text:</strong>
   <%= @inquiry.text %>
 </p>
+
+<h2>Comments</h2>
+<%= render @inquiry.comments %>
+
+<%= render 'comments/form' %>
 
 <%= link_to 'Back', inquiries_path %>
