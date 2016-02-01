@@ -1,5 +1,20 @@
 class Inquiry < ActiveRecord::Base
   has_many :comments, dependent: :destroy
-	validates :title, presence: true,
-                    length: { minimum: 5 }
+  validates :name, presence: true
+  validates :title, presence: true
+  validates :shop_name, presence: true
+  validates :address_1, presence: true
+  validates :address_2, presence: true
+  validates :city, presence: true
+  validates :zip_code, presence: true
+  validates :state, presence: true
+  validates :phone, presence: true
+  validates :email, presence: true
+  validates :make, presence: true
+  validates :model, presence: true
+  validates :year, presence: true
+  validates :body_type, presence: true
+  validates :vin, presence: true
+  validates :database, presence: true
+  validates :inquiry_type, presence: true
 end

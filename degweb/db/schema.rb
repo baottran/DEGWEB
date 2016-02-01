@@ -24,10 +24,27 @@ ActiveRecord::Schema.define(version: 20160130214804) do
   add_index "comments", ["inquiry_id"], name: "index_comments_on_inquiry_id"
 
   create_table "inquiries", force: :cascade do |t|
+    t.string   "name"
     t.string   "title"
-    t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "shop_name"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "email"
+    t.string   "make"
+    t.string   "model"
+    t.string   "year"
+    t.string   "body_type"
+    t.string   "vin"
+    t.string   "database"
+    t.string   "client_id"
+    t.string   "inquiry_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end

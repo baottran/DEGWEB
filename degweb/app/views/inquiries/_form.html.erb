@@ -14,17 +14,38 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
+  <h3>Submit a Database Inquiry</h3>
+  <br>
+  <h4>Contact Information</h4>
+  <hr>
+  <br>
+  <p><%= f.label :name %> <%= f.text_field :name %></p>
+  <p><%= f.label :title %> <%= f.text_field :title %></p>
+  <p><%= f.label :shop_name %> <%= f.text_field :shop_name %></p>
+  <p><%= f.label :address_1 %> <%= f.text_field :address_1 %></p>
+  <p><%= f.label :address_2 %> <%= f.text_field :address_2 %></p>
+  <p><%= f.label :city %> <%= f.text_field :city %></p>
+  <p><%= f.label :state %> <%= f.text_field :state %></p>
+  <p><%= f.label :zip_code %> <%= f.text_field :zip_code %></p>
+  <p><%= f.label :phone %> <%= f.text_field :phone %></p>
+  <p><%= f.label :fax %> <%= f.text_field :fax %> <i>Optional</i></p>
+  <p><%= f.label :email %> <%= f.text_field :email %></p>
+  <br>
+  <h4>Vehicle</h4>
+  <hr>
+  <br>
+  <p><%= f.label :make %> <%= f.text_field :make %></p>
+  <p><%= f.label :model %> <%= f.text_field :model %></p>
+  <p><%= f.label :year %> <%= f.text_field :year %></p>
+  <p><%= f.label :body_type %> <%= f.text_field :body_type %></p>
+  <p><%= f.label :vin %> <%= f.text_field :vin %></p>
+  <br>
+  <h4>Database Inquiry</h4>
+  <hr>
+  <br>
+  <p><%= f.label :database %> <%= f.text_field :database %></p>
+  <p><%= f.label :client_id %> <%= f.text_field :client_id %> <i>If applicable</i></p>
+  <p><%= f.label :inquiry_type %> <%= f.text_field :inquiry_type %></p>
 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
+  <p><%= f.submit %></p>
 <% end %>
