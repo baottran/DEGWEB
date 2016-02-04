@@ -8,4 +8,11 @@
 
 <%= link_to 'this index', root_path %>
 
-<p> <%= link_to "Sign Up", signup_path %> </p>
+
+
+<% if logged_in? %>
+	<%= link_to "Log out", logout_path, method: "delete" %>
+<% else %>
+	<p> <%= link_to "Sign Up", signup_path %> </p>
+	<%= link_to "Log in", login_path %>
+<% end %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get 'users/new'
 
   get 'welcome/index'
@@ -15,7 +17,9 @@ Rails.application.routes.draw do
   end
 
   get 'signup' => 'users#new'
-
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
   resources :users 
 
   # Example of regular route:
