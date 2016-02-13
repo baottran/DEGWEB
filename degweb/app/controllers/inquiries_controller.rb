@@ -30,6 +30,7 @@ class InquiriesController < ApplicationController
   	@inquiry = Inquiry.new(inquiry_params)
 
     if @inquiry.save
+      InquiryMailer.new_inquiry(@inquiry).deliver
       redirect_to @inquiry
     else
       render 'new'

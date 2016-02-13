@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204072015) do
+ActiveRecord::Schema.define(version: 20160213015848) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20160204072015) do
     t.string   "address_1"
     t.string   "address_2"
     t.string   "city"
-    t.string   "state"
     t.string   "zip_code"
     t.string   "phone"
     t.string   "fax"
@@ -45,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160204072015) do
     t.string   "inquiry_type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "state"
   end
 
   create_table "users", force: :cascade do |t|
