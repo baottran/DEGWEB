@@ -13,185 +13,207 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-field">
+    <h3>Submit a Database Inquiry</h3>
+    <br>
+    <h4>Contact Information</h4>
+    <hr>
+    <br>
+    <p><%= f.label :name %> <%= f.text_field :name %></p>
+    <p><%= f.label :title %> <%= f.text_field :title %></p>
+    <p><%= f.label :shop_name %> <%= f.text_field :shop_name %></p>
+    <p><%= f.label :address_1 %> <%= f.text_field :address_1 %></p>
+    <p><%= f.label :address_2 %> <%= f.text_field :address_2 %></p>
+    <p><%= f.label :city %> <%= f.text_field :city %></p>
+    <p><%= f.label :state %> <%= f.select(:state, options_for_select([['<select>', ' '],
+                                                                      ['Alaska', 'AK'],
+                                                                      ['Arizona', 'AZ'],
+                                                                      ['Arkansas', 'AR'],
+                                                                      ['California', 'CA'],
+                                                                      ['Colorado', 'CO'],
+                                                                      ['Connecticut', 'CT'],
+                                                                      ['Delaware', 'DE'],
+                                                                      ['Florida', 'FL'],
+                                                                      ['Georgia', 'GA'],
+                                                                      ['Hawaii', 'HI'],
+                                                                      ['Idaho', 'ID'],
+                                                                      ['Illinois', 'IL'],
+                                                                      ['Indiana', 'IN'],
+                                                                      ['Iowa', 'IA'],
+                                                                      ['Kansas', 'KS'],
+                                                                      ['Kentucky', 'KY'],
+                                                                      ['Louisiana', 'LA'],
+                                                                      ['Maine', 'ME'],
+                                                                      ['Maryland', 'MD'],
+                                                                      ['Massachusetts', 'MA'],
+                                                                      ['Michigan', 'MI'],
+                                                                      ['Minnesota', 'MN'],
+                                                                      ['Mississippi', 'MS'],
+                                                                      ['Missouri','MO'],
+                                                                      ['Montana', 'MT'],
+                                                                      ['Nebraska', 'NE'],
+                                                                      ['Nevada ', 'NV'],
+                                                                      ['New Hampshire', 'NH'],
+                                                                      ['New Jersey', 'NJ'],
+                                                                      ['New Mexico', 'NM'],
+                                                                      ['New York', 'NY'],
+                                                                      ['North Carolina', 'NC'],
+                                                                      ['North Dakota', 'ND'],
+                                                                      ['Ohio', 'OH'],
+                                                                      ['Oklahoma', 'OK'],
+                                                                      ['Oregon', 'OR'],
+                                                                      ['Pennsylvania', 'PA'],
+                                                                      ['Rhode Island', 'RI'],
+                                                                      ['South Carolina', 'SC'],
+                                                                      ['South Dakota', 'SD'],
+                                                                      ['Tennessee', 'TN'],
+                                                                      ['Texas', 'TX'],
+                                                                      ['Utah', 'UT'],
+                                                                      ['Vermont', 'VT'],
+                                                                      ['Virginia', 'VA'],
+                                                                      ['Washington', 'WA'],
+                                                                      ['West Virginia', 'WV'],
+                                                                      ['Wisconsin', 'WI'],
+                                                                      ['Wyoming', 'WY']])) %></p>
+    <p><%= f.label :zip_code %> <%= f.text_field :zip_code %></p>
+    <p><%= f.label :phone %> <%= f.text_field :phone %></p>
+    <p><%= f.label :fax %> <%= f.text_field :fax %> <i>Optional</i></p>
+    <p><%= f.label :email %> <%= f.text_field :email %></p>
+    <br>
+    <h4>Vehicle</h4>
+    <hr>
+    <br>
+    <p><%= f.label :make %> <%= f.select(:make, options_for_select([['<select>', ' '],
+                                                                    ['Acura', 'Acura'],
+                                                                    ['Alfa Romeo', 'Alfa Romeo'],
+                                                                    ['Aston Martin', 'Aston Martin'],
+                                                                    ['Audi', 'Audi'],
+                                                                    ['Bentley', 'Bentley'],
+                                                                    ['BMW', 'BMW'],
+                                                                    ['Buick', 'Buick'],
+                                                                    ['Cadillac', 'Cadillac'],
+                                                                    ['Chevrolet', 'Chevrolet'],
+                                                                    ['Chrysler', 'Chrysler'],
+                                                                    ['Dodge', 'Dodge'],
+                                                                    ['Ferrari', 'Ferrari'],
+                                                                    ['FIAT', 'FIAT'],
+                                                                    ['Ford', 'Ford'],
+                                                                    ['Freightliner', 'Freightliner'],
+                                                                    ['GMC', 'GMC'],
+                                                                    ['Honda', 'Honda'],
+                                                                    ['Hyundai', 'Hyundai'],
+                                                                    ['Infiniti', 'Infiniti'],
+                                                                    ['Jaguar', 'Jaguar'],
+                                                                    ['Jeep', 'Jeep'],
+                                                                    ['Kia', 'Kia'],
+                                                                    ['Lamborghini', 'Lamborghini'],
+                                                                    ['Land Rover', 'Land Rover'],
+                                                                    ['Lexus', 'Lexus'],
+                                                                    ['Lincoln', 'Lincoln'],
+                                                                    ['Maserati', 'Maserati'],
+                                                                    ['Mazda', 'Mazda'],
+                                                                    ['McLaren', 'McLaren'],
+                                                                    ['Mercedes-Benz', 'Mercedes-Benz'],
+                                                                    ['MINI', 'MINI'],
+                                                                    ['Mitsubishi', 'Mitsubishi'],
+                                                                    ['Nissan', 'Nissan'],
+                                                                    ['Porsche', 'Porsche'],
+                                                                    ['Ram', 'Ram'],
+                                                                    ['Rolls-Royce', 'Rolls-Royce'],
+                                                                    ['Scion', 'Scion'],
+                                                                    ['Smart', 'Smart'],
+                                                                    ['Subaru', 'Subaru'],
+                                                                    ['Tesla', 'Tesla'],
+                                                                    ['Toyota', 'Toyota'],
+                                                                    ['Volkswagen', 'Volkswagen'],
+                                                                    ['Volvo', 'Volvo'],
+                                                                    ['Other', 'Other']])) %></p>
+    <p><%= f.label :model %> <%= f.text_field :model %></p>
+    <p><%= f.label :year %> <%= f.select(:year, options_for_select([['<select>', ' '],
+                                                                    ['2016', '2016'],
+                                                                    ['2015', '2015'],
+                                                                    ['2014', '2014'],
+                                                                    ['2013', '2013'],
+                                                                    ['2012', '2012'],
+                                                                    ['2011', '2011'],
+                                                                    ['2010', '2010'],
+                                                                    ['2009', '2009'],
+                                                                    ['2008', '2008'],
+                                                                    ['2007', '2007'],
+                                                                    ['2006', '2006'],
+                                                                    ['2005', '2005'],
+                                                                    ['2004', '2004'],
+                                                                    ['2003', '2003'],
+                                                                    ['2002', '2002'],
+                                                                    ['2001', '2001'],
+                                                                    ['2000', '2000'],
+                                                                    ['1999', '1999'],
+                                                                    ['1998', '1998'],
+                                                                    ['1997', '1997'],
+                                                                    ['1996', '1996'],
+                                                                    ['1995', '1995'],
+                                                                    ['1994', '1994'],
+                                                                    ['1993', '1993'],
+                                                                    ['1992', '1992'],
+                                                                    ['1991', '1991'],
+                                                                    ['1990', '1990'],
+                                                                    ['1989', '1989'],
+                                                                    ['1988', '1988'],
+                                                                    ['1987', '1987'],
+                                                                    ['1986', '1986']])) %></p>
+    <p><%= f.label :body_type %> <%= f.select(:body_type, options_for_select([['<select>', ' '],
+                                                                              ['Sedan', 'Sedan'],
+                                                                              ['Crossover', 'Crossover'],
+                                                                              ['Pickup', 'Pickup'],
+                                                                              ['SUV', 'SUV'],
+                                                                              ['Coupe', 'Coupe'],
+                                                                              ['Luxury', 'Luxury'],
+                                                                              ['Hybrid', 'Hybrid'],
+                                                                              ['Van/Minivan', 'Van/Minivan'],
+                                                                              ['Convertible', 'Convertible'],
+                                                                              ['Hatchback', 'Hatchback'],
+                                                                              ['Wagon', 'Wagon'],
+                                                                              ['Electric', 'Electric']])) %></p>
+    <p><%= f.label :vin %> <%= f.text_field :vin %></p>
+    <br>
+    <h4>Database Inquiry</h4>
+    <hr>
+    <br>
+    <p><%= f.label :database %> <%= f.select(:database, options_for_select([['<select>', ' '],
+                                                                            ['Audatex', 'Audatex'],
+                                                                            ['CCC', 'CCC'],
+                                                                            ['Mitchell', 'Mitchell']])) %></p>
+    <p><%= f.label :client_id %> <%= f.text_field :client_id %> <i>If applicable</i></p>
+    <p><%= f.label :inquiry_type %> <%= f.select(:inquiry_type, options_for_select([['<select the type that best applies>', ' '],
+                                                                                    ['Missing Information', 'Missing Information'],
+                                                                                    ['Parts', 'Parts'],
+                                                                                    ['Procedure Page Issue', 'Procedure Page Issue'],
+                                                                                    ['Welded Panel Operations', 'Welded Panel Operations'],
+                                                                                    ['Non-Welded Panel Operations', 'Non-Welded Panel Operations'],
+                                                                                    ['Refinish Operations', 'Refinish Operations'],
+                                                                                    ['All Other', 'All Other']])) %></p>
 
-  <h3>Submit a Database Inquiry</h3>
-  <br>
-  <h4>Contact Information</h4>
-  <hr>
-  <br>
-  <p><%= f.label :name %> <%= f.text_field :name %></p>
-  <p><%= f.label :title %> <%= f.text_field :title %></p>
-  <p><%= f.label :shop_name %> <%= f.text_field :shop_name %></p>
-  <p><%= f.label :address_1 %> <%= f.text_field :address_1 %></p>
-  <p><%= f.label :address_2 %> <%= f.text_field :address_2 %></p>
-  <p><%= f.label :city %> <%= f.text_field :city %></p>
-  <p><%= f.label :state %> <%= f.select(:state, options_for_select([['<select>', ' '],
-                                                                    ['Alaska', 'AK'],
-                                                                    ['Arizona', 'AZ'],
-                                                                    ['Arkansas', 'AR'],
-                                                                    ['California', 'CA'],
-                                                                    ['Colorado', 'CO'],
-                                                                    ['Connecticut', 'CT'],
-                                                                    ['Delaware', 'DE'],
-                                                                    ['Florida', 'FL'],
-                                                                    ['Georgia', 'GA'],
-                                                                    ['Hawaii', 'HI'],
-                                                                    ['Idaho', 'ID'],
-                                                                    ['Illinois', 'IL'],
-                                                                    ['Indiana', 'IN'],
-                                                                    ['Iowa', 'IA'],
-                                                                    ['Kansas', 'KS'],
-                                                                    ['Kentucky', 'KY'],
-                                                                    ['Louisiana', 'LA'],
-                                                                    ['Maine', 'ME'],
-                                                                    ['Maryland', 'MD'],
-                                                                    ['Massachusetts', 'MA'],
-                                                                    ['Michigan', 'MI'],
-                                                                    ['Minnesota', 'MN'],
-                                                                    ['Mississippi', 'MS'],
-                                                                    ['Missouri','MO'],
-                                                                    ['Montana', 'MT'],
-                                                                    ['Nebraska', 'NE'],
-                                                                    ['Nevada ', 'NV'],
-                                                                    ['New Hampshire', 'NH'],
-                                                                    ['New Jersey', 'NJ'],
-                                                                    ['New Mexico', 'NM'],
-                                                                    ['New York', 'NY'],
-                                                                    ['North Carolina', 'NC'],
-                                                                    ['North Dakota', 'ND'],
-                                                                    ['Ohio', 'OH'],
-                                                                    ['Oklahoma', 'OK'],
-                                                                    ['Oregon', 'OR'],
-                                                                    ['Pennsylvania', 'PA'],
-                                                                    ['Rhode Island', 'RI'],
-                                                                    ['South Carolina', 'SC'],
-                                                                    ['South Dakota', 'SD'],
-                                                                    ['Tennessee', 'TN'],
-                                                                    ['Texas', 'TX'],
-                                                                    ['Utah', 'UT'],
-                                                                    ['Vermont', 'VT'],
-                                                                    ['Virginia', 'VA'],
-                                                                    ['Washington', 'WA'],
-                                                                    ['West Virginia', 'WV'],
-                                                                    ['Wisconsin', 'WI'],
-                                                                    ['Wyoming', 'WY']])) %></p>
-  <p><%= f.label :zip_code %> <%= f.text_field :zip_code %></p>
-  <p><%= f.label :phone %> <%= f.text_field :phone %></p>
-  <p><%= f.label :fax %> <%= f.text_field :fax %> <i>Optional</i></p>
-  <p><%= f.label :email %> <%= f.text_field :email %></p>
-  <br>
-  <h4>Vehicle</h4>
-  <hr>
-  <br>
-  <p><%= f.label :make %> <%= f.select(:make, options_for_select([['<select>', ' '],
-                                                                  ['Acura', 'Acura'],
-                                                                  ['Alfa Romeo', 'Alfa Romeo'],
-                                                                  ['Aston Martin', 'Aston Martin'],
-                                                                  ['Audi', 'Audi'],
-                                                                  ['Bentley', 'Bentley'],
-                                                                  ['BMW', 'BMW'],
-                                                                  ['Buick', 'Buick'],
-                                                                  ['Cadillac', 'Cadillac'],
-                                                                  ['Chevrolet', 'Chevrolet'],
-                                                                  ['Chrysler', 'Chrysler'],
-                                                                  ['Dodge', 'Dodge'],
-                                                                  ['Ferrari', 'Ferrari'],
-                                                                  ['FIAT', 'FIAT'],
-                                                                  ['Ford', 'Ford'],
-                                                                  ['Freightliner', 'Freightliner'],
-                                                                  ['GMC', 'GMC'],
-                                                                  ['Honda', 'Honda'],
-                                                                  ['Hyundai', 'Hyundai'],
-                                                                  ['Infiniti', 'Infiniti'],
-                                                                  ['Jaguar', 'Jaguar'],
-                                                                  ['Jeep', 'Jeep'],
-                                                                  ['Kia', 'Kia'],
-                                                                  ['Lamborghini', 'Lamborghini'],
-                                                                  ['Land Rover', 'Land Rover'],
-                                                                  ['Lexus', 'Lexus'],
-                                                                  ['Lincoln', 'Lincoln'],
-                                                                  ['Maserati', 'Maserati'],
-                                                                  ['Mazda', 'Mazda'],
-                                                                  ['McLaren', 'McLaren'],
-                                                                  ['Mercedes-Benz', 'Mercedes-Benz'],
-                                                                  ['MINI', 'MINI'],
-                                                                  ['Mitsubishi', 'Mitsubishi'],
-                                                                  ['Nissan', 'Nissan'],
-                                                                  ['Porsche', 'Porsche'],
-                                                                  ['Ram', 'Ram'],
-                                                                  ['Rolls-Royce', 'Rolls-Royce'],
-                                                                  ['Scion', 'Scion'],
-                                                                  ['Smart', 'Smart'],
-                                                                  ['Subaru', 'Subaru'],
-                                                                  ['Tesla', 'Tesla'],
-                                                                  ['Toyota', 'Toyota'],
-                                                                  ['Volkswagen', 'Volkswagen'],
-                                                                  ['Volvo', 'Volvo'],
-                                                                  ['Other', 'Other']])) %></p>
-  <p><%= f.label :model %> <%= f.text_field :model %></p>
-  <p><%= f.label :year %> <%= f.select(:year, options_for_select([['<select>', ' '],
-                                                                  ['2016', '2016'],
-                                                                  ['2015', '2015'],
-                                                                  ['2014', '2014'],
-                                                                  ['2013', '2013'],
-                                                                  ['2012', '2012'],
-                                                                  ['2011', '2011'],
-                                                                  ['2010', '2010'],
-                                                                  ['2009', '2009'],
-                                                                  ['2008', '2008'],
-                                                                  ['2007', '2007'],
-                                                                  ['2006', '2006'],
-                                                                  ['2005', '2005'],
-                                                                  ['2004', '2004'],
-                                                                  ['2003', '2003'],
-                                                                  ['2002', '2002'],
-                                                                  ['2001', '2001'],
-                                                                  ['2000', '2000'],
-                                                                  ['1999', '1999'],
-                                                                  ['1998', '1998'],
-                                                                  ['1997', '1997'],
-                                                                  ['1996', '1996'],
-                                                                  ['1995', '1995'],
-                                                                  ['1994', '1994'],
-                                                                  ['1993', '1993'],
-                                                                  ['1992', '1992'],
-                                                                  ['1991', '1991'],
-                                                                  ['1990', '1990'],
-                                                                  ['1989', '1989'],
-                                                                  ['1988', '1988'],
-                                                                  ['1987', '1987'],
-                                                                  ['1986', '1986']])) %></p>
-  <p><%= f.label :body_type %> <%= f.select(:body_type, options_for_select([['<select>', ' '],
-                                                                            ['Sedan', 'Sedan'],
-                                                                            ['Crossover', 'Crossover'],
-                                                                            ['Pickup', 'Pickup'],
-                                                                            ['SUV', 'SUV'],
-                                                                            ['Coupe', 'Coupe'],
-                                                                            ['Luxury', 'Luxury'],
-                                                                            ['Hybrid', 'Hybrid'],
-                                                                            ['Van/Minivan', 'Van/Minivan'],
-                                                                            ['Convertible', 'Convertible'],
-                                                                            ['Hatchback', 'Hatchback'],
-                                                                            ['Wagon', 'Wagon'],
-                                                                            ['Electric', 'Electric']])) %></p>
-  <p><%= f.label :vin %> <%= f.text_field :vin %></p>
-  <br>
-  <h4>Database Inquiry</h4>
-  <hr>
-  <br>
-  <p><%= f.label :database %> <%= f.select(:database, options_for_select([['<select>', ' '],
-                                                                          ['Audatex', 'Audatex'],
-                                                                          ['CCC', 'CCC'],
-                                                                          ['Mitchell', 'Mitchell']])) %></p>
-  <p><%= f.label :client_id %> <%= f.text_field :client_id %> <i>If applicable</i></p>
-  <p><%= f.label :inquiry_type %> <%= f.select(:inquiry_type, options_for_select([['<select the type that best applies>', ' '],
-                                                                                  ['Missing Information', 'Missing Information'],
-                                                                                  ['Parts', 'Parts'],
-                                                                                  ['Procedure Page Issue', 'Procedure Page Issue'],
-                                                                                  ['Welded Panel Operations', 'Welded Panel Operations'],
-                                                                                  ['Non-Welded Panel Operations', 'Non-Welded Panel Operations'],
-                                                                                  ['Refinish Operations', 'Refinish Operations'],
-                                                                                  ['All Other', 'All Other']])) %></p>
-
+  </div>
+  <div class="missing-info-form">
+    <p><%= f.label :area_of_vechicle %> <%= f.select(:area_of_vechicle, options_for_select([['front', 'front'],
+                                                                                            ['back', 'back'],
+                                                                                            ['other', 'other']])) %></p>
+    <p><%= f.label :part_name, 'Missing Part Name' %> <%= f.text_field :part_name %></p>
+    <p><%= f.label :part_description, 'Missing Part Description' %> <%= f.text_field :part_description %></p>
+    <p><%= f.label :oem_part_number %> <%= f.text_field :oem_part_number %></p>
+    <p><%= f.label :missing_information %> <%= f.text_field :missing_information %></p>
+    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
+    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+  </div>
+  <div class="parts">
+    <p><%= f.label :area_of_vechicle %> <%= f.select(:area_of_vechicle, options_for_select([['front', 'front'],
+                                                                                            ['back', 'back'],
+                                                                                            ['other', 'other']])) %></p>
+    <p><%= f.label :part_name %> <%= f.text_field :part_name %></p>
+    <p><%= f.label :part_description %> <%= f.text_field :part_description %></p>
+    <p><%= f.label :oem_part_number %> <%= f.text_field :oem_part_number %></p>
+    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
+    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+  </div>
   <p><%= f.submit %></p>
 <% end %>

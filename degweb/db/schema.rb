@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213015848) do
+ActiveRecord::Schema.define(version: 20160213200101) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
@@ -42,9 +42,16 @@ ActiveRecord::Schema.define(version: 20160213015848) do
     t.string   "database"
     t.string   "client_id"
     t.string   "inquiry_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "state"
+    t.string   "area_of_vechicle"
+    t.string   "part_name"
+    t.string   "part_description"
+    t.string   "oem_part_number"
+    t.string   "missing_information"
+    t.string   "issue_summary"
+    t.string   "suggested_action"
   end
 
   create_table "users", force: :cascade do |t|
