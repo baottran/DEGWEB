@@ -5,9 +5,8 @@ class InquiryMailer < ApplicationMailer
   #
   #   en.inquiry_mailer.new_inquiry.subject
   #
-  def new_inquiry
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def new_inquiry(inquiry)
+    @inquiry = inquiry
+    mail to: inquiry.email
   end
 end
