@@ -215,71 +215,71 @@
   </div>
   <div class="missing-info-form">
     <p>
-      <%= f.label :area_of_vechicle %>
-      <%= f.select(:area_of_vechicle, options_for_select([['<select>', ' '],
+      <%= f.label :missing_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:missing_area_of_vechicle, options_for_select([['<select>', ' '],
                                                           ['Front', 'Front'],
                                                           ['Back', 'Back'],
                                                           ['Other', 'Other']])) %>
-      <%= f.text_field :area_of_vechicle_other_field %>
+      <%= f.text_field :missing_area_of_vechicle_other_field %>
     </p>
-    <p><%= f.label :part_name, 'Missing Part Name' %> <%= f.text_field :part_name %></p>
-    <p><%= f.label :part_description, 'Missing Part Description' %> <%= f.text_field :part_description %></p>
-    <p><%= f.label :oem_part_number %> <%= f.text_field :oem_part_number %></p>
-    <p><%= f.label :missing_information %> <%= f.text_field :missing_information %></p>
-    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
-    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+    <p><%= f.label :missing_part_name, 'Missing Part Name' %> <%= f.text_field :missing_part_name %></p>
+    <p><%= f.label :missing_part_description, 'Missing Part Description' %> <%= f.text_field :missing_part_description %></p>
+    <p><%= f.label :missing_oem_part_number, 'OEM Part Number' %> <%= f.text_field :missing_oem_part_number %></p>
+    <p><%= f.label :missing_information, 'Missing Information' %> <%= f.text_field :missing_information %></p>
+    <p><%= f.label :missing_issue_summary, 'Issue Summary' %> <%= f.text_field :missing_issue_summary %></p>
+    <p><%= f.label :missing_suggested_action, 'Suggested Action' %> <%= f.text_field :missing_suggested_action %></p>
   </div>
   <div class="parts-form">
     <p>
-      <%= f.label :area_of_vechicle %>
-      <%= f.select(:area_of_vechicle, options_for_select([['<select>', ' '],
+      <%= f.label :parts_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:parts_area_of_vechicle, options_for_select([['<select>', ' '],
                                                           ['Front', 'Front'],
                                                           ['Back', 'Back'],
                                                           ['Other', 'Other']])) %>
-      <%= f.text_field :area_of_vechicle_other_field %>
+      <%= f.text_field :parts_area_of_vechicle_other_field %>
     </p>
-    <p><%= f.label :part_name %> <%= f.text_field :part_name %></p>
-    <p><%= f.label :part_description %> <%= f.text_field :part_description %></p>
-    <p><%= f.label :oem_part_number %> <%= f.text_field :oem_part_number %></p>
-    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
-    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+    <p><%= f.label :parts_part_name, 'Part Name' %> <%= f.text_field :parts_part_name %></p>
+    <p><%= f.label :parts_part_description, 'Part Description' %> <%= f.text_field :parts_part_description %></p>
+    <p><%= f.label :parts_oem_part_number, 'OEM Part Number' %> <%= f.text_field :parts_oem_part_number %></p>
+    <p><%= f.label :parts_issue_summary, 'Issue Summary' %> <%= f.text_field :parts_issue_summary %></p>
+    <p><%= f.label :parts_suggested_action, 'Suggested Action' %> <%= f.text_field :parts_suggested_action %></p>
   </div>
   <div class="procedure-page-form">
     <p>
-      <%= f.label :area_of_vechicle %>
-      <%= f.select(:area_of_vechicle, options_for_select([['<select>', ' '],
-                                                          ['Front', 'Front'],
-                                                          ['Back', 'Back'],
-                                                          ['Other', 'Other']])) %>
-      <%= f.text_field :area_of_vechicle_other_field %>
+      <%= f.label :procedure_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:procedure_area_of_vechicle, options_for_select([['<select>', ' '],
+                                                                    ['Front', 'Front'],
+                                                                    ['Back', 'Back'],
+                                                                    ['Other', 'Other']])) %>
+      <%= f.text_field :procedure_area_of_vechicle_other_field %>
     </p>
     <p>
-      <%= f.label :page_number %>
-      <%= f.select(:page_number, options_for_select([['<select>', ' '],
-                                                     ['1', '1'],
-                                                     ['2', '2'],
-                                                     ['3', '3'],
-                                                     ['4', '4'],
-                                                     ['5', '5']])) %>
+      <%= f.label :procedure_page_number, 'Page Number' %>
+      <%= f.select(:procedure_page_number, options_for_select([['<select>', ' '],
+                                                               ['1', '1'],
+                                                               ['2', '2'],
+                                                               ['3', '3'],
+                                                               ['4', '4'],
+                                                               ['5', '5']])) %>
     </p>
-    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
-    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+    <p><%= f.label :procedure_issue_summary, 'Issue Summary' %> <%= f.text_field :procedure_issue_summary %></p>
+    <p><%= f.label :procedure_suggested_action, 'Suggested Action' %> <%= f.text_field :procedure_suggested_action %></p>
   </div>
   <div class="welded-panel-operations-form">
     <p>
-      <%= f.label :area_of_vechicle %>
-      <%= f.select(:area_of_vechicle, options_for_select([['<select>', ' '],
+      <%= f.label :welded_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:welded_area_of_vechicle, options_for_select([['<select>', ' '],
                                                           ['Front', 'Front'],
                                                           ['Back', 'Back'],
                                                           ['Other', 'Other']])) %>
-      <%= f.text_field :area_of_vechicle_other_field %>
+      <%= f.text_field :welded_area_of_vechicle_other_field %>
     </p>
-    <p><%= f.label :part_name %> <%= f.text_field :part_name %></p>
-    <p><%= f.label :part_number %> <%= f.text_field :part_number %></p>
-    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
+    <p><%= f.label :welded_part_name, 'Part Name' %> <%= f.text_field :welded_part_name %></p>
+    <p><%= f.label :welded_part_number, 'Part Number' %> <%= f.text_field :welded_part_number %></p>
+    <p><%= f.label :welded_issue_summary, 'Issue Summary' %> <%= f.text_field :welded_issue_summary %></p>
     <p>
-      <%= f.label :weld_spots, 'Number of Spot Welds' %>
-      <%= f.select(:weld_spots, options_for_select([['<select>', ' '],
+      <%= f.label :welded_weld_spots, 'Number of Spot Welds' %>
+      <%= f.select(:welded_weld_spots, options_for_select([['<select>', ' '],
                                                     ['1', '1'],
                                                     ['2', '2'],
                                                     ['3', '3'],
@@ -287,17 +287,17 @@
                                                     ['5', '5']])) %>
     </p>
     <p>
-      <%= f.label :materials_involved, 'Type of Materials Involved' %>
-      <%= f.select(:materials_involved, options_for_select([['<select>', ' '],
+      <%= f.label :welded_materials_involved, 'Type of Materials Involved' %>
+      <%= f.select(:welded_materials_involved, options_for_select([['<select>', ' '],
                                                             ['metal', 'metal'],
                                                             ['plastic', 'plastic'],
                                                             ['wood', 'wood'],
                                                             ['cotton', 'cotton']])) %>
     </p>
-    <p><%= f.label :procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :procedure_steps %></p>
+    <p><%= f.label :welded_procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :welded_procedure_steps %></p>
     <p>
-      <%= f.label :skill_level, 'Technician Skill Level' %>
-      <%= f.select(:skill_level, options_for_select([['<select>', ' '],
+      <%= f.label :welded_skill_level, 'Technician Skill Level' %>
+      <%= f.select(:welded_skill_level, options_for_select([['<select>', ' '],
                                                      ['Beginner', 'Beginner'],
                                                      ['Intermediate', 'Intermediate'],
                                                      ['Advanced', 'Advanced'],
@@ -305,7 +305,7 @@
     </p>
     <p>
       <%= f.label 'Actual Time to Complete' %>
-      <%= f.select(:complete_time_hour, options_for_select([['hours', ' '],
+      <%= f.select(:welded_complete_time_hour, options_for_select([['hours', ' '],
                                                             ['0', '0'],
                                                             ['1', '1'],
                                                             ['2', '2'],
@@ -320,30 +320,30 @@
                                                             ['11', '11'],
                                                             ['12', '12'],
                                                             ['13', '13']])) %>
-      <%= f.select(:complete_time_min, options_for_select([['minutes', ' '],
+      <%= f.select(:welded_complete_time_min, options_for_select([['minutes', ' '],
                                                            ['0', '0'],
                                                            ['15', '15'],
                                                            ['30', '30'],
                                                            ['45', '45']])) %>
     </p>
-    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+    <p><%= f.label :welded_suggested_action, 'Suggested Action' %> <%= f.text_field :welded_suggested_action %></p>
   </div>
   <div class="non-welded-panel-operations-form">
     <p>
-      <%= f.label :area_of_vechicle %>
-      <%= f.select(:area_of_vechicle, options_for_select([['<select>', ' '],
+      <%= f.label :non_welded_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:non_welded_area_of_vechicle, options_for_select([['<select>', ' '],
                                                           ['Front', 'Front'],
                                                           ['Back', 'Back'],
                                                           ['Other', 'Other']])) %>
-      <%= f.text_field :area_of_vechicle_other_field %>
+      <%= f.text_field :non_welded_area_of_vechicle_other_field %>
     </p>
-    <p><%= f.label :part_name %> <%= f.text_field :part_name %></p>
-    <p><%= f.label :part_number %> <%= f.text_field :part_number %></p>
-    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
-    <p><%= f.label :procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :procedure_steps %></p>
+    <p><%= f.label :non_welded_part_name, 'Part Name' %> <%= f.text_field :non_welded_part_name %></p>
+    <p><%= f.label :non_welded_part_number, 'Part Number' %> <%= f.text_field :non_welded_part_number %></p>
+    <p><%= f.label :non_welded_issue_summary, 'Issue Summary' %> <%= f.text_field :non_welded_issue_summary %></p>
+    <p><%= f.label :non_welded_procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :non_welded_procedure_steps %></p>
     <p>
-      <%= f.label :skill_level, 'Technician Skill Level' %>
-      <%= f.select(:skill_level, options_for_select([['<select>', ' '],
+      <%= f.label :non_welded_skill_level, 'Technician Skill Level' %>
+      <%= f.select(:non_welded_skill_level, options_for_select([['<select>', ' '],
                                                      ['Beginner', 'Beginner'],
                                                      ['Intermediate', 'Intermediate'],
                                                      ['Advanced', 'Advanced'],
@@ -351,7 +351,7 @@
     </p>
     <p>
       <%= f.label 'Actual Time to Complete' %>
-      <%= f.select(:complete_time_hour, options_for_select([['hours', ' '],
+      <%= f.select(:non_welded_complete_time_hour, options_for_select([['hours', ' '],
                                                             ['0', '0'],
                                                             ['1', '1'],
                                                             ['2', '2'],
@@ -366,28 +366,28 @@
                                                             ['11', '11'],
                                                             ['12', '12'],
                                                             ['13', '13']])) %>
-      <%= f.select(:complete_time_min, options_for_select([['minutes', ' '],
+      <%= f.select(:non_welded_complete_time_min, options_for_select([['minutes', ' '],
                                                            ['0', '0'],
                                                            ['15', '15'],
                                                            ['30', '30'],
                                                            ['45', '45']])) %>
     </p>
-    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+    <p><%= f.label :non_welded_suggested_action, 'Suggested Action' %> <%= f.text_field :non_welded_suggested_action %></p>
   </div>
   <div class="refinished-operations-form">
     <p>
-      <%= f.label :area_of_vechicle %>
-      <%= f.select(:area_of_vechicle, options_for_select([['<select>', ' '],
+      <%= f.label :refinished_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:refinished_area_of_vechicle, options_for_select([['<select>', ' '],
                                                           ['Front', 'Front'],
                                                           ['Back', 'Back'],
                                                           ['Other', 'Other']])) %>
-      <%= f.text_field :area_of_vechicle_other_field %>
+      <%= f.text_field :refinished_area_of_vechicle_other_field %>
     </p>
-    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
-    <p><%= f.label :special_labor, 'Special Labor or Material Considerations' %> <%= f.text_field :special_labor %></p>
+    <p><%= f.label :refinished_issue_summary, 'Issue Summary' %> <%= f.text_field :refinished_issue_summary %></p>
+    <p><%= f.label :refinished_special_labor, 'Special Labor or Material Considerations' %> <%= f.text_field :refinished_special_labor %></p>
     <p>
-      <%= f.label :surface_area, 'Estimated Part Surface Area' %>
-      <%= f.select(:surface_area, options_for_select([['<select>', ' '],
+      <%= f.label :refinished_surface_area, 'Estimated Part Surface Area' %>
+      <%= f.select(:refinished_surface_area, options_for_select([['<select>', ' '],
                                                       ['5', '5'],
                                                       ['10', '10'],
                                                       ['15', '15'],
@@ -410,22 +410,14 @@
                                                       ['100', '100']])) %>
       <i>square inches</i>
     </p>
-    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+    <p><%= f.label :refinished_suggested_action, 'Suggested Action' %> <%= f.text_field :refinished_suggested_action %></p>
   </div>
   <div class="all-other-form">
-    <p>
-      <%= f.label :area_of_vechicle %>
-      <%= f.select(:area_of_vechicle, options_for_select([['<select>', ' '],
-                                                          ['Front', 'Front'],
-                                                          ['Back', 'Back'],
-                                                          ['Other', 'Other']])) %>
-      <%= f.text_field :area_of_vechicle_other_field %>
-    </p>
-    <p><%= f.label :issue_summary %> <%= f.text_field :issue_summary %></p>
-    <p><%= f.label :procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :procedure_steps %></p>
+    <p><%= f.label :all_other_issue_summary, 'Issue Summary' %> <%= f.text_field :all_other_issue_summary %></p>
+    <p><%= f.label :all_other_procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :all_other_procedure_steps %></p>
     <p>
       <%= f.label 'Actual Time to Complete' %>
-      <%= f.select(:complete_time_hour, options_for_select([['hours', ' '],
+      <%= f.select(:all_other_complete_time_hour, options_for_select([['hours', ' '],
                                                             ['0', '0'],
                                                             ['1', '1'],
                                                             ['2', '2'],
@@ -440,13 +432,13 @@
                                                             ['11', '11'],
                                                             ['12', '12'],
                                                             ['13', '13']])) %>
-      <%= f.select(:complete_time_min, options_for_select([['minutes', ' '],
+      <%= f.select(:all_other_complete_time_min, options_for_select([['minutes', ' '],
                                                            ['0', '0'],
                                                            ['15', '15'],
                                                            ['30', '30'],
                                                            ['45', '45']])) %>
     </p>
-    <p><%= f.label :suggested_action %> <%= f.text_field :suggested_action %></p>
+    <p><%= f.label :all_other_suggested_action, 'Suggested Action' %> <%= f.text_field :all_other_suggested_action %></p>
   </div>
   <p><%= f.submit %></p>
 <% end %>
