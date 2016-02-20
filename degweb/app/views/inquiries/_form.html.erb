@@ -13,185 +13,432 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-field">
+    <h3>Submit a Database Inquiry</h3>
+    <br>
+    <h4>Contact Information</h4>
+    <hr>
+    <br>
+    <p><%= f.label :name %> <%= f.text_field :name %></p>
+    <p><%= f.label :title %> <%= f.text_field :title %></p>
+    <p><%= f.label :shop_name %> <%= f.text_field :shop_name %></p>
+    <p><%= f.label :address_1 %> <%= f.text_field :address_1 %></p>
+    <p><%= f.label :address_2 %> <%= f.text_field :address_2 %></p>
+    <p><%= f.label :city %> <%= f.text_field :city %></p>
+    <p>
+      <%= f.label :state %>
+      <%= f.select(:state, options_for_select([['<select>', ' '],
+                                               ['Alaska', 'AK'],
+                                               ['Arizona', 'AZ'],
+                                               ['Arkansas', 'AR'],
+                                               ['California', 'CA'],
+                                               ['Colorado', 'CO'],
+                                               ['Connecticut', 'CT'],
+                                               ['Delaware', 'DE'],
+                                               ['Florida', 'FL'],
+                                               ['Georgia', 'GA'],
+                                               ['Hawaii', 'HI'],
+                                               ['Idaho', 'ID'],
+                                               ['Illinois', 'IL'],
+                                               ['Indiana', 'IN'],
+                                               ['Iowa', 'IA'],
+                                               ['Kansas', 'KS'],
+                                               ['Kentucky', 'KY'],
+                                               ['Louisiana', 'LA'],
+                                               ['Maine', 'ME'],
+                                               ['Maryland', 'MD'],
+                                               ['Massachusetts', 'MA'],
+                                               ['Michigan', 'MI'],
+                                               ['Minnesota', 'MN'],
+                                               ['Mississippi', 'MS'],
+                                               ['Missouri','MO'],
+                                               ['Montana', 'MT'],
+                                               ['Nebraska', 'NE'],
+                                               ['Nevada ', 'NV'],
+                                               ['New Hampshire', 'NH'],
+                                               ['New Jersey', 'NJ'],
+                                               ['New Mexico', 'NM'],
+                                               ['New York', 'NY'],
+                                               ['North Carolina', 'NC'],
+                                               ['North Dakota', 'ND'],
+                                               ['Ohio', 'OH'],
+                                               ['Oklahoma', 'OK'],
+                                               ['Oregon', 'OR'],
+                                               ['Pennsylvania', 'PA'],
+                                               ['Rhode Island', 'RI'],
+                                               ['South Carolina', 'SC'],
+                                               ['South Dakota', 'SD'],
+                                               ['Tennessee', 'TN'],
+                                               ['Texas', 'TX'],
+                                               ['Utah', 'UT'],
+                                               ['Vermont', 'VT'],
+                                               ['Virginia', 'VA'],
+                                               ['Washington', 'WA'],
+                                               ['West Virginia', 'WV'],
+                                               ['Wisconsin', 'WI'],
+                                               ['Wyoming', 'WY']])) %>
+    </p>
+    <p><%= f.label :zip_code %> <%= f.text_field :zip_code %></p>
+    <p><%= f.label :phone %> <%= f.text_field :phone %></p>
+    <p><%= f.label :fax %> <%= f.text_field :fax %> <i>Optional</i></p>
+    <p><%= f.label :email %> <%= f.text_field :email %></p>
+    <br>
+    <h4>Vehicle</h4>
+    <hr>
+    <br>
+    <p>
+      <%= f.label :make %>
+      <%= f.select(:make, options_for_select([['<select>', ' '],
+                                              ['Acura', 'Acura'],
+                                              ['Alfa Romeo', 'Alfa Romeo'],
+                                              ['Aston Martin', 'Aston Martin'],
+                                              ['Audi', 'Audi'],
+                                              ['Bentley', 'Bentley'],
+                                              ['BMW', 'BMW'],
+                                              ['Buick', 'Buick'],
+                                              ['Cadillac', 'Cadillac'],
+                                              ['Chevrolet', 'Chevrolet'],
+                                              ['Chrysler', 'Chrysler'],
+                                              ['Dodge', 'Dodge'],
+                                              ['Ferrari', 'Ferrari'],
+                                              ['FIAT', 'FIAT'],
+                                              ['Ford', 'Ford'],
+                                              ['Freightliner', 'Freightliner'],
+                                              ['GMC', 'GMC'],
+                                              ['Honda', 'Honda'],
+                                              ['Hyundai', 'Hyundai'],
+                                              ['Infiniti', 'Infiniti'],
+                                              ['Jaguar', 'Jaguar'],
+                                              ['Jeep', 'Jeep'],
+                                              ['Kia', 'Kia'],
+                                              ['Lamborghini', 'Lamborghini'],
+                                              ['Land Rover', 'Land Rover'],
+                                              ['Lexus', 'Lexus'],
+                                              ['Lincoln', 'Lincoln'],
+                                              ['Maserati', 'Maserati'],
+                                              ['Mazda', 'Mazda'],
+                                              ['McLaren', 'McLaren'],
+                                              ['Mercedes-Benz', 'Mercedes-Benz'],
+                                              ['MINI', 'MINI'],
+                                              ['Mitsubishi', 'Mitsubishi'],
+                                              ['Nissan', 'Nissan'],
+                                              ['Porsche', 'Porsche'],
+                                              ['Ram', 'Ram'],
+                                              ['Rolls-Royce', 'Rolls-Royce'],
+                                              ['Scion', 'Scion'],
+                                              ['Smart', 'Smart'],
+                                              ['Subaru', 'Subaru'],
+                                              ['Tesla', 'Tesla'],
+                                              ['Toyota', 'Toyota'],
+                                              ['Volkswagen', 'Volkswagen'],
+                                              ['Volvo', 'Volvo'],
+                                              ['Other', 'Other']])) %>
+      <%= f.text_field :make_other_field %>
+    </p>
+    <p><%= f.label :model %> <%= f.text_field :model %></p>
+    <p>
+      <%= f.label :year %>
+      <%= f.select(:year, options_for_select([['<select>', ' '],
+                                              ['2016', '2016'],
+                                              ['2015', '2015'],
+                                              ['2014', '2014'],
+                                              ['2013', '2013'],
+                                              ['2012', '2012'],
+                                              ['2011', '2011'],
+                                              ['2010', '2010'],
+                                              ['2009', '2009'],
+                                              ['2008', '2008'],
+                                              ['2007', '2007'],
+                                              ['2006', '2006'],
+                                              ['2005', '2005'],
+                                              ['2004', '2004'],
+                                              ['2003', '2003'],
+                                              ['2002', '2002'],
+                                              ['2001', '2001'],
+                                              ['2000', '2000'],
+                                              ['1999', '1999'],
+                                              ['1998', '1998'],
+                                              ['1997', '1997'],
+                                              ['1996', '1996'],
+                                              ['1995', '1995'],
+                                              ['1994', '1994'],
+                                              ['1993', '1993'],
+                                              ['1992', '1992'],
+                                              ['1991', '1991'],
+                                              ['1990', '1990'],
+                                              ['1989', '1989'],
+                                              ['1988', '1988'],
+                                              ['1987', '1987'],
+                                              ['1986', '1986']])) %>
+    </p>
+    <p>
+      <%= f.label :body_type %>
+      <%= f.select(:body_type, options_for_select([['<select>', ' '],
+                                                   ['Sedan', 'Sedan'],
+                                                   ['Crossover', 'Crossover'],
+                                                   ['Pickup', 'Pickup'],
+                                                   ['SUV', 'SUV'],
+                                                   ['Coupe', 'Coupe'],
+                                                   ['Luxury', 'Luxury'],
+                                                   ['Hybrid', 'Hybrid'],
+                                                   ['Van/Minivan', 'Van/Minivan'],
+                                                   ['Convertible', 'Convertible'],
+                                                   ['Hatchback', 'Hatchback'],
+                                                   ['Wagon', 'Wagon'],
+                                                   ['Electric', 'Electric']])) %>
+    </p>
+    <p><%= f.label :vin %> <%= f.text_field :vin %></p>
+    <br>
+    <h4>Database Inquiry</h4>
+    <hr>
+    <br>
+    <p>
+      <%= f.label :database %>
+      <%= f.select(:database, options_for_select([['<select>', ' '],
+                                                  ['Audatex', 'Audatex'],
+                                                  ['CCC', 'CCC'],
+                                                  ['Mitchell', 'Mitchell']])) %>
+    </p>
+    <p><%= f.label :client_id %> <%= f.text_field :client_id %> <i>If applicable</i></p>
+    <p>
+      <%= f.label :inquiry_type %>
+      <%= f.select(:inquiry_type, options_for_select([['<select the type that best applies>', ' '],
+                                                      ['Missing Information', 'Missing Information'],
+                                                      ['Parts', 'Parts'],
+                                                      ['Procedure Page Issue', 'Procedure Page Issue'],
+                                                      ['Welded Panel Operations', 'Welded Panel Operations'],
+                                                      ['Non-Welded Panel Operations', 'Non-Welded Panel Operations'],
+                                                      ['Refinish Operations', 'Refinish Operations'],
+                                                      ['All Other', 'All Other']])) %>
+    </p>
 
-  <h3>Submit a Database Inquiry</h3>
-  <br>
-  <h4>Contact Information</h4>
-  <hr>
-  <br>
-  <p><%= f.label :name %> <%= f.text_field :name %></p>
-  <p><%= f.label :title %> <%= f.text_field :title %></p>
-  <p><%= f.label :shop_name %> <%= f.text_field :shop_name %></p>
-  <p><%= f.label :address_1 %> <%= f.text_field :address_1 %></p>
-  <p><%= f.label :address_2 %> <%= f.text_field :address_2 %></p>
-  <p><%= f.label :city %> <%= f.text_field :city %></p>
-  <p><%= f.label :state %> <%= f.select(:state, options_for_select([['<select>', ' '],
-                                                                    ['Alaska', 'AK'],
-                                                                    ['Arizona', 'AZ'],
-                                                                    ['Arkansas', 'AR'],
-                                                                    ['California', 'CA'],
-                                                                    ['Colorado', 'CO'],
-                                                                    ['Connecticut', 'CT'],
-                                                                    ['Delaware', 'DE'],
-                                                                    ['Florida', 'FL'],
-                                                                    ['Georgia', 'GA'],
-                                                                    ['Hawaii', 'HI'],
-                                                                    ['Idaho', 'ID'],
-                                                                    ['Illinois', 'IL'],
-                                                                    ['Indiana', 'IN'],
-                                                                    ['Iowa', 'IA'],
-                                                                    ['Kansas', 'KS'],
-                                                                    ['Kentucky', 'KY'],
-                                                                    ['Louisiana', 'LA'],
-                                                                    ['Maine', 'ME'],
-                                                                    ['Maryland', 'MD'],
-                                                                    ['Massachusetts', 'MA'],
-                                                                    ['Michigan', 'MI'],
-                                                                    ['Minnesota', 'MN'],
-                                                                    ['Mississippi', 'MS'],
-                                                                    ['Missouri','MO'],
-                                                                    ['Montana', 'MT'],
-                                                                    ['Nebraska', 'NE'],
-                                                                    ['Nevada ', 'NV'],
-                                                                    ['New Hampshire', 'NH'],
-                                                                    ['New Jersey', 'NJ'],
-                                                                    ['New Mexico', 'NM'],
-                                                                    ['New York', 'NY'],
-                                                                    ['North Carolina', 'NC'],
-                                                                    ['North Dakota', 'ND'],
-                                                                    ['Ohio', 'OH'],
-                                                                    ['Oklahoma', 'OK'],
-                                                                    ['Oregon', 'OR'],
-                                                                    ['Pennsylvania', 'PA'],
-                                                                    ['Rhode Island', 'RI'],
-                                                                    ['South Carolina', 'SC'],
-                                                                    ['South Dakota', 'SD'],
-                                                                    ['Tennessee', 'TN'],
-                                                                    ['Texas', 'TX'],
-                                                                    ['Utah', 'UT'],
-                                                                    ['Vermont', 'VT'],
-                                                                    ['Virginia', 'VA'],
-                                                                    ['Washington', 'WA'],
-                                                                    ['West Virginia', 'WV'],
-                                                                    ['Wisconsin', 'WI'],
-                                                                    ['Wyoming', 'WY']])) %></p>
-  <p><%= f.label :zip_code %> <%= f.text_field :zip_code %></p>
-  <p><%= f.label :phone %> <%= f.text_field :phone %></p>
-  <p><%= f.label :fax %> <%= f.text_field :fax %> <i>Optional</i></p>
-  <p><%= f.label :email %> <%= f.text_field :email %></p>
-  <br>
-  <h4>Vehicle</h4>
-  <hr>
-  <br>
-  <p><%= f.label :make %> <%= f.select(:make, options_for_select([['<select>', ' '],
-                                                                  ['Acura', 'Acura'],
-                                                                  ['Alfa Romeo', 'Alfa Romeo'],
-                                                                  ['Aston Martin', 'Aston Martin'],
-                                                                  ['Audi', 'Audi'],
-                                                                  ['Bentley', 'Bentley'],
-                                                                  ['BMW', 'BMW'],
-                                                                  ['Buick', 'Buick'],
-                                                                  ['Cadillac', 'Cadillac'],
-                                                                  ['Chevrolet', 'Chevrolet'],
-                                                                  ['Chrysler', 'Chrysler'],
-                                                                  ['Dodge', 'Dodge'],
-                                                                  ['Ferrari', 'Ferrari'],
-                                                                  ['FIAT', 'FIAT'],
-                                                                  ['Ford', 'Ford'],
-                                                                  ['Freightliner', 'Freightliner'],
-                                                                  ['GMC', 'GMC'],
-                                                                  ['Honda', 'Honda'],
-                                                                  ['Hyundai', 'Hyundai'],
-                                                                  ['Infiniti', 'Infiniti'],
-                                                                  ['Jaguar', 'Jaguar'],
-                                                                  ['Jeep', 'Jeep'],
-                                                                  ['Kia', 'Kia'],
-                                                                  ['Lamborghini', 'Lamborghini'],
-                                                                  ['Land Rover', 'Land Rover'],
-                                                                  ['Lexus', 'Lexus'],
-                                                                  ['Lincoln', 'Lincoln'],
-                                                                  ['Maserati', 'Maserati'],
-                                                                  ['Mazda', 'Mazda'],
-                                                                  ['McLaren', 'McLaren'],
-                                                                  ['Mercedes-Benz', 'Mercedes-Benz'],
-                                                                  ['MINI', 'MINI'],
-                                                                  ['Mitsubishi', 'Mitsubishi'],
-                                                                  ['Nissan', 'Nissan'],
-                                                                  ['Porsche', 'Porsche'],
-                                                                  ['Ram', 'Ram'],
-                                                                  ['Rolls-Royce', 'Rolls-Royce'],
-                                                                  ['Scion', 'Scion'],
-                                                                  ['Smart', 'Smart'],
-                                                                  ['Subaru', 'Subaru'],
-                                                                  ['Tesla', 'Tesla'],
-                                                                  ['Toyota', 'Toyota'],
-                                                                  ['Volkswagen', 'Volkswagen'],
-                                                                  ['Volvo', 'Volvo'],
-                                                                  ['Other', 'Other']])) %></p>
-  <p><%= f.label :model %> <%= f.text_field :model %></p>
-  <p><%= f.label :year %> <%= f.select(:year, options_for_select([['<select>', ' '],
-                                                                  ['2016', '2016'],
-                                                                  ['2015', '2015'],
-                                                                  ['2014', '2014'],
-                                                                  ['2013', '2013'],
-                                                                  ['2012', '2012'],
-                                                                  ['2011', '2011'],
-                                                                  ['2010', '2010'],
-                                                                  ['2009', '2009'],
-                                                                  ['2008', '2008'],
-                                                                  ['2007', '2007'],
-                                                                  ['2006', '2006'],
-                                                                  ['2005', '2005'],
-                                                                  ['2004', '2004'],
-                                                                  ['2003', '2003'],
-                                                                  ['2002', '2002'],
-                                                                  ['2001', '2001'],
-                                                                  ['2000', '2000'],
-                                                                  ['1999', '1999'],
-                                                                  ['1998', '1998'],
-                                                                  ['1997', '1997'],
-                                                                  ['1996', '1996'],
-                                                                  ['1995', '1995'],
-                                                                  ['1994', '1994'],
-                                                                  ['1993', '1993'],
-                                                                  ['1992', '1992'],
-                                                                  ['1991', '1991'],
-                                                                  ['1990', '1990'],
-                                                                  ['1989', '1989'],
-                                                                  ['1988', '1988'],
-                                                                  ['1987', '1987'],
-                                                                  ['1986', '1986']])) %></p>
-  <p><%= f.label :body_type %> <%= f.select(:body_type, options_for_select([['<select>', ' '],
-                                                                            ['Sedan', 'Sedan'],
-                                                                            ['Crossover', 'Crossover'],
-                                                                            ['Pickup', 'Pickup'],
-                                                                            ['SUV', 'SUV'],
-                                                                            ['Coupe', 'Coupe'],
-                                                                            ['Luxury', 'Luxury'],
-                                                                            ['Hybrid', 'Hybrid'],
-                                                                            ['Van/Minivan', 'Van/Minivan'],
-                                                                            ['Convertible', 'Convertible'],
-                                                                            ['Hatchback', 'Hatchback'],
-                                                                            ['Wagon', 'Wagon'],
-                                                                            ['Electric', 'Electric']])) %></p>
-  <p><%= f.label :vin %> <%= f.text_field :vin %></p>
-  <br>
-  <h4>Database Inquiry</h4>
-  <hr>
-  <br>
-  <p><%= f.label :database %> <%= f.select(:database, options_for_select([['<select>', ' '],
-                                                                          ['Audatex', 'Audatex'],
-                                                                          ['CCC', 'CCC'],
-                                                                          ['Mitchell', 'Mitchell']])) %></p>
-  <p><%= f.label :client_id %> <%= f.text_field :client_id %> <i>If applicable</i></p>
-  <p><%= f.label :inquiry_type %> <%= f.select(:inquiry_type, options_for_select([['<select the type that best applies>', ' '],
-                                                                                  ['Missing Information', 'Missing Information'],
-                                                                                  ['Parts', 'Parts'],
-                                                                                  ['Procedure Page Issue', 'Procedure Page Issue'],
-                                                                                  ['Welded Panel Operations', 'Welded Panel Operations'],
-                                                                                  ['Non-Welded Panel Operations', 'Non-Welded Panel Operations'],
-                                                                                  ['Refinish Operations', 'Refinish Operations'],
-                                                                                  ['All Other', 'All Other']])) %></p>
-
+  </div>
+  <div class="missing-info-form">
+    <p>
+      <%= f.label :missing_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:missing_area_of_vechicle, options_for_select([['<select>', ' '],
+                                                          ['Front', 'Front'],
+                                                          ['Back', 'Back'],
+                                                          ['Other', 'Other']])) %>
+      <%= f.text_field :missing_area_of_vechicle_other_field %>
+    </p>
+    <p><%= f.label :missing_part_name, 'Missing Part Name' %> <%= f.text_field :missing_part_name %></p>
+    <p><%= f.label :missing_part_description, 'Missing Part Description' %> <%= f.text_field :missing_part_description %></p>
+    <p><%= f.label :missing_oem_part_number, 'OEM Part Number' %> <%= f.text_field :missing_oem_part_number %></p>
+    <p><%= f.label :missing_information, 'Missing Information' %> <%= f.text_field :missing_information %></p>
+    <p><%= f.label :missing_issue_summary, 'Issue Summary' %> <%= f.text_field :missing_issue_summary %></p>
+    <p><%= f.label :missing_suggested_action, 'Suggested Action' %> <%= f.text_field :missing_suggested_action %></p>
+  </div>
+  <div class="parts-form">
+    <p>
+      <%= f.label :parts_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:parts_area_of_vechicle, options_for_select([['<select>', ' '],
+                                                          ['Front', 'Front'],
+                                                          ['Back', 'Back'],
+                                                          ['Other', 'Other']])) %>
+      <%= f.text_field :parts_area_of_vechicle_other_field %>
+    </p>
+    <p><%= f.label :parts_part_name, 'Part Name' %> <%= f.text_field :parts_part_name %></p>
+    <p><%= f.label :parts_part_description, 'Part Description' %> <%= f.text_field :parts_part_description %></p>
+    <p><%= f.label :parts_oem_part_number, 'OEM Part Number' %> <%= f.text_field :parts_oem_part_number %></p>
+    <p><%= f.label :parts_issue_summary, 'Issue Summary' %> <%= f.text_field :parts_issue_summary %></p>
+    <p><%= f.label :parts_suggested_action, 'Suggested Action' %> <%= f.text_field :parts_suggested_action %></p>
+  </div>
+  <div class="procedure-page-form">
+    <p>
+      <%= f.label :procedure_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:procedure_area_of_vechicle, options_for_select([['<select>', ' '],
+                                                                    ['Front', 'Front'],
+                                                                    ['Back', 'Back'],
+                                                                    ['Other', 'Other']])) %>
+      <%= f.text_field :procedure_area_of_vechicle_other_field %>
+    </p>
+    <p>
+      <%= f.label :procedure_page_number, 'Page Number' %>
+      <%= f.select(:procedure_page_number, options_for_select([['<select>', ' '],
+                                                               ['1', '1'],
+                                                               ['2', '2'],
+                                                               ['3', '3'],
+                                                               ['4', '4'],
+                                                               ['5', '5']])) %>
+    </p>
+    <p><%= f.label :procedure_issue_summary, 'Issue Summary' %> <%= f.text_field :procedure_issue_summary %></p>
+    <p><%= f.label :procedure_suggested_action, 'Suggested Action' %> <%= f.text_field :procedure_suggested_action %></p>
+  </div>
+  <div class="welded-panel-operations-form">
+    <p>
+      <%= f.label :welded_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:welded_area_of_vechicle, options_for_select([['<select>', ' '],
+                                                          ['Front', 'Front'],
+                                                          ['Back', 'Back'],
+                                                          ['Other', 'Other']])) %>
+      <%= f.text_field :welded_area_of_vechicle_other_field %>
+    </p>
+    <p><%= f.label :welded_part_name, 'Part Name' %> <%= f.text_field :welded_part_name %></p>
+    <p><%= f.label :welded_part_number, 'Part Number' %> <%= f.text_field :welded_part_number %></p>
+    <p><%= f.label :welded_issue_summary, 'Issue Summary' %> <%= f.text_field :welded_issue_summary %></p>
+    <p>
+      <%= f.label :welded_weld_spots, 'Number of Spot Welds' %>
+      <%= f.select(:welded_weld_spots, options_for_select([['<select>', ' '],
+                                                    ['1', '1'],
+                                                    ['2', '2'],
+                                                    ['3', '3'],
+                                                    ['4', '4'],
+                                                    ['5', '5']])) %>
+    </p>
+    <p>
+      <%= f.label :welded_materials_involved, 'Type of Materials Involved' %>
+      <%= f.select(:welded_materials_involved, options_for_select([['<select>', ' '],
+                                                            ['metal', 'metal'],
+                                                            ['plastic', 'plastic'],
+                                                            ['wood', 'wood'],
+                                                            ['cotton', 'cotton']])) %>
+    </p>
+    <p><%= f.label :welded_procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :welded_procedure_steps %></p>
+    <p>
+      <%= f.label :welded_skill_level, 'Technician Skill Level' %>
+      <%= f.select(:welded_skill_level, options_for_select([['<select>', ' '],
+                                                     ['Beginner', 'Beginner'],
+                                                     ['Intermediate', 'Intermediate'],
+                                                     ['Advanced', 'Advanced'],
+                                                     ['Expert', 'Expert']])) %>
+    </p>
+    <p>
+      <%= f.label 'Actual Time to Complete' %>
+      <%= f.select(:welded_complete_time_hour, options_for_select([['hours', ' '],
+                                                            ['0', '0'],
+                                                            ['1', '1'],
+                                                            ['2', '2'],
+                                                            ['3', '3'],
+                                                            ['4', '4'],
+                                                            ['5', '5'],
+                                                            ['6', '6'],
+                                                            ['7', '7'],
+                                                            ['8', '8'],
+                                                            ['9', '9'],
+                                                            ['10', '10'],
+                                                            ['11', '11'],
+                                                            ['12', '12'],
+                                                            ['13', '13']])) %>
+      <%= f.select(:welded_complete_time_min, options_for_select([['minutes', ' '],
+                                                           ['0', '0'],
+                                                           ['15', '15'],
+                                                           ['30', '30'],
+                                                           ['45', '45']])) %>
+    </p>
+    <p><%= f.label :welded_suggested_action, 'Suggested Action' %> <%= f.text_field :welded_suggested_action %></p>
+  </div>
+  <div class="non-welded-panel-operations-form">
+    <p>
+      <%= f.label :non_welded_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:non_welded_area_of_vechicle, options_for_select([['<select>', ' '],
+                                                          ['Front', 'Front'],
+                                                          ['Back', 'Back'],
+                                                          ['Other', 'Other']])) %>
+      <%= f.text_field :non_welded_area_of_vechicle_other_field %>
+    </p>
+    <p><%= f.label :non_welded_part_name, 'Part Name' %> <%= f.text_field :non_welded_part_name %></p>
+    <p><%= f.label :non_welded_part_number, 'Part Number' %> <%= f.text_field :non_welded_part_number %></p>
+    <p><%= f.label :non_welded_issue_summary, 'Issue Summary' %> <%= f.text_field :non_welded_issue_summary %></p>
+    <p><%= f.label :non_welded_procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :non_welded_procedure_steps %></p>
+    <p>
+      <%= f.label :non_welded_skill_level, 'Technician Skill Level' %>
+      <%= f.select(:non_welded_skill_level, options_for_select([['<select>', ' '],
+                                                     ['Beginner', 'Beginner'],
+                                                     ['Intermediate', 'Intermediate'],
+                                                     ['Advanced', 'Advanced'],
+                                                     ['Expert', 'Expert']])) %>
+    </p>
+    <p>
+      <%= f.label 'Actual Time to Complete' %>
+      <%= f.select(:non_welded_complete_time_hour, options_for_select([['hours', ' '],
+                                                            ['0', '0'],
+                                                            ['1', '1'],
+                                                            ['2', '2'],
+                                                            ['3', '3'],
+                                                            ['4', '4'],
+                                                            ['5', '5'],
+                                                            ['6', '6'],
+                                                            ['7', '7'],
+                                                            ['8', '8'],
+                                                            ['9', '9'],
+                                                            ['10', '10'],
+                                                            ['11', '11'],
+                                                            ['12', '12'],
+                                                            ['13', '13']])) %>
+      <%= f.select(:non_welded_complete_time_min, options_for_select([['minutes', ' '],
+                                                           ['0', '0'],
+                                                           ['15', '15'],
+                                                           ['30', '30'],
+                                                           ['45', '45']])) %>
+    </p>
+    <p><%= f.label :non_welded_suggested_action, 'Suggested Action' %> <%= f.text_field :non_welded_suggested_action %></p>
+  </div>
+  <div class="refinished-operations-form">
+    <p>
+      <%= f.label :refinished_area_of_vechicle, 'Area of Vechicle' %>
+      <%= f.select(:refinished_area_of_vechicle, options_for_select([['<select>', ' '],
+                                                          ['Front', 'Front'],
+                                                          ['Back', 'Back'],
+                                                          ['Other', 'Other']])) %>
+      <%= f.text_field :refinished_area_of_vechicle_other_field %>
+    </p>
+    <p><%= f.label :refinished_issue_summary, 'Issue Summary' %> <%= f.text_field :refinished_issue_summary %></p>
+    <p><%= f.label :refinished_special_labor, 'Special Labor or Material Considerations' %> <%= f.text_field :refinished_special_labor %></p>
+    <p>
+      <%= f.label :refinished_surface_area, 'Estimated Part Surface Area' %>
+      <%= f.select(:refinished_surface_area, options_for_select([['<select>', ' '],
+                                                      ['5', '5'],
+                                                      ['10', '10'],
+                                                      ['15', '15'],
+                                                      ['20', '20'],
+                                                      ['25', '25'],
+                                                      ['30', '30'],
+                                                      ['35', '35'],
+                                                      ['40', '40'],
+                                                      ['45', '45'],
+                                                      ['50', '50'],
+                                                      ['55', '55'],
+                                                      ['60', '60'],
+                                                      ['65', '65'],
+                                                      ['70', '70'],
+                                                      ['75', '75'],
+                                                      ['80', '80'],
+                                                      ['85', '85'],
+                                                      ['90', '90'],
+                                                      ['95', '95'],
+                                                      ['100', '100']])) %>
+      <i>square inches</i>
+    </p>
+    <p><%= f.label :refinished_suggested_action, 'Suggested Action' %> <%= f.text_field :refinished_suggested_action %></p>
+  </div>
+  <div class="all-other-form">
+    <p><%= f.label :all_other_issue_summary, 'Issue Summary' %> <%= f.text_field :all_other_issue_summary %></p>
+    <p><%= f.label :all_other_procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :all_other_procedure_steps %></p>
+    <p>
+      <%= f.label 'Actual Time to Complete' %>
+      <%= f.select(:all_other_complete_time_hour, options_for_select([['hours', ' '],
+                                                            ['0', '0'],
+                                                            ['1', '1'],
+                                                            ['2', '2'],
+                                                            ['3', '3'],
+                                                            ['4', '4'],
+                                                            ['5', '5'],
+                                                            ['6', '6'],
+                                                            ['7', '7'],
+                                                            ['8', '8'],
+                                                            ['9', '9'],
+                                                            ['10', '10'],
+                                                            ['11', '11'],
+                                                            ['12', '12'],
+                                                            ['13', '13']])) %>
+      <%= f.select(:all_other_complete_time_min, options_for_select([['minutes', ' '],
+                                                           ['0', '0'],
+                                                           ['15', '15'],
+                                                           ['30', '30'],
+                                                           ['45', '45']])) %>
+    </p>
+    <p><%= f.label :all_other_suggested_action, 'Suggested Action' %> <%= f.text_field :all_other_suggested_action %></p>
+  </div>
   <p><%= f.submit %></p>
 <% end %>

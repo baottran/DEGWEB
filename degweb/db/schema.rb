@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213015848) do
+ActiveRecord::Schema.define(version: 20160214000404) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
@@ -42,9 +42,63 @@ ActiveRecord::Schema.define(version: 20160213015848) do
     t.string   "database"
     t.string   "client_id"
     t.string   "inquiry_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "state"
+    t.string   "make_other_field"
+    t.string   "missing_area_of_vechicle"
+    t.string   "missing_area_of_vechicle_other_field"
+    t.string   "missing_part_name"
+    t.string   "missing_part_description"
+    t.string   "missing_oem_part_number"
+    t.string   "missing_information"
+    t.string   "missing_issue_summary"
+    t.string   "missing_suggested_action"
+    t.string   "parts_area_of_vechicle"
+    t.string   "parts_area_of_vechicle_other_field"
+    t.string   "parts_part_name"
+    t.string   "parts_part_description"
+    t.string   "parts_oem_part_number"
+    t.string   "parts_issue_summary"
+    t.string   "parts_suggested_action"
+    t.string   "procedure_area_of_vechicle"
+    t.string   "procedure_area_of_vechicle_other_field"
+    t.string   "procedure_page_number"
+    t.string   "procedure_issue_summary"
+    t.string   "procedure_suggested_action"
+    t.string   "welded_area_of_vechicle"
+    t.string   "welded_area_of_vechicle_other_field"
+    t.string   "welded_part_name"
+    t.string   "welded_part_number"
+    t.string   "welded_issue_summary"
+    t.string   "welded_weld_spots"
+    t.string   "welded_materials_involved"
+    t.string   "welded_procedure_steps"
+    t.string   "welded_skill_level"
+    t.string   "welded_complete_time_hour"
+    t.string   "welded_complete_time_min"
+    t.string   "welded_suggested_action"
+    t.string   "non_welded_area_of_vechicle"
+    t.string   "non_welded_area_of_vechicle_other_field"
+    t.string   "non_welded_part_name"
+    t.string   "non_welded_part_number"
+    t.string   "non_welded_issue_summary"
+    t.string   "non_welded_procedure_steps"
+    t.string   "non_welded_skill_level"
+    t.string   "non_welded_complete_time_hour"
+    t.string   "non_welded_complete_time_min"
+    t.string   "non_welded_suggested_action"
+    t.string   "refinished_area_of_vechicle"
+    t.string   "refinished_area_of_vechicle_other_field"
+    t.string   "refinished_issue_summary"
+    t.string   "refinished_special_labor"
+    t.string   "refinished_surface_area"
+    t.string   "refinished_suggested_action"
+    t.string   "all_other_issue_summary"
+    t.string   "all_other_procedure_steps"
+    t.string   "all_other_complete_time_hour"
+    t.string   "all_other_complete_time_min"
+    t.string   "all_other_suggested_action"
   end
 
   create_table "users", force: :cascade do |t|
