@@ -26,6 +26,13 @@ class InquiriesController < ApplicationController
     end
   end
 
+  def attach
+    @inquiry = Inquiry.find(params[:id])  
+
+
+  end
+
+
 	def create
   	@inquiry = Inquiry.new(inquiry_params)
 
@@ -46,7 +53,7 @@ class InquiriesController < ApplicationController
 
 	private
 	  def inquiry_params
-	    params.require(:inquiry).permit(:name, :title, :shop_name, :address_1, :address_2, :city, :state, :zip_code, :phone, :fax, :email, :make, :model, :year, :body_type, :vin, :database, :client_id, :inquiry_type)
+	    params.require(:inquiry).permit(:name, :title, :shop_name, :address_1, :address_2, :city, :state, :zip_code, :phone, :fax, :email, :make, :model, :year, :body_type, :vin, :database, :client_id, :inquiry_type, :attachment)
 	  end
 end
 

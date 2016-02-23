@@ -440,6 +440,15 @@
     </p>
     <p><%= f.label :all_other_suggested_action, 'Suggested Action' %> <%= f.text_field :all_other_suggested_action %></p>
   </div>
+
+  <!-- Attachment -->
+
+  <div>
+    <div class="field">
+    <%= f.label :attachment %>
+    <%= f.file_field :attachment %>
+  </div>
+  </div>
   <p><%= f.submit %></p>
 <% end %>
 

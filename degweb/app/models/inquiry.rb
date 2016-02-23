@@ -23,4 +23,8 @@ class Inquiry < ActiveRecord::Base
   validates :vin, presence: true
   validates :database, presence: true
   validates :inquiry_type, presence: true
+
+  has_attached_file :attachment 
+
+  validates_attachment :attachment, content_type: { content_type: /\Aimage\/.*\Z/ }
 end
