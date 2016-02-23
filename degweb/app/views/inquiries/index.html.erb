@@ -4,48 +4,18 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Title</th>
-    <th>Shop Name</th>
-    <th>Address 1</th>
-    <th>Address 2</th>
-    <th>City</th>
-    <th>Zip Code</th>
-    <th>State</th>
-    <th>Phone</th>
-    <th>Fax</th>
-    <th>Email</th>
+    <th>Inquiry Type</th>
+    <th>Year</th>
     <th>Make</th>
     <th>Model</th>
-    <th>Year</th>
-    <th>Body Type</th>
-    <th>VIN</th>
-    <th>Database</th>
-    <th>Client ID</th>
-    <th>Inquiry Type</th>
   </tr>
 
   <% @inquiries.each do |inquiry| %>
     <tr>
-      <td><%= inquiry.name %></td>
-      <td><%= inquiry.title %></td>
-      <td><%= inquiry.shop_name %></td>
-      <td><%= inquiry.address_1 %></td>
-      <td><%= inquiry.address_2 %></td>
-      <td><%= inquiry.city %></td>
-      <td><%= inquiry.zip_code %></td>
-      <td><%= inquiry.state %></td>
-      <td><%= inquiry.phone %></td>
-      <td><%= inquiry.fax %></td>
-      <td><%= inquiry.email %></td>
+      <td><%= inquiry.inquiry_type %></td>
+      <td><%= inquiry.year %></td>
       <td><%= inquiry.make %></td>
       <td><%= inquiry.model %></td>
-      <td><%= inquiry.year %></td>
-      <td><%= inquiry.body_type %></td>
-      <td><%= inquiry.vin %></td>
-      <td><%= inquiry.database %></td>
-      <td><%= inquiry.client_id %></td>
-      <td><%= inquiry.inquiry_type %></td>
       <td><%= link_to 'Show', inquiry_path(inquiry) %></td>
       <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
       <td><%= link_to 'Delete', inquiry_path(inquiry),
