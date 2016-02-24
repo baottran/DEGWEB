@@ -34,5 +34,6 @@ class Inquiry < ActiveRecord::Base
     {:bucket => "degweb-dev", :access_key_id => "AKIAJI4FS6CKOUH3A7JQ", :secret_access_key => "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"}
   end
 
-  validates_attachment :attachment, content_type: { content_type: /\Aimage\/.*\Z/ }
+  validates_attachment :attachment, :content_type => {:content_type => %w(image/jpeg image/jpg image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document)}
+
 end
