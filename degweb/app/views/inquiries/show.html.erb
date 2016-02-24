@@ -27,6 +27,8 @@
 <p><strong>Database:</strong><%= @inquiry.database %></p>
 <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
 <p><strong>Inquiry Type:</strong><%= @inquiry.inquiry_type %></p>
+
+<p><strong>Attached Files:</strong><a href="<%= @inquiry.attachment.url %>"><%= @inquiry.attachment_file_name %></a>
 <h2>Comments</h2>
 <%= render @inquiry.comments %>
 
