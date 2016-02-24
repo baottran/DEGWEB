@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214000404) do
+ActiveRecord::Schema.define(version: 20160223080110) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
@@ -99,6 +99,10 @@ ActiveRecord::Schema.define(version: 20160214000404) do
     t.string   "all_other_complete_time_hour"
     t.string   "all_other_complete_time_min"
     t.string   "all_other_suggested_action"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
