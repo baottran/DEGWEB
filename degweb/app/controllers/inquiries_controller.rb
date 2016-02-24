@@ -28,8 +28,6 @@ class InquiriesController < ApplicationController
 
   def attach
     @inquiry = Inquiry.find(params[:id])  
-
-
   end
 
 

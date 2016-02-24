@@ -8,15 +8,27 @@ Images and documentation can speak volumes to support your inquiry. The DEG reco
 Browse images on your desktop or cloud drive by tapping the "Add a file" button below. You can add as many files as you like. (See below for more detailed instructions on how to add files to your inquiry.)
 </p>
 
-<button>Add a file</button>
-<br>
+<%= form_for :inquiry, url: inquiries_path do |f| %>
 
+  <div>
+    <div class="field">
+    <%= f.label :attachment %>
+    <%= f.file_field :attachment %>
+  </div>
+  </div>
 
-<p>
+  <p>
 Once you've uploaded all the files you want to include with your inquiry, or if you have no files to add, select the "Submit inquiry" button to complete the process.
 </p>
 
-<button>Back</button>
-<button>Submit Inquiry</button>
-<button>Cancel</button>
+  <p><%= f.submit %></p>
+
+<% end %>
+
+
+<br>
+
+
+
+
 <br>
