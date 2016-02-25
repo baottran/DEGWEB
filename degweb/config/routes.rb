@@ -19,12 +19,11 @@ Rails.application.routes.draw do
   end
 
   get 'inquiries/:id/attach' => 'inquiries#attach'
-
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  resources :users 
+  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
