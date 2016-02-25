@@ -15,6 +15,7 @@
 <p><strong>Body </strong><%= @inquiry.body_type %></p>
 <br>
 <br>
+
 <h4>Contact Information</h4>
 <hr>
 <br>
@@ -30,10 +31,18 @@
 <p><strong>Fax:</strong><%= @inquiry.fax %></p>
 <p><strong>Email:</strong><%= @inquiry.email %></p>
 <br>
+<p><strong>Attached Files:</strong><a href="<%= @inquiry.attachment.url %>"><%= @inquiry.attachment_file_name %></a>
 <br>
+<h2>Comments</h2>
+<%= render @inquiry.comments %>
+<br>
+<br>
+
 <h4>Database Inquiry</h4>
+<br>
 <hr>
 <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
+<p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
 <p><strong>Database: </strong><%= @inquiry.database %></p>
 
 <% case @inquiry.inquiry_type
@@ -86,7 +95,5 @@
 <% end %>
 
 <p><strong>Files </strong></p>
-
-
 
 <%= link_to 'Back', inquiries_path %>

@@ -10,19 +10,20 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
+
+
   root 'welcome#index'
 
   resources :inquiries do
     resources :comments
   end
 
-  get 'inquiries/:id/admin' => 'inquiries#adminview'
-
+  get 'inquiries/:id/attach' => 'inquiries#attach'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  resources :users 
+  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

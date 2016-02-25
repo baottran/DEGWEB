@@ -59,4 +59,30 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Attachments / Amazon S3
+  # config.paperclip_defaults = {
+  #   :storage => :s3,
+  #   :s3_credentials => {
+  #     :bucket => 'degweb-dev',
+  #     :access_key_id => 'AKIAI5X3M3O6JH4KS3XA',
+  #     :secret_access_key => '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'
+  #   }
+  # }
+
+
+ # Amazon Web Services - S3
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :region => 'us-west-1',
+      :bucket => 'degweb-dev',
+      :access_key_id => "AKIAJI4FS6CKOUH3A7JQ",
+      :secret_access_key => "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"
+      
+    }
+  }
+
+
+
 end
