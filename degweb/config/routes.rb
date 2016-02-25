@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  get 'inquiries/:id/admin' => 'inquiries#adminview'
+
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
