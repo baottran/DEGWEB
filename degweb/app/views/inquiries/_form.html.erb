@@ -76,7 +76,7 @@
                                                ['Washington', 'WA'],
                                                ['West Virginia', 'WV'],
                                                ['Wisconsin', 'WI'],
-                                               ['Wyoming', 'WY']])) %>
+                                               ['Wyoming', 'WY']]), {}, {class: 'form-control'}) %>
     </p>
     <p><%= f.label :zip_code %> <%= f.text_field :zip_code %></p>
     <p><%= f.label :phone %> <%= f.text_field :phone %></p>
@@ -132,7 +132,7 @@
                                               ['Toyota', 'Toyota'],
                                               ['Volkswagen', 'Volkswagen'],
                                               ['Volvo', 'Volvo'],
-                                              ['Other', 'Other']])) %>
+                                              ['Other', 'Other']]), {}, {class: 'form-control'}) %>
       <%= f.text_field :make_other_field %>
     </p>
     <p><%= f.label :model %> <%= f.text_field :model %></p>
@@ -169,7 +169,7 @@
                                               ['1989', '1989'],
                                               ['1988', '1988'],
                                               ['1987', '1987'],
-                                              ['1986', '1986']])) %>
+                                              ['1986', '1986']]), {}, {class: 'form-control'}) %>
     </p>
     <p>
       <%= f.label :body_type %>
@@ -185,7 +185,7 @@
                                                    ['Convertible', 'Convertible'],
                                                    ['Hatchback', 'Hatchback'],
                                                    ['Wagon', 'Wagon'],
-                                                   ['Electric', 'Electric']])) %>
+                                                   ['Electric', 'Electric']]), {}, {class: 'form-control'}) %>
     </p>
     <p><%= f.label :vin %> <%= f.text_field :vin %></p>
     <br>
@@ -197,7 +197,7 @@
       <%= f.select(:database, options_for_select([['<select>', ' '],
                                                   ['Audatex', 'Audatex'],
                                                   ['CCC', 'CCC'],
-                                                  ['Mitchell', 'Mitchell']])) %>
+                                                  ['Mitchell', 'Mitchell']]), {}, {class: 'form-control'}) %>
     </p>
     <p><%= f.label :client_id %> <%= f.text_field :client_id %> <i>If applicable</i></p>
     <p>
@@ -209,7 +209,7 @@
                                                       ['Welded Panel Operations', 'Welded Panel Operations'],
                                                       ['Non-Welded Panel Operations', 'Non-Welded Panel Operations'],
                                                       ['Refinish Operations', 'Refinish Operations'],
-                                                      ['All Other', 'All Other']])) %>
+                                                      ['All Other', 'All Other']]), {}, {class: 'form-control'}) %>
     </p>
 
   </div>
@@ -219,7 +219,7 @@
       <%= f.select(:missing_area_of_vechicle, options_for_select([['<select>', ' '],
                                                                   ['Front', 'Front'],
                                                                   ['Back', 'Back'],
-                                                                  ['Other', 'Other']])) %>
+                                                                  ['Other', 'Other']]), {}, {class: 'form-control'}) %>
       <%= f.text_field :missing_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :missing_part_name, 'Missing Part Name' %> <%= f.text_field :missing_part_name %></p>
@@ -235,7 +235,7 @@
       <%= f.select(:parts_area_of_vechicle, options_for_select([['<select>', ' '],
                                                                 ['Front', 'Front'],
                                                                 ['Back', 'Back'],
-                                                                ['Other', 'Other']])) %>
+                                                                ['Other', 'Other']]), {}, {class: 'form-control'}) %>
       <%= f.text_field :parts_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :parts_part_name, 'Part Name' %> <%= f.text_field :parts_part_name %></p>
@@ -250,7 +250,7 @@
       <%= f.select(:procedure_area_of_vechicle, options_for_select([['<select>', ' '],
                                                                     ['Front', 'Front'],
                                                                     ['Back', 'Back'],
-                                                                    ['Other', 'Other']])) %>
+                                                                    ['Other', 'Other']]), {}, {class: 'form-control'}) %>
       <%= f.text_field :procedure_area_of_vechicle_other_field %>
     </p>
     <p>
@@ -260,7 +260,7 @@
                                                                ['2', '2'],
                                                                ['3', '3'],
                                                                ['4', '4'],
-                                                               ['5', '5']])) %>
+                                                               ['5', '5']]), {}, {class: 'form-control'}) %>
     </p>
     <p><%= f.label :procedure_issue_summary, 'Issue Summary' %> <%= f.text_field :procedure_issue_summary %></p>
     <p><%= f.label :procedure_suggested_action, 'Suggested Action' %> <%= f.text_field :procedure_suggested_action %></p>
@@ -271,7 +271,7 @@
       <%= f.select(:welded_area_of_vechicle, options_for_select([['<select>', ' '],
                                                                 ['Front', 'Front'],
                                                                 ['Back', 'Back'],
-                                                                ['Other', 'Other']])) %>
+                                                                ['Other', 'Other']]), {}, {class: 'form-control'}) %>
       <%= f.text_field :welded_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :welded_part_name, 'Part Name' %> <%= f.text_field :welded_part_name %></p>
@@ -284,7 +284,7 @@
                                                           ['2', '2'],
                                                           ['3', '3'],
                                                           ['4', '4'],
-                                                          ['5', '5']])) %>
+                                                          ['5', '5']]), {}, {class: 'form-control'}) %>
     </p>
     <p>
       <%= f.label :welded_materials_involved, 'Type of Materials Involved' %>
@@ -292,7 +292,7 @@
                                                                   ['metal', 'metal'],
                                                                   ['plastic', 'plastic'],
                                                                   ['wood', 'wood'],
-                                                                  ['cotton', 'cotton']])) %>
+                                                                  ['cotton', 'cotton']]), {}, {class: 'form-control'}) %>
     </p>
     <p><%= f.label :welded_procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :welded_procedure_steps %></p>
     <p>
@@ -301,7 +301,7 @@
                                                            ['Beginner', 'Beginner'],
                                                            ['Intermediate', 'Intermediate'],
                                                            ['Advanced', 'Advanced'],
-                                                           ['Expert', 'Expert']])) %>
+                                                           ['Expert', 'Expert']]), {}, {class: 'form-control'}) %>
     </p>
     <p>
       <%= f.label 'Actual Time to Complete' %>
@@ -319,12 +319,12 @@
                                                                   ['10', '10'],
                                                                   ['11', '11'],
                                                                   ['12', '12'],
-                                                                  ['13', '13']])) %>
+                                                                  ['13', '13']]), {}, {class: 'form-control'}) %>
       <%= f.select(:welded_complete_time_min, options_for_select([['minutes', ' '],
                                                                  ['0', '0'],
                                                                  ['15', '15'],
                                                                  ['30', '30'],
-                                                                 ['45', '45']])) %>
+                                                                 ['45', '45']]), {}, {class: 'form-control'}) %>
     </p>
     <p><%= f.label :welded_suggested_action, 'Suggested Action' %> <%= f.text_field :welded_suggested_action %></p>
   </div>
@@ -334,7 +334,7 @@
       <%= f.select(:non_welded_area_of_vechicle, options_for_select([['<select>', ' '],
                                                                     ['Front', 'Front'],
                                                                     ['Back', 'Back'],
-                                                                    ['Other', 'Other']])) %>
+                                                                    ['Other', 'Other']]), {}, {class: 'form-control'}) %>
       <%= f.text_field :non_welded_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :non_welded_part_name, 'Part Name' %> <%= f.text_field :non_welded_part_name %></p>
@@ -347,7 +347,7 @@
                                                                ['Beginner', 'Beginner'],
                                                                ['Intermediate', 'Intermediate'],
                                                                ['Advanced', 'Advanced'],
-                                                               ['Expert', 'Expert']])) %>
+                                                               ['Expert', 'Expert']]), {}, {class: 'form-control'}) %>
     </p>
     <p>
       <%= f.label 'Actual Time to Complete' %>
@@ -365,12 +365,12 @@
                                                                       ['10', '10'],
                                                                       ['11', '11'],
                                                                       ['12', '12'],
-                                                                      ['13', '13']])) %>
+                                                                      ['13', '13']]), {}, {class: 'form-control'}) %>
       <%= f.select(:non_welded_complete_time_min, options_for_select([['minutes', ' '],
                                                                      ['0', '0'],
                                                                      ['15', '15'],
                                                                      ['30', '30'],
-                                                                     ['45', '45']])) %>
+                                                                     ['45', '45']]), {}, {class: 'form-control'}) %>
     </p>
     <p><%= f.label :non_welded_suggested_action, 'Suggested Action' %> <%= f.text_field :non_welded_suggested_action %></p>
   </div>
@@ -380,7 +380,7 @@
       <%= f.select(:refinished_area_of_vechicle, options_for_select([['<select>', ' '],
                                                                     ['Front', 'Front'],
                                                                     ['Back', 'Back'],
-                                                                    ['Other', 'Other']])) %>
+                                                                    ['Other', 'Other']]), {}, {class: 'form-control'}) %>
       <%= f.text_field :refinished_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :refinished_issue_summary, 'Issue Summary' %> <%= f.text_field :refinished_issue_summary %></p>
@@ -407,7 +407,7 @@
                                                                 ['85', '85'],
                                                                 ['90', '90'],
                                                                 ['95', '95'],
-                                                                ['100', '100']])) %>
+                                                                ['100', '100']]), {}, {class: 'form-control'}) %>
       <i>square inches</i>
     </p>
     <p><%= f.label :refinished_suggested_action, 'Suggested Action' %> <%= f.text_field :refinished_suggested_action %></p>
@@ -431,12 +431,12 @@
                                                                       ['10', '10'],
                                                                       ['11', '11'],
                                                                       ['12', '12'],
-                                                                      ['13', '13']])) %>
+                                                                      ['13', '13']]), {}, {class: 'form-control'}) %>
       <%= f.select(:all_other_complete_time_min, options_for_select([['minutes', ' '],
                                                                      ['0', '0'],
                                                                      ['15', '15'],
                                                                      ['30', '30'],
-                                                                     ['45', '45']])) %>
+                                                                     ['45', '45']]), {}, {class: 'form-control'}) %>
     </p>
     <p><%= f.label :all_other_suggested_action, 'Suggested Action' %> <%= f.text_field :all_other_suggested_action %></p>
   </div>
@@ -450,6 +450,8 @@
     </div>
   </div>
   <br>
-  <p><%= f.submit %></p>
+  <p>
+    <%= f.submit class: 'btn btn-primary' %>
+  </p>
 <% end %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
