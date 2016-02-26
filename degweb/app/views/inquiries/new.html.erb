@@ -1,5 +1,7 @@
+<%= render 'shared/header' %>
+
 <h1>New Inquiry</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', inquiries_path %>
+<%= button_to 'Cancel', inquiries_path, :class => "btn btn-default" %>
