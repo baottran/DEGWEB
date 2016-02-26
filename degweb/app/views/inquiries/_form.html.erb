@@ -214,12 +214,12 @@
 
   </div>
   <div class="missing-info-form">
-    <p>
+    <p class="area-of-vechicle">
       <%= f.label :missing_area_of_vechicle, 'Area of Vechicle' %>
       <%= f.select(:missing_area_of_vechicle, options_for_select([['<select>', ' '],
-                                                          ['Front', 'Front'],
-                                                          ['Back', 'Back'],
-                                                          ['Other', 'Other']])) %>
+                                                                  ['Front', 'Front'],
+                                                                  ['Back', 'Back'],
+                                                                  ['Other', 'Other']])) %>
       <%= f.text_field :missing_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :missing_part_name, 'Missing Part Name' %> <%= f.text_field :missing_part_name %></p>
@@ -230,12 +230,12 @@
     <p><%= f.label :missing_suggested_action, 'Suggested Action' %> <%= f.text_field :missing_suggested_action %></p>
   </div>
   <div class="parts-form">
-    <p>
+    <p class="area-of-vechicle">
       <%= f.label :parts_area_of_vechicle, 'Area of Vechicle' %>
       <%= f.select(:parts_area_of_vechicle, options_for_select([['<select>', ' '],
-                                                          ['Front', 'Front'],
-                                                          ['Back', 'Back'],
-                                                          ['Other', 'Other']])) %>
+                                                                ['Front', 'Front'],
+                                                                ['Back', 'Back'],
+                                                                ['Other', 'Other']])) %>
       <%= f.text_field :parts_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :parts_part_name, 'Part Name' %> <%= f.text_field :parts_part_name %></p>
@@ -245,7 +245,7 @@
     <p><%= f.label :parts_suggested_action, 'Suggested Action' %> <%= f.text_field :parts_suggested_action %></p>
   </div>
   <div class="procedure-page-form">
-    <p>
+    <p class="area-of-vechicle">
       <%= f.label :procedure_area_of_vechicle, 'Area of Vechicle' %>
       <%= f.select(:procedure_area_of_vechicle, options_for_select([['<select>', ' '],
                                                                     ['Front', 'Front'],
@@ -266,12 +266,12 @@
     <p><%= f.label :procedure_suggested_action, 'Suggested Action' %> <%= f.text_field :procedure_suggested_action %></p>
   </div>
   <div class="welded-panel-operations-form">
-    <p>
+    <p class="area-of-vechicle">
       <%= f.label :welded_area_of_vechicle, 'Area of Vechicle' %>
       <%= f.select(:welded_area_of_vechicle, options_for_select([['<select>', ' '],
-                                                          ['Front', 'Front'],
-                                                          ['Back', 'Back'],
-                                                          ['Other', 'Other']])) %>
+                                                                ['Front', 'Front'],
+                                                                ['Back', 'Back'],
+                                                                ['Other', 'Other']])) %>
       <%= f.text_field :welded_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :welded_part_name, 'Part Name' %> <%= f.text_field :welded_part_name %></p>
@@ -280,61 +280,61 @@
     <p>
       <%= f.label :welded_weld_spots, 'Number of Spot Welds' %>
       <%= f.select(:welded_weld_spots, options_for_select([['<select>', ' '],
-                                                    ['1', '1'],
-                                                    ['2', '2'],
-                                                    ['3', '3'],
-                                                    ['4', '4'],
-                                                    ['5', '5']])) %>
+                                                          ['1', '1'],
+                                                          ['2', '2'],
+                                                          ['3', '3'],
+                                                          ['4', '4'],
+                                                          ['5', '5']])) %>
     </p>
     <p>
       <%= f.label :welded_materials_involved, 'Type of Materials Involved' %>
       <%= f.select(:welded_materials_involved, options_for_select([['<select>', ' '],
-                                                            ['metal', 'metal'],
-                                                            ['plastic', 'plastic'],
-                                                            ['wood', 'wood'],
-                                                            ['cotton', 'cotton']])) %>
+                                                                  ['metal', 'metal'],
+                                                                  ['plastic', 'plastic'],
+                                                                  ['wood', 'wood'],
+                                                                  ['cotton', 'cotton']])) %>
     </p>
     <p><%= f.label :welded_procedure_steps, 'Individual Procedure Steps' %> <%= f.text_field :welded_procedure_steps %></p>
     <p>
       <%= f.label :welded_skill_level, 'Technician Skill Level' %>
       <%= f.select(:welded_skill_level, options_for_select([['<select>', ' '],
-                                                     ['Beginner', 'Beginner'],
-                                                     ['Intermediate', 'Intermediate'],
-                                                     ['Advanced', 'Advanced'],
-                                                     ['Expert', 'Expert']])) %>
+                                                           ['Beginner', 'Beginner'],
+                                                           ['Intermediate', 'Intermediate'],
+                                                           ['Advanced', 'Advanced'],
+                                                           ['Expert', 'Expert']])) %>
     </p>
     <p>
       <%= f.label 'Actual Time to Complete' %>
       <%= f.select(:welded_complete_time_hour, options_for_select([['hours', ' '],
-                                                            ['0', '0'],
-                                                            ['1', '1'],
-                                                            ['2', '2'],
-                                                            ['3', '3'],
-                                                            ['4', '4'],
-                                                            ['5', '5'],
-                                                            ['6', '6'],
-                                                            ['7', '7'],
-                                                            ['8', '8'],
-                                                            ['9', '9'],
-                                                            ['10', '10'],
-                                                            ['11', '11'],
-                                                            ['12', '12'],
-                                                            ['13', '13']])) %>
+                                                                  ['0', '0'],
+                                                                  ['1', '1'],
+                                                                  ['2', '2'],
+                                                                  ['3', '3'],
+                                                                  ['4', '4'],
+                                                                  ['5', '5'],
+                                                                  ['6', '6'],
+                                                                  ['7', '7'],
+                                                                  ['8', '8'],
+                                                                  ['9', '9'],
+                                                                  ['10', '10'],
+                                                                  ['11', '11'],
+                                                                  ['12', '12'],
+                                                                  ['13', '13']])) %>
       <%= f.select(:welded_complete_time_min, options_for_select([['minutes', ' '],
-                                                           ['0', '0'],
-                                                           ['15', '15'],
-                                                           ['30', '30'],
-                                                           ['45', '45']])) %>
+                                                                 ['0', '0'],
+                                                                 ['15', '15'],
+                                                                 ['30', '30'],
+                                                                 ['45', '45']])) %>
     </p>
     <p><%= f.label :welded_suggested_action, 'Suggested Action' %> <%= f.text_field :welded_suggested_action %></p>
   </div>
   <div class="non-welded-panel-operations-form">
-    <p>
+    <p class="area-of-vechicle">
       <%= f.label :non_welded_area_of_vechicle, 'Area of Vechicle' %>
       <%= f.select(:non_welded_area_of_vechicle, options_for_select([['<select>', ' '],
-                                                          ['Front', 'Front'],
-                                                          ['Back', 'Back'],
-                                                          ['Other', 'Other']])) %>
+                                                                    ['Front', 'Front'],
+                                                                    ['Back', 'Back'],
+                                                                    ['Other', 'Other']])) %>
       <%= f.text_field :non_welded_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :non_welded_part_name, 'Part Name' %> <%= f.text_field :non_welded_part_name %></p>
@@ -344,43 +344,43 @@
     <p>
       <%= f.label :non_welded_skill_level, 'Technician Skill Level' %>
       <%= f.select(:non_welded_skill_level, options_for_select([['<select>', ' '],
-                                                     ['Beginner', 'Beginner'],
-                                                     ['Intermediate', 'Intermediate'],
-                                                     ['Advanced', 'Advanced'],
-                                                     ['Expert', 'Expert']])) %>
+                                                               ['Beginner', 'Beginner'],
+                                                               ['Intermediate', 'Intermediate'],
+                                                               ['Advanced', 'Advanced'],
+                                                               ['Expert', 'Expert']])) %>
     </p>
     <p>
       <%= f.label 'Actual Time to Complete' %>
       <%= f.select(:non_welded_complete_time_hour, options_for_select([['hours', ' '],
-                                                            ['0', '0'],
-                                                            ['1', '1'],
-                                                            ['2', '2'],
-                                                            ['3', '3'],
-                                                            ['4', '4'],
-                                                            ['5', '5'],
-                                                            ['6', '6'],
-                                                            ['7', '7'],
-                                                            ['8', '8'],
-                                                            ['9', '9'],
-                                                            ['10', '10'],
-                                                            ['11', '11'],
-                                                            ['12', '12'],
-                                                            ['13', '13']])) %>
+                                                                      ['0', '0'],
+                                                                      ['1', '1'],
+                                                                      ['2', '2'],
+                                                                      ['3', '3'],
+                                                                      ['4', '4'],
+                                                                      ['5', '5'],
+                                                                      ['6', '6'],
+                                                                      ['7', '7'],
+                                                                      ['8', '8'],
+                                                                      ['9', '9'],
+                                                                      ['10', '10'],
+                                                                      ['11', '11'],
+                                                                      ['12', '12'],
+                                                                      ['13', '13']])) %>
       <%= f.select(:non_welded_complete_time_min, options_for_select([['minutes', ' '],
-                                                           ['0', '0'],
-                                                           ['15', '15'],
-                                                           ['30', '30'],
-                                                           ['45', '45']])) %>
+                                                                     ['0', '0'],
+                                                                     ['15', '15'],
+                                                                     ['30', '30'],
+                                                                     ['45', '45']])) %>
     </p>
     <p><%= f.label :non_welded_suggested_action, 'Suggested Action' %> <%= f.text_field :non_welded_suggested_action %></p>
   </div>
   <div class="refinished-operations-form">
-    <p>
+    <p class="area-of-vechicle">
       <%= f.label :refinished_area_of_vechicle, 'Area of Vechicle' %>
       <%= f.select(:refinished_area_of_vechicle, options_for_select([['<select>', ' '],
-                                                          ['Front', 'Front'],
-                                                          ['Back', 'Back'],
-                                                          ['Other', 'Other']])) %>
+                                                                    ['Front', 'Front'],
+                                                                    ['Back', 'Back'],
+                                                                    ['Other', 'Other']])) %>
       <%= f.text_field :refinished_area_of_vechicle_other_field %>
     </p>
     <p><%= f.label :refinished_issue_summary, 'Issue Summary' %> <%= f.text_field :refinished_issue_summary %></p>
@@ -388,26 +388,26 @@
     <p>
       <%= f.label :refinished_surface_area, 'Estimated Part Surface Area' %>
       <%= f.select(:refinished_surface_area, options_for_select([['<select>', ' '],
-                                                      ['5', '5'],
-                                                      ['10', '10'],
-                                                      ['15', '15'],
-                                                      ['20', '20'],
-                                                      ['25', '25'],
-                                                      ['30', '30'],
-                                                      ['35', '35'],
-                                                      ['40', '40'],
-                                                      ['45', '45'],
-                                                      ['50', '50'],
-                                                      ['55', '55'],
-                                                      ['60', '60'],
-                                                      ['65', '65'],
-                                                      ['70', '70'],
-                                                      ['75', '75'],
-                                                      ['80', '80'],
-                                                      ['85', '85'],
-                                                      ['90', '90'],
-                                                      ['95', '95'],
-                                                      ['100', '100']])) %>
+                                                                ['5', '5'],
+                                                                ['10', '10'],
+                                                                ['15', '15'],
+                                                                ['20', '20'],
+                                                                ['25', '25'],
+                                                                ['30', '30'],
+                                                                ['35', '35'],
+                                                                ['40', '40'],
+                                                                ['45', '45'],
+                                                                ['50', '50'],
+                                                                ['55', '55'],
+                                                                ['60', '60'],
+                                                                ['65', '65'],
+                                                                ['70', '70'],
+                                                                ['75', '75'],
+                                                                ['80', '80'],
+                                                                ['85', '85'],
+                                                                ['90', '90'],
+                                                                ['95', '95'],
+                                                                ['100', '100']])) %>
       <i>square inches</i>
     </p>
     <p><%= f.label :refinished_suggested_action, 'Suggested Action' %> <%= f.text_field :refinished_suggested_action %></p>
@@ -418,25 +418,25 @@
     <p>
       <%= f.label 'Actual Time to Complete' %>
       <%= f.select(:all_other_complete_time_hour, options_for_select([['hours', ' '],
-                                                            ['0', '0'],
-                                                            ['1', '1'],
-                                                            ['2', '2'],
-                                                            ['3', '3'],
-                                                            ['4', '4'],
-                                                            ['5', '5'],
-                                                            ['6', '6'],
-                                                            ['7', '7'],
-                                                            ['8', '8'],
-                                                            ['9', '9'],
-                                                            ['10', '10'],
-                                                            ['11', '11'],
-                                                            ['12', '12'],
-                                                            ['13', '13']])) %>
+                                                                      ['0', '0'],
+                                                                      ['1', '1'],
+                                                                      ['2', '2'],
+                                                                      ['3', '3'],
+                                                                      ['4', '4'],
+                                                                      ['5', '5'],
+                                                                      ['6', '6'],
+                                                                      ['7', '7'],
+                                                                      ['8', '8'],
+                                                                      ['9', '9'],
+                                                                      ['10', '10'],
+                                                                      ['11', '11'],
+                                                                      ['12', '12'],
+                                                                      ['13', '13']])) %>
       <%= f.select(:all_other_complete_time_min, options_for_select([['minutes', ' '],
-                                                           ['0', '0'],
-                                                           ['15', '15'],
-                                                           ['30', '30'],
-                                                           ['45', '45']])) %>
+                                                                     ['0', '0'],
+                                                                     ['15', '15'],
+                                                                     ['30', '30'],
+                                                                     ['45', '45']])) %>
     </p>
     <p><%= f.label :all_other_suggested_action, 'Suggested Action' %> <%= f.text_field :all_other_suggested_action %></p>
   </div>
@@ -445,11 +445,11 @@
 
   <div>
     <div class="field">
-    <%= f.label :attachment %>
-    <%= f.file_field :attachment %>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+    </div>
   </div>
-  </div>
+  <br>
   <p><%= f.submit %></p>
 <% end %>
-
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
