@@ -133,8 +133,9 @@ seed_vehicles = [	['Toyota', 'Camry'],
 20.times do 
 
 		seed_vehicle = seed_vehicles.sample
+		inquiry_type = seed_inquiry_options.sample[0]
 
-		Inquiry.create(	name: 			Faker::Name.name,
+		@inquiry = Inquiry.new(	name: 			Faker::Name.name,
 										title: 			Faker::Name.title,
 										shop_name: 	Faker::Company.name,
 										address_1: 	Faker::Address.street_address,
@@ -150,6 +151,82 @@ seed_vehicles = [	['Toyota', 'Camry'],
 										body_type:  seed_vehicle_bodytype.sample[0],
 										vin: 				Faker::Lorem.characters(17).capitalize,
 										database: 	seed_vehicle_database.sample,
-										inquiry_type: seed_inquiry_options.sample[0])
+										inquiry_type: inquiry_type)
+
+		if inquiry_type === 'Missing Information'
+
+			@inquiry.missing_area_of_vechicle = 'Front'
+			@inquiry.missing_part_name = Faker::Lorem.word 
+			@inquiry.missing_part_description = Faker::Lorem.paragraph
+			@inquiry.missing_oem_part_number = Faker::Lorem.characters(10)
+			@inquiry.missing_information = Faker::Lorem.paragraph
+			@inquiry.missing_issue_summary = Faker::Lorem.paragraph
+			@inquiry.missing_suggested_action = Faker::Lorem.paragraph
+
+		elsif inquiry_type === 'Parts'
+
+			@inquiry.parts_area_of_vechicle = 'Back'
+			@inquiry.parts_part_name = Faker::Lorem.word 
+			@inquiry.parts_part_description = Faker::Lorem.sentence
+			@inquiry.parts_oem_part_number = Faker::Lorem.characters(10)
+			@inquiry.parts_issue_summary = Faker::Lorem.paragraph
+			@inquiry.parts_suggested_action = Faker::Lorem.paragraph
+
+		elsif inquiry_type === 'Procedure Page Issue'
+
+			@inquiry.procedure_area_of_vechicle = 'Front'
+			@inquiry.procedure_page_number = '2'
+			@inquiry.procedure_issue_summary = Faker::Lorem.paragraph
+			@inquiry.procedure_suggested_action = Faker::Lorem.paragraph
+
+		elsif inquiry_type === 'Welded Panel Operations'
+
+			@inquiry.welded_area_of_vechicle = 'Front'
+			@inquiry.welded_part_name = Faker::Lorem.word
+			@inquiry.welded_part_number = Faker::Lorem.characters(10)
+			@inquiry.welded_issue_summary = Faker::Lorem.paragraph
+			@inquiry.welded_weld_spots = '2'
+			@inquiry.welded_materials_involved = 'metal'
+			@inquiry.welded_procedure_steps = Faker::Lorem.paragraph
+			@inquiry.welded_skill_level = 'Advanced'
+			@inquiry.welded_complete_time_hour = '10'
+			@inquiry.welded_complete_time_min = '15'
+			@inquiry.welded_suggested_action = Faker::Lorem.paragraph
+
+		elsif inquiry_type === 'Non-Welded Panel Operations'
+
+			@inquiry.non_welded_area_of_vechicle = 'Back'
+			@inquiry.non_welded_part_name = Faker::Lorem.word
+			@inquiry.non_welded_part_number = Faker::Lorem.characters(10)
+			@inquiry.non_welded_issue_summary = Faker::Lorem.paragraph
+			@inquiry.non_welded_procedure_steps = Faker::Lorem.paragraph
+			@inquiry.non_welded_skill_level = 'Intermediate'
+			@inquiry.non_welded_complete_time_hour = '5'
+			@inquiry.non_welded_complete_time_min = '30'
+			@inquiry.non_welded_suggested_action = Faker::Lorem.paragraph
+
+		elsif inquiry_type === 'Refinish Operations'
+
+			@inquiry.refinished_area_of_vechicle = 'Other'
+			@inquiry.refinished_issue_summary = Faker::Lorem.paragraph
+			@inquiry.refinished_special_labor = Faker::Lorem.sentence
+			@inquiry.refinished_surface_area = '80'
+			@inquiry.refinished_suggested_action = Faker::Lorem.paragraph
+
+		elsif inquiry_type === 'All Other'
+
+			@inquiry.all_other_issue_summary = Faker::Lorem.paragraph
+			@inquiry.all_other_procedure_steps = Faker::Lorem.paragraph
+			@inquiry.all_other_complete_time_hour = '2'
+			@inquiry.all_other_complete_time_min = '15'
+			@inquiry.all_other_suggested_action = Faker::Lorem.paragraph
+
+
+		end
+
+				
+
+		@inquiry.save 
+
 	end 
 

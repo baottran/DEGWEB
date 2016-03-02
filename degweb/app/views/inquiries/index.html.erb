@@ -1,27 +1,156 @@
 <%= render 'shared/header' %>
 
-<h1>Listing Inquiries</h1>
+<style>
+  .container {
+    width: 1000px;
+    height: 1000px;
+    background-color: white;
+  }
 
-<table>
-  <tr>
-    <th>Inquiry Type</th>
-    <th>Year</th>
-    <th>Make</th>
-    <th>Model</th>
-  </tr>
+  .search {
+    width: 920px;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+  }
 
-  <% @inquiries.each do |inquiry| %>
-    <tr>
-      <td><%= inquiry.inquiry_type %></td>
-      <td><%= inquiry.year %></td>
-      <td><%= inquiry.make %></td>
-      <td><%= inquiry.model %></td>
-      <td><%= link_to 'Show', inquiry_path(inquiry) %></td>
-      <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
-      <td><%= link_to 'Delete', inquiry_path(inquiry),
-        method: :delete,
-        data: { confirm: 'Are you sure?' } %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+  .search-field {
+    width: 400px;
+    padding-right: 50px;
+    margin: 10px;
+  }
+
+  .search-btn {
+    height: 35px;
+  }
+
+  .search-sort {
+    margin-left: 200px;
+  }
+
+
+  .content-box {
+    display: inline-flex;
+    background-color: white;
+    width: 985px;
+    height:800px;
+  }
+
+  .checklist {
+    background-color: white;
+    width: 200px;
+    height: 600px;
+    margin: 10px;
+  }
+
+  .right-content {
+    /*background-color: yellow;*/
+    width: 700px;
+    /*height: 600px;*/
+    margin: 10px;
+    /*padding: 5px;*/
+  }
+
+</style>
+
+<div class="container">
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#home" data-toggle="tab">Request Queue</a></li>
+    <li><a href="#home" data-toggle="tab">Reporting</a></li>
+    <li><a href="#home" data-toggle="tab">Request Queue</a></li>
+  </ul>
+
+  <br>
+  <div class="panel panel-default search">
+
+    <div class="form-group search-field">
+      <input type="text" class="form-control" id="inputDefault" placeholder="Search">
+    </div>
+
+    <a href="#" class="btn btn-primary search-btn">Search</a>
+
+    <div class="form-group search-sort">
+      <label for="select" class="col-lg-2 control-label">Sort</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="select">
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+          <option>Option 4</option>
+          <option>Option 5</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="content-box">
+
+
+      <div class="panel panel-default checklist">
+        <div class="panel-heading">Checklist</div>
+        <div class="panel-body">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Checkbox
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Checkbox
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Checkbox
+            </label>
+          </div>
+          <hr>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Checkbox
+            </label>
+          </div>
+        </div>
+      </div>
+
+    <!-- <div class="left-content"> -->
+    <!-- </div> -->
+    <div class="panel panel-default right-content">
+      <div class="panel-heading">Results (<%= @inquiries.count %>)</div>
+      <div class="panel-body">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Inquiry Type</th>
+              <th>Vehicle</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          <% @inquiries.each do |inquiry| %>
+            <tr>
+              <td><%= inquiry.id %></td>
+              <td><%= inquiry.inquiry_type %></td>
+              <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
+              <td><%= link_to 'Show', inquiry_path(inquiry) %></td>
+              <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
+              <td><%= link_to 'Delete', inquiry_path(inquiry),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+          <% end %>
+
+          </tbody>
+        </table> 
+      </div>
+    </div>
+  </div>
+</div>
