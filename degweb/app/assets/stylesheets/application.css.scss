@@ -33,12 +33,30 @@
   text-align: right;
 }
 
-.form-label-2 {
-  line-height: 1.4em;
-  margin-top: 5px;
-  text-align: right;
+.database-inquiry {
+  min-height: 200px;
 }
 
-.database-inquiry {
-  height: 700px;
+.form-field {
+  background: #f9f9f9;
+  margin-bottom: 20px;
+  padding: 20px 20px 40px;
+}
+
+.submission-content {
+  /*display: flex;*/
+  display: block;
+}
+
+.inquiry-item {
+  flex-grow: 1;
+}
+
+.submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-submit {
+  margin-left: 15px;
 }

@@ -15,9 +15,11 @@
   <% end %>
   <h3>Submit a Database Inquiry</h3>
   <br>
-  <div class="form-field col-lg-9">
+  <div class="form-heading col-lg-7">
     <h4>Contact Information</h4>
     <hr>
+  </div>
+  <div class="form-field col-lg-6">
     <div class="form-group">
       <%= f.label :name, :class => "col-lg-4 form-label" %>
       <div class="col-lg-8">
@@ -137,9 +139,11 @@
   </div>
 
   <br>
-  <div class="form-field col-lg-9">
+  <div class="form-heading col-lg-7">
     <h4>Vehicle</h4>
     <hr>
+  </div>
+  <div class="form-field col-lg-6">
     <div class="form-group">
       <%= f.label :make, :class => "col-lg-4 form-label" %>
       <div class="col-lg-8">
@@ -261,9 +265,11 @@
   </div>
 
   <br>
-  <div class="database-inquiry form-field col-lg-9">
+  <div class="form-heading col-lg-7">
     <h4>Database Inquiry</h4>
     <hr>
+  </div>
+  <div class="database-inquiry form-field col-lg-6">
     <div class="form-group">
       <%= f.label :database, :class => "col-lg-4 form-label" %>
       <div class="col-lg-8">
@@ -699,15 +705,16 @@
 
   <!-- Attachment -->
 
-  <div>
+  <div class="col-lg-7">
     <div class="field">
       <%= f.label :attachment %>
       <%= f.file_field :attachment %>
     </div>
+    <br>
+    <div class="col-lg-offset-2">
+      <%= button_to 'Cancel', inquiries_path, :class => "btn btn-default" %>
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
   </div>
-  <br>
-  <p>
-    <%= f.submit class: 'btn btn-primary' %>
-  </p>
 <% end %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

@@ -1,27 +1,5 @@
 <%= render 'shared/header' %>
 
-<style>
-
-.submission-content {
-	/*display: flex;*/
-	display: block;
-}
-
-.inquiry-item {
-	flex-grow: 1;
-}
-
-.submit {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.btn-submit {
-	margin-left: 15px;
-}
-
-</style>
-
 <div class= "container">
 <h2>Inquiry Detail</h2>
 
@@ -36,7 +14,7 @@
     	<strong>Date Submitted: </strong><%= @inquiry.created_at %>
     </div>
     <div class="inquiry-item">
-    	<strong>Status: </strong> Recieved by DEG 
+    	<strong>Status: </strong> Recieved by DEG
     </div>
   </div>
 </div>

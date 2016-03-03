@@ -9,7 +9,7 @@ var Forms = {
     var areaOfVechicleOtherField = $("input#inquiry_"+prefix+"_area_of_vechicle_other_field");
     var other = "Other";
     if (value === other) {
-      areaOfVechicleOtherField.show();
+      areaOfVechicleOtherField.show('slow');
     } else {
       areaOfVechicleOtherField.hide();
     }
@@ -20,7 +20,7 @@ var Forms = {
     var makeOtherField = $("input#inquiry_make_other_field");
     var other = "Other";
     if (value === other) {
-      makeOtherField.show();
+      makeOtherField.show('slow');
     } else {
       makeOtherField.hide();
     }
