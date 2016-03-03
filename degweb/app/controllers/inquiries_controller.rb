@@ -49,9 +49,19 @@ class InquiriesController < ApplicationController
     redirect_to inquiries_path
   end
 
+  def resolve
+    @inquiry = Inquiry.find(params[:id])
+    @inquiry.resolution = params[:inquiry][:resolution]
+    @inquiry.status = 'IP Response Recieved'
+    @inquiry.save
+
+    redirect_to @inquiry
+  end
+
+
 	private
 	  def inquiry_params
-	    params.require(:inquiry).permit(:name, :title, :shop_name, :address_1, :address_2, :city, :state, :zip_code, :phone, :fax, :email, :make, :model, :year, :body_type, :vin, :database, :client_id, :inquiry_type, :attachment)
+	    params.require(:inquiry).permit(:name, :title, :shop_name, :address_1, :address_2, :city, :state, :zip_code, :phone, :fax, :email, :make, :model, :year, :body_type, :vin, :database, :client_id, :inquiry_type, :attachment, :resolution)
 	  end
 end
 

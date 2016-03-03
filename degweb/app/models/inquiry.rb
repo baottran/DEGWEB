@@ -30,6 +30,12 @@ class Inquiry < ActiveRecord::Base
                     :path => "/inquiries/:id",
                     :url => ":s3_domain_url"
 
+  after_initialize :init
+
+  def init
+    self.status  ||= "Recieved by DEG"          #will set the default value only if it's nil
+  end
+
   def s3_credentials
     {:bucket => "degweb-dev", :access_key_id => "AKIAJI4FS6CKOUH3A7JQ", :secret_access_key => "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"}
   end
