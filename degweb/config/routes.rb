@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   patch 'inquiries/:id/resolve' => 'inquiries#resolve'
+  patch 'inquiries/:id/customer' => 'inquiries#edit_customer'
 
   resources :users
 

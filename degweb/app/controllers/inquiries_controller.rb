@@ -58,6 +58,26 @@ class InquiriesController < ApplicationController
     redirect_to @inquiry
   end
 
+  def edit_customer
+
+    @inquiry = Inquiry.find(params[:id])
+
+    @inquiry.name       = params[:inquiry][:name]
+    @inquiry.title      = params[:inquiry][:title]
+    @inquiry.shop_name  = params[:inquiry][:shop_name]
+    @inquiry.address_1  = params[:inquiry][:address_1]
+    @inquiry.address_2  = params[:inquiry][:address_2]
+    @inquiry.city       = params[:inquiry][:city]
+    @inquiry.state      = params[:inquiry][:state]
+    @inquiry.zip_code   = params[:inquiry][:zip_code]
+    @inquiry.phone      = params[:inquiry][:phone]
+    @inquiry.fax        = params[:inquiry][:fax]
+    @inquiry.email      = params[:inquiry][:email]
+    @inquiry.save
+
+    redirect_to @inquiry
+  end
+
 
 	private
 	  def inquiry_params

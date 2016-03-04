@@ -1,0 +1,4 @@
+<%= form_for @inquiry, url: {action: "resolve"}, html: {class: ""} do |f| %>
+	<%= f.text_area :resolution, html: { class: "form-control", rows: "3"} %>
+	<%= f.submit "Save", html: { class: "btn btn-primary btn-submit", type: "submit", id: "resolution-submit"} %>
+<% end %>
