@@ -29,18 +29,17 @@
 @import "bootswatch/paper/bootswatch";
 
 .form-label {
-  padding-top: 9px;
   text-align: right;
 }
 
 .database-inquiry {
-  min-height: 200px;
+  min-height: 882px;
 }
 
 .form-field {
-  background: #f9f9f9;
   margin-bottom: 20px;
-  padding: 20px 20px 40px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 .submission-content {
@@ -59,4 +58,57 @@
 
 .btn-submit {
   margin-left: 15px;
+}
+
+.container {
+  width: 1000px;
+  height: 1000px;
+  background-color: white;
+}
+
+.search {
+  width: 920px;
+  display: flex;
+  background-color: white;
+  align-items: center;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.search-field {
+  width: 400px;
+  padding-right: 50px;
+  margin: 10px;
+}
+
+.search-btn {
+  height: 35px;
+}
+
+.search-sort {
+  margin-left: 200px;
+}
+
+
+.content-box {
+  display: inline-flex;
+  background-color: white;
+  width: 985px;
+  height:800px;
+}
+
+.checklist {
+  background-color: white;
+  width: 200px;
+  height: 600px;
+  margin: 10px;
+}
+
+.right-content {
+  /*background-color: yellow;*/
+  width: 700px;
+  /*height: 600px;*/
+  margin: 10px;
+  /*padding: 5px;*/
 }
