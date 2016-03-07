@@ -13,16 +13,22 @@
       </ul>
     </div>
   <% end %>
+
   <h3>Submit a Database Inquiry</h3>
   <br>
   <div class="form-heading col-lg-9">
     <h4>Contact Information</h4>
     <hr>
+    <p class="form-key">
+      <span class="form-required">* </span><i>required fields</i>
+    </p>
   </div>
   <div class="form-field col-lg-6">
     <div class="form-horizontal">
       <div class="form-group">
-        <%= f.label :name, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :name, "Your Name" %>
+        </div>
         <div class="col-lg-9">
           <%= f.text_field :name, :class => "form-control" %>
         </div>
@@ -119,7 +125,9 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :phone, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :phone %>
+        </div>
         <div class="col-lg-9">
           <%= f.text_field :phone, :class => "form-control" %>
         </div>
@@ -132,7 +140,9 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :email, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :email %>
+        </div>
         <div class="col-lg-9">
           <%= f.text_field :email, :class => "form-control" %>
         </div>
@@ -147,7 +157,9 @@
   <div class="form-field col-lg-6">
     <div class="form-horizontal">
       <div class="form-group">
-        <%= f.label :make, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :make %>
+        </div>
         <div class="col-lg-9">
           <%= f.select(:make, options_for_select([['<select>', ' '],
                                                   ['Acura', 'Acura'],
@@ -198,13 +210,17 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :model, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :model %>
+        </div>
         <div class="col-lg-9">
           <%= f.text_field :model, :class => "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :year, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :year %>
+        </div>
         <div class="col-lg-9">
           <%= f.select(:year, options_for_select([['<select>', ' '],
                                                   ['2016', '2016'],
@@ -259,7 +275,9 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :vin, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :vin %>
+        </div>
         <div class="col-lg-9">
           <%= f.text_field :vin, :class => "form-control" %>
         </div>
@@ -271,7 +289,7 @@
     <h4>Database Inquiry</h4>
     <hr>
   </div>
-  <div class="database-inquiry form-field col-lg-6">
+  <div class="form-field col-lg-6">
     <div class="form-horizontal">
       <div class="form-group">
         <%= f.label :database, :class => "col-lg-3 form-label" %>
@@ -727,7 +745,7 @@
       <%= f.file_field :attachment %>
     </div>
     <br>
-    <div class="col-lg-offset-2">
+    <div class="form-buttons col-lg-offset-2">
       <%= f.submit 'Next', class: 'btn btn-primary' %>
       <%= button_to 'Cancel', inquiries_path, :class => "btn btn-default" %>
     </div>

@@ -30,16 +30,26 @@
 
 .form-label {
   text-align: right;
+  display: inline;
 }
 
-.database-inquiry {
-  min-height: 882px;
+.form-required {
+  color: red;
+}
+
+.form-key {
+  float: right;
+  margin-top: -24px;
 }
 
 .form-field {
   margin-bottom: 20px;
   padding-top: 20px;
   padding-bottom: 40px;
+}
+
+.form-buttons {
+  margin-bottom: 100px;
 }
 
 .submission-content {
@@ -62,7 +72,6 @@
 
 .container {
   width: 1000px;
-  height: 1000px;
   background-color: white;
 }
 
@@ -90,7 +99,6 @@
   margin-left: 200px;
 }
 
-
 .content-box {
   display: inline-flex;
   background-color: white;
@@ -111,4 +119,16 @@
   /*height: 600px;*/
   margin: 10px;
   /*padding: 5px;*/
+}
+
+.footer-bar {
+  background-color: #f9f9f9;
+  margin-bottom: 0;
+  border: none;
+  min-height: 60px;
+}
+
+.footer-content {
+  margin-top: 10px;
+  text-align: center;
 }
