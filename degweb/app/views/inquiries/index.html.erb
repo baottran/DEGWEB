@@ -73,6 +73,7 @@
               <th>#</th>
               <th>Inquiry Type</th>
               <th>Vehicle</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -82,12 +83,9 @@
               <td><%= inquiry.id %></td>
               <td><%= inquiry.inquiry_type %></td>
               <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
+              <td><%= inquiry.status %></td>
               <td><%= link_to 'Show', inquiry_path(inquiry) %></td>
               <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
-              <td><%= link_to 'Delete', inquiry_path(inquiry),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-              </td>
             </tr>
           <% end %>
 

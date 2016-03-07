@@ -9,4 +9,9 @@ class InquiryMailer < ApplicationMailer
     @inquiry = inquiry
     mail to: inquiry.email
   end
+
+  def email_ip(inquiry)
+  	@inquiry = inquiry
+  	mail to: 'informationprovider@test.com'
+  end
 end
