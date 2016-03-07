@@ -9,7 +9,7 @@ var Forms = {
     var areaOfVechicleOtherField = $("input#inquiry_"+prefix+"_area_of_vechicle_other_field");
     var other = "Other";
     if (value === other) {
-      areaOfVechicleOtherField.show();
+      areaOfVechicleOtherField.show('slow');
     } else {
       areaOfVechicleOtherField.hide();
     }
@@ -20,7 +20,7 @@ var Forms = {
     var makeOtherField = $("input#inquiry_make_other_field");
     var other = "Other";
     if (value === other) {
-      makeOtherField.show();
+      makeOtherField.show('slow');
     } else {
       makeOtherField.hide();
     }
@@ -59,31 +59,31 @@ var Forms = {
         Forms.hideDatabaseForms();
       } else if (value === missingInfo) {
         Forms.hideDatabaseForms();
-        $(".missing-info-form").show();
+        $(".missing-info-form").show('slow');
         Forms.initOtherAreaVechicleField(missingInfoPrefix);
       } else if (value === parts) {
         Forms.hideDatabaseForms();
-        $(".parts-form").show();
+        $(".parts-form").show('slow');
         Forms.initOtherAreaVechicleField(partsPrefix);
       } else if (value === procedurePage) {
         Forms.hideDatabaseForms();
-        $(".procedure-page-form").show();
+        $(".procedure-page-form").show('slow');
         Forms.initOtherAreaVechicleField(procedurePagePrefix);
       } else if (value === weldedPanelOperations) {
         Forms.hideDatabaseForms();
-        $(".welded-panel-operations-form").show();
+        $(".welded-panel-operations-form").show('slow');
         Forms.initOtherAreaVechicleField(weldedPanelOperationsPrefix);
       } else if (value === nonWeldedPanelOperations) {
         Forms.hideDatabaseForms();
-        $(".non-welded-panel-operations-form").show();
+        $(".non-welded-panel-operations-form").show('slow');
         Forms.initOtherAreaVechicleField(nonWeldedPanelOperationsPrefix);
       } else if (value === refinishedOperations) {
         Forms.hideDatabaseForms();
-        $(".refinished-operations-form").show();
+        $(".refinished-operations-form").show('slow');
         Forms.initOtherAreaVechicleField(refinishedOperationsPrefix);
       } else if (value === allOther) {
         Forms.hideDatabaseForms();
-        $(".all-other-form").show();
+        $(".all-other-form").show('slow');
         Forms.initOtherAreaVechicleField();
       }
     });

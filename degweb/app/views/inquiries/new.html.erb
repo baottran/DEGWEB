@@ -1,7 +1,7 @@
 <%= render 'shared/header' %>
 
-<h1>New Inquiry</h1>
+<div class="container form-section">
+  <%= render 'form' %>
+</div>
 
-<%= render 'form' %>
-
-<%= button_to 'Cancel', inquiries_path, :class => "btn btn-default" %>
+<%= render 'shared/footer' %>

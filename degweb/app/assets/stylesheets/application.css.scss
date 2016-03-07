@@ -25,8 +25,110 @@
 /*// Then bootstrap itself*/
 @import "bootstrap";
 
-/*// Bootstrap body padding for fixed navbar*/
-body { padding-top: 60px; }
-
 /*// And finally bootswatch style itself*/
 @import "bootswatch/paper/bootswatch";
+
+.form-label {
+  text-align: right;
+  display: inline;
+}
+
+.form-required {
+  color: red;
+}
+
+.form-key {
+  float: right;
+  margin-top: -24px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.form-buttons {
+  margin-bottom: 100px;
+}
+
+.submission-content {
+  /*display: flex;*/
+  display: block;
+}
+
+.inquiry-item {
+  flex-grow: 1;
+}
+
+.submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-submit {
+  margin-left: 15px;
+}
+
+.container {
+  width: 1000px;
+  background-color: white;
+}
+
+.search {
+  width: 920px;
+  display: flex;
+  background-color: white;
+  align-items: center;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.search-field {
+  width: 400px;
+  padding-right: 50px;
+  margin: 10px;
+}
+
+.search-btn {
+  height: 35px;
+}
+
+.search-sort {
+  margin-left: 200px;
+}
+
+.content-box {
+  display: inline-flex;
+  background-color: white;
+  width: 985px;
+  height:800px;
+}
+
+.checklist {
+  background-color: white;
+  width: 200px;
+  height: 600px;
+  margin: 10px;
+}
+
+.right-content {
+  /*background-color: yellow;*/
+  width: 700px;
+  /*height: 600px;*/
+  margin: 10px;
+  /*padding: 5px;*/
+}
+
+.footer-bar {
+  background-color: #f9f9f9;
+  margin-bottom: 0;
+  border: none;
+  min-height: 60px;
+}
+
+.footer-content {
+  margin-top: 10px;
+  text-align: center;
+}
