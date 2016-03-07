@@ -23,6 +23,13 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
+  patch 'inquiries/:id/resolve' => 'inquiries#resolve'
+  patch 'inquiries/:id/customer' => 'inquiries#edit_customer'
+  patch 'inquiries/:id/vehicle' => 'inquiries#edit_vehicle'
+  patch 'inquiries/:id/edit_inquiry' => 'inquiries#edit_inquiry'
+  get 'inquiries/:id/email_ip' => 'inquiries#email_ip'
+
   resources :users
 
   # Example of regular route:
