@@ -73,10 +73,39 @@ $(function(){
 		$("#resolution-text").toggle();
 	});
 
+	$("#customer-cancel").click(function(event) {
+		$("#resolution-form").toggle();
+		$("#resolution-text").toggle();
+	});
+
+	// vehicle detail
+
+
+	$("#vehicle-form").hide();
+
+	$("#vehicle-edit").click(function(event) {
+		$("#vehicle-info").toggle();
+		$("#vehicle-form").toggle();
+	});
+
+	$("#vehicle-submit").click(function(event) {
+		$("#vehicle-form").toggle();
+		$("#vehicle-info").toggle();
+	});
+
 	$("#resolution-cancel").click(function(event) {
 		$("#resolution-form").toggle();
 		$("#resolution-text").toggle();
 	});
+
+	$('.inquiry-form').hide()
+
+	$('#inquiry-edit').click(function(event){
+		console.log("test");
+		$('.inquiry-form').toggle();
+		$('.inquiry-data').toggle();
+	})
+
 
 });
 </script>
@@ -103,19 +132,22 @@ $(function(){
 <div class="panel panel-primary">
 	<div class="panel-heading">Admin Actions</div>
 	<div class="panel-body">
-		<a href="#" class="btn btn-success btn-lg">Submit to IP</a>
-		<a href="<% %>" class="btn btn-danger btn-lg">Delete Inquiry</a>
+		<a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-success btn-lg">Submit to IP</a>
+
+		<%= link_to 'Delete Inquiry', inquiry_path(@inquiry),
+                method: :destroy,
+                data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>
 	</div>
 </div>
 
 <div class="panel panel-default">
   <div class="panel-heading">Vehicle Information</div>
-  <div class="panel-body submission-content">
+  <div class="panel-body submission-content" id="vehicle-info">
     <div class="inquiry-item">
     	<strong>Year: </strong><%= @inquiry.year %>
     </div>
     <div class="inquiry-item">
-    	<strong>Make: </strong><%= @inquiry.created_at %>
+    	<strong>Make: </strong><%= @inquiry.make %>
     </div>
     <div class="inquiry-item">
     	<strong>Model: </strong><%= @inquiry.model %>
@@ -123,7 +155,13 @@ $(function(){
     <div class="inquiry-item">
     	<strong>Body: </strong><%= @inquiry.body_type %>
     </div>
+    <button type="submit" class="btn btn-primary btn-submit" id="vehicle-edit">Edit</button>
   </div>
+    <div class="panel-body submission-content" id="vehicle-form">
+
+    <%= render 'vehicle_form' %>
+  </div>
+
 </div>
 
 
@@ -173,6 +211,7 @@ $(function(){
 <div class="panel panel-default">
   <div class="panel-heading">Database Inquiry</div>
   <div class="panel-body">
+  	<div class="inquiry-data">
 		<p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
 		<p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
 		<p><strong>Database: </strong><%= @inquiry.database %></p>
@@ -225,8 +264,13 @@ $(function(){
 			<% else %>
 				<p>Unknown Inquiry Type</p>
 		<% end %>
-		</div>
+		<button type="submit" class="btn btn-primary btn-submit" id="inquiry-edit">Edit</button>
 	</div>
+	<div class="inquiry-form">
+		<%= render 'inquiry_form' %>
+	</div>
+	</div>
+</div>
 
 <div class="panel panel-default">
   <div class="panel-heading">Attached Files: </div>
