@@ -100,12 +100,64 @@ var Forms = {
     this.toggleOtherMakeField();
   },
 
+  validateRequiredFields: function() {
+
+    $('input.form-next-button').attr('disabled', 'disabled');
+
+    $('.required-input').on('keyup mouseup', function() {
+      var hasAllrequiredInputs;
+      var hasRequiredInputsArray = [];
+      var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_vin"];
+      for (var i in requiredInputs) {
+        var hasContent = false;
+        if (($('#' + requiredInputs[i]).val().trim() !== '')) {
+          hasContent = true;
+        }
+        hasRequiredInputsArray.push(hasContent);
+      }
+
+      hasAllrequiredInputs = hasRequiredInputsArray.every(Boolean);
+
+      if (hasAllrequiredInputs) {
+        $('input.form-next-button').removeAttr('disabled');
+      } else {
+        $('input.form-next-button').attr('disabled', 'disabled');
+      }
+    });
+  },
+
+  checkRequiredFields: function() {
+    $("form").validate({
+      debug: true,
+      rules: {
+        "inquiry[name]": {required: true},
+        "inquiry[phone]": {required: true, phoneUS: true},
+        "inquiry[email]": {required: true, email: true},
+        "inquiry[make]": {required: true, nowhitespace: true},
+        "inquiry[model]": {required: true},
+        "inquiry[year]": {required: true, nowhitespace: true},
+        "inquiry[vin]": {required: true, minlength: 17, maxlength: 17}
+      },
+      messages: {
+        "inquiry[name]": {required: "enter a name"},
+        "inquiry[phone]": {required: "enter a phone number", phoneUS: "enter a valid phone number"},
+        "inquiry[email]": {required: "enter an email", email: "enter a valid email"},
+        "inquiry[make]": {required: "select a make", nowhitespace: "select a make"},
+        "inquiry[model]": {required: "enter a model"},
+        "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},
+        "inquiry[vin]": {required: "enter a vin", minlength: "enter a valid 17 character VIN", maxlength: "enter a valid 17 character VIN"}
+      }
+    });
+  },
+
   init: function() {
     this.getElements();
     if (this.el.formField.length !== 0) {
       this.hideDatabaseForms();
       this.toggleOtherMakeField();
       this.initDynamicForms();
+      this.validateRequiredFields();
+      this.checkRequiredFields();
     }
   }
 };
