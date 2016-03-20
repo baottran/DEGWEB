@@ -23,7 +23,7 @@ class Inquiry < ActiveRecord::Base
   after_initialize :init
 
   def init
-    self.status  ||= "Recieved by DEG"          #will set the default value only if it's nil
+    self.status  ||= "Received by DEG"          #will set the default value only if it's nil
   end
 
   def s3_credentials

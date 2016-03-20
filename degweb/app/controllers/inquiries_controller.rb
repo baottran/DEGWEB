@@ -1,11 +1,35 @@
 class InquiriesController < ApplicationController
 
 	def index
-    @inquiries = Inquiry.all
+
+    if params[:status] === nil 
+      @inquiries = Inquiry.all
+    elsif params[:status] === "Resolved"
+      noipchanged = Inquiry.where(status: "Resolved (No IP Change)")
+      ipchanged = Inquiry.where(status: "Resolved (IP Change)")
+      @inquiries = noipchanged + ipchanged
+    else
+      @inquiries = Inquiry.where(status: params[:status])
+    end
+
   end
+
 
 	def show
     @inquiry = Inquiry.find(params[:id])
+
+    if logged_in?
+      puts "user is logged in"
+
+      if @inquiry.status === "Received by DEG"
+        @inquiry.status = "Open" 
+        @inquiry.save
+      end
+
+    else 
+      puts "user is not logged in"
+    end
+
   end
 
 	def new
@@ -61,7 +85,7 @@ class InquiriesController < ApplicationController
   def resolve
     @inquiry = Inquiry.find(params[:id])
     @inquiry.resolution = params[:inquiry][:resolution]
-    @inquiry.status = 'IP Response Recieved'
+    @inquiry.status = 'IP Response Received'
     @inquiry.save
 
     redirect_to @inquiry
@@ -119,7 +143,7 @@ class InquiriesController < ApplicationController
 
 	private
 	  def inquiry_params
-	    params.require(:inquiry).permit(:name, :title, :shop_name, :address_1, :address_2, :city, :state, :zip_code, :phone, :fax, :email, :make, :model, :year, :body_type, :vin, :database, :client_id, :inquiry_type, :attachment, :resolution)
+	    params.require(:inquiry).permit(:name, :title, :shop_name, :address_1, :address_2, :city, :state, :zip_code, :phone, :fax, :email, :make, :model, :year, :body_type, :vin, :database, :client_id, :inquiry_type, :attachment, :resolution, :status)
 	  end
 end
 
