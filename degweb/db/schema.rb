@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303063430) do
+ActiveRecord::Schema.define(version: 20160321042518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,32 +45,32 @@ ActiveRecord::Schema.define(version: 20160303063430) do
     t.string   "database"
     t.string   "client_id"
     t.string   "inquiry_type"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "state"
     t.string   "make_other_field"
-    t.string   "missing_area_of_vechicle"
-    t.string   "missing_area_of_vechicle_other_field"
+    t.string   "missing_area_of_vehicle"
+    t.string   "missing_area_of_vehicle_other_field"
     t.string   "missing_part_name"
     t.string   "missing_part_description"
     t.string   "missing_oem_part_number"
     t.string   "missing_information"
     t.string   "missing_issue_summary"
     t.string   "missing_suggested_action"
-    t.string   "parts_area_of_vechicle"
-    t.string   "parts_area_of_vechicle_other_field"
+    t.string   "parts_area_of_vehicle"
+    t.string   "parts_area_of_vehicle_other_field"
     t.string   "parts_part_name"
     t.string   "parts_part_description"
     t.string   "parts_oem_part_number"
     t.string   "parts_issue_summary"
     t.string   "parts_suggested_action"
-    t.string   "procedure_area_of_vechicle"
-    t.string   "procedure_area_of_vechicle_other_field"
+    t.string   "procedure_area_of_vehicle"
+    t.string   "procedure_area_of_vehicle_other_field"
     t.string   "procedure_page_number"
     t.string   "procedure_issue_summary"
     t.string   "procedure_suggested_action"
-    t.string   "welded_area_of_vechicle"
-    t.string   "welded_area_of_vechicle_other_field"
+    t.string   "welded_area_of_vehicle"
+    t.string   "welded_area_of_vehicle_other_field"
     t.string   "welded_part_name"
     t.string   "welded_part_number"
     t.string   "welded_issue_summary"
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 20160303063430) do
     t.string   "welded_complete_time_hour"
     t.string   "welded_complete_time_min"
     t.string   "welded_suggested_action"
-    t.string   "non_welded_area_of_vechicle"
-    t.string   "non_welded_area_of_vechicle_other_field"
+    t.string   "non_welded_area_of_vehicle"
+    t.string   "non_welded_area_of_vehicle_other_field"
     t.string   "non_welded_part_name"
     t.string   "non_welded_part_number"
     t.string   "non_welded_issue_summary"
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 20160303063430) do
     t.string   "non_welded_complete_time_hour"
     t.string   "non_welded_complete_time_min"
     t.string   "non_welded_suggested_action"
-    t.string   "refinished_area_of_vechicle"
-    t.string   "refinished_area_of_vechicle_other_field"
+    t.string   "refinished_area_of_vehicle"
+    t.string   "refinished_area_of_vehicle_other_field"
     t.string   "refinished_issue_summary"
     t.string   "refinished_special_labor"
     t.string   "refinished_surface_area"
@@ -108,6 +108,13 @@ ActiveRecord::Schema.define(version: 20160303063430) do
     t.datetime "attachment_updated_at"
     t.string   "resolution"
     t.string   "status"
+    t.string   "search_criteria"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

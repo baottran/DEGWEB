@@ -30,6 +30,17 @@
 
 $(function(){
 
+	// status form
+
+	$("#status-form").hide();
+
+	$("#status-edit").click(function(event){
+		$("#status-form").toggle();
+		$("#status-text").toggle();
+	})
+
+
+
 	//resolution form
 
 	$("#resolution-form").hide();
@@ -116,7 +127,7 @@ $(function(){
 <br>
 <div class="panel panel-default">
   <div class="panel-heading">Submission Information</div>
-  <div class="panel-body submission-content">
+  <div class="panel-body submission-content" id="status-text">
     <div class="inquiry-item">
     	<strong>Tracking #: </strong><%= @inquiry.id %>
     </div>
@@ -126,7 +137,22 @@ $(function(){
     <div class="inquiry-item">
     	<strong>Status: </strong><%= @inquiry.status %>
     </div>
+    <button type="submit" class="btn btn-primary btn-submit" id="status-edit">Edit</button>
   </div>
+   <div class="panel-body submission-content" id="status-form">
+    <div class="inquiry-item">
+    	<strong>Tracking #: </strong><%= @inquiry.id %>
+    </div>
+    <div class="inquiry-item">
+    	<strong>Date Submitted: </strong><%= @inquiry.created_at %>
+    </div>
+    <div class="inquiry-item">
+    <%= render 'status_form' %>
+    </div>
+  </div>
+
+
+
 </div>
 
 <div class="panel panel-primary">
@@ -163,11 +189,11 @@ $(function(){
   </div>
 
 </div>
+</div>
 
 <br>
 <div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Inquiry Resolution</h3>
+  <div class="panel-heading">Inquiry Resolution
   </div>
   <div class="panel-body">
   	<div id="resolution-form">
@@ -214,7 +240,7 @@ $(function(){
 
 		<% case @inquiry.inquiry_type
 			when 'Missing Information' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.missing_area_of_vechicle %></p>
+				<p><strong>Area of Vehicle: </strong><%= @inquiry.missing_area_of_vehicle %></p>
 				<p><strong>Missing Part Name: </strong><%= @inquiry.missing_part_name %></p>
 				<p><strong>Missing Part Description: </strong><%= @inquiry.missing_part_description %></p>
 				<p><strong>OEM Part Number: </strong><%= @inquiry.missing_oem_part_number %></p>
@@ -222,14 +248,14 @@ $(function(){
 				<p><strong>Issue Summary: </strong><%= @inquiry.missing_issue_summary %></p>
 				<p><strong>Suggested Action: </strong><%= @inquiry.missing_suggested_action %></p>
 			<% when 'Parts' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.parts_area_of_vechicle %></p>
+				<p><strong>Area of Vehicle: </strong><%= @inquiry.parts_area_of_vehicle %></p>
 				<p><strong>Part Name: </strong><%= @inquiry.parts_part_name %></p>
 				<p><strong>Part Description: </strong><%= @inquiry.parts_part_description %></p>
 				<p><strong>OEM Part Number: </strong><%= @inquiry.parts_oem_part_number %></p>
 				<p><strong>Issue Summary: </strong><%= @inquiry.parts_issue_summary %></p>
 				<p><strong>Suggested Action: </strong><%= @inquiry.parts_suggested_action %></p>
 			<% when 'Procedure Page Issue' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.procedure_area_of_vechicle %></p>
+				<p><strong>Area of Vehicle: </strong><%= @inquiry.procedure_area_of_vehicle %></p>
 				<p><strong>Page #: </strong><%= @inquiry.procedure_page_number %></p>
 				<p><strong>Issue Summary: </strong><%= @inquiry.procedure_issue_summary %></p>
 				<p><strong>Suggested Action: </strong><%= @inquiry.procedure_suggested_action %></p>

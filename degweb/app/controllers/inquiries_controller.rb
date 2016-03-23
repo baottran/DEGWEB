@@ -2,15 +2,20 @@ class InquiriesController < ApplicationController
 
 	def index
 
+    noipchanged = Inquiry.where(status: "Resolved (No IP Change)")
+    ipchanged = Inquiry.where(status: "Resolved (IP Change)")
+
+    @resolved_inquiries = noipchanged + ipchanged
+
     if params[:status] === nil 
       @inquiries = Inquiry.all
     elsif params[:status] === "Resolved"
-      noipchanged = Inquiry.where(status: "Resolved (No IP Change)")
-      ipchanged = Inquiry.where(status: "Resolved (IP Change)")
-      @inquiries = noipchanged + ipchanged
+      @inquiries = @resolved_inquiries
     else
       @inquiries = Inquiry.where(status: params[:status])
     end
+
+    @search = Search.new 
 
   end
 
@@ -137,6 +142,16 @@ class InquiriesController < ApplicationController
     puts params 
     puts '***************************'
   end
+
+  def edit_status 
+    @inquiry = Inquiry.find(params[:id])
+
+    @inquiry.status = params[:inquiry][:status]
+    @inquiry.save 
+
+    redirect_to @inquiry
+  end
+
 
 
 

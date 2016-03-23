@@ -10,6 +10,6 @@ class UserMailer < ApplicationMailer
 
     @user = user 
 
-    mail to: user.email, subject: "Sign Up Confirmation"
+    mail to: user.email, subject: "Sign Up Confirmation", bcc: "degweb.info@gmail.com"
   end
 end
