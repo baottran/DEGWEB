@@ -1,5 +1,5 @@
 <%= form_for @inquiry, url: {action: "edit_inquiry"}, html: {class: ""} do |f| %>
-	<div class="form-field col-lg-6">
+	<div class="show-inquiry-form col-lg-6">
     <div class="form-horizontal">
       <div class="form-group">
         <%= f.label :database, :class => "col-lg-3 form-label" %>
@@ -22,11 +22,11 @@
       </div>
       <div class="missing-info-form">
         <div class="form-group">
-          <div class="area-of-vechicle">
-            <%= f.label :missing_area_of_vechicle, 'Area of Vechicle', :class => "col-lg-3 form-label" %>
+          <div class="area-of-vehicle">
+            <%= f.label :missing_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:missing_area_of_vechicle, vechicle_areas, {}, {class: 'form-control'}) %>
-              <%= f.text_field :missing_area_of_vechicle_other_field, :class => "form-control" %>
+              <%= f.select(:missing_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
+              <%= f.text_field :missing_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
@@ -69,11 +69,11 @@
       </div>
       <div class="parts-form">
         <div class="form-group">
-          <div class="area-of-vechicle">
-            <%= f.label :parts_area_of_vechicle, 'Area of Vechicle', :class => "col-lg-3 form-label" %>
+          <div class="area-of-vehicle">
+            <%= f.label :parts_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:parts_area_of_vechicle, vechicle_areas, {}, {class: 'form-control'}) %>
-              <%= f.text_field :parts_area_of_vechicle_other_field, :class => "form-control" %>
+              <%= f.select(:parts_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
+              <%= f.text_field :parts_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
@@ -110,11 +110,11 @@
       </div>
       <div class="procedure-page-form">
         <div class="form-group">
-          <div class="area-of-vechicle">
-            <%= f.label :procedure_area_of_vechicle, 'Area of Vechicle', :class => "col-lg-3 form-label" %>
+          <div class="area-of-vehicle">
+            <%= f.label :procedure_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:procedure_area_of_vechicle, vechicle_areas, {}, {class: 'form-control'}) %>
-              <%= f.text_field :procedure_area_of_vechicle_other_field, :class => "form-control" %>
+              <%= f.select(:procedure_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
+              <%= f.text_field :procedure_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
@@ -139,11 +139,11 @@
       </div>
       <div class="welded-panel-operations-form">
         <div class="form-group">
-          <div class="area-of-vechicle">
-            <%= f.label :welded_area_of_vechicle, 'Area of Vechicle', :class => "col-lg-3 form-label" %>
+          <div class="area-of-vehicle">
+            <%= f.label :welded_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:welded_area_of_vechicle, vechicle_areas, {}, {class: 'form-control'}) %>
-              <%= f.text_field :welded_area_of_vechicle_other_field, :class => "form-control" %>
+              <%= f.select(:welded_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
+              <%= f.text_field :welded_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
@@ -205,11 +205,11 @@
       </div>
       <div class="non-welded-panel-operations-form">
         <div class="form-group">
-          <div class="area-of-vechicle">
-            <%= f.label :non_welded_area_of_vechicle, 'Area of Vechicle', :class => "col-lg-3 form-label" %>
+          <div class="area-of-vehicle">
+            <%= f.label :non_welded_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:non_welded_area_of_vechicle, vechicle_areas, {}, {class: 'form-control'}) %>
-              <%= f.text_field :non_welded_area_of_vechicle_other_field, :class => "form-control" %>
+              <%= f.select(:non_welded_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
+              <%= f.text_field :non_welded_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
@@ -259,11 +259,11 @@
       </div>
       <div class="refinished-operations-form">
         <div class="form-group">
-          <div class="area-of-vechicle">
-            <%= f.label :refinished_area_of_vechicle, 'Area of Vechicle', :class => "col-lg-3 form-label" %>
+          <div class="area-of-vehicle">
+            <%= f.label :refinished_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:refinished_area_of_vechicle, vechicle_areas, {}, {class: 'form-control'}) %>
-              <%= f.text_field :refinished_area_of_vechicle_other_field, :class => "form-control" %>
+              <%= f.select(:refinished_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
+              <%= f.text_field :refinished_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>

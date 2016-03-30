@@ -130,7 +130,7 @@ seed_vehicles = [	['Toyota', 'Camry'],
 									['Ford', 'Mustang'],
 									['Chevrolet', 'Impala']]
 
-20.times do 
+20.times do
 
 		seed_vehicle = seed_vehicles.sample
 		inquiry_type = seed_inquiry_options.sample[0]
@@ -156,7 +156,7 @@ seed_vehicles = [	['Toyota', 'Camry'],
 		if inquiry_type === 'Missing Information'
 
 			@inquiry.missing_area_of_vehicle = 'Front'
-			@inquiry.missing_part_name = Faker::Lorem.word 
+			@inquiry.missing_part_name = Faker::Lorem.word
 			@inquiry.missing_part_description = Faker::Lorem.paragraph
 			@inquiry.missing_oem_part_number = Faker::Lorem.characters(10)
 			@inquiry.missing_information = Faker::Lorem.paragraph
@@ -166,7 +166,7 @@ seed_vehicles = [	['Toyota', 'Camry'],
 		elsif inquiry_type === 'Parts'
 
 			@inquiry.parts_area_of_vehicle = 'Back'
-			@inquiry.parts_part_name = Faker::Lorem.word 
+			@inquiry.parts_part_name = Faker::Lorem.word
 			@inquiry.parts_part_description = Faker::Lorem.sentence
 			@inquiry.parts_oem_part_number = Faker::Lorem.characters(10)
 			@inquiry.parts_issue_summary = Faker::Lorem.paragraph
@@ -224,13 +224,21 @@ seed_vehicles = [	['Toyota', 'Camry'],
 
 		end
 
+<<<<<<< HEAD
 		puts "finished adding"
 
-				
 
-		@inquiry.save 
+=======
+>>>>>>> ch ch ch changes
 
+
+<<<<<<< HEAD
 		puts "finished saving"
 
-	end 
+	end
+=======
+		@inquiry.save
+
+	end
+>>>>>>> ch ch ch changes
 
