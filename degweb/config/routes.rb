@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :searches
+
   get 'inquiries/:id/attach' => 'inquiries#attach'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
   patch 'inquiries/:id/vehicle' => 'inquiries#edit_vehicle'
   patch 'inquiries/:id/edit_inquiry' => 'inquiries#edit_inquiry'
   get 'inquiries/:id/email_ip' => 'inquiries#email_ip'
+  patch 'inquiries/:id/edit_status' => 'inquiries#edit_status'
 
   resources :users
 

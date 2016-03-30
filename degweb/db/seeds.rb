@@ -155,7 +155,7 @@ seed_vehicles = [	['Toyota', 'Camry'],
 
 		if inquiry_type === 'Missing Information'
 
-			@inquiry.missing_area_of_vechicle = 'Front'
+			@inquiry.missing_area_of_vehicle = 'Front'
 			@inquiry.missing_part_name = Faker::Lorem.word 
 			@inquiry.missing_part_description = Faker::Lorem.paragraph
 			@inquiry.missing_oem_part_number = Faker::Lorem.characters(10)
@@ -165,7 +165,7 @@ seed_vehicles = [	['Toyota', 'Camry'],
 
 		elsif inquiry_type === 'Parts'
 
-			@inquiry.parts_area_of_vechicle = 'Back'
+			@inquiry.parts_area_of_vehicle = 'Back'
 			@inquiry.parts_part_name = Faker::Lorem.word 
 			@inquiry.parts_part_description = Faker::Lorem.sentence
 			@inquiry.parts_oem_part_number = Faker::Lorem.characters(10)
@@ -174,14 +174,14 @@ seed_vehicles = [	['Toyota', 'Camry'],
 
 		elsif inquiry_type === 'Procedure Page Issue'
 
-			@inquiry.procedure_area_of_vechicle = 'Front'
+			@inquiry.procedure_area_of_vehicle = 'Front'
 			@inquiry.procedure_page_number = '2'
 			@inquiry.procedure_issue_summary = Faker::Lorem.paragraph
 			@inquiry.procedure_suggested_action = Faker::Lorem.paragraph
 
 		elsif inquiry_type === 'Welded Panel Operations'
 
-			@inquiry.welded_area_of_vechicle = 'Front'
+			@inquiry.welded_area_of_vehicle = 'Front'
 			@inquiry.welded_part_name = Faker::Lorem.word
 			@inquiry.welded_part_number = Faker::Lorem.characters(10)
 			@inquiry.welded_issue_summary = Faker::Lorem.paragraph
@@ -195,7 +195,7 @@ seed_vehicles = [	['Toyota', 'Camry'],
 
 		elsif inquiry_type === 'Non-Welded Panel Operations'
 
-			@inquiry.non_welded_area_of_vechicle = 'Back'
+			@inquiry.non_welded_area_of_vehicle = 'Back'
 			@inquiry.non_welded_part_name = Faker::Lorem.word
 			@inquiry.non_welded_part_number = Faker::Lorem.characters(10)
 			@inquiry.non_welded_issue_summary = Faker::Lorem.paragraph
@@ -207,7 +207,7 @@ seed_vehicles = [	['Toyota', 'Camry'],
 
 		elsif inquiry_type === 'Refinish Operations'
 
-			@inquiry.refinished_area_of_vechicle = 'Other'
+			@inquiry.refinished_area_of_vehicle = 'Other'
 			@inquiry.refinished_issue_summary = Faker::Lorem.paragraph
 			@inquiry.refinished_special_labor = Faker::Lorem.sentence
 			@inquiry.refinished_surface_area = '80'
@@ -224,9 +224,13 @@ seed_vehicles = [	['Toyota', 'Camry'],
 
 		end
 
+		puts "finished adding"
+
 				
 
 		@inquiry.save 
+
+		puts "finished saving"
 
 	end 
 

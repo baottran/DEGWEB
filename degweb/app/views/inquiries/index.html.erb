@@ -1,62 +1,80 @@
 <%= render 'shared/header' %>
+
+<style>
+
+.panel-status {
+  width: 920px;
+  display: flex;
+  background-color: white;
+  align-items: center;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.btn-status {
+  height: 95px;
+}
+
+
+
+</style>
 <div class="container">
 
   <ul class="nav nav-tabs">
     <li class="active"><a href="#home" data-toggle="tab">Request Queue</a></li>
     <li><a href="#home" data-toggle="tab">Reporting</a></li>
-    <li><a href="#home" data-toggle="tab">Request Queue</a></li>
   </ul>
 
   <br>
-  <div class="panel panel-default search">
+  <div class="panel panel-default panel-status">
 
-    <div class="form-group search-field">
-      <input type="text" class="form-control" id="inputDefault" placeholder="Search">
-    </div>
+    <div class="btn-group btn-group-justified">
 
-    <a href="#" class="btn btn-primary search-btn">Search</a>
+      <a href="/inquiries" class="btn btn-default btn-status">
+        <div class="title">All</div>
+        <div><%= Inquiry.all.count %></div>
+      </a>
 
-    <div class="form-group search-sort">
-      <label for="select" class="col-lg-2 control-label">Sort</label>
-      <div class="col-lg-10">
-        <select class="form-control" id="select">
-          <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
-          <option>Option 4</option>
-          <option>Option 5</option>
-        </select>
-      </div>
+      <a href="/inquiries?status=Received+by+DEG" class="btn btn-default btn-status">
+        <div class="title">Recieved by DEG</div>
+        <div><%= Inquiry.where(status: 'Received by DEG').count %></div>
+      </a>
+
+      <a href="/inquiries?status=Open" class="btn btn-default btn-status">
+        <div class="title">Open</div>
+        <div><%= Inquiry.where(status: 'Open').count %></div>
+      </a>
+
+      <a href="/inquiries?status=Submitted+to+IP" class="btn btn-default btn-status">
+        <div class="title">Submitted to IP</div>
+        <div><%= Inquiry.where(status: 'Submitted to IP').count %></div>
+      </a>
+
+      <a href="/inquiries?status=IP+Response+Received" class="btn btn-default btn-status">
+        <div class="title">IP Response</div>
+        <div>Received</div>
+        <div><%= Inquiry.where(status: 'IP Response Received').count %></div>
+      </a>
+
+      <a href="/inquiries?status=Resolved" class="btn btn-default btn-status">
+        <div class="title">Resolved</div>
+        <div><%= @resolved_inquiries.count%></div>
+      </a>
+
     </div>
 
   </div>
 
 
   <div class="content-box">
+
+
       <div class="panel panel-default checklist">
         <div class="panel-heading">Checklist</div>
         <div class="panel-body">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Checkbox
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Checkbox
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Checkbox
-            </label>
-          </div>
-          <hr>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Checkbox
-            </label>
-          </div>
+
+        <%= render 'inquiries/query_form.html.erb' %>
         </div>
       </div>
 
@@ -83,7 +101,6 @@
               <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
               <td><%= inquiry.status %></td>
               <td><%= link_to 'Show', inquiry_path(inquiry) %></td>
-              <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
             </tr>
           <% end %>
 

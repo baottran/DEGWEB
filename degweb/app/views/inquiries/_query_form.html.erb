@@ -1,0 +1,12 @@
+<%= form_for @search do |s| %>
+	
+	<div class="search-item">
+		<%= s.label :description %>
+		<%= s.text_field :description %>
+	</div>
+	<br>
+	<div class="search-submit">
+		<%= s.submit "Search" %>
+	</div>
+
+<% end %>
