@@ -59,13 +59,12 @@ label.error {
   color: red;
 }
 
-.submission-content {
-  /*display: flex;*/
-  display: block;
-}
-
 .inquiry-item {
   flex-grow: 1;
+}
+
+.submission-content {
+  display: flex;
 }
 
 .submit {
@@ -120,11 +119,8 @@ label.error {
 }
 
 .right-content {
-  /*background-color: yellow;*/
   width: 920px;
-  /*height: 600px;*/
   margin: 10px;
-  /*padding: 5px;*/
 }
 
 .footer-bar {

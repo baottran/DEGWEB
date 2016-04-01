@@ -4,6 +4,70 @@ var ShowMake = {
     this.el.showMakeForm = $(document.querySelector('.show-make-form'));
   },
 
+  hideEditForms: function() {
+    $("#resolution-form").hide();
+    $(".customer-detail-form").hide();
+    $("#vehicle-form").hide();
+    $('.inquiry-form').hide()
+  },
+
+  toggleFormsOnClick: function() {
+    $("#resolution-edit").click(function(event) {
+      var currentResolution = $("#resolution-text").find("p").text();
+      $("textArea").text(currentResolution);
+      $("textArea").focus();
+      $("#resolution-text").toggle();
+      $("#resolution-form").toggle();
+    });
+
+    $("#resolution-submit").click(function(event) {
+      var newResolution = $("#textArea").val();
+      $("#resolution-text").find("p").text(newResolution);
+      $("#resolution-form").toggle();
+      $("#resolution-text").toggle();
+    });
+
+    $("#resolution-cancel").click(function(event) {
+      $("#resolution-form").toggle();
+      $("#resolution-text").toggle();
+    });
+
+    $("#customer-edit").click(function(event) {
+      $(".customer-detail-data").toggle();
+      $(".customer-detail-form").toggle();
+    });
+
+    $("#customer-submit").click(function(event) {
+      $("#resolution-form").toggle();
+      $("#resolution-text").toggle();
+    });
+
+    $("#customer-cancel").click(function(event) {
+      $("#resolution-form").toggle();
+      $("#resolution-text").toggle();
+    });
+
+    $("#vehicle-edit").click(function(event) {
+      $("#vehicle-info").toggle();
+      $("#vehicle-form").toggle();
+    });
+
+    $("#vehicle-submit").click(function(event) {
+      $("#vehicle-form").toggle();
+      $("#vehicle-info").toggle();
+    });
+
+    $("#resolution-cancel").click(function(event) {
+      $("#resolution-form").toggle();
+      $("#resolution-text").toggle();
+    });
+
+    $('#inquiry-edit').click(function(event){
+      $('.inquiry-form').toggle();
+      $('.inquiry-data').toggle();
+    });
+  },
+
   toggleOtherMakeField: function() {
     var value = $("select#inquiry_make").val();
     var makeOtherField = $("input#inquiry_make_other_field");
@@ -65,6 +129,8 @@ var ShowMake = {
   init: function() {
     this.getElements();
     if (this.el.showMakeForm.length !== 0) {
+      this.hideEditForms();
+      this.toggleFormsOnClick();
       this.toggleOtherMakeField();
       this.initDynamicForms();
       // this.validateRequiredFields();
