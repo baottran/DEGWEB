@@ -1,0 +1,11 @@
+<%= form_for @inquiry, url: {action: "edit_status"}, html: {class: ""} do |f| %>
+	<%= f.label :status, :class => "col-lg-3 form-label" %>
+	<%= f.select(:status, options_for_select([['Received by DEG', 'Received by DEG'],
+							['Open', 'Open'],
+							['Submitted to IP', 'Submitted to IP'],
+							['IP Response Received', 'IP Response Received'],
+							['Resolved (No IP Change)', 'Resolved (No IP Change)'],
+							['Resolved (IP Change)', 'Resolved (IP Change)']])) %>
+
+	<%= f.submit "Save", class: "btn btn-primary btn-submit", html: { type: "submit", id: "status-submit"} %>
+<% end %>

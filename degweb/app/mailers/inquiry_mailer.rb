@@ -12,6 +12,6 @@ class InquiryMailer < ApplicationMailer
 
   def email_ip(inquiry)
   	@inquiry = inquiry
-  	mail to: 'informationprovider@test.com'
+  	mail to: 'degweb.info@gmail.com', cc: 'degweb.info@gmail.com'
   end
 end
