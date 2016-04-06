@@ -4,14 +4,14 @@ var Forms = {
     this.el.formField = $(document.querySelector('.form-field'));
   },
 
-  toggleVechicleAreaField: function(prefix) {
-    var value = $("select#inquiry_" + prefix + "_area_of_vechicle").val();
-    var areaOfVechicleOtherField = $("input#inquiry_"+prefix+"_area_of_vechicle_other_field");
+  toggleVehicleAreaField: function(prefix) {
+    var value = $("select#inquiry_" + prefix + "_area_of_vehicle").val();
+    var areaOfVehicleOtherField = $("input#inquiry_"+prefix+"_area_of_vehicle_other_field");
     var other = "Other";
     if (value === other) {
-      areaOfVechicleOtherField.show('slow');
+      areaOfVehicleOtherField.show('slow');
     } else {
-      areaOfVechicleOtherField.hide();
+      areaOfVehicleOtherField.hide();
     }
   },
 
@@ -26,10 +26,10 @@ var Forms = {
     }
   },
 
-  initOtherAreaVechicleField: function(prefix) {
-    this.toggleVechicleAreaField(prefix);
-    $("select#inquiry_" + prefix + "_area_of_vechicle").change(function(){
-      Forms.toggleVechicleAreaField(prefix);
+  initOtherAreaVehicleField: function(prefix) {
+    this.toggleVehicleAreaField(prefix);
+    $("select#inquiry_" + prefix + "_area_of_vehicle").change(function(){
+      Forms.toggleVehicleAreaField(prefix);
     });
   },
 
@@ -60,31 +60,31 @@ var Forms = {
       } else if (value === missingInfo) {
         Forms.hideDatabaseForms();
         $(".missing-info-form").show('slow');
-        Forms.initOtherAreaVechicleField(missingInfoPrefix);
+        Forms.initOtherAreaVehicleField(missingInfoPrefix);
       } else if (value === parts) {
         Forms.hideDatabaseForms();
         $(".parts-form").show('slow');
-        Forms.initOtherAreaVechicleField(partsPrefix);
+        Forms.initOtherAreaVehicleField(partsPrefix);
       } else if (value === procedurePage) {
         Forms.hideDatabaseForms();
         $(".procedure-page-form").show('slow');
-        Forms.initOtherAreaVechicleField(procedurePagePrefix);
+        Forms.initOtherAreaVehicleField(procedurePagePrefix);
       } else if (value === weldedPanelOperations) {
         Forms.hideDatabaseForms();
         $(".welded-panel-operations-form").show('slow');
-        Forms.initOtherAreaVechicleField(weldedPanelOperationsPrefix);
+        Forms.initOtherAreaVehicleField(weldedPanelOperationsPrefix);
       } else if (value === nonWeldedPanelOperations) {
         Forms.hideDatabaseForms();
         $(".non-welded-panel-operations-form").show('slow');
-        Forms.initOtherAreaVechicleField(nonWeldedPanelOperationsPrefix);
+        Forms.initOtherAreaVehicleField(nonWeldedPanelOperationsPrefix);
       } else if (value === refinishedOperations) {
         Forms.hideDatabaseForms();
         $(".refinished-operations-form").show('slow');
-        Forms.initOtherAreaVechicleField(refinishedOperationsPrefix);
+        Forms.initOtherAreaVehicleField(refinishedOperationsPrefix);
       } else if (value === allOther) {
         Forms.hideDatabaseForms();
         $(".all-other-form").show('slow');
-        Forms.initOtherAreaVechicleField();
+        Forms.initOtherAreaVehicleField();
       }
     });
   },
@@ -120,6 +120,7 @@ var Forms = {
 
       if (hasAllrequiredInputs) {
         $('input.form-next-button').removeAttr('disabled');
+        console.log("hello");
       } else {
         $('input.form-next-button').attr('disabled', 'disabled');
       }
@@ -128,7 +129,6 @@ var Forms = {
 
   checkRequiredFields: function() {
     $("form").validate({
-      debug: true,
       rules: {
         "inquiry[name]": {required: true},
         "inquiry[phone]": {required: true, phoneUS: true},
