@@ -132,27 +132,12 @@ $(function(){
     	<strong>Tracking #: </strong><%= @inquiry.id %>
     </div>
     <div class="inquiry-item">
-    	<strong>Date Submitted: </strong><%= @inquiry.created_at %>
+    	<strong>Date Submitted: </strong><%= @inquiry.created_at.to_formatted_s(:long) %>
     </div>
     <div class="inquiry-item">
     	<strong>Status: </strong><%= @inquiry.status %>
     </div>
-    <button type="submit" class="btn btn-primary btn-submit" id="status-edit">Edit</button>
   </div>
-   <div class="panel-body submission-content" id="status-form">
-    <div class="inquiry-item">
-    	<strong>Tracking #: </strong><%= @inquiry.id %>
-    </div>
-    <div class="inquiry-item">
-    	<strong>Date Submitted: </strong><%= @inquiry.created_at %>
-    </div>
-    <div class="inquiry-item">
-    <%= render 'status_form' %>
-    </div>
-  </div>
-
-
-
 </div>
 
 <div class="panel panel-primary">

@@ -16,6 +16,22 @@
   height: 95px;
 }
 
+.panel-search {
+
+  width: 920px;
+  height: 100px;
+  margin: 10px;
+  padding: 20px;
+}
+
+.search-item {
+  width: 500px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+}
 
 
 </style>
@@ -26,6 +42,11 @@
     <li><a href="#home" data-toggle="tab">Reporting</a></li>
   </ul>
 
+  <br>
+
+  <div class="panel panel-default panel-search">
+  <%= render 'inquiries/query_form.html.erb' %>
+  </div>
   <br>
   <div class="panel panel-default panel-status">
 
