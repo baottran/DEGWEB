@@ -37,13 +37,8 @@
       </a>
 
       <a href="/inquiries?status=Received+by+DEG" class="btn btn-default btn-status">
-        <div class="title">Recieved by DEG</div>
+        <div class="title">Received by DEG</div>
         <div><%= Inquiry.where(status: 'Received by DEG').count %></div>
-      </a>
-
-      <a href="/inquiries?status=Open" class="btn btn-default btn-status">
-        <div class="title">Open</div>
-        <div><%= Inquiry.where(status: 'Open').count %></div>
       </a>
 
       <a href="/inquiries?status=Submitted+to+IP" class="btn btn-default btn-status">
@@ -52,8 +47,7 @@
       </a>
 
       <a href="/inquiries?status=IP+Response+Received" class="btn btn-default btn-status">
-        <div class="title">IP Response</div>
-        <div>Received</div>
+        <div class="title">IP Response Received</div>
         <div><%= Inquiry.where(status: 'IP Response Received').count %></div>
       </a>
 

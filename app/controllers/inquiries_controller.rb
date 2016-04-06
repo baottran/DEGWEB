@@ -22,19 +22,6 @@ class InquiriesController < ApplicationController
 
 	def show
     @inquiry = Inquiry.find(params[:id])
-
-    if logged_in?
-      puts "user is logged in"
-
-      if @inquiry.status === "Received by DEG"
-        @inquiry.status = "Open" 
-        @inquiry.save
-      end
-
-    else 
-      puts "user is not logged in"
-    end
-
   end
 
 	def new
