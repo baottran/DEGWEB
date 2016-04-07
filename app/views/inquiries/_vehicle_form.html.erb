@@ -50,7 +50,7 @@
                                                   ['Toyota', 'Toyota'],
                                                   ['Volkswagen', 'Volkswagen'],
                                                   ['Volvo', 'Volvo'],
-                                                  ['Other', 'Other']]), {}, {class: 'form-control'}) %>
+                                                  ['Other', 'Other']], @inquiry.make), {}, {class: 'form-control'}) %>
           <%= f.text_field :make_other_field, :class => "form-control" %>
         </div>
       </div>
@@ -98,7 +98,7 @@
                                                   ['1989', '1989'],
                                                   ['1988', '1988'],
                                                   ['1987', '1987'],
-                                                  ['1986', '1986']]), {}, {class: 'form-control'}) %>
+                                                  ['1986', '1986']], @inquiry.year), {}, {class: 'form-control'}) %>
         </div>
       </div>
       <div class="form-group">
@@ -116,7 +116,7 @@
                                                        ['Convertible', 'Convertible'],
                                                        ['Hatchback', 'Hatchback'],
                                                        ['Wagon', 'Wagon'],
-                                                       ['Electric', 'Electric']]), {}, {class: 'form-control'}) %>
+                                                       ['Electric', 'Electric']], @inquiry.body_type), {}, {class: 'form-control'}) %>
         </div>
       </div>
       <div class="form-group">

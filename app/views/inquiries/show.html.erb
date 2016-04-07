@@ -178,10 +178,6 @@ $(function(){
 			<a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-success btn-lg">Resolve (IP Change)</a>
 
 		<% end %>
-			
-<!-- 		<a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-success btn-lg">Submit to IP</a>
-		<a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-success btn-lg">Resolve (No IP Change)</a>
-		<a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-success btn-lg">Resolve (IP Change)</a> -->
 
 		<%= link_to 'Delete Inquiry', inquiry_path(@inquiry),
                 method: :destroy,
