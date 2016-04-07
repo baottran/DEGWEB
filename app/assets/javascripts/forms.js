@@ -120,7 +120,6 @@ var Forms = {
 
       if (hasAllrequiredInputs) {
         $('input.form-next-button').removeAttr('disabled');
-        console.log("hello");
       } else {
         $('input.form-next-button').attr('disabled', 'disabled');
       }
