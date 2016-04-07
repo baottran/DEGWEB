@@ -51,6 +51,10 @@
   padding-bottom: 40px;
 }
 
+.form-field {
+  width: 400px;
+}
+
 .form-buttons {
   margin-bottom: 100px;
 }
@@ -133,4 +137,14 @@ label.error {
 .footer-content {
   margin-top: 10px;
   text-align: center;
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-actions .btn {
+  justify-content: space-between;
 }

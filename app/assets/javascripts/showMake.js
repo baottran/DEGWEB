@@ -2,10 +2,10 @@ var ShowMake = {
   getElements: function() {
     this.el = {};
     this.el.showMakeForm = $(document.querySelector('.show-make-form'));
-    this.el.vehicleEditForm = $(document.querySelector('.vehicle-edit-form'));
   },
 
   hideEditForms: function() {
+    $("#status-form").hide();
     $("#resolution-form").hide();
     $(".customer-detail-form").hide();
     $("#vehicle-form").hide();
@@ -13,6 +13,11 @@ var ShowMake = {
   },
 
   toggleFormsOnClick: function() {
+    $("#status-edit").click(function(event){
+      $("#status-form").toggle();
+      $("#status-text").toggle();
+    });
+
     $("#resolution-edit").click(function(event) {
       var currentResolution = $("#resolution-text").find("p").text();
       $("textArea").text(currentResolution);
@@ -34,23 +39,31 @@ var ShowMake = {
     });
 
     $("#customer-edit").click(function(event) {
+      ShowMake.el.customerEditForm = $(document.querySelector('.customer-edit-form'));
+      $(".customer-detail-data").toggle();
+      $(".customer-detail-form").toggle();
+      ShowMake.checkRequiredCustomerFields();
+    });
+
+    $("#customer-submit").click(function(event) {
       $(".customer-detail-data").toggle();
       $(".customer-detail-form").toggle();
     });
 
-    $("#customer-submit").click(function(event) {
-      $("#resolution-form").toggle();
-      $("#resolution-text").toggle();
-    });
-
     $("#customer-cancel").click(function(event) {
-      $("#resolution-form").toggle();
-      $("#resolution-text").toggle();
+      $(".customer-detail-data").toggle();
+      $(".customer-detail-form").toggle();
     });
 
     $("#vehicle-edit").click(function(event) {
+      ShowMake.el.vehicleEditForm = $(document.querySelector('.vehicle-edit-form'));
       $("#vehicle-info").toggle();
       $("#vehicle-form").toggle();
+      if (ShowMake.el.vehicleEditForm.length !== 0) {
+        ShowMake.toggleOtherMakeField();
+        ShowMake.initDynamicMakeForms();
+      }
+      ShowMake.checkRequiredVehicleFields();
     });
 
     $("#vehicle-submit").click(function(event) {
@@ -64,6 +77,17 @@ var ShowMake = {
     });
 
     $('#inquiry-edit').click(function(event){
+      ShowMake.el.inquiryEditForm = $(document.querySelector('.inquiry-edit-form'));
+      $('.inquiry-form').toggle();
+      $('.inquiry-data').toggle();
+      if (ShowMake.el.inquiryEditForm.length !== 0) {
+        // ShowMake.hideInquiryDatabaseForms();
+        ShowMake.initDynamicInquiryTypeForms();
+      }
+    });
+
+    $('#inquiry-submit').click(function(event){
+      ShowMake.el.vehicleEditForm = $(document.querySelector('.vehicle-edit-form'));
       $('.inquiry-form').toggle();
       $('.inquiry-data').toggle();
     });
@@ -80,49 +104,116 @@ var ShowMake = {
     }
   },
 
-  initDynamicForms: function() {
+  initOtherAreaVehicleField: function(prefix) {
+    this.toggleVehicleAreaField(prefix);
+    $("select#inquiry_" + prefix + "_area_of_vehicle").change(function(){
+      ShowMake.toggleVehicleAreaField(prefix);
+    });
+  },
+
+  toggleVehicleAreaField: function(prefix) {
+    var value = $("select#inquiry_" + prefix + "_area_of_vehicle").val();
+    var areaOfVehicleOtherField = $("input#inquiry_"+prefix+"_area_of_vehicle_other_field");
+    var other = "Other";
+    if (value === other) {
+      areaOfVehicleOtherField.show('slow');
+    } else {
+      areaOfVehicleOtherField.hide();
+    }
+  },
+
+  hideInquiryDatabaseForms: function() {
+    $(".missing-info-form").hide();
+    $(".parts-form").hide();
+    $(".procedure-page-form").hide();
+    $(".welded-panel-operations-form").hide();
+    $(".non-welded-panel-operations-form").hide();
+    $(".refinished-operations-form").hide();
+    $(".all-other-form").hide();
+  },
+
+  initDynamicMakeForms: function() {
     $("select#inquiry_make").change(function(){
       ShowMake.toggleOtherMakeField();
     });
   },
 
-  // validateRequiredFields: function(formType, requiredInputs) {
-  //   $('.' + formType + '-required-input').on('keydown mouseup', function() {
-  //     var hasAllrequiredInputs;
-  //     var hasRequiredInputsArray = [];
-  //     for (var i in requiredInputs) {
-  //       var hasContent = false;
-  //       if (($('#' + requiredInputs[i]).val().trim() !== '')) {
-  //         hasContent = true;
-  //       }
-  //       hasRequiredInputsArray.push(hasContent);
-  //     }
+  initDynamicInquiryTypeForms: function() {
+    $("select#inquiry_inquiry_type").change(function(){
+      var value = $(this).val();
+      var missingInfo = "Missing Information";
+      var missingInfoPrefix = "missing";
+      var parts = "Parts";
+      var partsPrefix = "parts";
+      var procedurePage = "Procedure Page Issue";
+      var procedurePagePrefix = "procedure";
+      var weldedPanelOperations = "Welded Panel Operations";
+      var weldedPanelOperationsPrefix = "welded";
+      var nonWeldedPanelOperations = "Non-Welded Panel Operations";
+      var nonWeldedPanelOperationsPrefix = "non_welded";
+      var refinishedOperations = "Refinish Operations";
+      var refinishedOperationsPrefix = "refinished";
+      var allOther = "All Other";
+      var select = " ";
 
-  //     hasAllrequiredInputs = hasRequiredInputsArray.every(Boolean);
+      if (value === select) {
+        ShowMake.hideInquiryDatabaseForms();
+      } else if (value === missingInfo) {
+        ShowMake.hideInquiryDatabaseForms();
+        $(".missing-info-form").show('slow');
+        ShowMake.initOtherAreaVehicleField(missingInfoPrefix);
+      } else if (value === parts) {
+        ShowMake.hideInquiryDatabaseForms();
+        $(".parts-form").show('slow');
+        ShowMake.initOtherAreaVehicleField(partsPrefix);
+      } else if (value === procedurePage) {
+        ShowMake.hideInquiryDatabaseForms();
+        $(".procedure-page-form").show('slow');
+        ShowMake.initOtherAreaVehicleField(procedurePagePrefix);
+      } else if (value === weldedPanelOperations) {
+        ShowMake.hideInquiryDatabaseForms();
+        $(".welded-panel-operations-form").show('slow');
+        ShowMake.initOtherAreaVehicleField(weldedPanelOperationsPrefix);
+      } else if (value === nonWeldedPanelOperations) {
+        ShowMake.hideInquiryDatabaseForms();
+        $(".non-welded-panel-operations-form").show('slow');
+        ShowMake.initOtherAreaVehicleField(nonWeldedPanelOperationsPrefix);
+      } else if (value === refinishedOperations) {
+        ShowMake.hideInquiryDatabaseForms();
+        $(".refinished-operations-form").show('slow');
+        ShowMake.initOtherAreaVehicleField(refinishedOperationsPrefix);
+      } else if (value === allOther) {
+        ShowMake.hideInquiryDatabaseForms();
+        $(".all-other-form").show('slow');
+        ShowMake.initOtherAreaVehicleField();
+      }
+    });
+  },
 
-  //     if (hasAllrequiredInputs) {
-  //       $('input.' + formType + '-edit-form').removeAttr('disabled');
-  //     } else {
-  //       $('input.' + formType + '-edit-form').attr('disabled', 'disabled');
-  //     }
-  //   });
-  // },
-
-  checkRequiredFields: function() {
-    $("form").validate({
+  checkRequiredCustomerFields: function() {
+    $(".customer-edit-form").validate({
       rules: {
         "inquiry[name]": {required: true},
         "inquiry[phone]": {required: true, phoneUS: true},
         "inquiry[email]": {required: true, email: true},
+      },
+      messages: {
+        "inquiry[name]": {required: "enter a name"},
+        "inquiry[phone]": {required: "enter a phone number", phoneUS: "enter a valid phone number"},
+        "inquiry[email]": {required: "enter an email", email: "enter a valid email"},
+      }
+    });
+  },
+
+  checkRequiredVehicleFields: function() {
+    $(".vehicle-edit-form").validate({
+      rules: {
         "inquiry[make]": {required: true, nowhitespace: true},
         "inquiry[model]": {required: true},
         "inquiry[year]": {required: true, nowhitespace: true},
         "inquiry[vin]": {required: true, minlength: 17, maxlength: 17}
       },
       messages: {
-        "inquiry[name]": {required: "enter a name"},
-        "inquiry[phone]": {required: "enter a phone number", phoneUS: "enter a valid phone number"},
-        "inquiry[email]": {required: "enter an email", email: "enter a valid email"},
         "inquiry[make]": {required: "select a make", nowhitespace: "select a make"},
         "inquiry[model]": {required: "enter a model"},
         "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},
@@ -136,11 +227,6 @@ var ShowMake = {
     if (this.el.showMakeForm.length !== 0) {
       this.hideEditForms();
       this.toggleFormsOnClick();
-      if (this.el.vehicleEditForm.length !== 0) {
-        this.toggleOtherMakeField();
-        this.initDynamicForms();
-      }
-      this.checkRequiredFields();
     }
   }
 };
