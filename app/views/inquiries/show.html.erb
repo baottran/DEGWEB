@@ -285,29 +285,36 @@ $(function(){
 				<p><strong>Issue Summary: </strong><%= @inquiry.procedure_issue_summary %></p>
 				<p><strong>Suggested Action: </strong><%= @inquiry.procedure_suggested_action %></p>
 			<% when 'Welded Panel Operations' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.id %></p>
-				<p><strong>Part Name: </strong><%= @inquiry.id %></p>
-				<p><strong>Part Number: </strong><%= @inquiry.id %></p>
-				<p><strong>Issue Summary: </strong><%= @inquiry.id %></p>
-				<p><strong>Number of Spot Welds: </strong><%= @inquiry.id %></p>
-				<p><strong>Type of Materials Involved: </strong><%= @inquiry.id %></p>
-				<p><strong>Individual Procedure Steps: </strong><%= @inquiry.id %></p>
-				<p><strong>Technician Skill Level: </strong><%= @inquiry.id %></p>
-				<p><strong>Actual Time To Complete: </strong><%= @inquiry.id %> <%= @inquiry.id %></p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.id %></p>
+				<p><strong>Area of Vehicle: </strong><%= @inquiry.welded_area_of_vehicle %> <%= @inquiry.welded_area_of_vehicle_other_field%></p>
+				<p><strong>Part Name: </strong><%= @inquiry.welded_part_name %></p>
+				<p><strong>Part Number: </strong><%= @inquiry.welded_part_number %></p>
+				<p><strong>Issue Summary: </strong><%= @inquiry.welded_issue_summary %></p>
+				<p><strong>Number of Spot Welds: </strong><%= @inquiry.welded_weld_spots %></p>
+				<p><strong>Type of Materials Involved: </strong><%= @inquiry.welded_materials_involved %></p>
+				<p><strong>Individual Procedure Steps: </strong><%= @inquiry.welded_procedure_steps %></p>
+				<p><strong>Technician Skill Level: </strong><%= @inquiry.welded_skill_level %></p>
+				<p><strong>Actual Time To Complete: </strong><%= @inquiry.welded_complete_time_hour %> <%= @inquiry.welded_complete_time_min %></p>
+				<p><strong>Suggested Action: </strong><%= @inquiry.welded_suggested_action %></p>
+			<% when 'Non-Welded Panel Operations' %>
+				<p><strong>Area of Vehicle: </strong><%= @inquiry.non_welded_area_of_vehicle %><%= @inquiry.non_welded_area_of_vehicle_other_field%></p>
+				<p><strong>Part Name: </strong><%= @inquiry.non_welded_part_name %></p>
+				<p><strong>Part Number: </strong><%= @inquiry.non_welded_part_number %></p>
+				<p><strong>Issue Summary: </strong><%= @inquiry.non_welded_issue_summary %></p>
+				<p><strong>Individual Procedure Steps: </strong><%= @inquiry.non_welded_procedure_steps %></p>
+				<p><strong>Technician Skill Level: </strong><%= @inquiry.non_welded_skill_level %></p>
+				<p><strong>Actual Time To Complete: </strong><%= @inquiry.non_welded_complete_time_hour %> <%= @inquiry.non_welded_complete_time_min %></p>
+				<p><strong>Suggested Action: </strong><%= @inquiry.non_welded_suggested_action %></p>
 			<% when 'Refinish Operations' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.id %></p>
-				<p><strong>Part Name: </strong><%= @inquiry.id %></p>
-				<p><strong>Part Number: </strong><%= @inquiry.id %></p>
-				<p><strong>Issue Summary: </strong><%= @inquiry.id %></p>
-				<p><strong>Special Labor or Material Considerations: </strong><%= @inquiry.id %></p>
-				<p><strong>Estimated Part Surface Area: </strong><%= @inquiry.id %> square inches</p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.id %></p>
+				<p><strong>Area of Vehicle: </strong><%= @inquiry.refinished_area_of_vehicle %><%= @inquiry.refinished_area_of_vehicle_other_field%></p>
+				<p><strong>Issue Summary: </strong><%= @inquiry.refinished_issue_summary %></p>
+				<p><strong>Special Labor or Material Considerations: </strong><%= @inquiry.refinished_special_labor %></p>
+				<p><strong>Estimated Part Surface Area: </strong><%= @inquiry.refinished_surface_area %> square inches</p>
+				<p><strong>Suggested Action: </strong><%= @inquiry.refinished_suggested_action %></p>
 			<% when 'All Other' %>
-				<p><strong>Issue Summary: </strong><%= @inquiry.id %></p>
-				<p><strong>Individual Procedure Steps: </strong><%= @inquiry.id %></p>
-				<p><strong>Actual Time To Complete: </strong><%= @inquiry.id %> <%= @inquiry.id %></p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.id %></p>
+				<p><strong>Issue Summary: </strong><%= @inquiry.all_other_issue_summary%></p>
+				<p><strong>Individual Procedure Steps: </strong><%= @inquiry.all_other_procedure_steps %></p>
+				<p><strong>Actual Time To Complete: </strong><%= @inquiry.all_other_complete_time_hour %> <%= @inquiry.all_other_complete_time_min %></p>
+				<p><strong>Suggested Action: </strong><%= @inquiry.all_other_suggested_action %></p>
 			<% else %>
 				<p>Unknown Inquiry Type</p>
 		<% end %>
