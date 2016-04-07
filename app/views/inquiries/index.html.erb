@@ -26,11 +26,12 @@
 
 .search-item {
   width: 500px;
+  margin-right: 10px;
 }
 
 .search-box {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
 
 
@@ -53,29 +54,42 @@
     <div class="btn-group btn-group-justified">
 
       <a href="/inquiries" class="btn btn-default btn-status">
+        <div class="title"></div>
         <div class="title">All</div>
         <div><%= Inquiry.all.count %></div>
       </a>
 
       <a href="/inquiries?status=Received+by+DEG" class="btn btn-default btn-status">
-        <div class="title">Received by DEG</div>
+        <div class="title">Received</div>
+        <div class="title">by DEG</div>
         <div><%= Inquiry.where(status: 'Received by DEG').count %></div>
       </a>
 
       <a href="/inquiries?status=Submitted+to+IP" class="btn btn-default btn-status">
-        <div class="title">Submitted to IP</div>
+        <div class="title">Submitted</div>
+        <div class="title">to IP</div>
         <div><%= Inquiry.where(status: 'Submitted to IP').count %></div>
       </a>
 
       <a href="/inquiries?status=IP+Response+Received" class="btn btn-default btn-status">
-        <div class="title">IP Response Received</div>
+        <div class="title">IP Response</div>
+        <div class="title">Received</div>
         <div><%= Inquiry.where(status: 'IP Response Received').count %></div>
       </a>
 
-      <a href="/inquiries?status=Resolved" class="btn btn-default btn-status">
+      <a href="/inquiries?status=Resolved+(IP+Change)" class="btn btn-default btn-status">
         <div class="title">Resolved</div>
+        <div class="title">(IP Change)</div>
         <div><%= @resolved_inquiries.count%></div>
       </a>
+
+      <a href="/inquiries?status=Resolved+(No+IP+Change)" class="btn btn-default btn-status">
+        <div class="title">Resolved</div>
+        <div class="title">(No IP Change)</div>
+        <div><%= @resolved_inquiries.count%></div>
+      </a>
+
+
 
     </div>
 
