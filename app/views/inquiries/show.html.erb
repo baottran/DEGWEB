@@ -20,6 +20,22 @@
 	margin-left: 15px;
 }
 
+.admin-actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.admin-actions .btn {
+	/*flex-grow: 1;*/
+	justify-content: space-between;
+	/*background-color: red;*/
+}
+
+.form-field {
+	width: 400px;
+}
+
 </style>
 
 <%= stylesheet_link_tag "inquiries" %>
@@ -66,8 +82,8 @@ $(function(){
 	});
 
 	$("#resolution-cancel").click(function(event) {
-		$("#resolution-form").toggle();
-		$("#resolution-text").toggle();
+		$("#resolution-text").show();
+		$("#resolution-form").hide();
 	});
 
 	// customer detail
@@ -132,37 +148,24 @@ $(function(){
     	<strong>Tracking #: </strong><%= @inquiry.id %>
     </div>
     <div class="inquiry-item">
-    	<strong>Date Submitted: </strong><%= @inquiry.created_at %>
+    	<strong>Date Submitted: </strong><%= @inquiry.created_at.to_formatted_s(:long) %>
     </div>
     <div class="inquiry-item">
     	<strong>Status: </strong><%= @inquiry.status %>
     </div>
-    <button type="submit" class="btn btn-primary btn-submit" id="status-edit">Edit</button>
   </div>
-   <div class="panel-body submission-content" id="status-form">
-    <div class="inquiry-item">
-    	<strong>Tracking #: </strong><%= @inquiry.id %>
-    </div>
-    <div class="inquiry-item">
-    	<strong>Date Submitted: </strong><%= @inquiry.created_at %>
-    </div>
-    <div class="inquiry-item">
-    <%= render 'status_form' %>
-    </div>
-  </div>
-
-
-
 </div>
 
 <div class="panel panel-primary">
 	<div class="panel-heading">Admin Actions</div>
-	<div class="panel-body">
+	<div class="panel-body admin-actions">
 		<a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-success btn-lg">Submit to IP</a>
+		<a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-success btn-lg">Resolve (No IP Change)</a>
+		<a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-success btn-lg">Resolve (IP Change)</a>
 
 		<%= link_to 'Delete Inquiry', inquiry_path(@inquiry),
                 method: :destroy,
-                data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-lg" %>
+                data: { confirm: 'Are you sure?' } %>
 	</div>
 </div>
 
@@ -181,11 +184,15 @@ $(function(){
     <div class="inquiry-item">
     	<strong>Body: </strong><%= @inquiry.body_type %>
     </div>
+    <div class="inquiry-item">
+    	<strong>VIN: </strong><%= @inquiry.vin %>
+    </div>
     <button type="submit" class="btn btn-primary btn-submit" id="vehicle-edit">Edit</button>
   </div>
     <div class="panel-body submission-content" id="vehicle-form">
 
     <%= render 'vehicle_form' %>
+    <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
   </div>
 
 </div>
@@ -198,6 +205,7 @@ $(function(){
   <div class="panel-body">
   	<div id="resolution-form">
   		<%= render 'resolution_form' %>
+  		<a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
   	</div>
   	<div id="resolution-text">
 		    <p><%= @inquiry.resolution %></p>
@@ -225,6 +233,7 @@ $(function(){
 		</div>
 		<div class="customer-detail-form">
 			<%= render 'customerdetail_form' %>
+			<a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
 		</div>
   </div>
 
@@ -290,6 +299,7 @@ $(function(){
 	</div>
 	<div class="inquiry-form">
 		<%= render 'inquiry_form' %>
+		<a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
 	</div>
 	</div>
 </div>

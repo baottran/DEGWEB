@@ -70,6 +70,15 @@ class Inquiry < ActiveRecord::Base
     {:bucket => "degweb-dev", :access_key_id => "AKIAJI4FS6CKOUH3A7JQ", :secret_access_key => "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"}
   end
 
+  def time_to_resolve_days
+
+    if resolution_date!= nil 
+      resolution_time_days = (resolution_date - created_at) / 86400
+      return "#{resolution_time_days.round(2)} days"
+    end
+  end
+
+
   validates_attachment :attachment, :content_type => {:content_type => %w(image/jpeg image/jpg image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document)}
 
 end

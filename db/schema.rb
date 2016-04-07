@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321042518) do
+ActiveRecord::Schema.define(version: 20160406015459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,9 @@ ActiveRecord::Schema.define(version: 20160321042518) do
     t.string   "resolution"
     t.string   "status"
     t.string   "search_criteria"
+    t.datetime "submit_to_ip_date"
+    t.datetime "ip_response_received_date"
+    t.datetime "resolution_date"
   end
 
   create_table "searches", force: :cascade do |t|

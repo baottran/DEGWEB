@@ -20,13 +20,13 @@
 @import "bootstrap-sprockets";
 
 /*// Import paper variables*/
-@import "bootswatch/paper/variables";
+@import "bootswatch/flatly/variables";
 
 /*// Then bootstrap itself*/
 @import "bootstrap";
 
 /*// And finally bootswatch style itself*/
-@import "bootswatch/paper/bootswatch";
+@import "bootswatch/flatly/bootswatch";
 
 .form-label {
   text-align: right;
@@ -118,7 +118,7 @@ label.error {
 
 .right-content {
   /*background-color: yellow;*/
-  width: 700px;
+  width: 920px;
   /*height: 600px;*/
   margin: 10px;
   /*padding: 5px;*/

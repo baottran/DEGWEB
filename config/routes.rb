@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   patch 'inquiries/:id/vehicle' => 'inquiries#edit_vehicle'
   patch 'inquiries/:id/edit_inquiry' => 'inquiries#edit_inquiry'
   get 'inquiries/:id/email_ip' => 'inquiries#email_ip'
+  get 'inquiries/:id/rslve_no_chng' => 'inquiries#resolve_no_change'
+  get 'inquiries/:id/rslve_ip_chng' => 'inquiries#resolve_ip_change'
   patch 'inquiries/:id/edit_status' => 'inquiries#edit_status'
 
   resources :users

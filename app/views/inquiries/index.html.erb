@@ -16,6 +16,23 @@
   height: 95px;
 }
 
+.panel-search {
+
+  width: 920px;
+  height: 100px;
+  margin: 10px;
+  padding: 20px;
+}
+
+.search-item {
+  width: 500px;
+  margin-right: 10px;
+}
+
+.search-box {
+  display: flex;
+  align-items: flex-end;
+}
 
 
 </style>
@@ -27,40 +44,52 @@
   </ul>
 
   <br>
+
+  <div class="panel panel-default panel-search">
+  <%= render 'inquiries/query_form.html.erb' %>
+  </div>
+  <br>
   <div class="panel panel-default panel-status">
 
     <div class="btn-group btn-group-justified">
 
       <a href="/inquiries" class="btn btn-default btn-status">
+        <div class="title"></div>
         <div class="title">All</div>
         <div><%= Inquiry.all.count %></div>
       </a>
 
       <a href="/inquiries?status=Received+by+DEG" class="btn btn-default btn-status">
-        <div class="title">Recieved by DEG</div>
+        <div class="title">Received</div>
+        <div class="title">by DEG</div>
         <div><%= Inquiry.where(status: 'Received by DEG').count %></div>
       </a>
 
-      <a href="/inquiries?status=Open" class="btn btn-default btn-status">
-        <div class="title">Open</div>
-        <div><%= Inquiry.where(status: 'Open').count %></div>
-      </a>
-
       <a href="/inquiries?status=Submitted+to+IP" class="btn btn-default btn-status">
-        <div class="title">Submitted to IP</div>
+        <div class="title">Submitted</div>
+        <div class="title">to IP</div>
         <div><%= Inquiry.where(status: 'Submitted to IP').count %></div>
       </a>
 
       <a href="/inquiries?status=IP+Response+Received" class="btn btn-default btn-status">
         <div class="title">IP Response</div>
-        <div>Received</div>
+        <div class="title">Received</div>
         <div><%= Inquiry.where(status: 'IP Response Received').count %></div>
       </a>
 
-      <a href="/inquiries?status=Resolved" class="btn btn-default btn-status">
+      <a href="/inquiries?status=Resolved+(IP+Change)" class="btn btn-default btn-status">
         <div class="title">Resolved</div>
+        <div class="title">(IP Change)</div>
         <div><%= @resolved_inquiries.count%></div>
       </a>
+
+      <a href="/inquiries?status=Resolved+(No+IP+Change)" class="btn btn-default btn-status">
+        <div class="title">Resolved</div>
+        <div class="title">(No IP Change)</div>
+        <div><%= @resolved_inquiries.count%></div>
+      </a>
+
+
 
     </div>
 
@@ -70,13 +99,13 @@
   <div class="content-box">
 
 
-      <div class="panel panel-default checklist">
+<!--       <div class="panel panel-default checklist">
         <div class="panel-heading">Checklist</div>
         <div class="panel-body">
 
         <%= render 'inquiries/query_form.html.erb' %>
         </div>
-      </div>
+      </div> -->
 
     <!-- <div class="left-content"> -->
     <!-- </div> -->
@@ -90,6 +119,9 @@
               <th>Inquiry Type</th>
               <th>Vehicle</th>
               <th>Status</th>
+              <th>Origination Date</th>
+              <th>Submission Date</th>
+              <th>Total Time To Resolve</th>
             </tr>
           </thead>
           <tbody>
@@ -100,6 +132,11 @@
               <td><%= inquiry.inquiry_type %></td>
               <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
               <td><%= inquiry.status %></td>
+              <td><%= inquiry.created_at.strftime("%F") %></td>
+              <td><% if inquiry.submit_to_ip_date != nil %>
+                    <%= inquiry.submit_to_ip_date.strftime("%F") %>
+                  <% end %></td>
+              <td><%= inquiry.time_to_resolve_days %></td>
               <td><%= link_to 'Show', inquiry_path(inquiry) %></td>
             </tr>
           <% end %>

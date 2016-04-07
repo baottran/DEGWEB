@@ -1,12 +1,17 @@
+
+
 <%= form_for @search do |s| %>
 	
+
+	<div class="search-box">
 	<div class="search-item">
-		<%= s.label :description %>
-		<%= s.text_field :description %>
+		<%= s.label :description, "Search" %>
+		<%= s.text_field :description, :class => "form-control search-text" %>
 	</div>
 	<br>
 	<div class="search-submit">
-		<%= s.submit "Search" %>
+		<%= s.submit "Search", :class => 'btn btn-primary' %>
+	</div>
 	</div>
 
 <% end %>

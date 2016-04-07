@@ -259,4 +259,21 @@ module InquiriesHelper
     ['95', '95'],
     ['100', '100']]
   end
+
+  def resolution_time_for(inquiry)
+
+
+
+    if inquiry.resolution_date!= nil 
+        resolution_time = inquiry.resolution_date - inquiry.created_at
+        return "#{resolution_time / 86400} days"
+    end
+
+    return nil 
+
+  end
+
+
+
+
 end
