@@ -42,10 +42,17 @@
   margin-top: -24px;
 }
 
-.form-field {
+.form-field,
+.show-make-form,
+.show-inquiry-form,
+.show-customer-form {
   margin-bottom: 20px;
   padding-top: 20px;
   padding-bottom: 40px;
+}
+
+.form-field {
+  width: 400px;
 }
 
 .form-buttons {
@@ -56,13 +63,12 @@ label.error {
   color: red;
 }
 
-.submission-content {
-  /*display: flex;*/
-  display: block;
-}
-
 .inquiry-item {
   flex-grow: 1;
+}
+
+.submission-content {
+  display: flex;
 }
 
 .submit {
@@ -117,11 +123,8 @@ label.error {
 }
 
 .right-content {
-  /*background-color: yellow;*/
   width: 920px;
-  /*height: 600px;*/
   margin: 10px;
-  /*padding: 5px;*/
 }
 
 .footer-bar {
@@ -134,4 +137,14 @@ label.error {
 .footer-content {
   margin-top: 10px;
   text-align: center;
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-actions .btn {
+  justify-content: space-between;
 }

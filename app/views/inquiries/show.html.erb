@@ -1,337 +1,177 @@
 <%= render 'shared/header' %>
+<div class="show-make-form">
+  <div class="container">
+  <h2>Inquiry Detail</h2>
 
-<style>
-
-.submission-content {
-	/*display: flex;*/
-	display: flex;
-}
-
-.inquiry-item {
-	flex-grow: 1;
-}
-
-.submit {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.btn-submit {
-	margin-left: 15px;
-}
-
-.admin-actions {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.admin-actions .btn {
-	/*flex-grow: 1;*/
-	justify-content: space-between;
-	/*background-color: red;*/
-}
-
-.form-field {
-	width: 400px;
-}
-
-</style>
-
-<%= stylesheet_link_tag "inquiries" %>
-
-<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-
-<script>
-
-$(function(){
-
-	// status form
-
-	$("#status-form").hide();
-
-	$("#status-edit").click(function(event){
-		$("#status-form").toggle();
-		$("#status-text").toggle();
-	})
-
-
-
-	//resolution form
-
-	$("#resolution-form").hide();
-
-	$("#resolution-edit").click(function(event) {
-
-		var currentResolution = $("#resolution-text").find("p").text();
-		$("textArea").text(currentResolution);
-		$("textArea").focus();
-		$("#resolution-text").toggle();
-		$("#resolution-form").toggle();
-	});
-
-	$("#resolution-submit").click(function(event) {
-
-		var newResolution = $("#textArea").val();
-		console.log(newResolution);
-
-		$("#resolution-text").find("p").text(newResolution);
-
-		$("#resolution-form").toggle();
-		$("#resolution-text").toggle();
-	});
-
-	$("#resolution-cancel").click(function(event) {
-		$("#resolution-text").show();
-		$("#resolution-form").hide();
-	});
-
-	// customer detail
-
-	$(".customer-detail-form").hide();
-
-	$("#customer-edit").click(function(event) {
-		$(".customer-detail-data").toggle();
-		$(".customer-detail-form").toggle();
-	});
-
-	$("#customer-submit").click(function(event) {
-		$("#resolution-form").toggle();
-		$("#resolution-text").toggle();
-	});
-
-	$("#customer-cancel").click(function(event) {
-		$("#resolution-form").toggle();
-		$("#resolution-text").toggle();
-	});
-
-	// vehicle detail
-
-
-	$("#vehicle-form").hide();
-
-	$("#vehicle-edit").click(function(event) {
-		$("#vehicle-info").toggle();
-		$("#vehicle-form").toggle();
-	});
-
-	$("#vehicle-submit").click(function(event) {
-		$("#vehicle-form").toggle();
-		$("#vehicle-info").toggle();
-	});
-
-	$("#resolution-cancel").click(function(event) {
-		$("#resolution-form").toggle();
-		$("#resolution-text").toggle();
-	});
-
-	$('.inquiry-form').hide()
-
-	$('#inquiry-edit').click(function(event){
-		console.log("test");
-		$('.inquiry-form').toggle();
-		$('.inquiry-data').toggle();
-	})
-
-
-});
-</script>
-
-<div class= "container">
-<h2>Inquiry Detail</h2>
-
-<br>
-<div class="panel panel-default">
-  <div class="panel-heading">Submission Information</div>
-  <div class="panel-body submission-content" id="status-text">
-    <div class="inquiry-item">
-    	<strong>Tracking #: </strong><%= @inquiry.id %>
-    </div>
-    <div class="inquiry-item">
-    	<strong>Date Submitted: </strong><%= @inquiry.created_at.to_formatted_s(:long) %>
-    </div>
-    <div class="inquiry-item">
-    	<strong>Status: </strong><%= @inquiry.status %>
+  <br>
+  <div class="panel panel-default">
+    <div class="panel-heading">Submission Information</div>
+    <div class="panel-body submission-content" id="status-text">
+      <div class="inquiry-item">
+        <strong>Tracking #: </strong><%= @inquiry.id %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Date Submitted: </strong><%= @inquiry.created_at.to_formatted_s(:long) %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Status: </strong><%= @inquiry.status %>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="panel panel-primary">
-	<div class="panel-heading">Admin Actions</div>
-	<div class="panel-body admin-actions">
-		<% if @inquiry.status === "Received by DEG" %>
-
-			<a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-success btn-lg">Submit to IP</a>
-			<a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-default btn-lg disabled">Resolve (No IP Change)</a>
-			<a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg disabled">Resolve (IP Change)</a>
-
-		<% elsif @inquiry.status === "Submitted to IP" %>
-
-			<a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-default btn-lg disabled">Submit to IP</a>
-			<a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-default btn-lg disabled">Resolve (No IP Change)</a>
-			<a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg disabled">Resolve (IP Change)</a>
-
-		<% else %>
-
-			<a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-default btn-lg disabled">Submit to IP</a>
-			<a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-success btn-lg">Resolve (No IP Change)</a>
-			<a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-success btn-lg">Resolve (IP Change)</a>
-
-		<% end %>
-
-		<%= link_to 'Delete Inquiry', inquiry_path(@inquiry),
-                method: :destroy,
-                data: { confirm: 'Are you sure?' } %>
-	</div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Vehicle Information</div>
-  <div class="panel-body submission-content" id="vehicle-info">
-    <div class="inquiry-item">
-    	<strong>Year: </strong><%= @inquiry.year %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Admin Actions</div>
+    <div class="panel-body admin-actions">
+      <% if @inquiry.status === "Received by DEG" %>
+        <a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-success btn-lg">Submit to IP</a>
+        <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-default btn-lg disabled">Resolve (No IP Change)</a>
+        <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg disabled">Resolve (IP Change)</a>
+      <% elsif @inquiry.status === "Submitted to IP" %>
+        <a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-default btn-lg disabled">Submit to IP</a>
+        <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-default btn-lg disabled">Resolve (No IP Change)</a>
+        <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg disabled">Resolve (IP Change)</a>
+      <% else %>
+        <a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-default btn-lg disabled">Submit to IP</a>
+        <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-success btn-lg">Resolve (No IP Change)</a>
+        <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-success btn-lg">Resolve (IP Change)</a>
+      <% end %>
+      <%= link_to 'Delete Inquiry', inquiry_path(@inquiry),
+                  method: :destroy,
+                  data: { confirm: 'Are you sure?' } %>
     </div>
-    <div class="inquiry-item">
-    	<strong>Make: </strong><%= @inquiry.make %>
-    </div>
-    <div class="inquiry-item">
-    	<strong>Model: </strong><%= @inquiry.model %>
-    </div>
-    <div class="inquiry-item">
-    	<strong>Body: </strong><%= @inquiry.body_type %>
-    </div>
-    <div class="inquiry-item">
-    	<strong>VIN: </strong><%= @inquiry.vin %>
-    </div>
-    <button type="submit" class="btn btn-primary btn-submit" id="vehicle-edit">Edit</button>
   </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Vehicle Information</div>
+    <div class="panel-body submission-content" id="vehicle-info">
+      <div class="inquiry-item">
+        <strong>Year: </strong><%= @inquiry.year %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Make: </strong><%= @inquiry.make %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Model: </strong><%= @inquiry.model %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Body: </strong><%= @inquiry.body_type %>
+      </div>
+      <div class="inquiry-item">
+        <strong>VIN: </strong><%= @inquiry.vin %>
+      </div>
+      <button type="submit" class="btn btn-primary btn-submit" id="vehicle-edit">Edit</button>
+    </div>
     <div class="panel-body submission-content" id="vehicle-form">
-
-    <%= render 'vehicle_form' %>
-    <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+      <%= render 'vehicle_form' %>
+      <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+    </div>
   </div>
-
 </div>
-</div>
-
 <br>
 <div class="panel panel-primary">
   <div class="panel-heading">Inquiry Resolution
   </div>
   <div class="panel-body">
-  	<div id="resolution-form">
-  		<%= render 'resolution_form' %>
-  		<a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
-  	</div>
-  	<div id="resolution-text">
-		    <p><%= @inquiry.resolution %></p>
-		    <button type="submit" class="btn btn-primary btn-submit" id="resolution-edit">Edit</button>
-  	</div>
- </div>
+    <div id="resolution-form">
+      <%= render 'resolution_form' %>
+      <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+    </div>
+    <div id="resolution-text">
+        <p><%= @inquiry.resolution %></p>
+        <button type="submit" class="btn btn-primary btn-submit" id="resolution-edit">Edit</button>
+    </div>
+  </div>
 </div>
-
 <div class="panel panel-default">
   <div class="panel-heading">Customer Detail</div>
   <div class="panel-body">
-  	<div class="customer-detail-data">
-			<p><strong>Name: </strong><%= @inquiry.name %></p>
-			<p><strong>Title: </strong><%= @inquiry.title %></p>
-			<p><strong>Shop Name: </strong><%= @inquiry.shop_name %></p>
-			<p><strong>Address Line 1: </strong><%= @inquiry.address_1 %></p>
-			<p><strong>Address Line 2: </strong><%= @inquiry.address_2 %></p>
-			<p><strong>City: </strong><%= @inquiry.city %></p>
-			<p><strong>Zip Code: </strong><%= @inquiry.zip_code %></p>
-			<p><strong>State: </strong><%= @inquiry.state %></p>
-			<p><strong>Phone: </strong><%= @inquiry.phone %></p>
-			<p><strong>Fax: </strong><%= @inquiry.fax %></p>
-			<p><strong>Email: </strong><%= @inquiry.email %></p>
-			<button type="submit" class="btn btn-primary btn-submit" id="customer-edit">Edit</button>
-		</div>
-		<div class="customer-detail-form">
-			<%= render 'customerdetail_form' %>
-			<a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
-		</div>
+    <div class="customer-detail-data">
+      <p><strong>Name: </strong><%= @inquiry.name %></p>
+      <p><strong>Title: </strong><%= @inquiry.title %></p>
+      <p><strong>Shop Name: </strong><%= @inquiry.shop_name %></p>
+      <p><strong>Address Line 1: </strong><%= @inquiry.address_1 %></p>
+      <p><strong>Address Line 2: </strong><%= @inquiry.address_2 %></p>
+      <p><strong>City: </strong><%= @inquiry.city %></p>
+      <p><strong>Zip Code: </strong><%= @inquiry.zip_code %></p>
+      <p><strong>State: </strong><%= @inquiry.state %></p>
+      <p><strong>Phone: </strong><%= @inquiry.phone %></p>
+      <p><strong>Fax: </strong><%= @inquiry.fax %></p>
+      <p><strong>Email: </strong><%= @inquiry.email %></p>
+      <button type="submit" class="btn btn-primary btn-submit" id="customer-edit">Edit</button>
+    </div>
+    <div class="customer-detail-form">
+      <%= render 'customerdetail_form' %>
+      <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+    </div>
   </div>
-
 </div>
-
 <div class="panel panel-default">
   <div class="panel-heading">Database Inquiry</div>
   <div class="panel-body">
-  	<div class="inquiry-data">
-		<p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
-		<p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
-		<p><strong>Database: </strong><%= @inquiry.database %></p>
-
-		<% case @inquiry.inquiry_type
-			when 'Missing Information' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.missing_area_of_vehicle %></p>
-				<p><strong>Missing Part Name: </strong><%= @inquiry.missing_part_name %></p>
-				<p><strong>Missing Part Description: </strong><%= @inquiry.missing_part_description %></p>
-				<p><strong>OEM Part Number: </strong><%= @inquiry.missing_oem_part_number %></p>
-				<p><strong>Missing Information: </strong><%= @inquiry.missing_information %></p>
-				<p><strong>Issue Summary: </strong><%= @inquiry.missing_issue_summary %></p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.missing_suggested_action %></p>
-			<% when 'Parts' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.parts_area_of_vehicle %></p>
-				<p><strong>Part Name: </strong><%= @inquiry.parts_part_name %></p>
-				<p><strong>Part Description: </strong><%= @inquiry.parts_part_description %></p>
-				<p><strong>OEM Part Number: </strong><%= @inquiry.parts_oem_part_number %></p>
-				<p><strong>Issue Summary: </strong><%= @inquiry.parts_issue_summary %></p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.parts_suggested_action %></p>
-			<% when 'Procedure Page Issue' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.procedure_area_of_vehicle %></p>
-				<p><strong>Page #: </strong><%= @inquiry.procedure_page_number %></p>
-				<p><strong>Issue Summary: </strong><%= @inquiry.procedure_issue_summary %></p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.procedure_suggested_action %></p>
-			<% when 'Welded Panel Operations' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.welded_area_of_vehicle %> <%= @inquiry.welded_area_of_vehicle_other_field%></p>
-				<p><strong>Part Name: </strong><%= @inquiry.welded_part_name %></p>
-				<p><strong>Part Number: </strong><%= @inquiry.welded_part_number %></p>
-				<p><strong>Issue Summary: </strong><%= @inquiry.welded_issue_summary %></p>
-				<p><strong>Number of Spot Welds: </strong><%= @inquiry.welded_weld_spots %></p>
-				<p><strong>Type of Materials Involved: </strong><%= @inquiry.welded_materials_involved %></p>
-				<p><strong>Individual Procedure Steps: </strong><%= @inquiry.welded_procedure_steps %></p>
-				<p><strong>Technician Skill Level: </strong><%= @inquiry.welded_skill_level %></p>
-				<p><strong>Actual Time To Complete: </strong><%= @inquiry.welded_complete_time_hour %> <%= @inquiry.welded_complete_time_min %></p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.welded_suggested_action %></p>
-			<% when 'Non-Welded Panel Operations' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.non_welded_area_of_vehicle %><%= @inquiry.non_welded_area_of_vehicle_other_field%></p>
-				<p><strong>Part Name: </strong><%= @inquiry.non_welded_part_name %></p>
-				<p><strong>Part Number: </strong><%= @inquiry.non_welded_part_number %></p>
-				<p><strong>Issue Summary: </strong><%= @inquiry.non_welded_issue_summary %></p>
-				<p><strong>Individual Procedure Steps: </strong><%= @inquiry.non_welded_procedure_steps %></p>
-				<p><strong>Technician Skill Level: </strong><%= @inquiry.non_welded_skill_level %></p>
-				<p><strong>Actual Time To Complete: </strong><%= @inquiry.non_welded_complete_time_hour %> <%= @inquiry.non_welded_complete_time_min %></p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.non_welded_suggested_action %></p>
-			<% when 'Refinish Operations' %>
-				<p><strong>Area of Vehicle: </strong><%= @inquiry.refinished_area_of_vehicle %><%= @inquiry.refinished_area_of_vehicle_other_field%></p>
-				<p><strong>Issue Summary: </strong><%= @inquiry.refinished_issue_summary %></p>
-				<p><strong>Special Labor or Material Considerations: </strong><%= @inquiry.refinished_special_labor %></p>
-				<p><strong>Estimated Part Surface Area: </strong><%= @inquiry.refinished_surface_area %> square inches</p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.refinished_suggested_action %></p>
-			<% when 'All Other' %>
-				<p><strong>Issue Summary: </strong><%= @inquiry.all_other_issue_summary%></p>
-				<p><strong>Individual Procedure Steps: </strong><%= @inquiry.all_other_procedure_steps %></p>
-				<p><strong>Actual Time To Complete: </strong><%= @inquiry.all_other_complete_time_hour %> <%= @inquiry.all_other_complete_time_min %></p>
-				<p><strong>Suggested Action: </strong><%= @inquiry.all_other_suggested_action %></p>
-			<% else %>
-				<p>Unknown Inquiry Type</p>
-		<% end %>
-		<button type="submit" class="btn btn-primary btn-submit" id="inquiry-edit">Edit</button>
-	</div>
-	<div class="inquiry-form">
-		<%= render 'inquiry_form' %>
-		<a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
-	</div>
-	</div>
+    <div class="inquiry-data">
+      <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
+      <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
+      <p><strong>Database: </strong><%= @inquiry.database %></p>
+      <% case @inquiry.inquiry_type
+        when 'Missing Information' %>
+          <p><strong>Area of Vehicle: </strong><%= @inquiry.missing_area_of_vehicle %></p>
+          <p><strong>Missing Part Name: </strong><%= @inquiry.missing_part_name %></p>
+          <p><strong>Missing Part Description: </strong><%= @inquiry.missing_part_description %></p>
+          <p><strong>OEM Part Number: </strong><%= @inquiry.missing_oem_part_number %></p>
+          <p><strong>Missing Information: </strong><%= @inquiry.missing_information %></p>
+          <p><strong>Issue Summary: </strong><%= @inquiry.missing_issue_summary %></p>
+          <p><strong>Suggested Action: </strong><%= @inquiry.missing_suggested_action %></p>
+        <% when 'Parts' %>
+          <p><strong>Area of Vehicle: </strong><%= @inquiry.parts_area_of_vehicle %></p>
+          <p><strong>Part Name: </strong><%= @inquiry.parts_part_name %></p>
+          <p><strong>Part Description: </strong><%= @inquiry.parts_part_description %></p>
+          <p><strong>OEM Part Number: </strong><%= @inquiry.parts_oem_part_number %></p>
+          <p><strong>Issue Summary: </strong><%= @inquiry.parts_issue_summary %></p>
+          <p><strong>Suggested Action: </strong><%= @inquiry.parts_suggested_action %></p>
+        <% when 'Procedure Page Issue' %>
+          <p><strong>Area of Vehicle: </strong><%= @inquiry.procedure_area_of_vehicle %></p>
+          <p><strong>Page #: </strong><%= @inquiry.procedure_page_number %></p>
+          <p><strong>Issue Summary: </strong><%= @inquiry.procedure_issue_summary %></p>
+          <p><strong>Suggested Action: </strong><%= @inquiry.procedure_suggested_action %></p>
+        <% when 'Welded Panel Operations' %>
+          <p><strong>Area of Vehicle: </strong><%= @inquiry.id %></p>
+          <p><strong>Part Name: </strong><%= @inquiry.id %></p>
+          <p><strong>Part Number: </strong><%= @inquiry.id %></p>
+          <p><strong>Issue Summary: </strong><%= @inquiry.id %></p>
+          <p><strong>Number of Spot Welds: </strong><%= @inquiry.id %></p>
+          <p><strong>Type of Materials Involved: </strong><%= @inquiry.id %></p>
+          <p><strong>Individual Procedure Steps: </strong><%= @inquiry.id %></p>
+          <p><strong>Technician Skill Level: </strong><%= @inquiry.id %></p>
+          <p><strong>Actual Time To Complete: </strong><%= @inquiry.id %> <%= @inquiry.id %></p>
+          <p><strong>Suggested Action: </strong><%= @inquiry.id %></p>
+        <% when 'Refinish Operations' %>
+          <p><strong>Area of Vehicle: </strong><%= @inquiry.id %></p>
+          <p><strong>Part Name: </strong><%= @inquiry.id %></p>
+          <p><strong>Part Number: </strong><%= @inquiry.id %></p>
+          <p><strong>Issue Summary: </strong><%= @inquiry.id %></p>
+          <p><strong>Special Labor or Material Considerations: </strong><%= @inquiry.id %></p>
+          <p><strong>Estimated Part Surface Area: </strong><%= @inquiry.id %> square inches</p>
+          <p><strong>Suggested Action: </strong><%= @inquiry.id %></p>
+        <% when 'All Other' %>
+          <p><strong>Issue Summary: </strong><%= @inquiry.id %></p>
+          <p><strong>Individual Procedure Steps: </strong><%= @inquiry.id %></p>
+          <p><strong>Actual Time To Complete: </strong><%= @inquiry.id %> <%= @inquiry.id %></p>
+          <p><strong>Suggested Action: </strong><%= @inquiry.id %></p>
+        <% else %>
+          <p>Unknown Inquiry Type</p>
+        <% end %>
+      <button type="submit" class="btn btn-primary btn-submit" id="inquiry-edit">Edit</button>
+    </div>
+    <div class="inquiry-form">
+      <%= render 'inquiry_form' %>
+      <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+    </div>
+  </div>
 </div>
-
 <div class="panel panel-default">
   <div class="panel-heading">Attached Files: </div>
   <div class="panel-body">
-  <p><strong>Attached Files:</strong><a href="<%= @inquiry.attachment.url %>"><%= @inquiry.attachment_file_name %></a></p>
+    <p><strong>Attached Files:</strong><a href="<%= @inquiry.attachment.url %>"><%= @inquiry.attachment_file_name %></a></p>
   </div>
+  <%= link_to 'Back', inquiries_path %>
 </div>
 
-<%= link_to 'Back', inquiries_path %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
