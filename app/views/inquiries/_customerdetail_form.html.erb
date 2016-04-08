@@ -1,10 +1,10 @@
 <%= form_for @inquiry, url: {action: "edit_customer"}, html: {class: ""} do |f| %>
-	<p><%= f.label :name %> <%= f.text_field :name %></p>
-    <p><%= f.label :title %> <%= f.text_field :title %></p>
-    <p><%= f.label :shop_name %> <%= f.text_field :shop_name %></p>
-    <p><%= f.label :address_1 %> <%= f.text_field :address_1 %></p>
-    <p><%= f.label :address_2 %> <%= f.text_field :address_2 %></p>
-    <p><%= f.label :city %> <%= f.text_field :city %></p>
+	<p><%= f.label :name %> <%= f.text_field :name, :class => "form-control" %></p>
+    <p><%= f.label :title %> <%= f.text_field :title, :class => "form-control"%></p>
+    <p><%= f.label :shop_name %> <%= f.text_field :shop_name, :class => "form-control" %></p>
+    <p><%= f.label :address_1 %> <%= f.text_field :address_1, :class => "form-control" %></p>
+    <p><%= f.label :address_2 %> <%= f.text_field :address_2, :class => "form-control" %></p>
+    <p><%= f.label :city %> <%= f.text_field :city, :class => "form-control"%></p>
     <p>
       <%= f.label :state %>
       <%= f.select(:state, options_for_select([['<select>', ' '],
@@ -56,11 +56,11 @@
                                                ['Washington', 'WA'],
                                                ['West Virginia', 'WV'],
                                                ['Wisconsin', 'WI'],
-                                               ['Wyoming', 'WY']]), {}, {class: 'form-control'}) %>
+                                               ['Wyoming', 'WY']], @inquiry.state), {}, {class: 'form-control'}) %>
     </p>
-    <p><%= f.label :zip_code %> <%= f.text_field :zip_code %></p>
-    <p><%= f.label :phone %> <%= f.text_field :phone %></p>
-    <p><%= f.label :fax %> <%= f.text_field :fax %> <i>Optional</i></p>
-    <p><%= f.label :email %> <%= f.text_field :email %></p>
+    <p><%= f.label :zip_code %> <%= f.text_field :zip_code, :class => "form-control" %></p>
+    <p><%= f.label :phone %> <%= f.text_field :phone, :class => "form-control" %></p>
+    <p><%= f.label :fax %> <%= f.text_field :fax, :class => "form-control" %></p>
+    <p><%= f.label :email %> <%= f.text_field :email, :class => "form-control"%></p>
 	<%= f.submit "Save", class: "btn btn-primary btn-submit", html: { type: "submit", id: "customer-submit"} %>
 <% end %>
