@@ -1,7 +1,22 @@
 var ShowMake = {
   getElements: function() {
     this.el = {};
+    this.constants = {};
     this.el.showMakeForm = $(document.querySelector('.show-make-form'));
+    this.constants.missingInfo = "Missing Information";
+    this.constants.missingInfoPrefix = "missing";
+    this.constants.parts = "Parts";
+    this.constants.partsPrefix = "parts";
+    this.constants.procedurePage = "Procedure Page Issue";
+    this.constants.procedurePagePrefix = "procedure";
+    this.constants.weldedPanelOperations = "Welded Panel Operations";
+    this.constants.weldedPanelOperationsPrefix = "welded";
+    this.constants.nonWeldedPanelOperations = "Non-Welded Panel Operations";
+    this.constants.nonWeldedPanelOperationsPrefix = "non_welded";
+    this.constants.refinishedOperations = "Refinish Operations";
+    this.constants.refinishedOperationsPrefix = "refinished";
+    this.constants.allOther = "All Other";
+    this.constants.select = " ";
   },
 
   hideEditForms: function() {
@@ -77,12 +92,13 @@ var ShowMake = {
     });
 
     $('#inquiry-edit').click(function(event){
+      var value = $("select#inquiry_inquiry_type").val();
       ShowMake.el.inquiryEditForm = $(document.querySelector('.inquiry-edit-form'));
       $('.inquiry-form').toggle();
       $('.inquiry-data').toggle();
       if (ShowMake.el.inquiryEditForm.length !== 0) {
-        // ShowMake.hideInquiryDatabaseForms();
-        ShowMake.initDynamicInquiryTypeForms();
+        ShowMake.initDynamicInquiryTypeForms(value);
+        ShowMake.changeInquiryType();
       }
     });
 
@@ -138,55 +154,44 @@ var ShowMake = {
     });
   },
 
-  initDynamicInquiryTypeForms: function() {
-    $("select#inquiry_inquiry_type").change(function(){
-      var value = $(this).val();
-      var missingInfo = "Missing Information";
-      var missingInfoPrefix = "missing";
-      var parts = "Parts";
-      var partsPrefix = "parts";
-      var procedurePage = "Procedure Page Issue";
-      var procedurePagePrefix = "procedure";
-      var weldedPanelOperations = "Welded Panel Operations";
-      var weldedPanelOperationsPrefix = "welded";
-      var nonWeldedPanelOperations = "Non-Welded Panel Operations";
-      var nonWeldedPanelOperationsPrefix = "non_welded";
-      var refinishedOperations = "Refinish Operations";
-      var refinishedOperationsPrefix = "refinished";
-      var allOther = "All Other";
-      var select = " ";
+  initDynamicInquiryTypeForms: function(value) {
+    if (value === this.constants.select) {
+      ShowMake.hideInquiryDatabaseForms();
+    } else if (value === this.constants.missingInfo) {
+      ShowMake.hideInquiryDatabaseForms();
+      $(".missing-info-form").show('slow');
+      ShowMake.initOtherAreaVehicleField(this.constants.missingInfoPrefix);
+    } else if (value === this.constants.parts) {
+      ShowMake.hideInquiryDatabaseForms();
+      $(".parts-form").show('slow');
+      ShowMake.initOtherAreaVehicleField(this.constants.partsPrefix);
+    } else if (value === this.constants.procedurePage) {
+      ShowMake.hideInquiryDatabaseForms();
+      $(".procedure-page-form").show('slow');
+      ShowMake.initOtherAreaVehicleField(this.constants.procedurePagePrefix);
+    } else if (value === this.constants.weldedPanelOperations) {
+      ShowMake.hideInquiryDatabaseForms();
+      $(".welded-panel-operations-form").show('slow');
+      ShowMake.initOtherAreaVehicleField(this.constants.weldedPanelOperationsPrefix);
+    } else if (value === this.constants.nonWeldedPanelOperations) {
+      ShowMake.hideInquiryDatabaseForms();
+      $(".non-welded-panel-operations-form").show('slow');
+      ShowMake.initOtherAreaVehicleField(this.constants.nonWeldedPanelOperationsPrefix);
+    } else if (value === this.constants.refinishedOperations) {
+      ShowMake.hideInquiryDatabaseForms();
+      $(".refinished-operations-form").show('slow');
+      ShowMake.initOtherAreaVehicleField(this.constants.refinishedOperationsPrefix);
+    } else if (value === this.constants.allOther) {
+      ShowMake.hideInquiryDatabaseForms();
+      $(".all-other-form").show('slow');
+      ShowMake.initOtherAreaVehicleField();
+    }
+  },
 
-      if (value === select) {
-        ShowMake.hideInquiryDatabaseForms();
-      } else if (value === missingInfo) {
-        ShowMake.hideInquiryDatabaseForms();
-        $(".missing-info-form").show('slow');
-        ShowMake.initOtherAreaVehicleField(missingInfoPrefix);
-      } else if (value === parts) {
-        ShowMake.hideInquiryDatabaseForms();
-        $(".parts-form").show('slow');
-        ShowMake.initOtherAreaVehicleField(partsPrefix);
-      } else if (value === procedurePage) {
-        ShowMake.hideInquiryDatabaseForms();
-        $(".procedure-page-form").show('slow');
-        ShowMake.initOtherAreaVehicleField(procedurePagePrefix);
-      } else if (value === weldedPanelOperations) {
-        ShowMake.hideInquiryDatabaseForms();
-        $(".welded-panel-operations-form").show('slow');
-        ShowMake.initOtherAreaVehicleField(weldedPanelOperationsPrefix);
-      } else if (value === nonWeldedPanelOperations) {
-        ShowMake.hideInquiryDatabaseForms();
-        $(".non-welded-panel-operations-form").show('slow');
-        ShowMake.initOtherAreaVehicleField(nonWeldedPanelOperationsPrefix);
-      } else if (value === refinishedOperations) {
-        ShowMake.hideInquiryDatabaseForms();
-        $(".refinished-operations-form").show('slow');
-        ShowMake.initOtherAreaVehicleField(refinishedOperationsPrefix);
-      } else if (value === allOther) {
-        ShowMake.hideInquiryDatabaseForms();
-        $(".all-other-form").show('slow');
-        ShowMake.initOtherAreaVehicleField();
-      }
+  changeInquiryType: function() {
+    $("select#inquiry_inquiry_type").change(function() {
+      var value = $(this).val();
+      ShowMake.initDynamicInquiryTypeForms(value);
     });
   },
 
