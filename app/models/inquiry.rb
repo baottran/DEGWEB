@@ -74,7 +74,7 @@ class Inquiry < ActiveRecord::Base
 
     if resolution_date!= nil 
       resolution_time_days = (resolution_date - created_at) / 86400
-      return "#{resolution_time_days.round(2)} days"
+      return "#{resolution_time_days.round(0)} days"
     end
   end
 
