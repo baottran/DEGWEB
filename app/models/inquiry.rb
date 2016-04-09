@@ -78,6 +78,139 @@ class Inquiry < ActiveRecord::Base
     end
   end
 
+  def description_tooltip
+
+    case inquiry_type
+
+    when 'Missing Information'
+      return "Area of Vehicle
+              #{missing_area_of_vehicle}
+              
+              Missing Part Name
+              #{missing_part_name}
+              
+              Missing Part Description
+              #{missing_part_description}"
+
+
+    when 'Parts'
+      return "Area of Vehicle
+              #{parts_area_of_vehicle}
+
+              Part Name
+              #{parts_part_name}
+
+              OEM Part Number
+              #{parts_oem_part_number}
+
+              Issue Summary 
+              #{parts_issue_summary}
+
+              Suggested Action 
+              #{parts_suggested_action}"
+
+    when "Procedure Page Issue"
+
+      return "Area of Vehicle
+              #{procedure_area_of_vehicle}
+
+              Page #
+              #{procedure_page_number}
+
+              Issue Summary 
+              #{procedure_issue_summary}
+
+              Suggested Action
+              #{procedure_suggested_action}"
+
+    when 'Welded Panel Operations'
+
+      return "Area of Vehicle
+              #{welded_area_of_vehicle}
+
+              Part Name
+              #{welded_part_name}
+
+              Issue Summary
+              #{welded_issue_summary}
+
+              Individual Procedure Steps
+              #{welded_procedure_steps}
+
+              Technician Skill Level
+              #{welded_skill_level}
+
+              Actual Time To Complete
+              #{welded_complete_time_hour} #{non_welded_complete_time_min}
+
+              Suggested Action
+              #{welded_suggested_action}"
+
+
+    when 'Non-Welded Panel Operations'
+      return "Area of Vehicle
+              #{non_welded_area_of_vehicle}
+
+              Part Name
+              #{non_welded_part_name}
+
+              Issue Summary
+              #{non_welded_issue_summary}
+
+              Individual Procedure Steps
+              #{non_welded_procedure_steps}
+
+              Technician Skill Level
+              #{non_welded_skill_level}
+
+              Actual Time To Complete
+              #{non_welded_complete_time_hour} #{non_welded_complete_time_min}
+
+              Suggested Action
+              #{non_welded_suggested_action}"
+
+
+    when 'Refinish Operations'
+      return "Area of Vehicle
+              #{refinished_area_of_vehicle} #{refinished_area_of_vehicle_other_field}
+
+              Issue Summary
+              #{refinished_issue_summary}
+
+              Special Labor or Material Considerations
+              #{refinished_special_labor}
+
+              Estimated Part Surface Area
+              #{refinished_surface_area} square inches
+
+              Suggested Action
+              #{refinished_suggested_action}"
+
+
+    when 'All Other'
+      return "Issue Summary 
+              #{all_other_issue_summary}
+
+              Individual Procedure Steps
+              #{all_other_procedure_steps}
+
+              Actual Time to Complete
+              #{all_other_complete_time_hour} #{all_other_complete_time_min}
+
+              Suggested Action
+              #{all_other_suggested_action}"
+
+
+
+    else 
+      return "Error"
+
+    end
+
+
+  end
+
+
 
   validates_attachment :attachment, :content_type => {:content_type => %w(image/jpeg image/jpg image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document)}
 

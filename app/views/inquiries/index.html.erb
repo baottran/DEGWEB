@@ -1,5 +1,13 @@
 <%= render 'shared/header' %>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+$(function() {
+    $( document ).tooltip();
+  });
+</script>
 <style>
 
 .panel-status {
@@ -32,6 +40,12 @@
 .search-box {
   display: flex;
   align-items: flex-end;
+}
+
+.ui-tooltip {
+  width: 300px;
+  white-space: pre-line;
+  font-size: 11px;
 }
 
 
@@ -80,13 +94,13 @@
       <a href="/inquiries?status=Resolved+(IP+Change)" class="btn btn-default btn-status">
         <div class="title">Resolved</div>
         <div class="title">(IP Change)</div>
-        <div><%= @resolved_inquiries.count%></div>
+        <div><%= Inquiry.where(status: 'Resolved (IP Change)').count %></div>
       </a>
 
       <a href="/inquiries?status=Resolved+(No+IP+Change)" class="btn btn-default btn-status">
         <div class="title">Resolved</div>
         <div class="title">(No IP Change)</div>
-        <div><%= @resolved_inquiries.count%></div>
+        <div><%= Inquiry.where(status: 'Resolved (No IP Change)').count %></div>
       </a>
 
 
@@ -136,10 +150,10 @@
               <td><%= inquiry.database %></td>
               <td><%= inquiry.inquiry_type %></td>
               <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
-              <td><img class="icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15"></td>
+              <td><img class="icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.description_tooltip %>"></td>
               <td><%= inquiry.status %></td>
               <td><% if inquiry.resolution != nil %>
-                    <img class="icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15">
+                    <img class="icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.resolution%>">
                   <% end %>
               </td>
               <td><%= inquiry.created_at.strftime("%-m/%-d/%y") %></td>
