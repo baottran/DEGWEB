@@ -129,16 +129,16 @@ $(function() {
         <table class="table table-striped table-hover">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Estimating Platform</th>
-              <th>Inquiry Type</th>
-              <th>Vehicle</th>
+              <th><%= sortable 'id', "#" %></th>
+              <th><%= sortable 'database', 'Estimating Platform' %></th>
+              <th><%= sortable 'inquiry_type', 'Inquiry Type' %></th>
+              <th><%= sortable 'year', 'Vehicle' %></th>
               <th>Inquiry Description</th>
-              <th>Status</th>
+              <th><%= sortable 'status', 'Status' %></th>
               <th>Resolution</th>
-              <th>Origination Date</th>
-              <th>Submission Date</th>
-              <th>Resolution Date</th>
+              <th><%= sortable 'created_at', 'Origination Date' %></th>
+              <th><%= sortable 'submit_to_ip_date', 'Submission Date' %></th>
+              <th><%= sortable 'resolution_date', 'Resolution Date' %></th>
               <th>Total Time To Resolve</th>
             </tr>
           </thead>

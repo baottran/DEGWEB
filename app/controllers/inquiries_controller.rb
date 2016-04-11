@@ -1,5 +1,7 @@
 class InquiriesController < ApplicationController
 
+  helper_method :sort_column, :sort_direction
+
 	def index
 
     noipchanged = Inquiry.where(status: "Resolved (No IP Change)")
@@ -8,12 +10,12 @@ class InquiriesController < ApplicationController
     @resolved_inquiries = noipchanged + ipchanged
 
     if params[:status] === nil 
-      @inquiries = Inquiry.all
-    elsif params[:status] === "Resolved"
-      @inquiries = @resolved_inquiries
+      @inquiries = Inquiry.all.order(sort_column + " " + sort_direction)
     else
-      @inquiries = Inquiry.where(status: params[:status])
+      @inquiries = Inquiry.where(status: params[:status]).order(sort_column + " " + sort_direction)
     end
+
+  
 
     @search = Search.new 
 
@@ -165,6 +167,17 @@ class InquiriesController < ApplicationController
 	  def inquiry_params
 	    params.require(:inquiry).permit(:name, :title, :shop_name, :address_1, :address_2, :city, :state, :zip_code, :phone, :fax, :email, :make, :model, :year, :body_type, :vin, :database, :client_id, :inquiry_type, :attachment, :resolution, :status)
 	  end
+
+    def sort_column
+      params[:sort] || "id"
+    end
+
+    def sort_direction
+      params[:direction] || "asc"
+      # %w[asc desc].include?(params[:direction]) ? params[:directon] : "asc"
+    end
+
+
 end
 
 
