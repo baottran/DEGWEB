@@ -38,7 +38,27 @@
                   method: :destroy,
                   data: { confirm: 'Are you sure?' } %>
     </div>
+
+
+
   </div>
+
+  <div class="panel panel-primary">
+  <div class="panel-heading">Inquiry Resolution
+  </div>
+  <div class="panel-body">
+    <div id="resolution-form">
+      <%= render 'resolution_form' %>
+      <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+    </div>
+    <div id="resolution-text">
+        <p><%= @inquiry.resolution %></p>
+        <button type="submit" class="btn btn-primary btn-submit" id="resolution-edit">Edit</button>
+    </div>
+  </div>
+</div>
+
+
   <div class="panel panel-default">
     <div class="panel-heading">Vehicle Information</div>
     <div class="panel-body submission-content" id="vehicle-info">
@@ -64,22 +84,9 @@
       <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
     </div>
   </div>
-</div>
+
 <br>
-<div class="panel panel-primary">
-  <div class="panel-heading">Inquiry Resolution
-  </div>
-  <div class="panel-body">
-    <div id="resolution-form">
-      <%= render 'resolution_form' %>
-      <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
-    </div>
-    <div id="resolution-text">
-        <p><%= @inquiry.resolution %></p>
-        <button type="submit" class="btn btn-primary btn-submit" id="resolution-edit">Edit</button>
-    </div>
-  </div>
-</div>
+
 <div class="panel panel-default">
   <div class="panel-heading">Customer Detail</div>
   <div class="panel-body">
