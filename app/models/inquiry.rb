@@ -65,6 +65,18 @@ class Inquiry < ActiveRecord::Base
     self.search_criteria = search_data.downcase
   end
 
+  def self.search(search)
+    inquiries = Inquiry.all 
+
+    if search 
+      inquiries.where(['search_criteria LIKE ?', "%#{search.downcase}%"])
+    else
+      inquiries
+    end
+    
+  end
+
+
 
   def s3_credentials
     {:bucket => "degweb-dev", :access_key_id => "AKIAJI4FS6CKOUH3A7JQ", :secret_access_key => "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"}
