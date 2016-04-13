@@ -1,4 +1,4 @@
-<%= form_for @inquiry, url: {action: "edit_customer"}, html: {class: "edit-form"} do |f| %>
+<%= form_for @inquiry, url: {action: "edit_inquiry"}, html: {class: "edit-form"} do |f| %>
   <div class="form-field col-lg-6">
     <div class="form-horizontal">
       <div class="form-group">
@@ -42,7 +42,7 @@
       <div class="form-group">
         <%= f.label :state, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.select :state, options_for_select(us_states), {}, {class: 'form-control'} %>
+          <%= f.select :state, us_states, {}, {class: 'form-control'} %>
         </div>
       </div>
       <div class="form-group">
@@ -87,7 +87,7 @@
           <span class="form-required">* </span><%= f.label :make %>
         </div>
         <div class="col-lg-9">
-          <%= f.select(:make, options_for_select(car_makes), {}, {class: 'form-control required-input'}) %>
+          <%= f.select(:make, car_makes, {}, {class: 'form-control required-input'}) %>
           <%= f.text_field :make_other_field, :class => "form-control" %>
         </div>
       </div>
@@ -104,13 +104,13 @@
           <span class="form-required">* </span><%= f.label :year %>
         </div>
         <div class="col-lg-9">
-          <%= f.select(:year, options_for_select(car_years), {}, {class: 'form-control required-input'}) %>
+          <%= f.select(:year, car_years, {}, {class: 'form-control required-input'}) %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :body_type, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.select(:body_type, options_for_select(car_body_types), {}, {class: 'form-control'}) %>
+          <%= f.select(:body_type, car_body_types, {}, {class: 'form-control'}) %>
         </div>
       </div>
       <div class="form-group">
@@ -133,7 +133,7 @@
       <div class="form-group">
         <%= f.label :database, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.select(:database, options_for_select(database_types), {}, {class: 'form-control'}) %>
+          <%= f.select(:database, database_types, {}, {class: 'form-control'}) %>
         </div>
       </div>
       <div class="form-group">
@@ -146,7 +146,7 @@
       <div class="form-group">
         <%= f.label :inquiry_type, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.select(:inquiry_type, options_for_select(inquiry_types), {}, {class: 'form-control'}) %>
+          <%= f.select(:inquiry_type, inquiry_types, {}, {class: 'form-control'}) %>
         </div>
       </div>
       <div class="missing-info-form">
@@ -154,7 +154,7 @@
           <div class="area-of-vehicle">
             <%= f.label :missing_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:missing_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
+              <%= f.select(:missing_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
               <%= f.text_field :missing_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
@@ -201,7 +201,7 @@
           <div class="area-of-vehicle">
             <%= f.label :parts_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:parts_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
+              <%= f.select(:parts_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
               <%= f.text_field :parts_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
@@ -242,7 +242,7 @@
           <div class="area-of-vehicle">
             <%= f.label :procedure_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:procedure_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
+              <%= f.select(:procedure_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
               <%= f.text_field :procedure_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
@@ -250,7 +250,7 @@
         <div class="form-group">
           <%= f.label :procedure_page_number, 'Page Number', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:procedure_page_number, options_for_select(procedure_page_numbers), {}, {class: 'form-control'}) %>
+            <%= f.select(:procedure_page_number, procedure_page_numbers, {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
@@ -271,7 +271,7 @@
           <div class="area-of-vehicle">
             <%= f.label :welded_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:welded_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
+              <%= f.select(:welded_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
               <%= f.text_field :welded_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
@@ -297,13 +297,13 @@
         <div class="form-group">
           <%= f.label :welded_weld_spots, 'Number of Spot Welds', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:welded_weld_spots, options_for_select(weld_spots), {}, {class: 'form-control'}) %>
+            <%= f.select(:welded_weld_spots, weld_spots, {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :welded_materials_involved, 'Type of Materials Involved', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:welded_materials_involved, options_for_select(weld_materials), {}, {class: 'form-control'}) %>
+            <%= f.select(:welded_materials_involved, weld_materials, {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
@@ -315,14 +315,14 @@
         <div class="form-group">
           <%= f.label :welded_skill_level, 'Technician Skill Level', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:welded_skill_level, options_for_select(skill_levels), {}, {class: 'form-control'}) %>
+            <%= f.select(:welded_skill_level, skill_levels, {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label 'Actual Time to Complete', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:welded_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
-            <%= f.select(:welded_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
+            <%= f.select(:welded_complete_time_hour, time_hours, {}, {class: 'form-control'}) %>
+            <%= f.select(:welded_complete_time_min, time_minutes, {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
@@ -337,7 +337,7 @@
           <div class="area-of-vehicle">
             <%= f.label :non_welded_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:non_welded_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
+              <%= f.select(:non_welded_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
               <%= f.text_field :non_welded_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
@@ -369,14 +369,14 @@
         <div class="form-group">
           <%= f.label :non_welded_skill_level, 'Technician Skill Level', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:non_welded_skill_level, options_for_select(skill_levels), {}, {class: 'form-control'}) %>
+            <%= f.select(:non_welded_skill_level, skill_levels, {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label 'Actual Time to Complete', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:non_welded_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
-            <%= f.select(:non_welded_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
+            <%= f.select(:non_welded_complete_time_hour, time_hours, {}, {class: 'form-control'}) %>
+            <%= f.select(:non_welded_complete_time_min, time_minutes, {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
@@ -391,7 +391,7 @@
           <div class="area-of-vehicle">
             <%= f.label :refinished_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
             <div class="col-lg-9">
-              <%= f.select(:refinished_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
+              <%= f.select(:refinished_area_of_vehicle, vehicle_areas, {}, {class: 'form-control'}) %>
               <%= f.text_field :refinished_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
@@ -411,7 +411,7 @@
         <div class="form-group">
           <%= f.label :refinished_surface_area, 'Estimated Part Surface Area', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:refinished_surface_area, options_for_select(surface_area_in), {}, {class: 'form-control'}) %>
+            <%= f.select(:refinished_surface_area, surface_area_in, {}, {class: 'form-control'}) %>
             <i>square inches</i>
           </div>
         </div>
@@ -438,8 +438,8 @@
         <div class="form-group">
           <%= f.label 'Actual Time to Complete', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.select(:all_other_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
-            <%= f.select(:all_other_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
+            <%= f.select(:all_other_complete_time_hour, time_hours, {}, {class: 'form-control'}) %>
+            <%= f.select(:all_other_complete_time_min, time_minutes, {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
@@ -452,7 +452,6 @@
     </div>
   </div>
   <div class="form-buttons col-lg-offset-2">
-    <%= f.submit "Save", class: "btn btn-primary btn-submit", html: { type: "submit", id: "inquiry-submit"} %>
+    <%= f.submit "Save", class: "btn btn-primary btn-submit", html: { type: "submit", id: "inquiry-edit-submit"} %>
   </div>
 <% end %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
