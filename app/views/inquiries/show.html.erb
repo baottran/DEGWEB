@@ -130,7 +130,7 @@
    					<p><strong>Issue Summary: </strong><%= @inquiry.welded_issue_summary %></p>
    					<p><strong>Individual Procedure Steps: </strong><%= @inquiry.welded_procedure_steps %></p>
    					<p><strong>Technician Skill Level: </strong><%= @inquiry.welded_skill_level %></p>
-   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.welded_complete_time_hour %> <%= @inquiry.welded_complete_time_min %></p>
+   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.welded_complete_time_hour %> hours <%= @inquiry.welded_complete_time_min %> minutes</p>
    					<p><strong>Suggested Action: </strong><%= @inquiry.welded_suggested_action %></p>
           <% when 'Non-Welded Panel Operations' %>
             <p><strong>Area of Vehicle: </strong><%= @inquiry.non_welded_area_of_vehicle %><%= @inquiry.non_welded_area_of_vehicle_other_field%></p>
@@ -139,7 +139,7 @@
    					<p><strong>Issue Summary: </strong><%= @inquiry.non_welded_issue_summary %></p>
    					<p><strong>Individual Procedure Steps: </strong><%= @inquiry.non_welded_procedure_steps %></p>
    					<p><strong>Technician Skill Level: </strong><%= @inquiry.non_welded_skill_level %></p>
-   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.non_welded_complete_time_hour %> <%= @inquiry.non_welded_complete_time_min %></p>
+   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.non_welded_complete_time_hour %> hours <%= @inquiry.non_welded_complete_time_min %> minutes</p>
    					<p><strong>Suggested Action: </strong><%= @inquiry.non_welded_suggested_action %></p>
           <% when 'Refinish Operations' %>
             <p><strong>Area of Vehicle: </strong><%= @inquiry.refinished_area_of_vehicle %><%= @inquiry.refinished_area_of_vehicle_other_field%></p>
@@ -150,7 +150,7 @@
           <% when 'All Other' %>
             <p><strong>Issue Summary: </strong><%= @inquiry.all_other_issue_summary%></p>
    					<p><strong>Individual Procedure Steps: </strong><%= @inquiry.all_other_procedure_steps %></p>
-   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.all_other_complete_time_hour %> <%= @inquiry.all_other_complete_time_min %></p>
+   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.all_other_complete_time_hour %> hours <%= @inquiry.all_other_complete_time_min %> minutes</p>
    					<p><strong>Suggested Action: </strong><%= @inquiry.all_other_suggested_action %></p>
           <% else %>
             <p>Unknown Inquiry Type</p>
