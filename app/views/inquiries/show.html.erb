@@ -2,7 +2,6 @@
 <div class="show-make-form">
   <div class="container">
   <h2>Inquiry Detail</h2>
-
   <br>
   <div class="panel panel-default">
     <div class="panel-heading">Submission Information</div>
@@ -58,32 +57,32 @@
   </div>
 </div>
 
+<button type="submit" class="btn btn-primary btn-submit" id="vehicle-edit">Edit</button>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">Vehicle Information</div>
-    <div class="panel-body submission-content" id="vehicle-info">
-      <div class="inquiry-item">
-        <strong>Year: </strong><%= @inquiry.year %>
-      </div>
-      <div class="inquiry-item">
-        <strong>Make: </strong><%= @inquiry.make %>
-      </div>
-      <div class="inquiry-item">
-        <strong>Model: </strong><%= @inquiry.model %>
-      </div>
-      <div class="inquiry-item">
-        <strong>Body: </strong><%= @inquiry.body_type %>
-      </div>
-      <div class="inquiry-item">
-        <strong>VIN: </strong><%= @inquiry.vin %>
-      </div>
-      <button type="submit" class="btn btn-primary btn-submit" id="vehicle-edit">Edit</button>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Vehicle Information</div>
+  <div class="panel-body submission-content" id="vehicle-info">
+    <div class="inquiry-item">
+      <strong>Year: </strong><%= @inquiry.year %>
     </div>
-    <div class="panel-body submission-content" id="vehicle-form">
-      <%= render 'vehicle_form' %>
-      <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+    <div class="inquiry-item">
+      <strong>Make: </strong><%= @inquiry.make %>
+    </div>
+    <div class="inquiry-item">
+      <strong>Model: </strong><%= @inquiry.model %>
+    </div>
+    <div class="inquiry-item">
+      <strong>Body: </strong><%= @inquiry.body_type %>
+    </div>
+    <div class="inquiry-item">
+      <strong>VIN: </strong><%= @inquiry.vin %>
     </div>
   </div>
+  <div class="panel-body submission-content" id="vehicle-form">
+    <%= render 'vehicle_form' %>
+  </div>
+</div>
 
 <br>
 
@@ -178,6 +177,12 @@
     </div>
   </div>
 </div>
+
+<div class="panel-body submission-content" id="inquiry-edit-form">
+
+  <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+<div>
+
 <div class="panel panel-default">
   <div class="panel-heading">Attached Files: </div>
   <div class="panel-body">

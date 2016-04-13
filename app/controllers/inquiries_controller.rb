@@ -9,15 +9,15 @@ class InquiriesController < ApplicationController
 
     @resolved_inquiries = noipchanged + ipchanged
 
-    if params[:status] === nil 
+    if params[:status] === nil
       @inquiries = Inquiry.all.order(sort_column + " " + sort_direction)
     else
       @inquiries = Inquiry.where(status: params[:status]).order(sort_column + " " + sort_direction)
     end
 
-  
 
-    @search = Search.new 
+
+    @search = Search.new
 
   end
 
@@ -45,7 +45,7 @@ class InquiriesController < ApplicationController
   end
 
   def attach
-    @inquiry = Inquiry.find(params[:id])  
+    @inquiry = Inquiry.find(params[:id])
   end
 
 
@@ -70,7 +70,7 @@ class InquiriesController < ApplicationController
   def email_ip
     @inquiry = Inquiry.find(params[:id])
     @inquiry.status = 'Submitted to IP'
-    @inquiry.submit_to_ip_date = Time.now 
+    @inquiry.submit_to_ip_date = Time.now
     @inquiry.save
     InquiryMailer.email_ip(@inquiry).deliver
 
@@ -80,30 +80,30 @@ class InquiriesController < ApplicationController
   def resolve_no_change
     @inquiry = Inquiry.find(params[:id])
     @inquiry.status = 'Resolved (No IP Change)'
-    @inquiry.resolution_date = Time.now 
-    @inquiry.save 
-    redirect_to @inquiry 
+    @inquiry.resolution_date = Time.now
+    @inquiry.save
+    redirect_to @inquiry
   end
 
   def resolve_ip_change
     @inquiry = Inquiry.find(params[:id])
     @inquiry.status = 'Resolved (IP Change)'
-    @inquiry.resolution_date = Time.now 
-    @inquiry.save 
-    redirect_to @inquiry 
+    @inquiry.resolution_date = Time.now
+    @inquiry.save
+    redirect_to @inquiry
   end
 
   def resolve
     @inquiry = Inquiry.find(params[:id])
     @inquiry.resolution = params[:inquiry][:resolution]
     @inquiry.status = 'IP Response Received'
-    @inquiry.ip_response_received_date = Time.now 
+    @inquiry.ip_response_received_date = Time.now
     @inquiry.save
 
     redirect_to @inquiry
   end
 
-  def edit_customer
+  def edit_inquiry
 
     @inquiry = Inquiry.find(params[:id])
 
@@ -118,14 +118,6 @@ class InquiriesController < ApplicationController
     @inquiry.phone      = params[:inquiry][:phone]
     @inquiry.fax        = params[:inquiry][:fax]
     @inquiry.email      = params[:inquiry][:email]
-    @inquiry.save
-
-    redirect_to @inquiry
-  end
-
-  def edit_vehicle
-
-    @inquiry = Inquiry.find(params[:id])
 
     inquiry_params = params[:inquiry]
 
@@ -135,7 +127,17 @@ class InquiriesController < ApplicationController
     @inquiry.year               = inquiry_params[:year]
     @inquiry.body_type          = inquiry_params[:body_type]
     @inquiry.vin                = inquiry_params[:vin]
+
     @inquiry.save
+
+    redirect_to @inquiry
+  end
+
+  def edit_vehicle
+
+    @inquiry = Inquiry.find(params[:id])
+
+
 
     redirect_to @inquiry
 
@@ -146,15 +148,15 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.find(params[:id])
 
     puts '***************************'
-    puts params 
+    puts params
     puts '***************************'
   end
 
-  def edit_status 
+  def edit_status
     @inquiry = Inquiry.find(params[:id])
 
     @inquiry.status = params[:inquiry][:status]
-    @inquiry.save 
+    @inquiry.save
 
     redirect_to @inquiry
   end

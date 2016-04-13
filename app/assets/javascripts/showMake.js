@@ -20,11 +20,7 @@ var ShowMake = {
   },
 
   hideEditForms: function() {
-    $("#status-form").hide();
-    $("#resolution-form").hide();
-    $(".customer-detail-form").hide();
-    $("#vehicle-form").hide();
-    $('.inquiry-form').hide();
+    $(".inquiry-edit-form").hide();
   },
 
   toggleFormsOnClick: function() {
