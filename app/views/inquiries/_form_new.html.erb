@@ -70,13 +70,13 @@
           <span class="form-required">* </span><%= f.label :phone %>
         </div>
         <div class="col-lg-9">
-          <%= f.text_field :phone, :class => "form-control required-input", :placeholder => "4152223333" %>
+          <%= f.text_field :phone, :class => "form-control required-input" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :fax, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.text_field :fax, :class => "form-control", :placeholder => "4153334444" %>
+          <%= f.text_field :fax, :class => "form-control" %>
         </div>
       </div>
       <div class="form-group">
@@ -84,7 +84,7 @@
           <span class="form-required">* </span><%= f.label :email %>
         </div>
         <div class="col-lg-9">
-          <%= f.text_field :email, :class => "form-control required-input", :placeholder => "customer@email.com" %>
+          <%= f.text_field :email, :class => "form-control required-input" %>
         </div>
       </div>
     </div>
@@ -474,7 +474,7 @@
       <!-- <%= f.file_field :attachment %> -->
     <!-- </div> -->
     <br>
-    <div class="form-buttons col-lg-offset-2">
+    <div class="form-buttons-max col-lg-offset-2">
       <%= f.submit 'Submit', :class => 'btn btn-primary form-next-button' %>
       <%= button_to 'Cancel', inquiries_path, :class => "btn btn-default" %>
     </div>

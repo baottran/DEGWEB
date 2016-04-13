@@ -51,12 +51,12 @@
   padding-bottom: 40px;
 }
 
-.form-field {
-  width: 400px;
+.form-buttons-max {
+  margin-bottom: 100px;
 }
 
-.form-buttons {
-  margin-bottom: 100px;
+.form-buttons-min {
+  margin-bottom: 20px;
 }
 
 label.error {
@@ -78,6 +78,11 @@ label.error {
 
 .btn-submit {
   margin-left: 15px;
+}
+
+.inquiry-edit-button {
+  margin-left: 92.5%;
+  margin-bottom: 10px;
 }
 
 .container {

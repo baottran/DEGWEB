@@ -20,17 +20,30 @@ var ShowMake = {
   },
 
   hideEditForms: function() {
-    $("#status-form").hide();
+    $("#inquiry-edit-form").hide();
     $("#resolution-form").hide();
-    $(".customer-detail-form").hide();
-    $("#vehicle-form").hide();
-    $('.inquiry-form').hide();
   },
 
   toggleFormsOnClick: function() {
-    $("#status-edit").click(function(event){
-      $("#status-form").toggle();
-      $("#status-text").toggle();
+    $("#inquiry-edit").click(function(event){
+      var value = $("select#inquiry_inquiry_type").val();
+      $("#inquiry-edit-form").toggle();
+      $(".inquiry-show-form").toggle();
+      ShowMake.toggleOtherMakeField();
+      ShowMake.initDynamicMakeForms();
+      ShowMake.initDynamicInquiryTypeForms(value);
+      ShowMake.changeInquiryType();
+      ShowMake.checkRequiredInquiryFields();
+    });
+
+    $("#inquiry-cancel").click(function(event) {
+      $("#inquiry-edit-form").toggle();
+      $(".inquiry-show-form").toggle();
+    });
+
+    $("#inquiry-submit").click(function(event) {
+      $("#inquiry-edit-form").toggle();
+      $(".inquiry-show-form").toggle();
     });
 
     $("#resolution-edit").click(function(event) {
@@ -51,61 +64,6 @@ var ShowMake = {
     $("#resolution-cancel").click(function(event) {
       $("#resolution-form").toggle();
       $("#resolution-text").toggle();
-    });
-
-    $("#customer-edit").click(function(event) {
-      ShowMake.el.customerEditForm = $(document.querySelector('.customer-edit-form'));
-      $(".customer-detail-data").toggle();
-      $(".customer-detail-form").toggle();
-      ShowMake.checkRequiredCustomerFields();
-    });
-
-    $("#customer-submit").click(function(event) {
-      $(".customer-detail-data").toggle();
-      $(".customer-detail-form").toggle();
-    });
-
-    $("#customer-cancel").click(function(event) {
-      $(".customer-detail-data").toggle();
-      $(".customer-detail-form").toggle();
-    });
-
-    $("#vehicle-edit").click(function(event) {
-      ShowMake.el.vehicleEditForm = $(document.querySelector('.vehicle-edit-form'));
-      $("#vehicle-info").toggle();
-      $("#vehicle-form").toggle();
-      if (ShowMake.el.vehicleEditForm.length !== 0) {
-        ShowMake.toggleOtherMakeField();
-        ShowMake.initDynamicMakeForms();
-      }
-      ShowMake.checkRequiredVehicleFields();
-    });
-
-    $("#vehicle-submit").click(function(event) {
-      $("#vehicle-form").toggle();
-      $("#vehicle-info").toggle();
-    });
-
-    $("#resolution-cancel").click(function(event) {
-      $("#resolution-form").toggle();
-      $("#resolution-text").toggle();
-    });
-
-    $('#inquiry-edit').click(function(event){
-      var value = $("select#inquiry_inquiry_type").val();
-      ShowMake.el.inquiryEditForm = $(document.querySelector('.inquiry-edit-form'));
-      $('.inquiry-form').toggle();
-      $('.inquiry-data').toggle();
-      if (ShowMake.el.inquiryEditForm.length !== 0) {
-        ShowMake.initDynamicInquiryTypeForms(value);
-        ShowMake.changeInquiryType();
-      }
-    });
-
-    $('#inquiry-submit').click(function(event){
-      ShowMake.el.vehicleEditForm = $(document.querySelector('.vehicle-edit-form'));
-      $('.inquiry-form').toggle();
-      $('.inquiry-data').toggle();
     });
   },
 
@@ -195,30 +153,21 @@ var ShowMake = {
     });
   },
 
-  checkRequiredCustomerFields: function() {
-    $(".customer-edit-form").validate({
+  checkRequiredInquiryFields: function() {
+    $(".edit-form").validate({
       rules: {
         "inquiry[name]": {required: true},
         "inquiry[phone]": {required: true, phoneUS: true},
         "inquiry[email]": {required: true, email: true},
-      },
-      messages: {
-        "inquiry[name]": {required: "enter a name"},
-        "inquiry[phone]": {required: "enter a phone number", phoneUS: "enter a valid phone number"},
-        "inquiry[email]": {required: "enter an email", email: "enter a valid email"},
-      }
-    });
-  },
-
-  checkRequiredVehicleFields: function() {
-    $(".vehicle-edit-form").validate({
-      rules: {
         "inquiry[make]": {required: true, nowhitespace: true},
         "inquiry[model]": {required: true},
         "inquiry[year]": {required: true, nowhitespace: true},
         "inquiry[vin]": {required: true, minlength: 17, maxlength: 17}
       },
       messages: {
+        "inquiry[name]": {required: "enter a name"},
+        "inquiry[phone]": {required: "enter a phone number", phoneUS: "enter a valid phone number"},
+        "inquiry[email]": {required: "enter an email", email: "enter a valid email"},
         "inquiry[make]": {required: "select a make", nowhitespace: "select a make"},
         "inquiry[model]": {required: "enter a model"},
         "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},

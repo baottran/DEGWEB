@@ -1,5 +1,136 @@
-<%= form_for @inquiry, url: {action: "edit_inquiry"}, html: {class: "inquiry-edit-form"} do |f| %>
-	<div class="show-inquiry-form col-lg-6">
+<%= form_for @inquiry, url: {action: "edit_inquiry"}, html: {class: "edit-form"} do |f| %>
+  <div class="form-heading col-lg-9">
+    <h4>Vehicle</h4>
+    <hr>
+  </div>
+  <div class="form-field col-lg-6">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :make %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.select(:make, car_makes, {}, {class: 'form-control required-input'}) %>
+          <%= f.text_field :make_other_field, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :model %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.text_field :model, :class => "form-control required-input" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :year %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.select(:year, car_years, {}, {class: 'form-control required-input'}) %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :body_type, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.select(:body_type, car_body_types, {}, {class: 'form-control'}) %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :vin %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.text_field :vin, :class => "form-control required-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-heading col-lg-9">
+    <h4>Contact Information</h4>
+    <hr>
+  </div>
+  <div class="form-field col-lg-6">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :name, "Your Name" %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.text_field :name, :class => "form-control required-input" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, :class => "col-lg-3 form-label"  %>
+        <div class="col-lg-9">
+          <%= f.text_field :title, :class => "form-control"  %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :shop_name, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.text_field :shop_name, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :address_1, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.text_field :address_1, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :address_2, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.text_field :address_2, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :city, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.text_field :city, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :state, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.select :state, us_states, {}, {class: 'form-control'} %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :zip_code, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.text_field :zip_code, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :phone %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.text_field :phone, :class => "form-control required-input" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :fax, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.text_field :fax, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :email %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.text_field :email, :class => "form-control required-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-heading col-lg-9">
+    <h4>Database Inquiry</h4>
+    <hr>
+  </div>
+  <div class="form-field col-lg-6">
     <div class="form-horizontal">
       <div class="form-group">
         <%= f.label :database, :class => "col-lg-3 form-label" %>
@@ -322,7 +453,8 @@
       </div>
     </div>
   </div>
-  <div class="form-buttons col-lg-offset-2">
-    <%= f.submit "Save", class: "btn btn-primary btn-submit", html: { type: "submit", id: "inquiry-submit"} %>
+  <div class="form-buttons-min col-lg-12">
+    <%= f.submit "Save", class: "btn btn-primary btn-submit", html: { type: "submit", id: "inquiry-edit-submit"} %>
+    <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
   </div>
 <% end %>
