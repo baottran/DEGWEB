@@ -66,7 +66,7 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Submitted to IP'
     @inquiry.submit_to_ip_date = Time.now
     @inquiry.save
-    InquiryMailer.email_ip(@inquiry).deliver
+    # InquiryMailer.email_ip(@inquiry).deliver
 
     redirect_to @inquiry
   end
