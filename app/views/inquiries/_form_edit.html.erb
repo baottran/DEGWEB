@@ -1,4 +1,55 @@
 <%= form_for @inquiry, url: {action: "edit_inquiry"}, html: {class: "edit-form"} do |f| %>
+  <div class="form-heading col-lg-9">
+    <h4>Vehicle</h4>
+    <hr>
+  </div>
+  <div class="form-field col-lg-6">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :make %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.select(:make, car_makes, {}, {class: 'form-control required-input'}) %>
+          <%= f.text_field :make_other_field, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :model %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.text_field :model, :class => "form-control required-input" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :year %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.select(:year, car_years, {}, {class: 'form-control required-input'}) %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :body_type, :class => "col-lg-3 form-label" %>
+        <div class="col-lg-9">
+          <%= f.select(:body_type, car_body_types, {}, {class: 'form-control'}) %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-3 form-label">
+          <span class="form-required">* </span><%= f.label :vin %>
+        </div>
+        <div class="col-lg-9">
+          <%= f.text_field :vin, :class => "form-control required-input" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-heading col-lg-9">
+    <h4>Contact Information</h4>
+    <hr>
+  </div>
   <div class="form-field col-lg-6">
     <div class="form-horizontal">
       <div class="form-group">
@@ -75,55 +126,6 @@
       </div>
     </div>
   </div>
-  <br>
-  <div class="form-heading col-lg-9">
-    <h4>Vehicle</h4>
-    <hr>
-  </div>
-  <div class="form-field col-lg-6">
-    <div class="form-horizontal">
-      <div class="form-group">
-        <div class="col-lg-3 form-label">
-          <span class="form-required">* </span><%= f.label :make %>
-        </div>
-        <div class="col-lg-9">
-          <%= f.select(:make, car_makes, {}, {class: 'form-control required-input'}) %>
-          <%= f.text_field :make_other_field, :class => "form-control" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-lg-3 form-label">
-          <span class="form-required">* </span><%= f.label :model %>
-        </div>
-        <div class="col-lg-9">
-          <%= f.text_field :model, :class => "form-control required-input" %>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-lg-3 form-label">
-          <span class="form-required">* </span><%= f.label :year %>
-        </div>
-        <div class="col-lg-9">
-          <%= f.select(:year, car_years, {}, {class: 'form-control required-input'}) %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :body_type, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
-          <%= f.select(:body_type, car_body_types, {}, {class: 'form-control'}) %>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-lg-3 form-label">
-          <span class="form-required">* </span><%= f.label :vin %>
-        </div>
-        <div class="col-lg-9">
-          <%= f.text_field :vin, :class => "form-control required-input" %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br>
   <div class="form-heading col-lg-9">
     <h4>Database Inquiry</h4>
     <hr>
@@ -451,7 +453,8 @@
       </div>
     </div>
   </div>
-  <div class="form-buttons col-lg-offset-2">
+  <div class="form-buttons-min col-lg-12">
     <%= f.submit "Save", class: "btn btn-primary btn-submit", html: { type: "submit", id: "inquiry-edit-submit"} %>
+    <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
   </div>
 <% end %>
