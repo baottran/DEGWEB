@@ -3,16 +3,10 @@ class InquiriesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
 	def index
-
-    noipchanged = Inquiry.where(status: "Resolved (No IP Change)")
-    ipchanged = Inquiry.where(status: "Resolved (IP Change)")
-
-    @resolved_inquiries = noipchanged + ipchanged
-
     if params[:status] === nil
-      @inquiries = Inquiry.all.order(sort_column + " " + sort_direction)
+      @inquiries = Inquiry.search(params[:search]).order(sort_column + " " + sort_direction)
     else
-      @inquiries = Inquiry.where(status: params[:status]).order(sort_column + " " + sort_direction)
+      @inquiries = Inquiry.search(params[:search]).where(status: params[:status]).order(sort_column + " " + sort_direction)
     end
 
 
@@ -209,8 +203,6 @@ class InquiriesController < ApplicationController
       params[:direction] || "asc"
       # %w[asc desc].include?(params[:direction]) ? params[:directon] : "asc"
     end
-
-
 end
 
 
