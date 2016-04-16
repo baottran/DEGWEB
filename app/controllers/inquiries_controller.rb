@@ -4,10 +4,13 @@ class InquiriesController < ApplicationController
 
 	def index
     if params[:status] === nil
-      @inquiries = Inquiry.search(params[:search]).order(sort_column + " " + sort_direction)
+      @inquiries = Inquiry.search(params[:search])
     else
-      @inquiries = Inquiry.search(params[:search]).where(status: params[:status]).order(sort_column + " " + sort_direction)
+      @inquiries = Inquiry.search(params[:search]).where(status: params[:status])
     end
+
+    @inquiries = @inquiries.order(sort_column + " " + sort_direction)
+    @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
 
 
 
