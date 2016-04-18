@@ -67,6 +67,10 @@ div.pagination {
   margin-left: 5px;
 }
 
+.btn-status.selected {
+  background-color: #333333;
+}
+
 </style>
 <div class="container">
 
@@ -85,42 +89,13 @@ div.pagination {
 
     <div class="btn-group btn-group-justified">
 
-      <a href="/inquiries" class="btn btn-default btn-status">
-        <div class="title"></div>
-        <div class="title">All</div>
-        <div><%= Inquiry.all.count %></div>
-      </a>
 
-      <a href="/inquiries?status=Received+by+DEG" class="btn btn-default btn-status">
-        <div class="title">Received</div>
-        <div class="title">by DEG</div>
-        <div><%= Inquiry.where(status: 'Received by DEG').count %></div>
-      </a>
-
-      <a href="/inquiries?status=Submitted+to+IP" class="btn btn-default btn-status">
-        <div class="title">Submitted</div>
-        <div class="title">to IP</div>
-        <div><%= Inquiry.where(status: 'Submitted to IP').count %></div>
-      </a>
-
-      <a href="/inquiries?status=IP+Response+Received" class="btn btn-default btn-status">
-        <div class="title">IP Response</div>
-        <div class="title">Received</div>
-        <div><%= Inquiry.where(status: 'IP Response Received').count %></div>
-      </a>
-
-      <a href="/inquiries?status=Resolved+(IP+Change)" class="btn btn-default btn-status">
-        <div class="title">Resolved</div>
-        <div class="title">(IP Change)</div>
-        <div><%= Inquiry.where(status: 'Resolved (IP Change)').count %></div>
-      </a>
-
-      <a href="/inquiries?status=Resolved+(No+IP+Change)" class="btn btn-default btn-status">
-        <div class="title">Resolved</div>
-        <div class="title">(No IP Change)</div>
-        <div><%= Inquiry.where(status: 'Resolved (No IP Change)').count %></div>
-      </a>
-
+      <%= render partial: 'status_button', locals: {status: "All"} %>
+      <%= render partial: 'status_button', locals: {status: "Received by DEG"} %>
+      <%= render partial: 'status_button', locals: {status: "Submitted to IP"} %>
+      <%= render partial: 'status_button', locals: {status: "IP Response Received"} %>
+      <%= render partial: 'status_button', locals: {status: "Resolved (IP Change)"} %>
+      <%= render partial: 'status_button', locals: {status: "Resolved (No IP Change)"} %>
 
 
     </div>
@@ -130,34 +105,24 @@ div.pagination {
 
   <div class="content-box">
 
-
-<!--       <div class="panel panel-default checklist">
-        <div class="panel-heading">Checklist</div>
-        <div class="panel-body">
-
-        <%= render 'inquiries/query_form.html.erb' %>
-        </div>
-      </div> -->
-
-    <!-- <div class="left-content"> -->
-    <!-- </div> -->
     <div class="panel panel-default right-content">
       <div class="panel-heading">Results (<%= @inquiries.count %>) </div>
       <div class="panel-body">
+        <% if @inquiries.count != 0 %>
         <%= will_paginate @inquiries %>
         <table class="table table-striped table-hover">
           <thead>
             <tr>
-              <th><%= sortable 'id', "#" %></th>
-              <th><%= sortable 'database', 'Estimating Platform' %></th>
-              <th><%= sortable 'inquiry_type', 'Inquiry Type' %></th>
-              <th><%= sortable 'year', 'Vehicle' %></th>
+              <th><%= sortable 'id', "#", params[:status] %></th>
+              <th><%= sortable 'database', 'Estimating Platform', params[:status] %></th>
+              <th><%= sortable 'inquiry_type', 'Inquiry Type', params[:status] %></th>
+              <th><%= sortable 'year', 'Vehicle', params[:status] %></th>
               <th>Inquiry Description</th>
-              <th><%= sortable 'status', 'Status' %></th>
+              <th><%= sortable 'status', 'Status', params[:status] %></th>
               <th>Resolution</th>
-              <th><%= sortable 'created_at', 'Origination Date' %></th>
-              <th><%= sortable 'submit_to_ip_date', 'Submission Date' %></th>
-              <th><%= sortable 'resolution_date', 'Resolution Date' %></th>
+              <th><%= sortable 'created_at', 'Origination Date', params[:status] %></th>
+              <th><%= sortable 'submit_to_ip_date', 'Submission Date', params[:status] %></th>
+              <th><%= sortable 'resolution_date', 'Resolution Date', params[:status] %></th>
               <th>Total Time To Resolve</th>
             </tr>
           </thead>
@@ -189,6 +154,9 @@ div.pagination {
 
           </tbody>
         </table>
+        <% else %>
+          <p>0 records match your search. Please try again.</p>
+        <% end %>
       </div>
       <%= will_paginate @inquiries %>
     </div>

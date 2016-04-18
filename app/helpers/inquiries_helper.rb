@@ -322,6 +322,19 @@ module InquiriesHelper
 
   end
 
+  def btn_class_for_status
+
+    btn_class = "btn btn-default btn-status "
+
+    if @chosen_status === params[:status] || ( params[:status] === nil && @chosen_status === 'All' )
+        return btn_class + "selected"
+    else
+        return btn_class
+    end
+
+  end
+
+
 
 
 

@@ -2,6 +2,9 @@
 
 
 <%= form_tag inquiries_path, :method => 'get', :class => 'search-box' do %>
+		<%= hidden_field_tag :direction, params[:direction] %>
+		<%= hidden_field_tag :sort, params[:sort] %>
+		<%= hidden_field_tag :status, params[:status] %>
 		<div class="search-item">
 			<%= label :search, "Search" %>
     	<%= text_field_tag :search, params[:search], :class=> "form-control search-text" %>
