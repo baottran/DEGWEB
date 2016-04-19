@@ -3,11 +3,13 @@ class InquiriesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
 	def index
-    if params[:status] === nil
-      @inquiries = Inquiry.search(params[:search])
-    else
-      @inquiries = Inquiry.search(params[:search]).where(status: params[:status])
-    end
+    # if params[:status] === nil
+    #   @inquiries = Inquiry.search(params[:search])
+    # else
+    #   @inquiries = Inquiry.search(params[:search]).where(status: params[:status])
+    # end
+
+    @inquiries = find_inquiries
 
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
@@ -17,6 +19,19 @@ class InquiriesController < ApplicationController
     @search = Search.new
 
   end
+
+  def find_inquiries
+    puts "params is #{params} and search is #{params[:area_of_vehicle]}"
+    inquiries = Inquiry.all 
+    inquiries = inquiries.search(params[:search]) if params[:search].present?
+    inquiries = inquiries.where(status: params[:status]) if params[:status].present? 
+    inquiries = inquiries.where(database: params[:database]) if params[:database].present?
+    inquiries = inquiries.where(inquiry_type: params[:inquiry_type]) if params[:inquiry_type].present?
+    # inquiries = inquiries.where(['area_of_vehicle LIKE ?', params[:area_of_vehicle]]) if params[:area_of_vehicle].present?
+    # inquiries = inquiries.where(area_of_vehicle: params[:area_of_vehicle]) if params[:area_of_vehicle].present?
+      
+    inquiries
+  end 
 
 
 	def show

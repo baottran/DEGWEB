@@ -20,9 +20,9 @@ class Inquiry < ActiveRecord::Base
                     :path => "/inquiries/:id",
                     :url => ":s3_domain_url"
 
-  after_initialize :init, :set_criteria
+  after_initialize :init, :set_criteria, :set_area_of_vehicle
 
-  after_save :set_criteria
+  after_save :set_criteria, :set_area_of_vehicle
 
   def init
     self.status  ||= "Received by DEG"          #will set the default value only if it's nil
@@ -158,7 +158,6 @@ class Inquiry < ActiveRecord::Base
               Suggested Action
               #{welded_suggested_action}"
 
-
     when 'Non-Welded Panel Operations'
       return "Area of Vehicle
               #{non_welded_area_of_vehicle}
@@ -181,7 +180,6 @@ class Inquiry < ActiveRecord::Base
               Suggested Action
               #{non_welded_suggested_action}"
 
-
     when 'Refinish Operations'
       return "Area of Vehicle
               #{refinished_area_of_vehicle} #{refinished_area_of_vehicle_other_field}
@@ -198,7 +196,6 @@ class Inquiry < ActiveRecord::Base
               Suggested Action
               #{refinished_suggested_action}"
 
-
     when 'All Other'
       return "Issue Summary 
               #{all_other_issue_summary}
@@ -211,15 +208,31 @@ class Inquiry < ActiveRecord::Base
 
               Suggested Action
               #{all_other_suggested_action}"
-
-
-
     else 
       return "Error"
 
     end
+  end
 
-
+  def set_area_of_vehicle
+    case inquiry_type
+    when 'Missing Information'
+      self.area_of_vehicle = missing_area_of_vehicle
+    when 'Parts'
+      self.area_of_vehicle = parts_area_of_vehicle
+    when "Procedure Page Issue"
+      self.area_of_vehicle = procedure_area_of_vehicle
+    when 'Welded Panel Operations'
+      self.area_of_vehicle = welded_area_of_vehicle
+    when 'Non-Welded Panel Operations'
+      self.area_of_vehicle = non_welded_area_of_vehicle
+    when 'Refinish Operations'
+      self.area_of_vehicle = refinished_area_of_vehicle
+    when 'All Other'
+      self.area_of_vehicle = "Other"
+    else 
+      return 
+    end
   end
 
 

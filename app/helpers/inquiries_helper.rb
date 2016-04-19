@@ -1,4 +1,12 @@
 module InquiriesHelper
+
+  def filter_date_types
+    [['<select>', ' '],
+    ['Origination Date', 'Origination Date'],
+    ['Submission Date', 'Submission Date'],
+    ['Resolution Date', 'Resolution Date']]
+  end
+
   def us_states
     [['<select>', ' '],
     ['Alaska', 'AK'],
