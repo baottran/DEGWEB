@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= form_for :inquiry, url: inquiries_path do |f| %>
 
   <% if @inquiry.errors.any? %>
@@ -6,6 +7,7 @@
     </div>
   <% end %>
 
+<div class="section-1">
   <div class="form-heading col-lg-9">
     <h4>Contact Information</h4>
     <hr>
@@ -468,18 +470,53 @@
     </div>
   </div>
 
-  <!-- Attachment -->
-
-<div class="col-lg-9">
-    <!-- <div class="field"> -->
-      <!-- <%= f.label :attachment %> -->
-      <!-- <%= f.file_field :attachment %> -->
-    <!-- </div> -->
+  <div class="col-lg-9">
     <br>
     <div class="form-buttons-max col-lg-offset-2">
-      <%= f.submit 'Submit', :class => 'btn btn-primary form-next-button' %>
-      <%= button_to 'Cancel', inquiries_path, :class => "btn btn-default" %>
+      <a href="#" class="btn btn-primary form-next-button">Next</a>
+      <a href="/inquiries" class="btn btn-danger">Cancel</a>
     </div>
   </div>
+
+</div>
+
+
+
+
+  <div class="form-heading col-lg-9 add-files section-2">
+    <h4>Add Files</h4>
+    <hr>
+  </div>
+  <div class="form-field col-lg-6 add-files section-2">
+    
+      <p>
+      Images and documentation can speak volumes to support your inquiry. The DEG recommends attaching any available photos or documents to substantiate your concerns. Some of the Information Providers also require a copy of the estimate to process the inquiry. If an estimate is available, save it as a PDF and upload it here.
+      </p>
+
+      <br><a href="#" class="btn btn-info">Add a file</a><br><br>
+
+      <p>
+      Browse images on your desktop or cloud drive by tapping the "Add a file" button below. You can add as many files as you like. (See below for more detailed instructions on how to add files to your inquiry.)
+      </p>
+
+      <a href="#" class="btn btn-default form-back-button">Back</a>
+      <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+      <a href="/inquiries" class="btn btn-danger">Cancel</a><br><br>
+
+      <p>
+      Once you've uploaded all the files you want to include with your inquiry, or if you have no files to add, select the "Submit inquiry" button to complete the process.
+      </p>
+
+      <p>
+      How to upload files:
+      <br>1. Select the "add a file" button
+      <br>2. This will open a separate window allowing you to access documents on your computer or cloud drive.
+      <br>3. Find the desired document and double-click on it
+      <br>4. The filename will appear on the page above with a "remove" button to the right of it and "Add another file" and "Upload files" buttons below. 
+      <br>5. To remove a file, select the "remove" button located to the right of the filename; to add another file, select the "add another file" button, if you have no more files to add, select the "upload files" button.
+      </p>
+    
+  </div>
+  <br>
+
 <% end %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

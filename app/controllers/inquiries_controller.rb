@@ -66,7 +66,8 @@ class InquiriesController < ApplicationController
 
     if @inquiry.save
       # InquiryMailer.new_inquiry(@inquiry).deliver
-      redirect_to @inquiry
+      # redirect_to @inquiry
+      render 'thankyou'
     else
       render 'new'
     end

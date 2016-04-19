@@ -102,7 +102,9 @@ var Forms = {
 
   validateRequiredFields: function() {
 
-    $('input.form-next-button').attr('disabled', 'disabled');
+    console.log("testing");
+
+    $('.form-next-button').attr('disabled', 'disabled');
 
     $('.required-input').on('keyup mouseup', function() {
       var hasAllrequiredInputs;
@@ -119,9 +121,9 @@ var Forms = {
       hasAllrequiredInputs = hasRequiredInputsArray.every(Boolean);
 
       if (hasAllrequiredInputs) {
-        $('input.form-next-button').removeAttr('disabled');
+        $('.form-next-button').removeAttr('disabled');
       } else {
-        $('input.form-next-button').attr('disabled', 'disabled');
+        $('.form-next-button').attr('disabled', 'disabled');
       }
     });
   },
@@ -149,6 +151,24 @@ var Forms = {
     });
   },
 
+  toggleAddFileForm: function(){
+    $(".section-2").hide();
+    $(".form-next-button").click(function(event){
+      event.preventDefault();
+      $(".section-1").hide();
+      $(".section-2").show();
+      $(document).scrollTop(0);
+    });
+
+    $(".form-back-button").click(function(event){
+      event.preventDefault();
+      $(".section-1").show();
+      $(".section-2").hide();
+      $(document).scrollTop(0);
+      console.log("hi");
+    });
+  },
+
   init: function() {
     this.getElements();
     if (this.el.formField.length !== 0) {
@@ -157,6 +177,7 @@ var Forms = {
       this.initDynamicForms();
       this.validateRequiredFields();
       this.checkRequiredFields();
+      this.toggleAddFileForm();
     }
   }
 };
