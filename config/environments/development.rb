@@ -77,10 +77,8 @@ Rails.application.configure do
     :s3_credentials => {
       :region => 'us-west-1',
       :bucket => 'degweb-dev',
-      :access_key_id => "AKIAJI4FS6CKOUH3A7JQ",
-      :secret_access_key => "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"
-      
-    }
+      :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
+      :secret_access_key => ENV["AWS_ACCESS_KEY_ID"]
   }
 
 
