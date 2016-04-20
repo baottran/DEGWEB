@@ -120,10 +120,13 @@ var Forms = {
 
       hasAllrequiredInputs = hasRequiredInputsArray.every(Boolean);
 
+
       if (hasAllrequiredInputs) {
         $('.form-next-button').removeAttr('disabled');
+        console.log("hgas all required inputs");
       } else {
         $('.form-next-button').attr('disabled', 'disabled');
+        console.log("no required inputs");
       }
     });
   },
@@ -151,13 +154,22 @@ var Forms = {
     });
   },
 
+
   toggleAddFileForm: function(){
     $(".section-2").hide();
     $(".form-next-button").click(function(event){
-      event.preventDefault();
-      $(".section-1").hide();
-      $(".section-2").show();
-      $(document).scrollTop(0);
+
+      if($(".form-next-button").attr("disabled")){
+        console.log("is disabled");
+      } else {
+        console.log("not disabled")
+        event.preventDefault();
+        $(".section-1").hide();
+        $(".section-2").show();
+        $(document).scrollTop(0);
+      }
+
+
     });
 
     $(".form-back-button").click(function(event){

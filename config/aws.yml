@@ -1,6 +1,6 @@
 development:
-  access_key_id: ENV["AWS_ACCESS_KEY_ID"]
-  secret_access_key: ENV["AWS_ACCESS_KEY"]
+  access_key_id: "AKIAJRYNKRUKME2XVTRQ"
+  secret_access_key: "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" 
   region: "us-west-1"
 production:
   access_key_id: ENV["AWS_ACCESS_KEY_ID"]
