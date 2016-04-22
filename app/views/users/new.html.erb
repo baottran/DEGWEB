@@ -1,23 +1,74 @@
-<% provide(:title, 'Sign up') %>
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<style>
+body {
+  background-color: #18BC9C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-<p>
+.login-container {
+  margin-top: 150px;
+  background-color: white;
+  width: 400px;
+}
+
+input#session-remember-me {
+  background-color: red;
+}
+
+.checkbox-inline {
+  margin-left: 100px;
+}
+
+.login-checkbox {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.login-panel p {
+  padding-top: 20px;
+}
+
+.login-panel .btn {
+  margin-top: 10px;
+}
+
+.login-panel span {
+  font-size: 12px;
+}
+
+</style>
+
+
+<% provide(:title, 'Sign up') %>
+
+<div class="panel panel-primary login-container">
+  <div class="panel-heading">
+    New DEGWEB Admin User
+  </div>
+  <div class="panel-body login-panel">
     <%= form_for(@user) do |f| %>
       <%= f.label :name %>
-      <%= f.text_field :name %><br>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Your Name' %><br>
 
       <%= f.label :email %>
-      <%= f.email_field :email %><br>
+      <%= f.email_field :email, class: 'form-control', placeholder: 'email@domain.com' %><br>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %><br>
+      <%= f.label :password %><br>
+      
+      <%= f.password_field :password, class: 'form-control', placeholder: 'password' %><br>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %><br>
+      <%= f.label :password_confirmation, "Confirm Password" %>
 
+      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'password' %><br>
+      <span>password must be six characters</span><br>
+      <br>
       <%= f.submit "Create my account", class: "btn btn-primary" %>
+
 
   	<% end %>
 
-</p>
+</div>
+</div>
+</div>
