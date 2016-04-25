@@ -17,7 +17,7 @@ class Inquiry < ActiveRecord::Base
   has_attached_file :attachment,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id",
+                    :path => "/inquiries/:id", 
                     :url => ":s3_domain_url"
 
   after_initialize :init, :set_criteria, :set_area_of_vehicle
@@ -79,7 +79,7 @@ class Inquiry < ActiveRecord::Base
 
 
   def s3_credentials
-    {:bucket => "degweb-dev", :access_key_id => "AKIAJI4FS6CKOUH3A7JQ", :secret_access_key => "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"}
+    {:bucket => ENV["aws_bucket"], :access_key_id => ENV["aws_access_key_id"], :secret_access_key => ENV["aws_secret_access_key"]}
   end
 
   def time_to_resolve_days

@@ -76,11 +76,24 @@ Rails.application.configure do
     :storage => :s3,
     :s3_credentials => {
       :region => 'us-west-1',
-      :bucket => 'degweb-dev',
-      :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
-      :secret_access_key => ENV["AWS_ACCESS_KEY_ID"]
+      :bucket => ENV["aws_bucket"],
+      :access_key_id => ENV["aws_access_key_id"],
+      :secret_access_key => ENV["aws_secret_access_key"]
+    }
   }
-}
+
+# root
+
+#   config.paperclip_defaults = {
+#     :storage => :s3,
+#     :s3_credentials => {
+#       :region => 'us-west-2',
+#       :bucket => 'degweb',
+#       :access_key_id => 'AKIAJ5TVXAIO4LC34MRA',
+#       :secret_access_key => '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'
+#   }
+# }
+
 
 
 
