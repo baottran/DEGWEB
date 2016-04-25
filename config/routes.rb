@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  get 'logout' => 'sessions#destroy'
 
   patch 'inquiries/:id/resolve' => 'inquiries#resolve'
   patch 'inquiries/:id/customer' => 'inquiries#edit_customer'

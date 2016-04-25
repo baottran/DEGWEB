@@ -90,4 +90,15 @@ Rails.application.configure do
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
+
+   # Amazon Web Services - S3
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :region => 'us-west-1',
+      :bucket => ENV["aws_bucket"],
+      :access_key_id => ENV["aws_access_key_id",
+      :secret_access_key => ENV["aws_secret_access_key"]
+    }
+  }
 end

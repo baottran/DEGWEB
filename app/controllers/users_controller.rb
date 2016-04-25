@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       log_in @user 
   		flash[:success] = "Welcome to the Sample App!"
       UserMailer.signup_confirmation(@user).deliver  
-  		redirect_to @user
+  		redirect_to inquiries_path
   	else
   		render 'new'
   	end

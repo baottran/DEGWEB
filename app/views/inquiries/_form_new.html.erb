@@ -494,7 +494,10 @@
       Images and documentation can speak volumes to support your inquiry. The DEG recommends attaching any available photos or documents to substantiate your concerns. Some of the Information Providers also require a copy of the estimate to process the inquiry. If an estimate is available, save it as a PDF and upload it here.
       </p>
 
-      <br><a href="#" class="btn btn-info">Add a file</a><br><br>
+      <p>
+        <%= f.label :attachment, "Attachments" %>
+        <%= f.file_field :attachment %>
+        </p>
 
 
       <p>
