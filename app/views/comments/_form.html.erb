@@ -1,14 +1,15 @@
-<h2>Add a comment:</h2>
+<h4>Add a comment:</h4>
 <%= form_for([@inquiry, @inquiry.comments.build]) do |f| %>
+
   <p>
-    <%= f.label :commenter %><br>
-    <%= f.text_field :commenter %>
+    <%= f.label :body, "Comment" %><br>
+    <%= f.text_area :body, class: "form-control" %>
+  </p>
+    <p>
+    <%= f.label :commenter, "Author" %><br>
+    <%= f.text_field :commenter, class: "form-control" %>
   </p>
   <p>
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-primary btn-submit" %>
   </p>
 <% end %>

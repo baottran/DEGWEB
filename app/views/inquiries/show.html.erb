@@ -44,7 +44,7 @@
   <div class="panel-body">
     <div id="resolution-form">
       <%= render 'resolution_form' %>
-      <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
+      
     </div>
     <div id="resolution-text">
       <p><%= @inquiry.resolution %></p>
@@ -172,6 +172,19 @@
   <div class="panel-body">
     <p><strong>Attached Files:</strong><a href="<%= @inquiry.attachment.url %>"><%= @inquiry.attachment_file_name %></a></p>
   </div>
-  <%= link_to 'Back', inquiries_path %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Notes </div>
+  <div class="panel-body">
+    <% @inquiry.comments.each do |comment| %>
+      <p>
+        <p><%= comment.body %></p><br>
+        <b><%= comment.commenter %></b> at <i><%= comment.created_at.strftime("%-m/%-d/%y") %></i>
+      </p><br>
+    <% end %>
+    <hr>
+    <%= render 'comments/form' %>
+  </div>
 </div>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
