@@ -1,0 +1,68 @@
+<%= render 'shared/header' %>
+<script src="assets/c3.js"></script>
+<script src="assets/d3.min.js"></script>
+<stylesheet src="assets/c3.min.css"></stylesheet>
+
+<style>
+#chart {
+	height: 200px;
+}
+.stats {
+	display: flex;
+	justify-content: center;
+}
+.stats .database {
+	width: 400px;
+	align-content: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.database .content {
+	display: flex;
+	width: 200px;
+}
+
+h4 {
+	padding-left: 75px;
+}
+
+</style>
+
+
+
+<div class="container">
+
+  <ul class="nav nav-tabs">
+    <li><a href="/inquiries" data-toggle="tab">Request Queue</a></li>
+    <li class="active"><a href="/reporting" data-toggle="tab">Reporting</a></li>
+  </ul>
+
+  <br>
+
+  <div class="btn-group btn-group-justified">
+      <%= render partial: 'reporting_button', locals: {report: "New Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Resolved Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Aging Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Export as Report"} %>
+  </div>
+  <br>
+  <% if params[:type] === "Resolved Inquiries" %>
+  	<%= render partial: 'reporting_resolved' %>
+  <% elsif params[:type] === "Aging Inquiries" %>
+  	<%= render partial: 'reporting_aging' %>
+  <% elsif params[:type] === "Export as Report" %>
+  	<%= render partial: 'reporting_export' %>
+  <% else %>
+  	<%= render partial: 'reporting_new_inquiries' %>
+  <% end %>
+  
+  </div>
+
+
+
+
+
+
+
+
+<%= render 'shared/footer' %>

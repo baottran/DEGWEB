@@ -7,6 +7,16 @@ module InquiriesHelper
     ['Resolution Date', '']]
   end
 
+  def inquiry_statuses
+    [['<select>', ' '],
+    ['Received by DEG', 'Received by DEG'],
+    ['Submitted to IP', 'Submitted to IP'],
+    ['IP Response Received', 'IP Response Received'],
+    ['Resolved (No IP Change)', 'Resolved (No IP Change)'],
+    ['Resolved (IP Change)', 'Resolved (IP Change)']]
+  end
+
+
   def us_states
     [['<select>', ' '],
     ['Alaska', 'AK'],

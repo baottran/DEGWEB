@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
+  get 'reporting' => 'inquiries#reporting'
 
   patch 'inquiries/:id/resolve' => 'inquiries#resolve'
   patch 'inquiries/:id/customer' => 'inquiries#edit_customer'

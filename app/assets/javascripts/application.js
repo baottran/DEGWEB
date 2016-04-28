@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+//= require c3
 
 $(document).ready(function(){
   Forms.init();
