@@ -1,46 +1,72 @@
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <style>
-#chart {
+/*#chart {
 	width: 200px;
 	height: 300px;
-}
+}*/
 
 #chart text {
 	font-size: 12px;
 }
 
-.panel-body {
-	height: 1000px;
+
+#audatex {
+	background-color: red;
 }
+
+.panel-body .gauges {
+	display: flex;
+}
+
+.gauge {
+	display: flex;
+	margin: 0px;
+	width: 300px;
+}
+
+.c3-chart {
+	background-color: red;
+}
+
 </style>
 
 <div class="panel panel-default">
 	<div class="panel-heading">IP</div>
-	<div class="panel-body">
-		<div id="test"></div>
-		<div id="another"></div>
+	<div class="panel-body gauges">
+		<a href="#" class="btn btn-info">Time Response</a>
+  	<a href="#" class="btn btn-info">Life Cycle</a>
+		<div id="audatex_gauge" class="gauge"></div>
+		<div id="ccc_gauge" class="gauge"></div>
+		<div id="mitchell_gauge" class="gauge"></div>
 	</div>
 </div>
 <br>
 <div class="panel panel-default">
 	<div class="panel-heading">IP</div>
-		<div class="panel-body">
-			test
-		</div>
+	<div class="panel-body">
+		<div id="audatex_donut"></div>
+		<div id="ccc_donut"></div>
+		<div id="mitchell_donut"></div>
+		
+	</div>
 </div>
 
 <script>
-var test = c3.generate({
+
+$(document).ready(function(){
+	console.log("doing it");
+
+	var audatex_gauge = c3.generate({
+		bindto: '#audatex_gauge',
     data: {
-    		bindto: '#test',
         columns: [
             ['data', 91.4]
         ],
         type: 'gauge',
-
         onclick: function (d, i) { console.log("onclick", d, i); },
         onmouseover: function (d, i) { console.log("onmouseover", d, i); },
         onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-    },       
+    },
     gauge: {
 //        label: {
 //            format: function(value, ratio) {
@@ -62,26 +88,26 @@ var test = c3.generate({
         }
     },
     size: {
-    		width: 500,
-        height: 250
+    		width: 200,
+        height: 200,
     }, 
     padding: {
-    	bottom: 100
+    	left: 0,
+    	right: 0
     }
 });
 
-var chart2 = c3.generate({
+var ccc_gauge = c3.generate({
+		bindto: '#ccc_gauge',
     data: {
-    		bindto: '#another',
         columns: [
-            ['data', 60.4]
+            ['data', 91.4]
         ],
         type: 'gauge',
-
         onclick: function (d, i) { console.log("onclick", d, i); },
         onmouseover: function (d, i) { console.log("onmouseover", d, i); },
         onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-    },       
+    },
     gauge: {
 //        label: {
 //            format: function(value, ratio) {
@@ -103,12 +129,109 @@ var chart2 = c3.generate({
         }
     },
     size: {
-    		width: 500,
-        height: 500
-    }, 
+    		width: 200,
+        height: 200,
+    },
     padding: {
-    	bottom: 100
+    	left: 0,
+    	right: 0,
+    	top: 0,
+    	bottom: 0,
     }
+});
+
+var mitchell_gauge = c3.generate({
+		bindto: '#mitchell_gauge',
+    data: {
+        columns: [
+            ['data', 91.4]
+        ],
+        type: 'gauge',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    gauge: {
+//        label: {
+//            format: function(value, ratio) {
+//                return value;
+//            },
+//            show: false // to turn off the min/max labels.
+//        },
+//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+//    max: 100, // 100 is default
+//    units: ' %',
+//    width: 39 // for adjusting arc thickness
+    },
+    color: {
+        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+        threshold: {
+//            unit: 'value', // percentage is default
+//            max: 200, // 100 is default
+            values: [30, 60, 90, 100]
+        }
+    },
+    size: {
+    		width: 200,
+        height: 200,
+    },
+    padding: {
+    	left: 0,
+    	right: 0
+    }
+});
+
+var audatex_donut = c3.generate({
+		bindto: "#audatex_donut",
+    data: {
+        columns: [
+            ['data1', 30],
+            ['data2', 120],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "Audatex"
+    }
+});
+
+var ccc_donut = c3.generate({
+		bindto: "#ccc_donut",
+    data: {
+        columns: [
+            ['data1', 30],
+            ['data2', 120],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "CCC"
+    }
+});
+
+var mitchell_donut = c3.generate({
+		bindto: "#mitchell_donut",
+    data: {
+        columns: [
+            ['data1', 30],
+            ['data2', 120],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "Mitchell"
+    }
+});
+
 });
 
 </script>
