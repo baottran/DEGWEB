@@ -1,0 +1,33 @@
+
+<% @chosen_report = report %>
+<% case report %>
+<% when 'New Inquiries' %>
+
+      <a href="/reporting" class="<%= btn_class_for_status %>">
+        <div class="title">New</div>
+        <div class="title">Inquiries</div>
+      </a>
+
+<% when 'Resolved Inquiries' %>
+
+      <a href="/reporting?type=Resolved+Inquiries" class="<%= btn_class_for_status %>">
+        <div class="title">Resolved</div>
+        <div class="title">Inquiries</div>
+      </a>
+
+<% when 'Aging Inquiries' %>
+
+      <a href="/reporting?type=Aging+Inquiries" class="<%= btn_class_for_status %>">
+        <div class="title">Aging</div>
+        <div class="title">Inquiries</div>
+      </a>
+
+<% when 'Export as Report' %>
+
+      <a href="/reporting?type=Export+as+Report" class="<%= btn_class_for_status %>">
+        <div class="title">Export as</div>
+        <div class="title">Report</div>
+      </a>
+<% else %>
+
+<% end %>

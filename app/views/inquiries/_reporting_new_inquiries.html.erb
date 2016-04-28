@@ -1,0 +1,161 @@
+<style>
+.c3-axis-x{
+	stroke-width: 1px;
+}
+
+.c3-line {
+	fill: none;
+}
+
+
+</style>
+<div class="panel panel-default">
+  	<div class="panel-heading">IP</div>
+  	<div class="panel-body">
+  		<div class="chart-edit-buttons">
+  			<a href="#" class="btn btn-info">All</a>
+  			<a href="#" class="btn btn-info">Week</a>
+  			<a href="#" class="btn btn-info">Month</a>
+  			<a href="#" class="btn btn-info">Quarter</a>
+  			<a href="#" class="btn btn-info">Year</a>
+  		</div>
+  		<br>
+  		  <div id="chart"></div>
+  		  <br>
+  		  <div class="stats">
+  		  	<div class="database">
+  		  		<h4>Audatex</h4>
+  		  		<div class="content">
+	  		  		<div class="right-content">
+	  		  				## 
+	  		  				<br>of 
+	  		  				<br>##,####
+	  		  				<br>33.3%
+	  		  		</div>
+	  		  		<div class="left-content">
+	  		  				Not Submitted
+	  		  				<br>25
+	  		  				<br>Submitted
+	  		  				<br>200
+	  		  				<br>Total
+	  		  				<br>250
+	  		  		</div>
+  		  		</div>
+
+  		  	</div>
+  		  	<div class="database">
+  		  		<h4>CCC</h4>
+  		  		<div class="content">
+	  		  		<div class="right-content">
+	  		  				## 
+	  		  				<br>of 
+	  		  				<br>##,####
+	  		  				<br>33.3%
+	  		  		</div>
+	  		  		<div class="left-content">
+	  		  				Not Submitted
+	  		  				<br>25
+	  		  				<br>Submitted
+	  		  				<br>200
+	  		  				<br>Total
+	  		  				<br>250
+	  		  		</div>
+  		  		</div>
+  		  	</div>
+  		  	<div class="database">
+  		  		<h4>Mitchell</h4>
+  		  		<div class="content">
+	  		  		<div class="right-content">
+	  		  				## 
+	  		  				<br>of 
+	  		  				<br>##,####
+	  		  				<br>33.3%
+	  		  		</div>
+	  		  		<div class="left-content">
+	  		  				Not Submitted
+	  		  				<br>25
+	  		  				<br>Submitted
+	  		  				<br>200
+	  		  				<br>Total
+	  		  				<br>250
+	  		  		</div>
+  		  		</div>
+  		  	</div>
+  		  </div>
+  	</div>
+  </div>
+
+  <script>
+		  var chart = c3.generate({
+		    bindto: '#chart',
+		    data: {
+		      columns: [
+		        ['Audatex', 	5, 10, 2, 3, 8, 10],
+		        ['CCC', 			2, 2, 1, 4, 1, 2],
+		        ['Mitchell', 	3, 3, 1, 5, 2, 4]
+		      ]
+		    }
+		});
+  </script>
+
+  <br>
+  <div class="panel panel-default">
+  	<div class="panel-heading">Not Submitted Inquiries</div>
+  	<div class="panel-body">
+	  	<a href="#" class="btn btn-info">All</a>
+			<a href="#" class="btn btn-info">Autodex</a>
+			<a href="#" class="btn btn-info">CCC</a>
+			<a href="#" class="btn btn-info">Mitchell</a>
+			<br>
+		  <% if @inquiries.count != 0 %>
+      <%= will_paginate @inquiries %>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th><%= sortable 'id', "#", params[:status] %></th>
+            <th><%= sortable 'database', 'Estimating Platform', params[:status] %></th>
+            <th><%= sortable 'inquiry_type', 'Inquiry Type', params[:status] %></th>
+            <th><%= sortable 'year', 'Vehicle', params[:status] %></th>
+            <th>Inquiry Description</th>
+            <th><%= sortable 'status', 'Status', params[:status] %></th>
+            <th>Resolution</th>
+            <th><%= sortable 'created_at', 'Origination Date', params[:status] %></th>
+            <th><%= sortable 'submit_to_ip_date', 'Submission Date', params[:status] %></th>
+            <th><%= sortable 'resolution_date', 'Resolution Date', params[:status] %></th>
+            <th>Total Time To Resolve</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <% @inquiries.each do |inquiry| %>
+          <tr>
+            <td><%= link_to inquiry.id, inquiry_path(inquiry) %></td>
+            <td><%= inquiry.database %></td>
+            <td><%= inquiry.inquiry_type %></td>
+            <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
+            <td><img class="icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.description_tooltip %>"> <%= inquiry.area_of_vehicle %></td>
+            <td><%= inquiry.status %></td>
+            <td><% if inquiry.resolution != nil %>
+                  <img class="icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.resolution%>">
+                <% end %>
+            </td>
+            <td><%= inquiry.created_at.strftime("%-m/%-d/%y") %></td>
+            <td><% if inquiry.submit_to_ip_date != nil %>
+                  <%= inquiry.submit_to_ip_date.strftime("%-m/%-d/%y") %>
+                <% end %></td>
+            <td><% if inquiry.resolution_date != nil %>
+                  <%= inquiry.resolution_date.strftime("%-m/%-d/%y") %>
+                <% end %></td>
+            <td><%= inquiry.time_to_resolve_days %></td>
+          
+          </tr>
+        <% end %>
+
+        </tbody>
+      </table>
+      <% else %>
+        <p>0 records match your search. Please try again.</p>
+      <% end %>
+    </div>
+    <%= will_paginate @inquiries %>
+  	</div>

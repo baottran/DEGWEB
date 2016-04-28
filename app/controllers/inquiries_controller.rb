@@ -207,6 +207,14 @@ class InquiriesController < ApplicationController
     redirect_to @inquiry
   end
 
+  def reporting
+    @inquiries = Inquiry.all 
+    @inquiries = @inquiries.order(sort_column + " " + sort_direction)
+    @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
+    render 'reporting'
+  end
+
+
 	private
 	  def inquiry_params
 	    params.require(:inquiry).permit(:name, 
