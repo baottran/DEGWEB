@@ -352,6 +352,49 @@ module InquiriesHelper
 
   end
 
+  def unsubmitted_inquiries(db = nil)
+    inquiries = Inquiry.all
+    # inquiries = inquiries.where("submit_to_ip_date is NULL OR submit_to_ip_date = 'F'")
+    # inquiries = inquiries.where("resolution_date is NULL or resolution_date = 'F'")
+    # inquiries = inquiries.where("submit_to_ip_date IS NULL OR submit_to_ip_date = ?", false)
+    # inquiries = inquiries.where("resolution_date IS NULL OR resolution_date = ?", false)
+    inquiries = inquiries.where(status: 'Received by DEG')
+    inquiries = inquiries.where(database: db) if db.present?
+    return inquiries
+  end
+
+  def percent_submitted(db = nil)
+    all_inquiries = Inquiry.where(database: db).count
+    pct = num_submitted(db).to_f / all_inquiries
+    return (pct * 100).round(2)
+  end
+
+  def num_submitted(db = nil)
+    return Inquiry.where(database: db).count - num_unsubmitted(db)
+  end
+
+  def num_unsubmitted(db = nil)
+    return Inquiry.where(database: db).where(submit_to_ip_date: nil).count
+  end
+
+  def total(db)
+    return Inquiry.where(database: db).count
+  end
+
+  def num_original(db)
+    return Inquiry.where(database: db).where(status: 'Resolved (IP Change)').count
+  end
+
+  def num_repeat(db)
+    return Inquiry.where(database: db).where(status: 'Resolved (No IP Change)').count
+  end
+
+
+
+
+
+
+
 
 
 

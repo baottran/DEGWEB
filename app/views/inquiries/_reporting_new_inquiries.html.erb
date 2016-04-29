@@ -26,58 +26,61 @@
   		  	<div class="database">
   		  		<h4>Audatex</h4>
   		  		<div class="content">
-	  		  		<div class="right-content">
-	  		  				## 
-	  		  				<br>of 
-	  		  				<br>##,####
-	  		  				<br>33.3%
-	  		  		</div>
-	  		  		<div class="left-content">
-	  		  				Not Submitted
-	  		  				<br>25
-	  		  				<br>Submitted
-	  		  				<br>200
-	  		  				<br>Total
-	  		  				<br>250
-	  		  		</div>
+              <div class="right-content">
+                  <%= num_submitted("Audatex") %> 
+                  <br>of
+                  <br><%= Inquiry.where(database: "Audatex").count %>
+                  <br>
+                  <br><%= percent_submitted("Audatex") %> % 
+              </div>
+              <div class="left-content">
+                  Not Submitted
+                  <br><%= num_unsubmitted("Audatex")%>
+                  <br>Submitted
+                  <br><%= num_submitted("Audatex") %>
+                  <br>Total
+                  <br><%= total("Audatex") %>
+              </div>
   		  		</div>
 
   		  	</div>
   		  	<div class="database">
   		  		<h4>CCC</h4>
   		  		<div class="content">
-	  		  		<div class="right-content">
-	  		  				## 
-	  		  				<br>of 
-	  		  				<br>##,####
-	  		  				<br>33.3%
-	  		  		</div>
-	  		  		<div class="left-content">
-	  		  				Not Submitted
-	  		  				<br>25
-	  		  				<br>Submitted
-	  		  				<br>200
-	  		  				<br>Total
-	  		  				<br>250
-	  		  		</div>
+              <div class="right-content">
+                  <%= num_submitted("CCC") %> 
+                  <br>of
+                  <br><%= Inquiry.where(database: "CCC").count %>
+                  <br>
+                  <br><%= percent_submitted("CCC") %> % 
+              </div>
+              <div class="left-content">
+                  Not Submitted
+                  <br><%= num_unsubmitted("CCC")%>
+                  <br>Submitted
+                  <br><%= num_submitted("CCC") %>
+                  <br>Total
+                  <br><%= total("CCC") %>
+              </div>
   		  		</div>
   		  	</div>
   		  	<div class="database">
   		  		<h4>Mitchell</h4>
   		  		<div class="content">
 	  		  		<div class="right-content">
-	  		  				## 
-	  		  				<br>of 
-	  		  				<br>##,####
-	  		  				<br>33.3%
+	  		  				<%= num_submitted("Mitchell") %> 
+	  		  				<br>of
+                  <br><%= Inquiry.where(database: "Mitchell").count %>
+                  <br>
+	  		  				<br><%= percent_submitted("Mitchell") %> % 
 	  		  		</div>
 	  		  		<div class="left-content">
 	  		  				Not Submitted
-	  		  				<br>25
+	  		  				<br><%= num_unsubmitted("Mitchell")%>
 	  		  				<br>Submitted
-	  		  				<br>200
+	  		  				<br><%= num_submitted("Mitchell") %>
 	  		  				<br>Total
-	  		  				<br>250
+	  		  				<br><%= total("Mitchell") %>
 	  		  		</div>
   		  		</div>
   		  	</div>
@@ -100,13 +103,13 @@
 
   <br>
   <div class="panel panel-default">
-  	<div class="panel-heading">Not Submitted Inquiries</div>
+  	<div class="panel-heading">Not Submitted Inquiries (<%= @inquiries.count %>)</div>
   	<div class="panel-body">
-	  	<a href="#" class="btn btn-info">All</a>
-			<a href="#" class="btn btn-info">Autodex</a>
-			<a href="#" class="btn btn-info">CCC</a>
-			<a href="#" class="btn btn-info">Mitchell</a>
-			<br>
+	  	<a href="/reporting" class="btn btn-info">All</a>
+			<a href="/reporting?database=Autodex" class="btn btn-info">Autodex</a>
+			<a href="/reporting?database=CCC" class="btn btn-info">CCC</a>
+			<a href="/reporting?database=Mitchell" class="btn btn-info">Mitchell</a>
+			<br><br>
 		  <% if @inquiries.count != 0 %>
       <%= will_paginate @inquiries %>
       <table class="table table-striped table-hover">

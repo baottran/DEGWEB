@@ -185,8 +185,8 @@ var audatex_donut = c3.generate({
 		bindto: "#audatex_donut",
     data: {
         columns: [
-            ['data1', 30],
-            ['data2', 120],
+            ['original', <%= num_original("Audatex") %>],
+            ['repeat', <%= num_repeat("Audatex") %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -202,8 +202,8 @@ var ccc_donut = c3.generate({
 		bindto: "#ccc_donut",
     data: {
         columns: [
-            ['data1', 30],
-            ['data2', 120],
+            ['original', <%= num_original("CCC") %>],
+            ['repeat', <%= num_repeat("CCC") %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -219,8 +219,8 @@ var mitchell_donut = c3.generate({
 		bindto: "#mitchell_donut",
     data: {
         columns: [
-            ['data1', 30],
-            ['data2', 120],
+            ['original', <%= num_original("Mitchell") %>],
+            ['repeat', <%= num_repeat("Mitchell") %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },

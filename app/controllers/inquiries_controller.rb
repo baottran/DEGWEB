@@ -8,7 +8,7 @@ class InquiriesController < ApplicationController
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
   end
 
-  def find_inquiries    
+  def find_inquiries()   
     inquiries = Inquiry.all 
     inquiries = inquiries.search(params[:search]) if params[:search].present?
     inquiries = inquiries.where(status: params[:status]) if params[:status].present? 
@@ -23,6 +23,7 @@ class InquiriesController < ApplicationController
       inquiries = inquiries.where("#{params[:filter_date_type]} <= ?", params[:date_end]) if params[:date_end].present?
     end
 
+
     # BUG: area of vehicle search doesn't work. For some reason it can search "Other" but not any other area of vehicle types
 
     # inquiries = inquiries.where(['area_of_vehicle LIKE ?', params[:area_of_vehicle]]) if params[:area_of_vehicle].present?
@@ -30,6 +31,19 @@ class InquiriesController < ApplicationController
       
     inquiries
   end 
+
+  def find_unsubmitted_inquiries(db = nil)
+    inquiries = Inquiry.all
+    # inquiries = inquiries.where("submit_to_ip_date is NULL OR submit_to_ip_date = 'F'")
+    # inquiries = inquiries.where("resolution_date is NULL or resolution_date = 'F'")
+    # inquiries = inquiries.where("submit_to_ip_date IS NULL OR submit_to_ip_date = ?", false)
+    # inquiries = inquiries.where("resolution_date IS NULL OR resolution_date = ?", false)
+    inquiries = inquiries.where(status: 'Received by DEG')
+    inquiries = inquiries.where(database: db) if db.present?
+    inquiries
+  end
+
+
 
 
 	def show
@@ -109,6 +123,9 @@ class InquiriesController < ApplicationController
     @inquiry.resolution = params[:inquiry][:resolution]
     @inquiry.status = 'IP Response Received'
     @inquiry.ip_response_received_date = Time.now
+    if @inquiry.submit_to_ip_date === nil 
+      @inquiry.submit_to_ip_date = Time.now 
+    end
     @inquiry.save
 
     redirect_to @inquiry
@@ -208,9 +225,13 @@ class InquiriesController < ApplicationController
   end
 
   def reporting
-    @inquiries = Inquiry.all 
+    @inquiries = find_unsubmitted_inquiries(params[:database])
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
+
+    # @audatex = find_unsubmitted_inquiries("Audatex")
+    # @ccc = find_unsubmitted_inquiries("CCC")
+    # @mitchell_inquiries = find_unsubmitted_inquiries("Mitchell")
     render 'reporting'
   end
 
