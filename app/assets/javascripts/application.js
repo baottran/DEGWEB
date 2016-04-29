@@ -16,6 +16,7 @@
 //= require jquery.validate.additional-methods
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require charts
 //= require_tree .
 //= require c3
 
@@ -23,3 +24,5 @@ $(document).ready(function(){
   Forms.init();
   ShowMake.init();
 });
+
+console.log("HIHIHIHIHIHI");
