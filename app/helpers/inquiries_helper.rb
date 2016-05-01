@@ -456,11 +456,7 @@ module InquiriesHelper
     four_weeks_in_secs = 2419200
 
     inquiries.each do |inquiry|
-
-      
       current_age = Time.now - inquiry.created_at 
-
-      puts "analyzing #{inquiry.id}"
 
       if current_age <= two_weeks_in_secs
         age_set["< 2 weeks"] = age_set["< 2 weeks"] + 1
@@ -470,15 +466,16 @@ module InquiriesHelper
       else
         age_set["4+ weeks"] = age_set["4+ weeks"] + 1
       end
-
-
     end
 
     return age_set
-
-
-
   end
+
+  def calculate_time_unresolved(inquiry)
+    time_unresolved = Time.now - inquiry.created_at
+    return time_unresolved
+  end
+
 
 
 

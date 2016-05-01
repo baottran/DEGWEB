@@ -224,6 +224,11 @@ class InquiriesController < ApplicationController
     redirect_to @inquiry
   end
 
+  def find_unresolved_inquiries
+    inquiries = Inquiry.where(resolution_date: nil)
+    inquiries
+  end
+
   def reporting
     @inquiries = find_unsubmitted_inquiries(params[:database])
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
@@ -232,8 +237,16 @@ class InquiriesController < ApplicationController
     # @audatex = find_unsubmitted_inquiries("Audatex")
     # @ccc = find_unsubmitted_inquiries("CCC")
     # @mitchell_inquiries = find_unsubmitted_inquiries("Mitchell")
+
+    @unresolved_inquiries = find_unresolved_inquiries
+    @unresolved_inquiries = @unresolved_inquiries.order(sort_column + " " + sort_direction)
+    @unresolved_inquiries = @unresolved_inquiries.paginate(:per_page => 20, :page => params[:page])
+
+
+
     render 'reporting'
   end
+
 
 
 	private
