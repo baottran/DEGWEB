@@ -25,4 +25,4 @@ $(document).ready(function(){
   ShowMake.init();
 });
 
-console.log("HIHIHIHIHIHI");
+console.log("firing application js");

@@ -24,6 +24,10 @@ class Inquiry < ActiveRecord::Base
 
   after_save :set_criteria, :set_area_of_vehicle
 
+  scope :ccc, -> { where(database: "CCC") }
+  scope :mitchell, -> { where(database: "Mitchell") }
+  scope :audatex, -> { where(database: "Audatex") }
+
   def init
     self.status  ||= "Received by DEG"          #will set the default value only if it's nil
   end

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
-	<div class="panel-heading">IP</div>
+	<div class="panel-heading">Unresolved Inquiries by Age</div>
 	<div class="panel-body">
-	test
+		<div id="aging_chart"></div>
 	</div>
 </div>
 <br>
@@ -12,3 +12,30 @@
 		</div>
 </div>
 
+
+
+<script>
+
+$(document).ready(function(){
+
+var aging_chart = c3.generate({
+	bindto: "#aging_chart",
+    data: {
+        columns: <%= raw calculate_aging %>,
+        type: 'bar',
+        groups: [
+            ['< 2 weeks', '2-4 weeks', '4+ weeks']
+        ]
+    },
+    axis: {
+		x: {
+		type: 'category',
+		categories: ["Audatex", "CCC", "Mitchell"]
+		}
+	}
+
+});
+
+});
+
+</script>

@@ -390,6 +390,97 @@ module InquiriesHelper
   end
 
 
+  def avg_response_time_for(db)
+    responded_inquiries = Inquiry.where(database: db).where.not(submit_to_ip_date: nil)
+
+    total_response_time = 0
+
+    responded_inquiries.each do |inquiry|
+        response_time = inquiry.submit_to_ip_date - inquiry.created_at
+        total_response_time = total_response_time + response_time
+    end
+
+    if responded_inquiries.count != 0 
+      avg_response_time = total_response_time / responded_inquiries.count
+    elsif  
+      avg_response_time = 0
+    end
+
+    return avg_response_time
+  end
+
+  def avg_completion_time_for(db)
+    completed_inquiries = Inquiry.where(database: db).where.not(resolution_date: nil)
+
+    total_completion_time = 0 
+
+    completed_inquiries.each do |inquiry|
+      completion_time = inquiry.resolution_date - inquiry.created_at
+      total_completion_time = completion_time + total_completion_time
+    end
+
+    if completed_inquiries.count != 0 
+      avg_completion_time = total_completion_time / completed_inquiries.count
+    elsif 
+      avg_completion_time = 0
+    end
+
+    return avg_completion_time
+  end
+
+
+  def time_to_days(time)
+    return (time / 86400).round(2)
+  end
+
+  def calculate_aging
+
+    incomplete_inquiries = Inquiry.where(resolution_date: nil)
+    
+    audatex = inquiry_age_array(incomplete_inquiries.audatex)
+    ccc = inquiry_age_array(incomplete_inquiries.ccc)
+    mitchell = inquiry_age_array(incomplete_inquiries.mitchell)
+
+    return [
+            ["< 2 weeks", audatex["< 2 weeks"],ccc["< 2 weeks"],mitchell["< 2 weeks"]],
+            ["2-4 weeks", audatex["2-4 weeks"],ccc["2-4 weeks"],mitchell["2-4 weeks"]],
+            ["4+ weeks", audatex["4+ weeks"],ccc["4+ weeks"],mitchell["4+ weeks"]]
+        ]
+  end
+
+  def inquiry_age_array(inquiries)
+
+    age_set = {"< 2 weeks" => 0, "2-4 weeks" => 0, "4+ weeks" => 0}
+
+    two_weeks_in_secs = 1209600
+    four_weeks_in_secs = 2419200
+
+    inquiries.each do |inquiry|
+
+      
+      current_age = Time.now - inquiry.created_at 
+
+      puts "analyzing #{inquiry.id}"
+
+      if current_age <= two_weeks_in_secs
+        age_set["< 2 weeks"] = age_set["< 2 weeks"] + 1
+        puts "inquiry is two weeks old"
+      elsif current_age > two_weeks_in_secs && current_age <= four_weeks_in_secs
+        age_set["2-4 weeks"] = age_set["2-4 weeks"] + 1
+      else
+        age_set["4+ weeks"] = age_set["4+ weeks"] + 1
+      end
+
+
+    end
+
+    return age_set
+
+
+
+  end
+
+
 
 
 
