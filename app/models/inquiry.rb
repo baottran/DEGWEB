@@ -239,6 +239,15 @@ class Inquiry < ActiveRecord::Base
     end
   end
 
+  def self.to_csv(options = {})
+  CSV.generate(options) do |csv|
+    csv << column_names
+    all.each do |inquiry|
+      csv << inquiry.attributes.values_at(*column_names)
+    end
+  end
+end
+
 
 
   validates_attachment :attachment, :content_type => {:content_type => %w(image/jpeg image/jpg image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document)}

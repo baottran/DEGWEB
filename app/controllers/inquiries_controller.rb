@@ -243,8 +243,17 @@ class InquiriesController < ApplicationController
     @unresolved_inquiries = @unresolved_inquiries.paginate(:per_page => 20, :page => params[:page])
 
 
+    @export = find_inquiries
 
-    render 'reporting'
+    request.format = :csv if params[:csv]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @export.to_csv, filename: 'degweb_export.csv'}
+    end
+
+
+    # render 'reporting'
   end
 
 

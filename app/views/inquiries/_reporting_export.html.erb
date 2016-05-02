@@ -1,1 +1,93 @@
-export
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<style>
+div.filter-box {
+  display: flex;
+  flex-direction: column;
+  height: 220px;
+  width: 400px;
+
+}
+
+.filter-items {
+  display: flex;
+}
+.filter-item {
+  margin-bottom: 10px;
+}
+.filter-submit {
+  margin-top: 20px;
+}
+
+.filter-box {
+  padding: 10px;
+}
+</style>
+<script>
+$(function() {
+    $( document ).tooltip();
+
+    $('#date_start').datepicker({ dateFormat: 'yy-mm-dd'});
+    $('#date_end').datepicker({ dateFormat: 'yy-mm-dd'});
+  });
+
+
+</script>
+<div class="panel panel-default">
+  <div class="panel-heading">Export Data as Report</div>
+  <div class="panel-body">
+<%= form_tag reporting_path, :method => 'get' do %>
+		<%= hidden_field_tag :direction, params[:direction] %>
+		<%= hidden_field_tag :sort, params[:sort] %>
+		<%= hidden_field_tag :status, params[:status] %>
+		<%= hidden_field_tag :search, params[:search] %>
+    <%= hidden_field_tag :csv, true %>
+    <div class="filter-items">
+		<div class="filter-box">
+  		<div class="filter-item">
+      	<%= label :filter_date_type, "Date Type" %>
+        <%= select_tag(:filter_date_type, options_for_select(filter_date_types, params[:filter_date_type]), class: 'form-control', :id => 'filter_date_type') %>
+      </div>
+
+  		<div class="filter-item">
+      	<%= label :date_start, "Start Date" %>
+      	<%= text_field_tag :date_start,params[:date_start], :class => 'form-control', :id => 'date_start' %>
+      </div>
+      		<div class="filter-item">
+      	<%= label :date_start, "End Date" %>
+      	<%= text_field_tag :date_end, params[:date_end], :class => 'form-control', :id => 'date_end' %>
+      </div>
+    </div>
+
+    <div class="filter-box">
+  		<div class="filter-item">
+      	<%= label :database, "Platform" %>
+        <%= select_tag(:database, options_for_select(database_types, params[:database]), class: 'form-control') %>
+      </div>
+      <div class="filter-item">
+        <%= label :status, "Status" %>
+        <%= select_tag(:status, options_for_select(inquiry_statuses, params[:status]), class: 'form-control') %>
+      </div>
+    </div>
+    <div class="filter-box">
+      <div class="filter-item">
+      	<%= label :database, "Inquiry Type" %>
+        <%= select_tag(:inquiry_type, options_for_select(inquiry_types, params[:inquiry_type]), class: 'form-control') %>
+      </div>
+      <div class="filter-item">
+        <%= label :area_of_vehicle, "Area of Vehicle" %>
+        <%= select_tag(:area_of_vehicle, options_for_select(vehicle_areas, params[:area_of_vehicle]), class: 'form-control') %>
+      </div>
+          <div class="filter-submit">
+      <%= submit_tag "Export as CSV", :name => nil, :class=> 'btn btn-primary' %>
+      <a href="/reporting?type=Export+as+Report" class="btn btn-default" id="btn-clear">Clear Form</a>
+    </div>
+    </div>
+    </div>
+<% end %>
+
+  <br>
+  <br>
+</div>
+</div>
