@@ -34,17 +34,10 @@ class InquiriesController < ApplicationController
 
   def find_unsubmitted_inquiries(db = nil)
     inquiries = Inquiry.all
-    # inquiries = inquiries.where("submit_to_ip_date is NULL OR submit_to_ip_date = 'F'")
-    # inquiries = inquiries.where("resolution_date is NULL or resolution_date = 'F'")
-    # inquiries = inquiries.where("submit_to_ip_date IS NULL OR submit_to_ip_date = ?", false)
-    # inquiries = inquiries.where("resolution_date IS NULL OR resolution_date = ?", false)
     inquiries = inquiries.where(status: 'Received by DEG')
     inquiries = inquiries.where(database: db) if db.present?
     inquiries
   end
-
-
-
 
 	def show
     @inquiry = Inquiry.find(params[:id])
@@ -234,10 +227,6 @@ class InquiriesController < ApplicationController
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
 
-    # @audatex = find_unsubmitted_inquiries("Audatex")
-    # @ccc = find_unsubmitted_inquiries("CCC")
-    # @mitchell_inquiries = find_unsubmitted_inquiries("Mitchell")
-
     @unresolved_inquiries = find_unresolved_inquiries
     @unresolved_inquiries = @unresolved_inquiries.order(sort_column + " " + sort_direction)
     @unresolved_inquiries = @unresolved_inquiries.paginate(:per_page => 20, :page => params[:page])
@@ -251,7 +240,6 @@ class InquiriesController < ApplicationController
       format.html
       format.csv { send_data @export.to_csv, filename: 'degweb_export.csv'}
     end
-
 
     # render 'reporting'
   end
@@ -325,7 +313,6 @@ class InquiriesController < ApplicationController
 
     def sort_direction
       params[:direction] || "asc"
-      # %w[asc desc].include?(params[:direction]) ? params[:directon] : "asc"
     end
 end
 
