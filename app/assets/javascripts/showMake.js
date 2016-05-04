@@ -25,6 +25,9 @@ var ShowMake = {
   },
 
   toggleFormsOnClick: function() {
+
+    $('#resolution-text p').html($('#resolution-text p').text().replace(/\n\r?/g, '<br />'))
+
     $("#inquiry-edit").click(function(event){
       var value = $("select#inquiry_inquiry_type").val();
       $("#inquiry-edit-form").toggle();
@@ -48,7 +51,6 @@ var ShowMake = {
 
     $("#resolution-edit").click(function(event) {
       var currentResolution = $("#resolution-text").find("p").text();
-      $(".inquiry-resolution").text(currentResolution);
       $(".inquiry-resolution").focus();
       $("#resolution-text").toggle();
       $("#resolution-form").toggle();
