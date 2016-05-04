@@ -48,8 +48,8 @@ var ShowMake = {
 
     $("#resolution-edit").click(function(event) {
       var currentResolution = $("#resolution-text").find("p").text();
-      $("textArea").text(currentResolution);
-      $("textArea").focus();
+      $(".inquiry-resolution").text(currentResolution);
+      $(".inquiry-resolution").focus();
       $("#resolution-text").toggle();
       $("#resolution-form").toggle();
     });

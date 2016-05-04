@@ -33,13 +33,22 @@ h4 {
 }
 </style>
 
+<script>
+$('a#inquiries_link').click(function(event) {
+  console.log("test");
+  $('body').load("/inquiries");
+
+});
+
+</script>
+
 
 
 <div class="container">
 
-  <ul class="nav nav-tabs">
-    <li><a href="/inquiries" data-toggle="tab">Request Queue</a></li>
-    <li class="active"><a href="/reporting" data-toggle="tab">Reporting</a></li>
+  <ul class="nav nav-pills">
+    <li><a href="/inquiries">Request Queue</a></li>
+    <li class="active"><a href="/reporting">Reporting</a></li>
   </ul>
 
   <br>
