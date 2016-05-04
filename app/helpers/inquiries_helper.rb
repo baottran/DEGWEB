@@ -352,6 +352,20 @@ module InquiriesHelper
 
   end
 
+  def btn_class_for_reporting
+
+    btn_class = "btn btn-default "
+
+    if @chosen_report === params[:type] || ( params[:type] === nil && @chosen_report === 'New Inquiries')
+        return btn_class + "selected"
+    else
+        return btn_class
+    end
+
+
+  end
+
+
   def unsubmitted_inquiries(db = nil)
     inquiries = Inquiry.all
     # inquiries = inquiries.where("submit_to_ip_date is NULL OR submit_to_ip_date = 'F'")
