@@ -13,11 +13,11 @@
   	<div class="panel-heading">IP</div>
   	<div class="panel-body">
   		<div class="chart-edit-buttons">
-  			<a href="#" class="btn btn-info">All</a>
-  			<a href="#" class="btn btn-info">Week</a>
-  			<a href="#" class="btn btn-info">Month</a>
-  			<a href="#" class="btn btn-info">Quarter</a>
-  			<a href="#" class="btn btn-info">Year</a>
+  			<a href="#" class="btn btn-info" id="All">All</a>
+  			<a href="#" class="btn btn-info" id="Week">Week</a>
+  			<a href="#" class="btn btn-info" id="Month">Month</a>
+  			<a href="#" class="btn btn-info" id="Quarter">Quarter</a>
+  			<a href="#" class="btn btn-info" id="Year">Year</a>
   		</div>
   		<br>
   		  <div id="chart"></div>
@@ -88,18 +88,85 @@
   	</div>
   </div>
 
-  <script>
-		  var chart = c3.generate({
-		    bindto: '#chart',
-		    data: {
-		      columns: [
-		        ['Audatex', 	5, 10, 2, 3, 8, 10],
-		        ['CCC', 			2, 2, 1, 4, 1, 2],
-		        ['Mitchell', 	3, 3, 1, 5, 2, 4]
-		      ]
-		    }
-		});
-  </script>
+
+
+<script>
+
+<% new_inquiries_test %>
+
+var formatter;
+function updateFormatter(byMonth) {
+  formatter = d3.time.format(byMonth ? '%Y-%m' : '%Y-%m-%d')
+}
+
+updateFormatter();
+
+	  var chart = c3.generate({
+	    bindto: '#chart',
+    data: {
+      x: 'x',
+     xFormat: '%Y-%m-%d', // 'xFormat' can be used as custom format of 'x'
+      columns: <%=raw new_inquiries_all %>
+  },
+  axis: {
+      x: {
+          type: 'timeseries',
+          tick: {
+              format: function(x) {
+                return formatter(x);
+              }
+          }
+      }
+  }
+	});
+
+    $("#All").click(function(event) {
+      event.preventDefault();
+            chart.load({
+      columns: <%=raw new_inquiries_all %>,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+  });
+    
+    });
+
+    $("#Week").click(function(event) {
+      event.preventDefault();
+            chart.load({
+      columns: <%=raw new_inquiries_week %>,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+  });
+    
+    });
+
+    $("#Month").click(function(event) {
+      event.preventDefault();
+            chart.load({
+      columns: <%=raw new_inquiries_month %>,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+  });
+    
+    });
+
+        $("#Quarter").click(function(event) {
+      event.preventDefault();
+            chart.load({
+      columns: <%=raw new_inquiries_quarter %>,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+  });
+    
+    });
+
+            $("#Year").click(function(event) {
+      event.preventDefault();
+            chart.load({
+      columns: <%=raw new_inquiries_year %>,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+  });
+    
+    });
+
+
+</script>
 
   <br>
   <div class="panel panel-default">

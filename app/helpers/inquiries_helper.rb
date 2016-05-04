@@ -490,15 +490,109 @@ module InquiriesHelper
     return time_unresolved
   end
 
+  def new_inquiries_test
+    new_inquiries_week
+  end
 
 
+  def new_inquiries_all
+    return new_inquiries_month
+  end
 
+  def new_inquiries_week
+    start_date = (Time.now - 1.week).beginning_of_day 
 
+    x_data = ['x']
+    audatex_data = ['Audatex']
+    ccc_data = ['CCC']
+    mitchell_data = ['Mitchell']
 
+    for i in 0..6
+        day_value = start_date + i.days
+        day_string = day_value.strftime('%Y-%m-%d')
+        x_data.append(day_string)
+        audatex_data.append(rand(10))
+        ccc_data.append(rand(10))
+        mitchell_data.append(rand(10))
+    end
 
+    result = [x_data, audatex_data, ccc_data, mitchell_data]
 
+    return result 
+    puts "result is #{result}"
+  
+  end
 
+  def new_inquiries_month
+    start_date = (Time.now - 1.month).beginning_of_day 
 
+    x_data = ['x']
+    audatex_data = ['Audatex']
+    ccc_data = ['CCC']
+    mitchell_data = ['Mitchell']
 
+    for i in 0..30
+        day_value = start_date + i.days
+        day_string = day_value.strftime('%Y-%m-%d')
+        x_data.append(day_string)
+        audatex_data.append(rand(10))
+        ccc_data.append(rand(10))
+        mitchell_data.append(rand(10))
+    end
+
+    result = [x_data, audatex_data, ccc_data, mitchell_data]
+
+    return result 
+    puts "result is #{result}"
+
+  end
+
+  def new_inquiries_quarter
+    start_date = (Time.now - 3.month).beginning_of_day 
+
+    x_data = ['x']
+    audatex_data = ['Audatex']
+    ccc_data = ['CCC']
+    mitchell_data = ['Mitchell']
+
+    for i in 0..90
+        day_value = start_date + i.days
+        day_string = day_value.strftime('%Y-%m-%d')
+        x_data.append(day_string)
+        audatex_data.append(rand(10))
+        ccc_data.append(rand(10))
+        mitchell_data.append(rand(10))
+    end
+
+    result = [x_data, audatex_data, ccc_data, mitchell_data]
+
+    return result 
+    puts "result is #{result}"
+
+  end
+
+  def new_inquiries_year
+    start_date = (Time.now - 365.month).beginning_of_day 
+
+    x_data = ['x']
+    audatex_data = ['Audatex']
+    ccc_data = ['CCC']
+    mitchell_data = ['Mitchell']
+
+    for i in 0..90
+        day_value = start_date + i.days
+        day_string = day_value.strftime('%Y-%m-%d')
+        x_data.append(day_string)
+        audatex_data.append(rand(10))
+        ccc_data.append(rand(10))
+        mitchell_data.append(rand(10))
+    end
+
+    result = [x_data, audatex_data, ccc_data, mitchell_data]
+
+    return result 
+    puts "result is #{result}"
+
+  end
 
 end
