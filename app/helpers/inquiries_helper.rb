@@ -435,7 +435,7 @@ module InquiriesHelper
 
     if completed_inquiries.count != 0 
       avg_completion_time = total_completion_time / completed_inquiries.count
-    elsif 
+    else
       avg_completion_time = 0
     end
 
