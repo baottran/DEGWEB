@@ -40,6 +40,8 @@ gem 'jquery-validation-rails'
 gem 'bcrypt'
 
 gem "letter_opener", group: :development
+gem 'premailer-rails'
+gem 'nokogiri'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
