@@ -22,37 +22,37 @@
           <span class="form-required">* </span><%= f.label :name, "Your Name" %>
         </div>
         <div class="col-lg-9">
-          <%= f.text_field :name, :class => "form-control required-input" %>
+          <%= f.text_field :name, :class => "form-control required-input", :placeholder => "name" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :title, :class => "col-lg-3 form-label"  %>
         <div class="col-lg-9">
-          <%= f.text_field :title, :class => "form-control"  %>
+          <%= f.text_field :title, :class => "form-control", :placeholder => "title"  %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :shop_name, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.text_field :shop_name, :class => "form-control" %>
+          <%= f.text_field :shop_name, :class => "form-control", :placeholder => "shop name" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :address_1, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.text_field :address_1, :class => "form-control" %>
+          <%= f.text_field :address_1, :class => "form-control", :placeholder => "street" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :address_2, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.text_field :address_2, :class => "form-control" %>
+          <%= f.text_field :address_2, :class => "form-control", :placeholder => "apartment" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :city, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.text_field :city, :class => "form-control" %>
+          <%= f.text_field :city, :class => "form-control", :placeholder => "city" %>
         </div>
       </div>
       <div class="form-group">
@@ -64,7 +64,7 @@
       <div class="form-group">
         <%= f.label :zip_code, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.text_field :zip_code, :class => "form-control" %>
+          <%= f.text_field :zip_code, :class => "form-control", :placeholder => "zip" %>
         </div>
       </div>
       <div class="form-group">
@@ -72,13 +72,13 @@
           <span class="form-required">* </span><%= f.label :phone %>
         </div>
         <div class="col-lg-9">
-          <%= f.text_field :phone, :class => "form-control required-input" %>
+          <%= f.text_field :phone, :class => "form-control required-input", :placeholder => "(415) 222-3333" %>
         </div>
       </div>
       <div class="form-group">
         <%= f.label :fax, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.text_field :fax, :class => "form-control" %>
+          <%= f.text_field :fax, :class => "form-control", :placeholder => "fax" %>
         </div>
       </div>
       <div class="form-group">
@@ -86,7 +86,7 @@
           <span class="form-required">* </span><%= f.label :email %>
         </div>
         <div class="col-lg-9">
-          <%= f.text_field :email, :class => "form-control required-input" %>
+          <%= f.text_field :email, :class => "form-control required-input", :placeholder => "email@host.com" %>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@
           <span class="form-required">* </span><%= f.label :model %>
         </div>
         <div class="col-lg-9">
-          <%= f.text_field :model, :class => "form-control required-input" %>
+          <%= f.text_field :model, :class => "form-control required-input", :placeholder => "model" %>
         </div>
       </div>
       <div class="form-group">
@@ -134,7 +134,7 @@
           <span class="form-required">* </span><%= f.label :vin %>
         </div>
         <div class="col-lg-9">
-          <%= f.text_field :vin, :class => "form-control required-input" %>
+          <%= f.text_field :vin, :class => "form-control required-input", :placeholder => "vin num" %>
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@
       <div class="form-group">
         <%= f.label :client_id, :class => "col-lg-3 form-label" %>
         <div class="col-lg-9">
-          <%= f.text_field :client_id, :class => "form-control" %>
+          <%= f.text_field :client_id, :class => "form-control", :placeholder => "client" %>
           <i>If applicable</i>
         </div>
       </div>
@@ -178,37 +178,37 @@
         <div class="form-group">
           <%= f.label :missing_part_name, 'Missing Part Name', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_part_name, :class => "form-control" %>
+            <%= f.text_field :missing_part_name, :class => "form-control", :placeholder => "part name" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :missing_part_description, 'Missing Part Description', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_part_description, :class => "form-control" %>
+            <%= f.text_area :missing_part_description, :class => "form-control", :rows => "3", :placeholder => "part description" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :missing_oem_part_number, 'OEM Part Number', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_oem_part_number, :class => "form-control" %>
+            <%= f.text_field :missing_oem_part_number, :class => "form-control", :placeholder => "oem part number" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :missing_information, 'Missing Information', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_information, :class => "form-control" %>
+            <%= f.text_area :missing_information, :class => "form-control", rows: "3", :placeholder => "missing information" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :missing_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_issue_summary, :class => "form-control" %>
+            <%= f.text_area :missing_issue_summary, :class => "form-control", rows: "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :missing_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_suggested_action, :class => "form-control" %>
+            <%= f.text_area :missing_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
       </div>
@@ -225,31 +225,31 @@
         <div class="form-group">
           <%= f.label :parts_part_name, 'Part Name', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :parts_part_name, :class => "form-control" %>
+            <%= f.text_field :parts_part_name, :class => "form-control", :placeholder => "part name" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :parts_part_description, 'Part Description', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :parts_part_description, :class => "form-control" %>
+            <%= f.text_area :parts_part_description, :class => "form-control", :rows => "3", :placeholder => "part description" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :parts_oem_part_number, 'OEM Part Number', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :parts_oem_part_number, :class => "form-control" %>
+            <%= f.text_field :parts_oem_part_number, :class => "form-control", :placeholder => "oem part number" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :parts_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :parts_issue_summary, :class => "form-control" %>
+            <%= f.text_area :parts_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :parts_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :parts_suggested_action, :class => "form-control" %>
+            <%= f.text_area :parts_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
       </div>
@@ -272,13 +272,13 @@
         <div class="form-group">
           <%= f.label :procedure_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :procedure_issue_summary, :class => "form-control" %>
+            <%= f.text_area :procedure_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :procedure_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :procedure_suggested_action, :class => "form-control" %>
+            <%= f.text_area :procedure_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
       </div>
@@ -295,19 +295,19 @@
         <div class="form-group">
           <%= f.label :welded_part_name, 'Part Name', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :welded_part_name, :class => "form-control" %>
+            <%= f.text_field :welded_part_name, :class => "form-control", :placeholder => "part name" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :welded_part_number, 'Part Number', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :welded_part_number, :class => "form-control" %>
+            <%= f.text_field :welded_part_number, :class => "form-control", :placeholder => "part number" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :welded_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :welded_issue_summary, :class => "form-control" %>
+            <%= f.text_area :welded_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
@@ -325,7 +325,7 @@
         <div class="form-group">
           <%= f.label :welded_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :welded_procedure_steps, :class => "form-control" %>
+            <%= f.text_area :welded_procedure_steps, :class => "form-control", :rows => "5", :placeholder => "procedure steps" %>
           </div>
         </div>
         <div class="form-group">
@@ -344,7 +344,7 @@
         <div class="form-group">
           <%= f.label :welded_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :welded_suggested_action, :class => "form-control" %>
+            <%= f.text_area :welded_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
       </div>
@@ -361,25 +361,25 @@
         <div class="form-group">
           <%= f.label :non_welded_part_name, 'Part Name', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :non_welded_part_name, :class => "form-control" %>
+            <%= f.text_field :non_welded_part_name, :class => "form-control", :placeholder => "part name" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :non_welded_part_number, 'Part Number', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :non_welded_part_number, :class => "form-control" %>
+            <%= f.text_field :non_welded_part_number, :class => "form-control", :placeholder => "part number" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :non_welded_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :non_welded_issue_summary, :class => "form-control" %>
+            <%= f.text_area :non_welded_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :non_welded_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :non_welded_procedure_steps, :class => "form-control" %>
+            <%= f.text_area :non_welded_procedure_steps, :class => "form-control", :rows => "5", :placeholder => "procedure steps" %>
           </div>
         </div>
         <div class="form-group">
@@ -400,7 +400,7 @@
         <div class="form-group">
           <%= f.label :non_welded_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :non_welded_suggested_action, :class => "form-control" %>
+            <%= f.text_area :non_welded_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
       </div>
@@ -417,13 +417,13 @@
         <div class="form-group">
           <%= f.label :refinished_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :refinished_issue_summary, :class => "form-control" %>
+            <%= f.text_area :refinished_issue_summary, :class => "form-control", :rows => "10" , :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :refinished_special_labor, 'Special Labor or Material Considerations', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :refinished_special_labor, :class => "form-control" %>
+            <%= f.text_field :refinished_special_labor, :class => "form-control", :placeholder => "considerations" %>
           </div>
         </div>
         <div class="form-group">
@@ -436,7 +436,7 @@
         <div class="form-group">
           <%= f.label :refinished_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :refinished_suggested_action, :class => "form-control" %>
+            <%= f.text_area :refinished_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
       </div>
@@ -444,13 +444,13 @@
         <div class="form-group">
           <%= f.label :all_other_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :all_other_issue_summary, :class => "form-control" %>
+            <%= f.text_area :all_other_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :all_other_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :all_other_procedure_steps, :class => "form-control" %>
+            <%= f.text_area :all_other_procedure_steps, :class => "form-control", :placeholder => "procedure steps" %>
           </div>
         </div>
         <div class="form-group">
@@ -463,7 +463,7 @@
         <div class="form-group">
           <%= f.label :all_other_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :all_other_suggested_action, :class => "form-control" %>
+            <%= f.text_area :all_other_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
       </div>
