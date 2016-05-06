@@ -139,6 +139,7 @@ var chart = c3.generate({
 });
 
     $("#All").click(function(event) {
+      updateFormatter(true);
       event.preventDefault();
             chart.load({
       columns: <%=raw new_inquiries_all %>,
@@ -159,20 +160,21 @@ var chart = c3.generate({
 
     $("#Month").click(function(event) {
       event.preventDefault();
-            chart.load({
-      columns: <%=raw new_inquiries_month %>,
-      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
-  });
+      updateFormatter(false);
+      chart.load({
+        columns: <%=raw new_inquiries_month %>,
+        unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+      });
     
     });
 
-        $("#Quarter").click(function(event) {
+    $("#Quarter").click(function(event) {
+      updateFormatter(false);
       event.preventDefault();
-            chart.load({
-      columns: <%=raw new_inquiries_quarter %>,
-      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
-  });
-    
+      chart.load({
+        columns: <%=raw new_inquiries_quarter %>,
+        unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+      });
     });
 
   $("#Year").click(function(event) {

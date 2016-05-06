@@ -619,28 +619,92 @@ module InquiriesHelper
   #################################
 
   def new_inquiries_quarter
-    start_date = (Time.now - 3.month).beginning_of_day 
+    # start_date = (Time.now - 84.days).beginning_of_day 
 
-    x_data = ['x']
-    audatex_data = ['Audatex']
-    ccc_data = ['CCC']
-    mitchell_data = ['Mitchell']
+    # x_data = ['x']
+    # audatex_data = ['Audatex']
+    # ccc_data = ['CCC']
+    # mitchell_data = ['Mitchell']
 
-    for i in 0..90
-        day_value = start_date + i.days
+    # for i in 0..12
+    #     day_value = start_date + (i*7).days
+    #     day_string = day_value.strftime('%Y-%m-%d')
+    #     x_data.append(day_string)
+    #     audatex_data.append(rand(10))
+    #     ccc_data.append(rand(10))
+    #     mitchell_data.append(rand(10))
+    # end
+
+    # result = [x_data, audatex_data, ccc_data, mitchell_data]
+
+    # return result 
+    # puts "result is #{result}"
+
+    start_date = (Time.now - 84.days).beginning_of_day 
+
+    # prepare columns
+    x_days = Array.new 
+    x_data = Array.new
+    audatex_dict = Hash.new 
+    ccc_dict = Hash.new 
+    mitchell_dict = Hash.new 
+
+    for i in 0..12
+        day_value = start_date + (i*7).days
         day_string = day_value.strftime('%Y-%m-%d')
+        x_days.append(day_value)
         x_data.append(day_string)
-        audatex_data.append(rand(10))
-        ccc_data.append(rand(10))
-        mitchell_data.append(rand(10))
+        audatex_dict[day_string] = 0
+        ccc_dict[day_string] = 0
+        mitchell_dict[day_string] = 0
     end
 
-    result = [x_data, audatex_data, ccc_data, mitchell_data]
+    # put data into group 
 
-    return result 
-    puts "result is #{result}"
+    report_inquiries = Inquiry.where(created_at: start_date..Date.today)
+
+    report_inquiries.each do |inquiry|
+        created_at_date = inquiry.created_at.beginning_of_day
+
+        x_days.each do |week_start_date|
+            if (created_at_date >= week_start_date) && (created_at_date <= (week_start_date + 7.days))
+                created_at_string = week_start_date.strftime('%Y-%m-%d')
+                case inquiry.database
+                when "CCC"
+                    ccc_dict[created_at_string] += 1
+                when "Mitchell"
+                    puts "created at #{created_at_string}"
+                    puts "mitchell_dict = #{mitchell_dict}"
+                    mitchell_dict[created_at_string] += 1
+                when "Audatex"
+                    audatex_dict[created_at_string] += 1
+                else
+                    puts "DB ERROR: inquiry #{inquiry.id} missing database value"
+                end
+            end
+        end
+    end
+
+    audatex_data = Array.new 
+    ccc_data = Array.new 
+    mitchell_data = Array.new 
+
+    x_data.each_with_index do |date, index|
+        audatex_data.append(audatex_dict[date])
+        ccc_data.append(ccc_dict[date])
+        mitchell_data.append(mitchell_dict[date])
+    end
+
+    x_data.unshift("x")
+    audatex_data.unshift("Audatex")
+    ccc_data.unshift("CCC")
+    mitchell_data.unshift("Mitchell")
+
+    return [x_data, audatex_data, ccc_data, mitchell_data] 
 
   end
+
+  ###################################
 
     def new_inquiries_year
 
