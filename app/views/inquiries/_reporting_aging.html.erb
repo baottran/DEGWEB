@@ -13,19 +13,22 @@ $(document).ready(function(){
 
 var aging_chart = c3.generate({
 	bindto: "#aging_chart",
-    data: {
-        columns: <%= raw calculate_aging %>,
-        type: 'bar',
-        groups: [
-            ['< 2 weeks', '2-4 weeks', '4+ weeks']
-        ]
-    },
-    axis: {
+  data: {
+      columns: <%= raw calculate_aging %>,
+      type: 'bar',
+      groups: [
+          ['< 2 weeks', '2-4 weeks', '4+ weeks']
+      ]
+  },
+  axis: {
 		x: {
-		type: 'category',
-		categories: ["Audatex", "CCC", "Mitchell"]
+		  type: 'category',
+		  categories: ["Audatex", "CCC", "Mitchell"]
 		}
-	}
+	},
+  color: {
+    pattern: ['#18bc9c', '#f39c12', '#e74c3c']
+  }
 
 });
 

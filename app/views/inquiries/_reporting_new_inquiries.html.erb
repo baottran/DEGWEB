@@ -12,6 +12,10 @@
   border-color: #333333;
 }
 
+.c3-line {
+ stroke-width: 5px;
+}
+
 </style>
 <div class="panel panel-default">
   	<div class="panel-heading">IP</div>
@@ -101,28 +105,10 @@ var formatter;
 
 function updateFormatter(byMonth) {
   formatter = d3.time.format(byMonth ? '%Y-%m' : '%Y-%m-%d')
-  // formatter = d3.time.format('%Y-%m-%d')
 
 }
 
 updateFormatter(true);
-
-
-  // var chart = c3.generate({
-  //     bindto: '#chart',
-  //   data: {
-  //     x: 'x',
-  //     columns: <%=raw new_inquiries_all %>
-  // },
-  // axis: {
-  //     x: {
-  //         type: "timeseries",
-  //         format: function(x){
-  //           return formatter(x)
-  //         }
-  //     }
-  // }
-  // });
 
 var chart = c3.generate({
     bindto: '#chart',
@@ -139,7 +125,11 @@ var chart = c3.generate({
             }
         }
       }
-    }
+    },
+  color: {
+    pattern: ['#18bc9c', '#f39c12', '#e74c3c']
+  }
+
 });
 
 $("#All").click(function(event) {

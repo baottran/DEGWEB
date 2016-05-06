@@ -28,6 +28,27 @@
 	background-color: red;
 }
 
+.donuts {
+    display: flex;
+    width:1000px;
+}
+.donut-column {
+    width: 450px;
+    /*width: 350px;*/
+    /*flex-grow: 1;*/
+/*s*/    /*border-right: 50px;*/
+    margin: 15px;
+}
+.donut-right {
+    margin-right: 50px;
+}
+
+.c3-chart-arcs-title {
+    background-color: red;
+    font-size: 25px;
+}
+
+
 </style>
 
 <div class="panel panel-default">
@@ -71,7 +92,9 @@
 </div>
 
 <br>
-<div class="panel panel-default">
+
+<div class="donuts">
+<div class="panel panel-default donut-column donut-left">
 	<div class="panel-heading">Original vs Repeat</div>
 	<div class="panel-body">
 		<div id="audatex_donut"></div>
@@ -81,135 +104,21 @@
 	</div>
 </div>
 
+<div class="panel panel-default donut-column donut-right">
+    <div class="panel-heading">Open vs Resolved</div>
+    <div class="panel-body">
+        <div id="audatex_completed"></div>
+        <div id="ccc_completed"></div>
+        <div id="mitchell_completed"></div>
+        
+    </div>
+</div>
+</div>
+
 <script>
 
 $(document).ready(function(){
 	console.log("doing it");
-
-	var audatex_gauge = c3.generate({
-		bindto: '#audatex_gauge',
-    data: {
-        columns: [
-            ['data', 91.4]
-        ],
-        type: 'gauge',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-    },
-    gauge: {
-//        label: {
-//            format: function(value, ratio) {
-//                return value;
-//            },
-//            show: false // to turn off the min/max labels.
-//        },
-//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-//    max: 100, // 100 is default
-//    units: ' %',
-//    width: 39 // for adjusting arc thickness
-    },
-    color: {
-        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
-        threshold: {
-//            unit: 'value', // percentage is default
-//            max: 200, // 100 is default
-            values: [30, 60, 90, 100]
-        }
-    },
-    size: {
-    		width: 200,
-        height: 200,
-    }, 
-    padding: {
-    	left: 0,
-    	right: 0
-    }
-});
-
-var ccc_gauge = c3.generate({
-		bindto: '#ccc_gauge',
-    data: {
-        columns: [
-            ['data', 91.4]
-        ],
-        type: 'gauge',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-    },
-    gauge: {
-//        label: {
-//            format: function(value, ratio) {
-//                return value;
-//            },
-//            show: false // to turn off the min/max labels.
-//        },
-//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-//    max: 100, // 100 is default
-//    units: ' %',
-//    width: 39 // for adjusting arc thickness
-    },
-    color: {
-        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
-        threshold: {
-//            unit: 'value', // percentage is default
-//            max: 200, // 100 is default
-            values: [30, 60, 90, 100]
-        }
-    },
-    size: {
-    		width: 200,
-        height: 200,
-    },
-    padding: {
-    	left: 0,
-    	right: 0,
-    	top: 0,
-    	bottom: 0,
-    }
-});
-
-var mitchell_gauge = c3.generate({
-		bindto: '#mitchell_gauge',
-    data: {
-        columns: [
-            ['data', 91.4]
-        ],
-        type: 'gauge',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-    },
-    gauge: {
-//        label: {
-//            format: function(value, ratio) {
-//                return value;
-//            },
-//            show: false // to turn off the min/max labels.
-//        },
-//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-//    max: 100, // 100 is default
-//    units: ' %',
-//    width: 39 // for adjusting arc thickness
-    },
-    color: {
-        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
-        threshold: {
-//            unit: 'value', // percentage is default
-//            max: 200, // 100 is default
-            values: [30, 60, 90, 100]
-        }
-    },
-    size: {
-    		width: 200,
-        height: 200,
-    },
-    padding: {
-    	left: 0,
-    	right: 0
-    }
-});
 
 var audatex_donut = c3.generate({
 		bindto: "#audatex_donut",
@@ -225,11 +134,14 @@ var audatex_donut = c3.generate({
     },
     donut: {
         title: "Audatex"
+    },
+    color: {
+        pattern: ['#3498db', '#f39c12']
     }
 });
 
 var ccc_donut = c3.generate({
-		bindto: "#ccc_donut",
+	bindto: "#ccc_donut",
     data: {
         columns: [
             ['original', <%= num_original("CCC") %>],
@@ -242,11 +154,14 @@ var ccc_donut = c3.generate({
     },
     donut: {
         title: "CCC"
+    },
+    color: {
+        pattern: ['#3498db', '#f39c12']
     }
 });
 
 var mitchell_donut = c3.generate({
-		bindto: "#mitchell_donut",
+	bindto: "#mitchell_donut",
     data: {
         columns: [
             ['original', <%= num_original("Mitchell") %>],
@@ -259,6 +174,77 @@ var mitchell_donut = c3.generate({
     },
     donut: {
         title: "Mitchell"
+    },
+    color: {
+        pattern: ['#3498db', '#f39c12']
+    }
+});
+
+<%  def num_open(database)
+        Inquiry.where(database: database).where(resolution_date: nil).count
+    end %>
+
+<%  def num_closed(database)
+        Inquiry.where(database: database).where.not(resolution_date: nil).count
+    end %>
+
+var audatex_completed = c3.generate({
+        bindto: "#audatex_completed",
+    data: {
+        columns: [
+            ['open', <%= num_open("Audatex") %>],
+            ['resolved', <%= num_closed("Audatex") %>],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "Audatex"
+    },
+    color: {
+        pattern: ['#3498db', '#f39c12']
+    }
+});
+
+var ccc_completed = c3.generate({
+        bindto: "#ccc_completed",
+    data: {
+        columns: [
+            ['open', <%= num_open("CCC") %>],
+            ['resolved', <%= num_closed("CCC") %>],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "CCC"
+    },
+    color: {
+        pattern: ['#3498db', '#f39c12']
+    }
+});
+
+var mitchell_completed = c3.generate({
+        bindto: "#mitchell_completed",
+    data: {
+        columns: [
+            ['open', <%= num_open("Mitchell") %>],
+            ['resolved', <%= num_closed("Mitchell") %>],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "Mitchell"
+    },
+    color: {
+        pattern: ['#3498db', '#f39c12']
     }
 });
 
