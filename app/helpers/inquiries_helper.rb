@@ -519,8 +519,6 @@ module InquiriesHelper
         mitchell_dict[day_string] = 0
     end
 
-    puts "ccc_dict is #{ccc_dict}"
-
     # put data into group 
 
     week_inquiries = Inquiry.where(created_at: start_date..Date.today)
@@ -528,7 +526,6 @@ module InquiriesHelper
     week_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
         created_at_string = created_at_date.strftime('%Y-%m-%d')
-        puts "created_at_date is #{created_at_date}"
         case inquiry.database
         when "CCC"
             ccc_dict[created_at_string] += 1
@@ -540,8 +537,6 @@ module InquiriesHelper
             puts "sorting error"
         end
     end
-
-    puts "ccc_dict after is #{ccc_dict}"
 
     audatex_data = Array.new 
     ccc_data = Array.new 
@@ -558,39 +553,70 @@ module InquiriesHelper
     ccc_data.unshift("CCC")
     mitchell_data.unshift("Mitchell")
 
-
-    puts "ccc_data is #{ccc_data}"
-
-    result = [x_data, audatex_data, ccc_data, mitchell_data]
-    puts "result is #{result}"
-    return result   
+    return [x_data, audatex_data, ccc_data, mitchell_data]   
   end
+
+  ###################################
 
   def new_inquiries_month
 
-    puts "new inquiries week data is #{new_inquiries_week}"
-
     start_date = (Time.now - 1.month).beginning_of_day 
 
-    x_data = ['x']
-    audatex_data = ['Audatex']
-    ccc_data = ['CCC']
-    mitchell_data = ['Mitchell']
+    # prepare columns
+
+    x_data = Array.new
+    audatex_dict = Hash.new 
+    ccc_dict = Hash.new 
+    mitchell_dict = Hash.new 
 
     for i in 0..30
         day_value = start_date + i.days
         day_string = day_value.strftime('%Y-%m-%d')
         x_data.append(day_string)
-        audatex_data.append(rand(10))
-        ccc_data.append(rand(10))
-        mitchell_data.append(rand(10))
+        audatex_dict[day_string] = 0
+        ccc_dict[day_string] = 0
+        mitchell_dict[day_string] = 0
     end
 
-    result = [x_data, audatex_data, ccc_data, mitchell_data]
+    # put data into group 
 
-    return result 
+    week_inquiries = Inquiry.where(created_at: start_date..Date.today)
+
+    week_inquiries.each do |inquiry|
+        created_at_date = inquiry.created_at.beginning_of_day
+        created_at_string = created_at_date.strftime('%Y-%m-%d')
+        case inquiry.database
+        when "CCC"
+            ccc_dict[created_at_string] += 1
+        when "Mitchell"
+            mitchell_dict[created_at_string] += 1
+        when "Audatex"
+            audatex_dict[created_at_string] += 1
+        else
+            puts "sorting error"
+        end
+    end
+
+    audatex_data = Array.new 
+    ccc_data = Array.new 
+    mitchell_data = Array.new 
+
+    x_data.each_with_index do |date, index|
+        audatex_data.append(audatex_dict[date])
+        ccc_data.append(ccc_dict[date])
+        mitchell_data.append(mitchell_dict[date])
+    end
+
+    x_data.unshift("x")
+    audatex_data.unshift("Audatex")
+    ccc_data.unshift("CCC")
+    mitchell_data.unshift("Mitchell")
+
+    return [x_data, audatex_data, ccc_data, mitchell_data] 
 
   end
+
+  #################################
 
   def new_inquiries_quarter
     start_date = (Time.now - 3.month).beginning_of_day 
@@ -616,28 +642,67 @@ module InquiriesHelper
 
   end
 
-  def new_inquiries_year
-    start_date = (Time.now - 365.month).beginning_of_day 
+    def new_inquiries_year
 
-    x_data = ['x']
-    audatex_data = ['Audatex']
-    ccc_data = ['CCC']
-    mitchell_data = ['Mitchell']
+        start_date = (Time.now - 1.year).beginning_of_day 
+    
+        # prepare columns
+    
+        x_data = Array.new
+        audatex_dict = Hash.new 
+        ccc_dict = Hash.new 
+        mitchell_dict = Hash.new 
+    
+        for i in 0..12
+            day_value = start_date + i.month
+            day_string = day_value.strftime('%Y-%m')
+            x_data.append(day_string)
+            audatex_dict[day_string] = 0
+            ccc_dict[day_string] = 0
+            mitchell_dict[day_string] = 0
+        end
 
-    for i in 0..90
-        day_value = start_date + i.days
-        day_string = day_value.strftime('%Y-%m-%d')
-        x_data.append(day_string)
-        audatex_data.append(rand(10))
-        ccc_data.append(rand(10))
-        mitchell_data.append(rand(10))
+        puts "year day_string is #{x_data}"
+    
+        # put data into group 
+    
+        week_inquiries = Inquiry.where(created_at: start_date..Date.today)
+    
+        week_inquiries.each do |inquiry|
+            created_at_date = inquiry.created_at.beginning_of_day
+            created_at_string = created_at_date.strftime('%Y-%m')
+            case inquiry.database
+            when "CCC"
+                puts "error here"
+                puts "ccc_dict is #{ccc_dict}"
+                puts "created_at_string is #{created_at_string}"
+                ccc_dict[created_at_string] += 1
+            when "Mitchell"
+                mitchell_dict[created_at_string] += 1
+            when "Audatex"
+                audatex_dict[created_at_string] += 1
+            else
+                puts "sorting error"
+            end
+        end
+    
+        audatex_data = Array.new 
+        ccc_data = Array.new 
+        mitchell_data = Array.new 
+    
+        x_data.each_with_index do |date, index|
+            x_data[index] = x_data[index] + "-01"
+            audatex_data.append(audatex_dict[date])
+            ccc_data.append(ccc_dict[date])
+            mitchell_data.append(mitchell_dict[date])
+        end
+    
+        x_data.unshift("x")
+        audatex_data.unshift("Audatex")
+        ccc_data.unshift("CCC")
+        mitchell_data.unshift("Mitchell")
+    
+        return [x_data, audatex_data, ccc_data, mitchell_data] 
     end
-
-    result = [x_data, audatex_data, ccc_data, mitchell_data]
-
-    return result 
-    puts "result is #{result}"
-
-  end
 
 end

@@ -175,7 +175,8 @@ var chart = c3.generate({
     
     });
 
-            $("#Year").click(function(event) {
+  $("#Year").click(function(event) {
+      updateFormatter(true);
       event.preventDefault();
             chart.load({
       columns: <%=raw new_inquiries_year %>,
