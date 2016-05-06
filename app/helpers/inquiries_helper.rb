@@ -588,7 +588,7 @@ module InquiriesHelper
 
     # put data into group 
 
-    week_inquiries = Inquiry.where(created_at: start_date..Date.today)
+    week_inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
 
     week_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
@@ -647,7 +647,7 @@ module InquiriesHelper
 
     # put data into group 
 
-    week_inquiries = Inquiry.where(created_at: start_date..Date.today)
+    week_inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
 
     week_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
@@ -708,9 +708,9 @@ module InquiriesHelper
 
     # put data into group 
 
-    report_inquiries = Inquiry.where(created_at: start_date..Date.today)
+    quarter_inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
 
-    report_inquiries.each do |inquiry|
+    quarter_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
 
         x_days.each do |week_start_date|
@@ -777,9 +777,9 @@ module InquiriesHelper
     
         # put data into group 
     
-        week_inquiries = Inquiry.where(created_at: start_date..Date.today)
+        year_inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
     
-        week_inquiries.each do |inquiry|
+        year_inquiries.each do |inquiry|
             created_at_date = inquiry.created_at.beginning_of_day
             created_at_string = created_at_date.strftime('%Y-%m')
             case inquiry.database
