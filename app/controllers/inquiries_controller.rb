@@ -18,7 +18,6 @@ class InquiriesController < ApplicationController
     if params[:filter_date_type].present? 
       inquiries = inquiries.where("#{params[:filter_date_type]} >= ?", params[:date_start]) if params[:date_start].present?
 
-      # BUG: EQUAL part of less than or equal to doesn't work.
       if params[:date_end].present?
         end_date = Date.parse(params[:date_end]) if params[:date_end]
         end_date = end_date.end_of_day

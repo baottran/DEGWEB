@@ -97,26 +97,46 @@ var formatter;
 
 function updateFormatter(byMonth) {
   formatter = d3.time.format(byMonth ? '%Y-%m' : '%Y-%m-%d')
+  // formatter = d3.time.format('%Y-%m-%d')
+
 }
 
-updateFormatter();
+updateFormatter(false);
 
 
-  var chart = c3.generate({
-      bindto: '#chart',
+  // var chart = c3.generate({
+  //     bindto: '#chart',
+  //   data: {
+  //     x: 'x',
+  //     columns: <%=raw new_inquiries_all %>
+  // },
+  // axis: {
+  //     x: {
+  //         type: "timeseries",
+  //         format: function(x){
+  //           return formatter(x)
+  //         }
+  //     }
+  // }
+  // });
+
+var chart = c3.generate({
+    bindto: '#chart',
     data: {
       x: 'x',
       columns: <%=raw new_inquiries_all %>
-  },
-  axis: {
+    },
+    axis: {
       x: {
-          type: "timeseries",
-          format: function(x){
-            return formatter(x)
-          }
+        type: 'timeseries',
+        tick: {
+            format: function (x) { // x comes in as a time string.
+              return formatter(x);
+            }
+        }
       }
-  }
-  });
+    }
+});
 
     $("#All").click(function(event) {
       event.preventDefault();
@@ -129,6 +149,7 @@ updateFormatter();
 
     $("#Week").click(function(event) {
       event.preventDefault();
+      updateFormatter(false);
       chart.load({
         columns: <%=raw new_inquiries_week %>,
         unload: ['x', 'Audatex', 'Mitchell', 'CCC']
