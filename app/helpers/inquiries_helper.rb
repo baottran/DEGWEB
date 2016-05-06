@@ -496,7 +496,74 @@ module InquiriesHelper
 
 
   def new_inquiries_all
-    return new_inquiries_week
+        start_date = Inquiry.all.order('created_at ASC').first.created_at
+        current_date = Time.now 
+        num_months_between = (current_date.year * 12 + current_date.month) - (start_date.year * 12 + start_date.month)
+
+        puts "========"
+
+        puts start_date
+        puts current_date
+        puts num_months_between
+
+        puts "$$$$$$$"
+
+    
+        # prepare columns
+    
+        x_data = Array.new
+        audatex_dict = Hash.new 
+        ccc_dict = Hash.new 
+        mitchell_dict = Hash.new 
+    
+        for i in 0..num_months_between
+            day_value = start_date + i.month
+            day_string = day_value.strftime('%Y-%m')
+            x_data.append(day_string)
+            audatex_dict[day_string] = 0
+            ccc_dict[day_string] = 0
+            mitchell_dict[day_string] = 0
+        end
+
+        puts "year day_string is #{x_data}"
+    
+        # put data into group 
+    
+        reporting_inquiries = Inquiry.all
+    
+        reporting_inquiries.each do |inquiry|
+            created_at_date = inquiry.created_at.beginning_of_day
+            created_at_string = created_at_date.strftime('%Y-%m')
+            puts inquiry.id
+            case inquiry.database
+            when "CCC"
+                ccc_dict[created_at_string] += 1
+            when "Mitchell"
+                mitchell_dict[created_at_string] += 1
+            when "Audatex"
+                audatex_dict[created_at_string] += 1
+            else
+                puts "sorting error"
+            end
+        end
+    
+        audatex_data = Array.new 
+        ccc_data = Array.new 
+        mitchell_data = Array.new 
+    
+        x_data.each_with_index do |date, index|
+            x_data[index] = x_data[index] + "-01"
+            audatex_data.append(audatex_dict[date])
+            ccc_data.append(ccc_dict[date])
+            mitchell_data.append(mitchell_dict[date])
+        end
+    
+        x_data.unshift("x")
+        audatex_data.unshift("Audatex")
+        ccc_data.unshift("CCC")
+        mitchell_data.unshift("Mitchell")
+    
+        return [x_data, audatex_data, ccc_data, mitchell_data] 
   end
 
   def new_inquiries_week
@@ -619,26 +686,6 @@ module InquiriesHelper
   #################################
 
   def new_inquiries_quarter
-    # start_date = (Time.now - 84.days).beginning_of_day 
-
-    # x_data = ['x']
-    # audatex_data = ['Audatex']
-    # ccc_data = ['CCC']
-    # mitchell_data = ['Mitchell']
-
-    # for i in 0..12
-    #     day_value = start_date + (i*7).days
-    #     day_string = day_value.strftime('%Y-%m-%d')
-    #     x_data.append(day_string)
-    #     audatex_data.append(rand(10))
-    #     ccc_data.append(rand(10))
-    #     mitchell_data.append(rand(10))
-    # end
-
-    # result = [x_data, audatex_data, ccc_data, mitchell_data]
-
-    # return result 
-    # puts "result is #{result}"
 
     start_date = (Time.now - 84.days).beginning_of_day 
 

@@ -7,17 +7,21 @@
 	fill: none;
 }
 
+.active-button {
+  background-color: #333333;
+  border-color: #333333;
+}
 
 </style>
 <div class="panel panel-default">
   	<div class="panel-heading">IP</div>
   	<div class="panel-body">
   		<div class="chart-edit-buttons">
-  			<a href="#" class="btn btn-info" id="All">All</a>
-  			<a href="#" class="btn btn-info" id="Week">Week</a>
-  			<a href="#" class="btn btn-info" id="Month">Month</a>
-  			<a href="#" class="btn btn-info" id="Quarter">Quarter</a>
-  			<a href="#" class="btn btn-info" id="Year">Year</a>
+  			<a class="btn btn-info active-button" id="All">All</a>
+  			<a class="btn btn-info" id="Week">Week</a>
+  			<a class="btn btn-info" id="Month">Month</a>
+  			<a class="btn btn-info" id="Quarter">Quarter</a>
+  			<a class="btn btn-info" id="Year">Year</a>
   		</div>
   		<br>
   		  <div id="chart"></div>
@@ -101,7 +105,7 @@ function updateFormatter(byMonth) {
 
 }
 
-updateFormatter(false);
+updateFormatter(true);
 
 
   // var chart = c3.generate({
@@ -138,54 +142,69 @@ var chart = c3.generate({
     }
 });
 
-    $("#All").click(function(event) {
-      updateFormatter(true);
-      event.preventDefault();
-            chart.load({
-      columns: <%=raw new_inquiries_all %>,
-      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+$("#All").click(function(event) {
+  updateFormatter(true);
+  event.preventDefault();
+        chart.load({
+  columns: <%=raw new_inquiries_all %>,
+  unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+});
+
+});
+
+$("#Week").click(function(event) {
+  event.preventDefault();
+  updateFormatter(false);
+  chart.load({
+    columns: <%=raw new_inquiries_week %>,
+    unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
-    
-    });
 
-    $("#Week").click(function(event) {
-      event.preventDefault();
-      updateFormatter(false);
-      chart.load({
-        columns: <%=raw new_inquiries_week %>,
-        unload: ['x', 'Audatex', 'Mitchell', 'CCC']
-      });
-    
-    });
+});
 
-    $("#Month").click(function(event) {
-      event.preventDefault();
-      updateFormatter(false);
-      chart.load({
-        columns: <%=raw new_inquiries_month %>,
-        unload: ['x', 'Audatex', 'Mitchell', 'CCC']
-      });
-    
-    });
-
-    $("#Quarter").click(function(event) {
-      updateFormatter(false);
-      event.preventDefault();
-      chart.load({
-        columns: <%=raw new_inquiries_quarter %>,
-        unload: ['x', 'Audatex', 'Mitchell', 'CCC']
-      });
-    });
-
-  $("#Year").click(function(event) {
-      updateFormatter(true);
-      event.preventDefault();
-            chart.load({
-      columns: <%=raw new_inquiries_year %>,
-      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+$("#Month").click(function(event) {
+  event.preventDefault();
+  updateFormatter(false);
+  chart.load({
+    columns: <%=raw new_inquiries_month %>,
+    unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
-    
-    });
+
+});
+
+$("#Quarter").click(function(event) {
+  updateFormatter(false);
+  event.preventDefault();
+  chart.load({
+    columns: <%=raw new_inquiries_quarter %>,
+    unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+  });
+});
+
+$("#Year").click(function(event) {
+  updateFormatter(true);
+  event.preventDefault();
+  chart.load({
+    columns: <%=raw new_inquiries_year %>,
+    unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+  });
+});
+
+var reset = function(){
+  console.log("test");
+
+}
+
+reset();
+
+$("a.btn-info").click(function(event) {
+  /* Act on the event */
+  $("a.btn-info").removeClass("active-button");
+  $(this).addClass("active-button");
+
+});
+
+
 
 
 </script>
