@@ -16,6 +16,26 @@
  stroke-width: 5px;
 }
 
+.concept {
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.concept .column {
+  width: 100px;
+  /*margin: auto;*/
+}
+
+.concept .subtitle {
+  font-size: 15px;
+}
+.database {
+  padding-left: 50px;
+
+}
+
 </style>
 <div class="panel panel-default">
   	<div class="panel-heading">IP</div>
@@ -33,63 +53,43 @@
   		  <div class="stats">
   		  	<div class="database">
   		  		<h4>Audatex</h4>
-  		  		<div class="content">
-              <div class="right-content">
-                  <br>
-                  <br>
-                  <br><%= percent_submitted("Audatex") %> % 
-                  <br>
+  		  		<div class="content concept audatex">
+              <div class="right-content column">
+                  <div class="pct_submitted"><%= percent_submitted("Audatex") %> %</div>
+                  <div class="subtitle">percent submitted</div>
               </div>
-              <div class="left-content">
-                  Not Submitted
-                  <br><%= num_unsubmitted("Audatex")%>
-                  <br>Submitted
-                  <br><%= num_submitted("Audatex") %>
-                  <br>Total
-                  <br><%= total("Audatex") %>
+              <div class="left-content column">
+                  <div class="num_unsubmitted"><%= num_unsubmitted("Audatex")%></div>
+                  <div class="subtitle">not submitted</div>
               </div>
   		  		</div>
 
   		  	</div>
   		  	<div class="database">
   		  		<h4>CCC</h4>
-  		  		<div class="content">
-              <div class="right-content">
-                  <%= num_submitted("CCC") %> 
-                  <br>of
-                  <br><%= Inquiry.where(database: "CCC").count %>
-                  <br>
-                  <br><%= percent_submitted("CCC") %> % 
+            <div class="content concept ccc">
+              <div class="right-content column">
+                  <div class="pct_submitted"><%= percent_submitted("CCC") %> %</div>
+                  <div class="subtitle">percent submitted</div>
               </div>
-              <div class="left-content">
-                  Not Submitted
-                  <br><%= num_unsubmitted("CCC")%>
-                  <br>Submitted
-                  <br><%= num_submitted("CCC") %>
-                  <br>Total
-                  <br><%= total("CCC") %>
+              <div class="left-content column">
+                  <div class="num_unsubmitted"><%= num_unsubmitted("CCC")%></div>
+                  <div class="subtitle">not submitted</div>
               </div>
-  		  		</div>
+            </div>
   		  	</div>
   		  	<div class="database">
   		  		<h4>Mitchell</h4>
-  		  		<div class="content">
-	  		  		<div class="right-content">
-	  		  				<%= num_submitted("Mitchell") %> 
-	  		  				<br>of
-                  <br><%= Inquiry.where(database: "Mitchell").count %>
-                  <br>
-	  		  				<br><%= percent_submitted("Mitchell") %> % 
-	  		  		</div>
-	  		  		<div class="left-content">
-	  		  				Not Submitted
-	  		  				<br><%= num_unsubmitted("Mitchell")%>
-	  		  				<br>Submitted
-	  		  				<br><%= num_submitted("Mitchell") %>
-	  		  				<br>Total
-	  		  				<br><%= total("Mitchell") %>
-	  		  		</div>
-  		  		</div>
+            <div class="content concept mitchell">
+              <div class="right-content column">
+                  <div class="pct_submitted"><%= percent_submitted("Mitchell") %> %</div>
+                  <div class="subtitle">percent submitted</div>
+              </div>
+              <div class="left-content column">
+                  <div class="num_unsubmitted"><%= num_unsubmitted("Mitchell")%></div>
+                  <div class="subtitle">not submitted</div>
+              </div>
+            </div>
   		  	</div>
   		  </div>
   	</div>
@@ -135,11 +135,16 @@ var chart = c3.generate({
 $("#All").click(function(event) {
   updateFormatter(true);
   event.preventDefault();
-        chart.load({
-  columns: <%=raw new_inquiries_all %>,
-  unload: ['x', 'Audatex', 'Mitchell', 'CCC']
-});
-
+  chart.load({
+    columns: <%=raw new_inquiries_all %>,
+    unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+  });
+  $(".audatex .pct_submitted").text("<%= percent_submitted("Audatex") %>%");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex")%>");
+  $(".ccc .pct_submitted").text("<%= percent_submitted("CCC") %>");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC")%>");
+  $(".mitchell .pct_submitted").text("<%= percent_submitted("Mitchell") %>%");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell")%>");
 });
 
 $("#Week").click(function(event) {
@@ -149,6 +154,12 @@ $("#Week").click(function(event) {
     columns: <%=raw new_inquiries_week %>,
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
+  $(".audatex .pct_submitted").text("<%= percent_submitted("Audatex", "Week") %>%");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Week")%>");
+  $(".ccc .pct_submitted").text("<%= percent_submitted("CCC", "Week") %>%");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Week")%>");
+  $(".mitchell .pct_submitted").text("<%= percent_submitted("Mitchell", "Week") %>%");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Week")%>");
 
 });
 
@@ -160,6 +171,13 @@ $("#Month").click(function(event) {
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
 
+  $(".audatex .pct_submitted").text("<%= percent_submitted("Audatex", "Month") %>%");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Month")%>");
+  $(".ccc .pct_submitted").text("<%= percent_submitted("CCC", "Month") %>%");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Month")%>");
+  $(".mitchell .pct_submitted").text("<%= percent_submitted("Mitchell", "Month") %>%");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Month")%>");
+
 });
 
 $("#Quarter").click(function(event) {
@@ -169,6 +187,12 @@ $("#Quarter").click(function(event) {
     columns: <%=raw new_inquiries_quarter %>,
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
+  $(".audatex .pct_submitted").text("<%= percent_submitted("Audatex", "Quarter") %>%");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Quarter")%>");
+  $(".ccc .pct_submitted").text("<%= percent_submitted("CCC", "Quarter") %>%");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Quarter")%>");
+  $(".mitchell .pct_submitted").text("<%= percent_submitted("Mitchell", "Quarter") %>%");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Quarter")%>");
 });
 
 $("#Year").click(function(event) {
@@ -178,6 +202,13 @@ $("#Year").click(function(event) {
     columns: <%=raw new_inquiries_year %>,
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
+
+  $(".audatex .pct_submitted").text("<%= percent_submitted("Audatex", "Year") %>%");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Year")%>");
+  $(".ccc .pct_submitted").text("<%= percent_submitted("CCC", "Year") %>%");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Year")%>");
+  $(".mitchell .pct_submitted").text("<%= percent_submitted("Mitchell", "Year") %>%");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Year")%>");
 });
 
 var reset = function(){

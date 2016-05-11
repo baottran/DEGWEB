@@ -377,18 +377,39 @@ module InquiriesHelper
     return inquiries
   end
 
-  def percent_submitted(db = nil)
-    all_inquiries = Inquiry.where(database: db).count
-    pct = num_submitted(db).to_f / all_inquiries
-    return (pct * 100).round(2)
+  def inquiries_for_timeframe(db = nil, timeframe = nil)
+    if timeframe.present? 
+        if timeframe === "Week"
+            start_date = (Time.now - 1.week).beginning_of_day 
+        elsif timeframe === "Month"
+            start_date = (Time.now - 1.month).beginning_of_day 
+        elsif timeframe === "Quarter"
+            start_date = (Time.now - 84.days).beginning_of_day 
+        elsif timeframe === "Year"
+            start_date = (Time.now - 1.year).beginning_of_day 
+        end
+        inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+    else
+        inquiries = Inquiry.where(database: db)
+    end
+
+    return inquiries
   end
 
-  def num_submitted(db = nil)
+  def percent_submitted(db = nil, timeframe = nil)
+
+    inquiries_count = inquiries_for_timeframe(db, timeframe).count
+
+    pct = num_submitted(db).to_f / inquiries_count
+    return (pct * 100).round(0)
+  end
+
+  def num_submitted(db = nil, timeframe = nil)
     return Inquiry.where(database: db).count - num_unsubmitted(db)
   end
 
-  def num_unsubmitted(db = nil)
-    return Inquiry.where(database: db).where(submit_to_ip_date: nil).count
+  def num_unsubmitted(db = nil, timeframe = nil)
+    return inquiries_for_timeframe(db, timeframe).where(submit_to_ip_date: nil).count
   end
 
   def total(db)
@@ -499,15 +520,6 @@ module InquiriesHelper
         start_date = Inquiry.all.order('created_at ASC').first.created_at
         current_date = Time.now 
         num_months_between = (current_date.year * 12 + current_date.month) - (start_date.year * 12 + start_date.month)
-
-        puts "========"
-
-        puts start_date
-        puts current_date
-        puts num_months_between
-
-        puts "$$$$$$$"
-
     
         # prepare columns
     
@@ -524,8 +536,6 @@ module InquiriesHelper
             ccc_dict[day_string] = 0
             mitchell_dict[day_string] = 0
         end
-
-        puts "year day_string is #{x_data}"
     
         # put data into group 
     
