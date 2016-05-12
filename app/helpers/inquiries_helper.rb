@@ -389,6 +389,7 @@ module InquiriesHelper
             start_date = (Time.now - 1.year).beginning_of_day 
         end
         inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+        inquiries = inquiries.where(database: db)
     else
         inquiries = Inquiry.where(database: db)
     end
@@ -405,7 +406,7 @@ module InquiriesHelper
   end
 
   def num_submitted(db = nil, timeframe = nil)
-    return Inquiry.where(database: db).count - num_unsubmitted(db)
+    return inquiries_for_timeframe(db, timeframe).count - num_unsubmitted(db, timeframe)
   end
 
   def num_unsubmitted(db = nil, timeframe = nil)
