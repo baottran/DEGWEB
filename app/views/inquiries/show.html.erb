@@ -34,7 +34,7 @@
         <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-success btn-lg">Resolve (IP Change)</a>
       <% end %>
       <%= link_to 'Delete Inquiry', inquiry_path(@inquiry),
-                  method: :destroy,
+                  method: :delete,
                   data: { confirm: 'Are you sure?' } %>
     </div>
   </div>
@@ -44,7 +44,7 @@
   <div class="panel-body">
     <div id="resolution-form">
       <%= render 'resolution_form' %>
-      
+
     </div>
     <div id="resolution-text">
       <p><%= @inquiry.resolution %></p>
