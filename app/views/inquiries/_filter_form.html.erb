@@ -49,6 +49,10 @@ div.filter-box {
         <%= label :status, "Status" %>
         <%= select_tag(:status, options_for_select(inquiry_statuses, params[:status]), class: 'form-control') %>
       </div>
+      <div class="filter-item">
+        <%= label :make, "Vehicle Make" %>
+        <%= select_tag(:make, options_for_select(car_makes, params[:make]), class: 'form-control') %>
+      </div>
     </div>
     <div class="filter-box">
       <div class="filter-item">

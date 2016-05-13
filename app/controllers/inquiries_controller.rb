@@ -14,7 +14,7 @@ class InquiriesController < ApplicationController
     inquiries = inquiries.where(status: params[:status]) if params[:status].present? 
     inquiries = inquiries.where(database: params[:database]) if params[:database].present?
     inquiries = inquiries.where(inquiry_type: params[:inquiry_type]) if params[:inquiry_type].present?
-    inquiries = inquiries.where(body_type: params[:body_type]) if params[:body_type].present?
+    inquiries = inquiries.where(make: params[:make]) if params[:make].present?
 
     if params[:filter_date_type].present? 
       inquiries = inquiries.where("#{params[:filter_date_type]} >= ?", params[:date_start]) if params[:date_start].present?

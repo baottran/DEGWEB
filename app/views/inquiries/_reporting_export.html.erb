@@ -70,8 +70,8 @@ $(function() {
         <%= select_tag(:status, options_for_select(inquiry_statuses, params[:status]), class: 'form-control') %>
       </div>
       <div class="filter-item">
-        <%= label :body_type, "Vehicle Body Type" %>
-        <%= select_tag(:body_type, options_for_select(car_body_types, params[:body_type]), class: 'form-control') %>
+        <%= label :make, "Vehicle Make" %>
+        <%= select_tag(:make, options_for_select(car_makes, params[:make]), class: 'form-control') %>
       </div>
     </div>
     <div class="filter-box">
