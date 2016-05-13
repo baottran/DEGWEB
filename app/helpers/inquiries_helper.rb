@@ -377,7 +377,7 @@ module InquiriesHelper
     return inquiries
   end
 
-  def inquiries_for_timeframe(db = nil, timeframe = nil)
+  def inquiries_for_timeframe(db = nil, timeframe = nil, end_date = nil)
     if timeframe.present? 
         if timeframe === "Week"
             start_date = (Time.now - 1.week).beginning_of_day 
@@ -388,10 +388,28 @@ module InquiriesHelper
         elsif timeframe === "Year"
             start_date = (Time.now - 1.year).beginning_of_day 
         end
-        inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+
+        if end_date.present?
+            inquiries = Inquiry.where(created_at: start_date..Date.parse(end_date).end_of_day)
+        else
+            inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+        end
+
         inquiries = inquiries.where(database: db)
     else
-        inquiries = Inquiry.where(database: db)
+
+        if end_date.present?
+            puts "====================="
+            puts start_date
+            puts end_date
+            puts Date.parse(end_date)
+
+            inquiries = Inquiry.where("created_at <= ?", Date.parse(end_date).end_of_day)
+        else
+            inquiries = Inquiry.where("created_at <= ?", Date.today.end_of_day)
+        end
+
+        inquiries = inquiries.where(database: db)
     end
 
     return inquiries
@@ -405,12 +423,12 @@ module InquiriesHelper
     return (pct * 100).round(0)
   end
 
-  def num_submitted(db = nil, timeframe = nil)
-    return inquiries_for_timeframe(db, timeframe).count - num_unsubmitted(db, timeframe)
+  def num_submitted(db = nil, timeframe = nil, end_date = nil)
+    return inquiries_for_timeframe(db, timeframe, end_date).count - num_unsubmitted(db, timeframe, end_date)
   end
 
-  def num_unsubmitted(db = nil, timeframe = nil)
-    return inquiries_for_timeframe(db, timeframe).where(submit_to_ip_date: nil).count
+  def num_unsubmitted(db = nil, timeframe = nil, end_date = nil)
+    return inquiries_for_timeframe(db, timeframe, end_date).where(submit_to_ip_date: nil).count
   end
 
   def total(db)
@@ -496,7 +514,6 @@ module InquiriesHelper
 
       if current_age <= two_weeks_in_secs
         age_set["< 2 weeks"] = age_set["< 2 weeks"] + 1
-        puts "inquiry is two weeks old"
       elsif current_age > two_weeks_in_secs && current_age <= four_weeks_in_secs
         age_set["2-4 weeks"] = age_set["2-4 weeks"] + 1
       else
@@ -517,69 +534,86 @@ module InquiriesHelper
   end
 
 
-  def new_inquiries_all
-        start_date = Inquiry.all.order('created_at ASC').first.created_at
+  def new_inquiries_all(chosen_end_date = nil)
+    start_date = Inquiry.all.order('created_at ASC').first.created_at
+
+    if chosen_end_date.present? 
+        current_date = Date.parse(chosen_end_date).end_of_day
+    else 
         current_date = Time.now 
-        num_months_between = (current_date.year * 12 + current_date.month) - (start_date.year * 12 + start_date.month)
-    
-        # prepare columns
-    
-        x_data = Array.new
-        audatex_dict = Hash.new 
-        ccc_dict = Hash.new 
-        mitchell_dict = Hash.new 
-    
-        for i in 0..num_months_between
-            day_value = start_date + i.month
-            day_string = day_value.strftime('%Y-%m')
-            x_data.append(day_string)
-            audatex_dict[day_string] = 0
-            ccc_dict[day_string] = 0
-            mitchell_dict[day_string] = 0
-        end
-    
-        # put data into group 
-    
+    end
+
+    num_months_between = (current_date.year * 12 + current_date.month) - (start_date.year * 12 + start_date.month)
+
+    # prepare columns
+
+    x_data = Array.new
+    audatex_dict = Hash.new 
+    ccc_dict = Hash.new 
+    mitchell_dict = Hash.new 
+
+    for i in 0..num_months_between
+        day_value = start_date + i.month
+        day_string = day_value.strftime('%Y-%m')
+        x_data.append(day_string)
+        audatex_dict[day_string] = 0
+        ccc_dict[day_string] = 0
+        mitchell_dict[day_string] = 0
+    end
+
+    # put data into group 
+
+    if chosen_end_date.present?
+        reporting_inquiries = Inquiry.where("created_at <= ?", Date.parse(chosen_end_date).end_of_day)
+    else 
         reporting_inquiries = Inquiry.all
+    end
     
-        reporting_inquiries.each do |inquiry|
-            created_at_date = inquiry.created_at.beginning_of_day
-            created_at_string = created_at_date.strftime('%Y-%m')
-            puts inquiry.id
-            case inquiry.database
-            when "CCC"
-                ccc_dict[created_at_string] += 1
-            when "Mitchell"
-                mitchell_dict[created_at_string] += 1
-            when "Audatex"
-                audatex_dict[created_at_string] += 1
-            else
-                puts "sorting error"
-            end
+
+    reporting_inquiries.each do |inquiry|
+        created_at_date = inquiry.created_at.beginning_of_day
+        created_at_string = created_at_date.strftime('%Y-%m')
+        puts inquiry.id
+        case inquiry.database
+        when "CCC"
+            ccc_dict[created_at_string] += 1
+        when "Mitchell"
+            mitchell_dict[created_at_string] += 1
+        when "Audatex"
+            audatex_dict[created_at_string] += 1
+        else
+            puts "sorting error"
         end
-    
-        audatex_data = Array.new 
-        ccc_data = Array.new 
-        mitchell_data = Array.new 
-    
-        x_data.each_with_index do |date, index|
-            x_data[index] = x_data[index] + "-01"
-            audatex_data.append(audatex_dict[date])
-            ccc_data.append(ccc_dict[date])
-            mitchell_data.append(mitchell_dict[date])
-        end
-    
-        x_data.unshift("x")
-        audatex_data.unshift("Audatex")
-        ccc_data.unshift("CCC")
-        mitchell_data.unshift("Mitchell")
-    
-        return [x_data, audatex_data, ccc_data, mitchell_data] 
+    end
+
+    audatex_data = Array.new 
+    ccc_data = Array.new 
+    mitchell_data = Array.new 
+
+    x_data.each_with_index do |date, index|
+        x_data[index] = x_data[index] + "-01"
+        audatex_data.append(audatex_dict[date])
+        ccc_data.append(ccc_dict[date])
+        mitchell_data.append(mitchell_dict[date])
+    end
+
+    x_data.unshift("x")
+    audatex_data.unshift("Audatex")
+    ccc_data.unshift("CCC")
+    mitchell_data.unshift("Mitchell")
+
+    return [x_data, audatex_data, ccc_data, mitchell_data] 
   end
 
-  def new_inquiries_week
+  def new_inquiries_week(chosen_end_date = nil)
 
-    start_date = (Time.now - 1.week).beginning_of_day 
+    if chosen_end_date.present?
+        end_date = Date.parse(chosen_end_date).end_of_day
+    else
+        end_date = Time.now 
+    end
+
+    start_date = (end_date - 1.week).beginning_of_day
 
     # prepare columns
 
@@ -599,7 +633,7 @@ module InquiriesHelper
 
     # put data into group 
 
-    week_inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+    week_inquiries = Inquiry.where(created_at: start_date..end_date)
 
     week_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
@@ -636,9 +670,16 @@ module InquiriesHelper
 
   ###################################
 
-  def new_inquiries_month
+  def new_inquiries_month(chosen_end_date = nil)
 
-    start_date = (Time.now - 1.month).beginning_of_day 
+    if chosen_end_date.present? 
+        end_date = Date.parse(chosen_end_date).end_of_day
+    else
+        end_date = Time.now
+    end
+
+
+    start_date = (end_date - 1.month).beginning_of_day 
 
     # prepare columns
 
@@ -658,7 +699,7 @@ module InquiriesHelper
 
     # put data into group 
 
-    week_inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+    week_inquiries = Inquiry.where(created_at: start_date..end_date)
 
     week_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
@@ -696,9 +737,15 @@ module InquiriesHelper
 
   #################################
 
-  def new_inquiries_quarter
+  def new_inquiries_quarter(chosen_end_date = nil)
 
-    start_date = (Time.now - 84.days).beginning_of_day 
+    if chosen_end_date.present? 
+        end_date = Date.parse(chosen_end_date)
+    else
+        end_date = Time.now
+    end
+
+    start_date = (end_date - 84.days).beginning_of_day 
 
     # prepare columns
     x_days = Array.new 
@@ -719,7 +766,7 @@ module InquiriesHelper
 
     # put data into group 
 
-    quarter_inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+    quarter_inquiries = Inquiry.where(created_at: start_date..end_date)
 
     quarter_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
@@ -731,8 +778,6 @@ module InquiriesHelper
                 when "CCC"
                     ccc_dict[created_at_string] += 1
                 when "Mitchell"
-                    puts "created at #{created_at_string}"
-                    puts "mitchell_dict = #{mitchell_dict}"
                     mitchell_dict[created_at_string] += 1
                 when "Audatex"
                     audatex_dict[created_at_string] += 1
@@ -764,9 +809,15 @@ module InquiriesHelper
 
   ###################################
 
-    def new_inquiries_year
+    def new_inquiries_year(chosen_end_date = nil)
 
-        start_date = (Time.now - 1.year).beginning_of_day 
+        if chosen_end_date.present?
+            end_date = Date.parse(chosen_end_date).end_of_day
+        else
+            end_date = Time.now
+        end
+
+        start_date = (end_date - 1.year).beginning_of_day 
     
         # prepare columns
     
@@ -783,21 +834,16 @@ module InquiriesHelper
             ccc_dict[day_string] = 0
             mitchell_dict[day_string] = 0
         end
-
-        puts "year day_string is #{x_data}"
     
         # put data into group 
     
-        year_inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+        year_inquiries = Inquiry.where(created_at: start_date..end_date)
     
         year_inquiries.each do |inquiry|
             created_at_date = inquiry.created_at.beginning_of_day
             created_at_string = created_at_date.strftime('%Y-%m')
             case inquiry.database
             when "CCC"
-                puts "error here"
-                puts "ccc_dict is #{ccc_dict}"
-                puts "created_at_string is #{created_at_string}"
                 ccc_dict[created_at_string] += 1
             when "Mitchell"
                 mitchell_dict[created_at_string] += 1

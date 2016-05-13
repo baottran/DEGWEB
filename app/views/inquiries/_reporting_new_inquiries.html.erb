@@ -33,13 +33,43 @@
 }
 .database {
   padding-left: 50px;
-
 }
 
+.date-form {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 250px;
+}
+
+.date-form .form-control {
+  display: flex;
+  width: 150px;
+  margin-right: 10px;
+}
+
+.chart-header {
+  display: flex;
+}
+
+.chart-edit-buttons {
+  margin-top: 35px;
+}
+
+#chart {
+  margin-top: 10px;
+  height: 200px;
+}
 </style>
+
+<script>
+$(function(){
+  $('#date_end').datepicker({ dateFormat: 'yy-mm-dd'});
+})
+</script>
 <div class="panel panel-default">
   	<div class="panel-heading">IP</div>
   	<div class="panel-body">
+      <div class="chart-header">
   		<div class="chart-edit-buttons">
   			<a class="btn btn-info active-button" id="All">All</a>
   			<a class="btn btn-info" id="Week">Week</a>
@@ -47,6 +77,16 @@
   			<a class="btn btn-info" id="Quarter">Quarter</a>
   			<a class="btn btn-info" id="Year">Year</a>
   		</div>
+          <%= form_tag reporting_path, :method => 'get', :class => 'date-form' do %>
+            <div class="date-field">
+            <%= label :date_end, "End Date" %>
+            <%= text_field_tag :date_end,params[:date_end], :class => 'form-control', :id => 'date_end' %>
+            </div>
+            <div class="date-submit">
+            <%= submit_tag "Apply", class: "btn btn-primary date-submit", html: { type: "submit", id: "date-submit"} %>
+            </div>
+          <% end %>
+      </div>
   		<br>
   		  <div id="chart"></div>
   		  <br>
@@ -55,11 +95,11 @@
   		  		<h4>Audatex</h4>
   		  		<div class="content concept audatex">
               <div class="right-content column">
-                  <div class="pct_submitted"><%= num_submitted("Audatex") %></div>
+                  <div class="pct_submitted"><%= num_submitted("Audatex", nil, params[:date_end]) %></div>
                   <div class="subtitle">inquiries submitted</div>
               </div>
               <div class="left-content column">
-                  <div class="num_unsubmitted"><%= num_unsubmitted("Audatex")%></div>
+                  <div class="num_unsubmitted"><%= num_unsubmitted("Audatex", nil, params[:date_end])%></div>
                   <div class="subtitle">inquiries not submitted</div>
               </div>
   		  		</div>
@@ -69,11 +109,11 @@
   		  		<h4>CCC</h4>
             <div class="content concept ccc">
               <div class="right-content column">
-                  <div class="pct_submitted"><%= num_submitted("CCC") %></div>
+                  <div class="pct_submitted"><%= num_submitted("CCC", nil, params[:date_end]) %></div>
                   <div class="subtitle">inquiries submitted</div>
               </div>
               <div class="left-content column">
-                  <div class="num_unsubmitted"><%= num_unsubmitted("CCC")%></div>
+                  <div class="num_unsubmitted"><%= num_unsubmitted("CCC", nil, params[:date_end])%></div>
                   <div class="subtitle">inquiries not submitted</div>
               </div>
             </div>
@@ -82,11 +122,11 @@
   		  		<h4>Mitchell</h4>
             <div class="content concept mitchell">
               <div class="right-content column">
-                  <div class="pct_submitted"><%= num_submitted("Mitchell") %></div>
+                  <div class="pct_submitted"><%= num_submitted("Mitchell", nil, params[:date_end]) %></div>
                   <div class="subtitle">inquiries submitted</div>
               </div>
               <div class="left-content column">
-                  <div class="num_unsubmitted"><%= num_unsubmitted("Mitchell")%></div>
+                  <div class="num_unsubmitted"><%= num_unsubmitted("Mitchell", nil, params[:date_end])%></div>
                   <div class="subtitle">inquiries not submitted</div>
               </div>
             </div>
@@ -114,7 +154,7 @@ var chart = c3.generate({
     bindto: '#chart',
     data: {
       x: 'x',
-      columns: <%=raw new_inquiries_all %>
+      columns: <%=raw new_inquiries_all(params[:date_end]) %>
     },
     axis: {
       x: {
@@ -136,30 +176,30 @@ $("#All").click(function(event) {
   updateFormatter(true);
   event.preventDefault();
   chart.load({
-    columns: <%=raw new_inquiries_all %>,
+    columns: <%=raw new_inquiries_all(params[:date_end]) %>,
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
-  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex") %>");
-  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex")%>");
-  $(".ccc .pct_submitted").text("<%= num_submitted("CCC") %>");
-  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC")%>");
-  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell") %>");
-  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell")%>");
+  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", nil, params[:date_end]) %>");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", nil, params[:date_end])%>");
+  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", nil, params[:date_end]) %>");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", nil, params[:date_end])%>");
+  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", nil, params[:date_end]) %>");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", nil, params[:date_end])%>");
 });
 
 $("#Week").click(function(event) {
   event.preventDefault();
   updateFormatter(false);
   chart.load({
-    columns: <%=raw new_inquiries_week %>,
+    columns: <%=raw new_inquiries_week(params[:date_end]) %>,
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
-  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", "Week") %>");
-  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Week")%>");
-  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", "Week") %>");
-  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", "Week")%>");
-  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", "Week") %>");
-  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", "Week")%>");
+  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", "Week", params[:date_end]) %>");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Week", params[:date_end])%>");
+  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", "Week", params[:date_end]) %>");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", "Week", params[:date_end])%>");
+  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", "Week", params[:date_end]) %>");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", "Week", params[:date_end])%>");
 
 });
 
@@ -167,16 +207,16 @@ $("#Month").click(function(event) {
   event.preventDefault();
   updateFormatter(false);
   chart.load({
-    columns: <%=raw new_inquiries_month %>,
+    columns: <%=raw new_inquiries_month(params[:date_end]) %>,
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
 
-  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", "Month") %>");
-  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Month")%>");
-  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", "Month") %>");
-  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", "Month")%>");
-  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", "Month") %>");
-  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", "Month")%>");
+  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", "Month", params[:date_end]) %>");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Month", params[:date_end])%>");
+  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", "Month", params[:date_end]) %>");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", "Month", params[:date_end])%>");
+  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", "Month", params[:date_end]) %>");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", "Month", params[:date_end])%>");
 
 });
 
@@ -184,33 +224,33 @@ $("#Quarter").click(function(event) {
   updateFormatter(false);
   event.preventDefault();
   chart.load({
-    columns: <%=raw new_inquiries_quarter %>,
+    columns: <%=raw new_inquiries_quarter(params[:date_end]) %>,
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
-  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", "Quarter") %>");
-  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Quarter")%>");
-  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", "Quarter") %>");
-  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", "Quarter")%>");
-  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", "Quarter") %>");
-  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", "Quarter")%>");
+  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", "Quarter", params[:date_end]) %>");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Quarter", params[:date_end])%>");
+  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", "Quarter", params[:date_end]) %>");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", "Quarter", params[:date_end])%>");
+  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", "Quarter", params[:date_end]) %>");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", "Quarter", params[:date_end])%>");
 });
 
 $("#Year").click(function(event) {
   updateFormatter(true);
   event.preventDefault();
   chart.load({
-    columns: <%=raw new_inquiries_year %>,
+    columns: <%=raw new_inquiries_year(params[:date_end]) %>,
     unload: ['x', 'Audatex', 'Mitchell', 'CCC']
   });
 
   console.log("<%= inquiries_for_timeframe("Audatex", "Year").first.id %>")
 
-  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", "Year") %>");
-  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Year")%>");
-  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", "Year") %>");
-  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", "Year")%>");
-  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", "Year") %>");
-  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", "Year")%>");
+  $(".audatex .pct_submitted").text("<%= num_submitted("Audatex", "Year", params[:date_end]) %>");
+  $(".audatex .num_unsubmitted").text("<%= num_unsubmitted("Audatex", "Year", params[:date_end])%>");
+  $(".ccc .pct_submitted").text("<%= num_submitted("CCC", "Year", params[:date_end]) %>");
+  $(".ccc .num_unsubmitted").text("<%= num_unsubmitted("CCC", "Year", params[:date_end])%>");
+  $(".mitchell .pct_submitted").text("<%= num_submitted("Mitchell", "Year", params[:date_end]) %>");
+  $(".mitchell .num_unsubmitted").text("<%= num_unsubmitted("Mitchell", "Year", params[:date_end])%>");
 });
 
 var reset = function(){
