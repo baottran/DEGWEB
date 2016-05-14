@@ -14,7 +14,7 @@ div.filter-box {
   margin-bottom: 10px;
 }
 .filter-submit {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 </style>
 
@@ -63,10 +63,10 @@ div.filter-box {
         <%= label :area_of_vehicle, "Area of Vehicle" %>
         <%= select_tag(:area_of_vehicle, options_for_select(vehicle_areas, params[:area_of_vehicle]), class: 'form-control') %>
       </div>
-          <div class="filter-submit">
-      <%= submit_tag "Filter", :name => nil, :class=> 'btn btn-primary' %>
-      <a href="/inquiries" class="btn btn-default" id="btn-clear">Clear Filters</a>
-    </div>
+      <div class="filter-submit">
+        <%= submit_tag "Filter", :name => nil, :class=> 'btn btn-primary' %>
+        <a href="/inquiries" class="btn btn-default" id="btn-clear">Clear Filters</a>
+      </div>
     </div>
     </div>
 
