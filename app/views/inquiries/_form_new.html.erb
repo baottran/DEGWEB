@@ -8,206 +8,206 @@
   <% end %>
 
 <div class="section-1">
-  <div class="form-heading col-lg-9">
+  <div class="form-heading col-xs-9">
     <h4>Contact Information</h4>
     <hr>
     <p class="form-key">
       <span class="form-required">* </span><i>required fields</i>
     </p>
   </div>
-  <div class="form-field col-lg-6">
+  <div class="form-field col-xs-6">
     <div class="form-horizontal">
       <div class="form-group">
-        <div class="col-lg-3 form-label">
+        <div class="col-xs-3 form-label">
           <span class="form-required">* </span><%= f.label :name, "Your Name" %>
         </div>
-        <div class="col-lg-9">
+        <div class="col-xs-9">
           <%= f.text_field :name, :class => "form-control required-input", :placeholder => "name" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :title, :class => "col-lg-3 form-label"  %>
-        <div class="col-lg-9">
+        <%= f.label :title, :class => "col-xs-3 form-label"  %>
+        <div class="col-xs-9">
           <%= f.text_field :title, :class => "form-control", :placeholder => "title"  %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :shop_name, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :shop_name, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.text_field :shop_name, :class => "form-control", :placeholder => "shop name" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :address_1, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :address_1, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.text_field :address_1, :class => "form-control", :placeholder => "street" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :address_2, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :address_2, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.text_field :address_2, :class => "form-control", :placeholder => "apartment" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :city, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :city, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.text_field :city, :class => "form-control", :placeholder => "city" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :state, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :state, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.select :state, options_for_select(us_states), {}, {class: 'form-control'} %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :zip_code, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :zip_code, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.text_field :zip_code, :class => "form-control", :placeholder => "zip" %>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-lg-3 form-label">
+        <div class="col-xs-3 form-label">
           <span class="form-required">* </span><%= f.label :phone %>
         </div>
-        <div class="col-lg-9">
+        <div class="col-xs-9">
           <%= f.text_field :phone, :class => "form-control required-input", :placeholder => "(415) 222-3333" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :fax, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :fax, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.text_field :fax, :class => "form-control", :placeholder => "fax" %>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-lg-3 form-label">
+        <div class="col-xs-3 form-label">
           <span class="form-required">* </span><%= f.label :email %>
         </div>
-        <div class="col-lg-9">
+        <div class="col-xs-9">
           <%= f.text_field :email, :class => "form-control required-input", :placeholder => "email@host.com" %>
         </div>
       </div>
     </div>
   </div>
   <br>
-  <div class="form-heading col-lg-9">
+  <div class="form-heading col-xs-9">
     <h4>Vehicle</h4>
     <hr>
   </div>
-  <div class="form-field col-lg-6">
+  <div class="form-field col-xs-6">
     <div class="form-horizontal">
       <div class="form-group">
-        <div class="col-lg-3 form-label">
+        <div class="col-xs-3 form-label">
           <span class="form-required">* </span><%= f.label :make %>
         </div>
-        <div class="col-lg-9">
+        <div class="col-xs-9">
           <%= f.select(:make, options_for_select(car_makes), {}, {class: 'form-control required-input'}) %>
           <%= f.text_field :make_other_field, :class => "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-lg-3 form-label">
+        <div class="col-xs-3 form-label">
           <span class="form-required">* </span><%= f.label :model %>
         </div>
-        <div class="col-lg-9">
+        <div class="col-xs-9">
           <%= f.text_field :model, :class => "form-control required-input", :placeholder => "model" %>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-lg-3 form-label">
+        <div class="col-xs-3 form-label">
           <span class="form-required">* </span><%= f.label :year %>
         </div>
-        <div class="col-lg-9">
+        <div class="col-xs-9">
           <%= f.select(:year, options_for_select(car_years), {}, {class: 'form-control required-input'}) %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :body_type, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :body_type, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.select(:body_type, options_for_select(car_body_types), {}, {class: 'form-control'}) %>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-lg-3 form-label">
+        <div class="col-xs-3 form-label">
           <span class="form-required">* </span><%= f.label :vin %>
         </div>
-        <div class="col-lg-9">
+        <div class="col-xs-9">
           <%= f.text_field :vin, :class => "form-control required-input", :placeholder => "vin num" %>
         </div>
       </div>
     </div>
   </div>
   <br>
-  <div class="form-heading col-lg-9">
+  <div class="form-heading col-xs-9">
     <h4>Database Inquiry</h4>
     <hr>
   </div>
-  <div class="form-field col-lg-6">
+  <div class="form-field col-xs-6">
     <div class="form-horizontal">
       <div class="form-group">
-        <%= f.label :database, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :database, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.select(:database, options_for_select(database_types), {}, {class: 'form-control'}) %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :client_id, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :client_id, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.text_field :client_id, :class => "form-control", :placeholder => "client" %>
           <i>If applicable</i>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :inquiry_type, :class => "col-lg-3 form-label" %>
-        <div class="col-lg-9">
+        <%= f.label :inquiry_type, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-9">
           <%= f.select(:inquiry_type, options_for_select(inquiry_types), {}, {class: 'form-control'}) %>
         </div>
       </div>
       <div class="missing-info-form">
         <div class="form-group">
           <div class="area-of-vehicle">
-            <%= f.label :missing_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
-            <div class="col-lg-9">
+            <%= f.label :missing_area_of_vehicle, 'Area of Vehicle', :class => "col-xs-3 form-label" %>
+            <div class="col-xs-9">
               <%= f.select(:missing_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
               <%= f.text_field :missing_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :missing_part_name, 'Missing Part Name', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :missing_part_name, 'Missing Part Name', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_field :missing_part_name, :class => "form-control", :placeholder => "part name" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :missing_part_description, 'Missing Part Description', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :missing_part_description, 'Missing Part Description', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :missing_part_description, :class => "form-control", :rows => "3", :placeholder => "part description" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :missing_oem_part_number, 'OEM Part Number', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :missing_oem_part_number, 'OEM Part Number', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_field :missing_oem_part_number, :class => "form-control", :placeholder => "oem part number" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :missing_information, 'Missing Information', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :missing_information, 'Missing Information', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :missing_information, :class => "form-control", rows: "3", :placeholder => "missing information" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :missing_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :missing_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :missing_issue_summary, :class => "form-control", rows: "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :missing_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :missing_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :missing_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
@@ -215,40 +215,40 @@
       <div class="parts-form">
         <div class="form-group">
           <div class="area-of-vehicle">
-            <%= f.label :parts_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
-            <div class="col-lg-9">
+            <%= f.label :parts_area_of_vehicle, 'Area of Vehicle', :class => "col-xs-3 form-label" %>
+            <div class="col-xs-9">
               <%= f.select(:parts_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
               <%= f.text_field :parts_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :parts_part_name, 'Part Name', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :parts_part_name, 'Part Name', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_field :parts_part_name, :class => "form-control", :placeholder => "part name" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :parts_part_description, 'Part Description', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :parts_part_description, 'Part Description', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :parts_part_description, :class => "form-control", :rows => "3", :placeholder => "part description" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :parts_oem_part_number, 'OEM Part Number', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :parts_oem_part_number, 'OEM Part Number', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_field :parts_oem_part_number, :class => "form-control", :placeholder => "oem part number" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :parts_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :parts_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :parts_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :parts_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :parts_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :parts_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
@@ -256,28 +256,28 @@
       <div class="procedure-page-form">
         <div class="form-group">
           <div class="area-of-vehicle">
-            <%= f.label :procedure_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
-            <div class="col-lg-9">
+            <%= f.label :procedure_area_of_vehicle, 'Area of Vehicle', :class => "col-xs-3 form-label" %>
+            <div class="col-xs-9">
               <%= f.select(:procedure_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
               <%= f.text_field :procedure_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :procedure_page_number, 'Page Number', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :procedure_page_number, 'Page Number', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:procedure_page_number, options_for_select(procedure_page_numbers), {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :procedure_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :procedure_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :procedure_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :procedure_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :procedure_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :procedure_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
@@ -285,65 +285,65 @@
       <div class="welded-panel-operations-form">
         <div class="form-group">
           <div class="area-of-vehicle">
-            <%= f.label :welded_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
-            <div class="col-lg-9">
+            <%= f.label :welded_area_of_vehicle, 'Area of Vehicle', :class => "col-xs-3 form-label" %>
+            <div class="col-xs-9">
               <%= f.select(:welded_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
               <%= f.text_field :welded_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_part_name, 'Part Name', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :welded_part_name, 'Part Name', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_field :welded_part_name, :class => "form-control", :placeholder => "part name" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_part_number, 'Part Number', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :welded_part_number, 'Part Number', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_field :welded_part_number, :class => "form-control", :placeholder => "part number" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :welded_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :welded_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_weld_spots, 'Number of Spot Welds', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :welded_weld_spots, 'Number of Spot Welds', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:welded_weld_spots, options_for_select(weld_spots), {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_materials_involved, 'Type of Materials Involved', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :welded_materials_involved, 'Type of Materials Involved', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:welded_materials_involved, options_for_select(weld_materials), {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :welded_procedure_steps, 'Individual Procedure Steps', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :welded_procedure_steps, :class => "form-control", :rows => "5", :placeholder => "procedure steps" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_skill_level, 'Technician Skill Level', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :welded_skill_level, 'Technician Skill Level', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:welded_skill_level, options_for_select(skill_levels), {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label 'Actual Time to Complete', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label 'Actual Time to Complete', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:welded_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
             <%= f.select(:welded_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :welded_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :welded_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
@@ -351,46 +351,46 @@
       <div class="non-welded-panel-operations-form">
         <div class="form-group">
           <div class="area-of-vehicle">
-            <%= f.label :non_welded_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
-            <div class="col-lg-9">
+            <%= f.label :non_welded_area_of_vehicle, 'Area of Vehicle', :class => "col-xs-3 form-label" %>
+            <div class="col-xs-9">
               <%= f.select(:non_welded_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
               <%= f.text_field :non_welded_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :non_welded_part_name, 'Part Name', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :non_welded_part_name, 'Part Name', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_field :non_welded_part_name, :class => "form-control", :placeholder => "part name" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :non_welded_part_number, 'Part Number', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :non_welded_part_number, 'Part Number', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_field :non_welded_part_number, :class => "form-control", :placeholder => "part number" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :non_welded_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :non_welded_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :non_welded_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :non_welded_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :non_welded_procedure_steps, 'Individual Procedure Steps', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :non_welded_procedure_steps, :class => "form-control", :rows => "5", :placeholder => "procedure steps" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :non_welded_skill_level, 'Technician Skill Level', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :non_welded_skill_level, 'Technician Skill Level', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:non_welded_skill_level, options_for_select(skill_levels), {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label 'Actual Time to Complete', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label 'Actual Time to Complete', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:non_welded_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
             <i>hours</i>
             <%= f.select(:non_welded_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
@@ -398,8 +398,8 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :non_welded_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :non_welded_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :non_welded_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
@@ -407,62 +407,62 @@
       <div class="refinished-operations-form">
         <div class="form-group">
           <div class="area-of-vehicle">
-            <%= f.label :refinished_area_of_vehicle, 'Area of Vehicle', :class => "col-lg-3 form-label" %>
-            <div class="col-lg-9">
+            <%= f.label :refinished_area_of_vehicle, 'Area of Vehicle', :class => "col-xs-3 form-label" %>
+            <div class="col-xs-9">
               <%= f.select(:refinished_area_of_vehicle, options_for_select(vehicle_areas), {}, {class: 'form-control'}) %>
               <%= f.text_field :refinished_area_of_vehicle_other_field, :class => "form-control" %>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :refinished_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :refinished_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :refinished_issue_summary, :class => "form-control", :rows => "10" , :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :refinished_special_labor, 'Special Labor or Material Considerations', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :refinished_special_labor, 'Special Labor or Material Considerations', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :refinished_special_labor, :class => "form-control", :placeholder => "considerations" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :refinished_surface_area, 'Estimated Part Surface Area', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :refinished_surface_area, 'Estimated Part Surface Area', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:refinished_surface_area, options_for_select(surface_area_in), {}, {class: 'form-control'}) %>
             <i>square inches</i>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :refinished_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :refinished_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :refinished_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
       </div>
       <div class="all-other-form">
         <div class="form-group">
-          <%= f.label :all_other_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :all_other_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :all_other_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :all_other_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :all_other_procedure_steps, 'Individual Procedure Steps', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :all_other_procedure_steps, :class => "form-control", :placeholder => "procedure steps" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label 'Actual Time to Complete', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label 'Actual Time to Complete', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.select(:all_other_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
             <%= f.select(:all_other_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :all_other_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
-          <div class="col-lg-9">
+          <%= f.label :all_other_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-9">
             <%= f.text_area :all_other_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
         </div>
@@ -470,10 +470,10 @@
     </div>
   </div>
 
-  <div class="col-lg-9">
+  <div class="col-xs-9">
 
     <br>
-    <div class="form-buttons-max col-lg-offset-2">
+    <div class="form-buttons-max col-xs-offset-2">
       <a href="#" class="btn btn-primary form-next-button">Next</a>
       <a href="/inquiries" class="btn btn-danger">Cancel</a>
     </div>
@@ -484,12 +484,12 @@
 
 
 
-  <div class="form-heading col-lg-9 add-files section-2">
+  <div class="form-heading col-xs-9 add-files section-2">
     <h4>Add Files</h4>
     <hr>
   </div>
-  <div class="form-field col-lg-6 add-files section-2">
-    
+  <div class="form-field col-xs-6 add-files section-2">
+
       <p>
       Images and documentation can speak volumes to support your inquiry. The DEG recommends attaching any available photos or documents to substantiate your concerns. Some of the Information Providers also require a copy of the estimate to process the inquiry. If an estimate is available, save it as a PDF and upload it here.
       </p>
@@ -517,10 +517,10 @@
       <br>1. Select the "add a file" button
       <br>2. This will open a separate window allowing you to access documents on your computer or cloud drive.
       <br>3. Find the desired document and double-click on it
-      <br>4. The filename will appear on the page above with a "remove" button to the right of it and "Add another file" and "Upload files" buttons below. 
+      <br>4. The filename will appear on the page above with a "remove" button to the right of it and "Add another file" and "Upload files" buttons below.
       <br>5. To remove a file, select the "remove" button located to the right of the filename; to add another file, select the "add another file" button, if you have no more files to add, select the "upload files" button.
       </p>
-    
+
   </div>
   <br>
 

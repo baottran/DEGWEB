@@ -38,8 +38,8 @@
 }
 
 .form-key {
-  float: left;
-  margin-top: -24px;
+  text-align: right;
+  margin-top: -12px;
 }
 
 .form-field,
@@ -85,9 +85,11 @@ label.error {
   margin-bottom: 10px;
 }
 
-.container {
-  width: 1000px;
+.container-non-responsive {
+  width: 970px;
   background-color: white;
+  margin: 0 auto;
+  min-height: 1823px;
 }
 
 .search {
@@ -134,14 +136,16 @@ label.error {
 
 .footer-bar {
   background-color: #f9f9f9;
-  margin-bottom: 0;
+  bottom: 0;
   border: none;
   min-height: 60px;
+  width: 100%;
 }
 
 .footer-content {
   margin-top: 10px;
   text-align: center;
+  padding-top: 15px;
 }
 
 .add-files {
