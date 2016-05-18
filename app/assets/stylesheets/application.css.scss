@@ -88,8 +88,12 @@ label.error {
 .container-non-responsive {
   width: 970px;
   background-color: white;
-  margin: 0 auto;
+  margin: auto;
   min-height: 1823px;
+}
+
+.container {
+  width: 1000px;
 }
 
 .search {
