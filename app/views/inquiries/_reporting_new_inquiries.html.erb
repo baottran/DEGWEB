@@ -38,7 +38,7 @@
 .date-form {
   display: flex;
   align-items: flex-end;
-  margin-left: 250px;
+  margin-left: 320px;
 }
 
 .date-form .form-control {
@@ -80,7 +80,7 @@ $(function(){
           <%= form_tag reporting_path, :method => 'get', :class => 'date-form' do %>
             <div class="date-field">
             <%= label :date_end, "End Date" %>
-            <%= text_field_tag :date_end,params[:date_end], :class => 'form-control', :id => 'date_end' %>
+            <%= text_field_tag :date_end,params[:date_end], :class => 'form-control', :id => 'date_end', :placeholder => "end date" %>
             </div>
             <div class="date-submit">
             <%= submit_tag "Apply", class: "btn btn-primary date-submit", html: { type: "submit", id: "date-submit"} %>

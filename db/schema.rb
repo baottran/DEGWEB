@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419043959) do
+ActiveRecord::Schema.define(version: 20160517021146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,22 @@ ActiveRecord::Schema.define(version: 20160419043959) do
     t.datetime "ip_response_received_date"
     t.datetime "resolution_date"
     t.string   "area_of_vehicle"
+    t.string   "attachment2_file_name"
+    t.string   "attachment2_content_type"
+    t.integer  "attachment2_file_size"
+    t.datetime "attachment2_updated_at"
+    t.string   "attachment3_file_name"
+    t.string   "attachment3_content_type"
+    t.integer  "attachment3_file_size"
+    t.datetime "attachment3_updated_at"
+    t.string   "attachment4_file_name"
+    t.string   "attachment4_content_type"
+    t.integer  "attachment4_file_size"
+    t.datetime "attachment4_updated_at"
+    t.string   "attachment5_file_name"
+    t.string   "attachment5_content_type"
+    t.integer  "attachment5_file_size"
+    t.datetime "attachment5_updated_at"
   end
 
   create_table "searches", force: :cascade do |t|

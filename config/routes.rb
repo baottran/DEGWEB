@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
 
 
-  root 'welcome#index'
+  root 'inquiries#index'
 
   resources :inquiries do
     resources :comments

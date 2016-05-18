@@ -495,9 +495,52 @@
       </p>
 
       <p>
-        <%= f.label :attachment, "Attachments" %>
-        <%= f.file_field :attachment %>
-        </p>
+        <div id="file_input_container">
+        <%= f.label :attachment, "Attachment 1" %>
+        <%= f.file_field :attachment%>
+        <a id="clear_attachment">Clear Attachment</a>
+        </div>
+      </p>
+      <p>
+        <div id="file_input_container">
+        <%= f.label :attachment2, "Attachment 2" %>
+        <%= f.file_field :attachment2 %>
+        <a id="clear_attachment">Clear Attachment</a>
+        </div>
+      </p>
+            <p>
+        <div id="file_input_container">
+        <%= f.label :attachment3, "Attachment 3" %>
+        <%= f.file_field :attachment3%>
+        <a id="clear_attachment">Clear Attachment</a>
+        </div>
+      </p>
+            <p>
+        <div id="file_input_container">
+        <%= f.label :attachment4, "Attachment 4" %>
+        <%= f.file_field :attachment4 %>
+        <a id="clear_attachment">Clear Attachment</a>
+        </div>
+      </p>
+
+      <p>
+        <div id="file_input_container">
+        <%= f.label :attachment5, "Attachment 5" %>
+        <%= f.file_field :attachment5 %>
+        <a id="clear_attachment">Clear Attachment</a>
+        </div>
+      </p>
+
+      <script>
+
+      $('#clear_attachment').click(function(event) {
+        /* Act on the event */
+        event.preventDefault();
+        console.log("hit it");
+        $('#file_input_container').html($('#file_input_container').html());
+      });
+
+      </script>
 
 
       <p>
