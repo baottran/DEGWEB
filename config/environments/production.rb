@@ -79,7 +79,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'degweb.herokuapp.com'}
 
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
 
   # config.action_mailer.delivery_method = :smtp
 # SMTP settings for gmail
@@ -92,15 +92,19 @@ Rails.application.configure do
   # :enable_starttls_auto => true
   # }
 
-  config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domaint: "gmail.com",
-    authentication: "plain",
-    enable_starttls_auto: true, 
-    user_name: ENV["gmail_username"],
-    password: ENV["gmail_password"]
-  }
+
+  config.action_mailer.delivery_method = :postmark
+  config.action_mailer.postmark_settings = { :api_token => ENV["POSTMARK_API_TOKEN"] }
+
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.gmail.com",
+  #   port: 587,
+  #   domaint: "gmail.com",
+  #   authentication: "plain",
+  #   enable_starttls_auto: true, 
+  #   user_name: ENV["gmail_username"],
+  #   password: ENV["gmail_password"]
+  # }
 
    # Amazon Web Services - S3
   config.paperclip_defaults = {

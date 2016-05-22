@@ -14,4 +14,15 @@ class InquiryMailer < ApplicationMailer
   	@inquiry = inquiry
   	mail to: 'degweb.info@gmail.com', cc: 'degweb.info@gmail.com'
   end
+
+
+  def test_message
+    mail(
+      :subject => 'Hello from Postmark',
+      :to  => 'bowtran@gmail.com',
+      :from => 'bao.tran@macys.com',
+      :html_body => '<strong>Hello</strong> dear Postmark user.',
+      :track_opens => 'true')
+  end
+
 end
