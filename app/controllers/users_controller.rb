@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   	if @user.save 
       log_in @user 
   		flash[:success] = "Welcome to the Sample App!"
-      # UserMailer.signup_confirmation(@user).deliver  
+      UserMailer.signup_confirmation(@user).deliver  
   		redirect_to inquiries_path
   	else
   		render 'new'
