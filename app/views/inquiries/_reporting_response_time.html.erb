@@ -1,0 +1,71 @@
+<div class="panel panel-default response-chart">
+	<div class="panel-heading">Response and Completion Time</div>
+	<div class="panel-body gauges">
+		<!-- <a href="#" class="btn btn-info">Time Response</a> -->
+  	<!-- <a href="#" class="btn btn-info">Life Cycle</a> -->
+<!-- 		<div id="audatex_gauge" class="gauge"></div>
+		<div id="ccc_gauge" class="gauge"></div>
+		<div id="mitchell_gauge" class="gauge"></div> 
+        -->
+        <!-- <br><br> -->
+<!--         <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Database Type</th>
+              <th>Time Response</th>
+              <th>Resolution Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Audatex</td>
+              <td><%= time_to_days(avg_response_time_for("Audatex"))%> Days</td>
+              <td><%= time_to_days(avg_completion_time_for("Audatex"))%> Days</td>  
+            </tr>
+            <tr>
+              <td>CCC</td>
+              <td><%= time_to_days(avg_response_time_for("CCC"))%> Days</td>
+              <td><%= time_to_days(avg_completion_time_for("CCC"))%> Days</td>
+            </tr>
+            <tr>
+              <td>Mitchell</td>
+              <td><%= time_to_days(avg_response_time_for("Mitchell"))%> Days</td>
+              <td><%= time_to_days(avg_completion_time_for("Mitchell"))%> Days</td>
+            </tr>
+          </tbody>
+          </table> -->
+          <div id="response_bar_chart"></div>
+	</div>
+    
+</div>
+
+<script>
+$(document).ready(function(){
+var response_chart = c3.generate({
+    bindto: "#response_bar_chart",
+    data: {
+        columns: [
+            ['Audatex', <%= time_to_days(avg_response_time_for("Audatex"))%>, <%= time_to_days(avg_completion_time_for("Audatex"))%>],
+            ['CCC', <%= time_to_days(avg_response_time_for("CCC"))%>, <%= time_to_days(avg_completion_time_for("CCC"))%>],
+            ['Mitchell', <%= time_to_days(avg_response_time_for("Mitchell"))%>, <%= time_to_days(avg_completion_time_for("Mitchell"))%>]
+        ],
+        type: 'bar'
+    },
+    axis: {
+      y: {
+        label: {
+           text: 'Days',
+           position: 'outer-center',
+        }
+      },
+      x: {
+        type: 'category',
+        categories: ['Avg Time Response','Avg Resolution Time']
+      }
+    },
+    color: {
+      pattern: ['#18bc9c', '#f39c12', '#e74c3c']
+    }
+  })
+});
+</script>
