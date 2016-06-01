@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517021146) do
+ActiveRecord::Schema.define(version: 20160601062145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 20160517021146) do
     t.string   "attachment5_content_type"
     t.integer  "attachment5_file_size"
     t.datetime "attachment5_updated_at"
+    t.boolean  "show_on_web"
   end
 
   create_table "searches", force: :cascade do |t|

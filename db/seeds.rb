@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'csv'
+require 'roo'
+
 User.create(name: "Bao Tran", email: "bowtran@gmail.com", password: "railstest", password_confirmation: "railstest")
 
 seed_vehicle_makes = [ ['Acura', 'Acura'],
@@ -130,7 +133,8 @@ seed_vehicles = [	['Toyota', 'Camry'],
 									['Ford', 'Mustang'],
 									['Chevrolet', 'Impala']]
 
-20.times do
+
+def create_faker_inquiry
 	seed_vehicle = seed_vehicles.sample
 	inquiry_type = seed_inquiry_options.sample[0]
 
@@ -209,4 +213,271 @@ seed_vehicles = [	['Toyota', 'Camry'],
 
 	@inquiry.save
 end
+
+# 20.times do
+# 	create_faker_inquiry
+# end
+
+puts "made it here"
+
+def self.import(file)
+  spreadsheet = open_spreadsheet(file)
+  header = spreadsheet.row(1)
+  (2..spreadsheet.last_row).each do |i|
+    row = Hash[[header, spreadsheet.row(i)].transpose]
+    product = find_by_id(row["id"]) || new
+    product.attributes = row.to_hash.slice(*accessible_attributes)
+    product.save!
+  end
+end
+
+def self.open_spreadsheet(file)
+  case File.extname(file.original_filename)
+  when ".csv" then Csv.new(file.path, nil, :ignore)
+  when ".xls" then Excel.new(file.path, nil, :ignore)
+  when ".xlsx" then Excelx.new(file.path, nil, :ignore)
+  else raise "Unknown file type: #{file.original_filename}"
+  end
+end
+
+# lib/assets/DEG_EXPORT-20160513.xlsx
+
+def read_excel
+	spreadsheet = Roo::Excelx.new("./lib/assets/DEG_EXPORT-20160513.xlsx")
+	puts "read the spreasheet"
+	header = spreadsheet.row(1)
+	count = 0 
+	database_categories = []
+	other_1 = []
+	other_2 = []
+	spreadsheet.each(	id: 'RFRID', 
+						name: 'Name', 
+						title: 'Title', 
+						shop: 'Shop', 
+						address: 'Address', 
+						phone: 'Phone',
+						fax: 'Fax',
+						email: 'Email',
+						year: 'Year',
+						make: 'Make',
+						model: 'Model',
+						body_style: 'BodyStyle',
+						body_style2: 'BodyStyle2',
+						vin: 'VIN',
+						db_category: 'DatabaseCategory',
+						database: 'Database',
+						product_serial: 'ProductSerial',
+						notes: 'Notes',
+						date_submitted: 'DateSubmitted',
+						date_submit_ip: 'DateSubmitIP',
+						db_inquiry_text: 'DatabaseInquiry',
+						db_files: 'DatabaseFiles',
+						admin_resolve_status: 'AdminResolveStatus',
+						admin_description_short: 'AdminDescription',
+						admin_description_full: 'AdminDescriptionFull',
+						admin_resolve_description_full: 'AdminResolveDescripFull',
+						admin_resolve_date: 'AdminResolveDate',
+						admin_show_on_web: 'AdminShowOnWeb',
+						admin_initial_time_ip: 'AdminInitialTimeIP',
+						admin_resolve_time: 'AdminResolveDateDescrip') do |i|
+
+		# database_categories.append(i[:admin_description_short])
+
+		# if i[:database] === ""
+		# 	other_1.append(i[:id])
+		# end
+
+		# if i[:database] === "Database"
+		# 	other_2.append(i[:id])
+		# end
+
+		# format = "%m/%d/%Y"
+
+		# retries = 0 
+
+		# begin 
+		# 	if i[:date_submitted] != "DateSubmitted"
+		# 		date = Date.strptime(i[:date_submitted], "%m/%d/%Y")
+		# 	end
+		# rescue ArgumentError
+		# 	p "date didnt work with id #{i[:id]} for date: #{i[:date_submitted]}"
+		# rescue TypeError
+		# 	p "try 1: date didnt work with id #{i[:id]} for date: #{i[:date_submitted]}"
+			 
+		# end
+
+		# begin 
+		# 	if i[:date_submitted] != "DateSubmitted"
+		# 		date = Date.strptime(i[:date_submitted], "%Y-%m-%d")
+		# 	end
+		# rescue ArgumentError
+		# 	p "date didnt work with id #{i[:id]} for date: #{i[:date_submitted]}"
+		# rescue TypeError
+		# 	p "try 2: date didnt work with id #{i[:id]} for date: #{i[:date_submitted]}"
+		# 	p i[:date_submitted]
+		# 	p "#{i[:date_submitted]}"
+		# 	p i[:date_submitted].instance_of? Date
+		# 	p i[:date_submitted].class 
+			 
+		# end
+
+		# if (i[:admin_resolve_date].instance_of? Date) === false 
+		# 	# p "try 1: date didnt work with id #{i[:id]} for date: #{i[:admin_resolve_date]}"
+		# 	if i[:admin_resolve_date] != nil 
+		# 		p i[:admin_resolve_date].class 
+		# 		p i[:admin_resolve_date]
+		# 	end
+		# else 
+		# 	database_categories.append(i[:admin_resolve_date])
+		# end
+
+
+		# database_categories.append(date)
+
+
+		create_inquiry_from_spreadsheet_data(i)
+
+
+	end
+
+
+
+end
+
+
+
+def create_inquiry_from_spreadsheet_data(i)
+
+		inquiry 			= Inquiry.new 
+		inquiry.name 		= i[:name]
+		inquiry.title 		= i[:title]
+		inquiry.shop_name 	= i[:shop]
+		inquiry.address_1 	= i[:address]
+		inquiry.phone 		= i[:phone]
+		inquiry.email 		= i[:email]
+		inquiry.fax 		= i[:fax]
+		inquiry.year		= i[:year]
+		inquiry.make		= i[:make] 
+		inquiry.model		= i[:model] 
+		inquiry.vin			= i[:vin] 
+
+		if i[:db_category] === "DatabaseCategory_Refinish"
+			inquiry.inquiry_type = 'Refinish Operations'
+			inquiry.refinished_area_of_vehicle = i[:admin_description_short]
+			inquiry.refinished_issue_summary = i[:db_inquiry_text]
+			inquiry.refinished_suggested_action = i[:admin_description_full]
+
+		elsif i[:db_category] === "DatabaseCategory_MissingInfo"
+			inquiry.inquiry_type = 'Missing Information'
+			inquiry.missing_area_of_vehicle = i[:admin_description_short]
+			inquiry.missing_issue_summary = i[:db_inquiry_text]
+			inquiry.missing_suggested_action = i[:admin_description_full]
+
+		elsif i[:db_category] === "DatabaseCategory_WeldedPanel"
+			inquiry.inquiry_type = 'Welded Panel Operations'
+			inquiry.welded_area_of_vehicle = i[:admin_description_short]
+			inquiry.welded_issue_summary = i[:db_inquiry_text]
+			inquiry.welded_suggested_action = i[:admin_description_full]
+
+		elsif i[:db_category] === "DatabaseCategory_MissingParts"
+			inquiry.inquiry_type = 'Parts'
+			inquiry.parts_area_of_vehicle = i[:admin_description_short]
+			inquiry.parts_issue_summary = i[:db_inquiry_text]
+			inquiry.parts_suggested_action = i[:admin_description_full]
+
+		elsif i[:db_category] === "DatabaseCategory_ProcedurePage"
+			inquiry.inquiry_type = 'Procedure Page Issue'
+			inquiry.procedure_area_of_vehicle = i[:admin_description_short]
+			inquiry.procedure_issue_summary = i[:db_inquiry_text]
+			inquiry.procedure_suggested_action = i[:admin_description_full]
+
+		elsif i[:db_category] === "DatabaseCategory_NonWeldedPart"
+			inquiry.inquiry_type = 'Non-Welded Panel Operations'
+			inquiry.non_welded_area_of_vehicle = i[:admin_description_short]
+			inquiry.non_welded_issue_summary = i[:db_inquiry_text]
+			inquiry.non_welded_suggested_action = i[:admin_description_full]
+
+		else 
+			inquiry.inquiry_type = 'All Other'
+			inquiry.all_other_suggested_action = i[:admin_description_short] + i[:admin_description_full]
+			inquiry.all_other_issue_summary = i[:db_inquiry_text]
+		end
+
+
+		if i[:database] === "Audatex" || i[:database] === "Mitchell"
+			inquiry.database = i[:database]
+		elsif i[:database] === "CCC/Motor"
+			inquiry.database = "CCC"
+		else
+			inquiry.database = "Undefined"
+		end 
+
+		if i[:body_style2] === "Van"
+			inquiry.body_type = "Van/Minivan"
+		elsif i[:body_style2] === "SUV"
+			inquiry.body_type = "SUV"
+		elsif i[:body_style2] === "Coupe"
+			inquiry.body_type = "Coupe"
+		elsif i[:body_style2] === "Sedan"
+			inquiry.body_type = "Sedan"
+		elsif i[:body_style2] === "Wagon"
+            inquiry.body_type = "Wagon"
+		elsif i[:body_style2] === "Truck"
+			inquiry.body_type = "Pickup"
+		elsif i[:body_style2] === "Hatchback"
+			inquiry.body_type = "Hatchback"
+		elsif i[:body_style2] === "Convertible"
+			inquiry.body_type = "Convertible"
+		else
+			inquiry.body_type = "Undefined"
+		end
+
+		if i[:admin_resolve_status] === "Recieved" || i[:admin_resolve_status] === "Received"
+			inquiry.status = "Received by DEG"
+		elsif i[:admin_resolve_status] === "No Change"
+			inquiry.status = "Resolved (No IP Change)"
+		elsif i[:admin_resolve_status] === "" || i[:admin_resolve_status] === "i" || i[:admin_resolve_status] === " " || i[:admin_resolve_status] === "AdminResolveStatus"
+			inquiry.status = "Undefined"
+		elsif i[:admin_resolve_status] === "Submitted"
+			inquiry.status = "Submitted to IP"
+		else 
+			inquiry.status = "Resolved (IP Change)"
+		end
+			 	
+
+
+		if (i[:date_submitted].instance_of? Date) 
+			inquiry.created_at = i[:date_submitted]
+		else 
+			p "couldn't set date for #{i[:id]}"
+		end
+
+		if (i[:date_submit_ip].instance_of? Date) 
+			inquiry.submit_to_ip_date = i[:date_submit_ip]
+		else 
+			p "couldn't set date for #{i[:id]}"
+		end
+
+		if (i[:admin_resolve_date].instance_of? Date)
+			inquiry.resolution_date = i[:admin_resolve_date]
+		else 
+			p "couldn't set resolution date for #{i[:id]}"
+		end
+
+		inquiry.resolution 	= i[:admin_resolve_description_full] 
+		inquiry.show_on_web = i[:admin_show_on_web] 				
+
+		inquiry.save 
+
+		comment = Comment.new 
+		comment.commenter = "Admin"
+		comment.body = "Some notes from previous database entry: Body Type: #{i[:body_style]}. Product Serial: #{i[:product_serial]}. Inquiry Text: #{i[:db_inquiry_text]}. Notes: #{i[:notes]}. Admin Initial Time IP: #{i[:admin_initial_time_ip]}. Admin Resolve Time: #{i[:admin_resolve_time]}"
+
+		inquiry.comments.push(comment)
+
+		comment.save 
+end
+
+
+read_excel
 

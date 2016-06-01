@@ -62,6 +62,8 @@ gem 'will_paginate', '~> 3.0.6'
 
 gem 'postmark-rails'
 
+gem 'roo'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do
