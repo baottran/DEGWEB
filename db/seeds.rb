@@ -449,19 +449,19 @@ def create_inquiry_from_spreadsheet_data(i)
 		if (i[:date_submitted].instance_of? Date) 
 			inquiry.created_at = i[:date_submitted]
 		else 
-			p "couldn't set date for #{i[:id]}"
+			# p "couldn't set date for #{i[:id]}"
 		end
 
 		if (i[:date_submit_ip].instance_of? Date) 
 			inquiry.submit_to_ip_date = i[:date_submit_ip]
 		else 
-			p "couldn't set date for #{i[:id]}"
+			# p "couldn't set date for #{i[:id]}"
 		end
 
 		if (i[:admin_resolve_date].instance_of? Date)
 			inquiry.resolution_date = i[:admin_resolve_date]
 		else 
-			p "couldn't set resolution date for #{i[:id]}"
+			# p "couldn't set resolution date for #{i[:id]}"
 		end
 
 		inquiry.resolution 	= i[:admin_resolve_description_full] 
