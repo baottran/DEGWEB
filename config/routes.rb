@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   patch 'inquiries/:id/edit_status' => 'inquiries#edit_status'
 
   resources :users
+  resources :blogs
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
