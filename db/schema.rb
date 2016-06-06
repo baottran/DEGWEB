@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601062145) do
+ActiveRecord::Schema.define(version: 20160606043600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,13 @@ ActiveRecord::Schema.define(version: 20160601062145) do
     t.datetime "attachment5_updated_at"
     t.boolean  "show_on_web"
   end
+
+  add_index "inquiries", ["created_at"], name: "index_inquiries_on_created_at", using: :btree
+  add_index "inquiries", ["id"], name: "index_inquiries_on_id", using: :btree
+  add_index "inquiries", ["resolution_date"], name: "index_inquiries_on_resolution_date", using: :btree
+  add_index "inquiries", ["status"], name: "index_inquiries_on_status", using: :btree
+  add_index "inquiries", ["submit_to_ip_date"], name: "index_inquiries_on_submit_to_ip_date", using: :btree
+  add_index "inquiries", ["year"], name: "index_inquiries_on_year", using: :btree
 
   create_table "searches", force: :cascade do |t|
     t.string   "description"
