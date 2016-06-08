@@ -329,8 +329,6 @@ module InquiriesHelper
 
   def resolution_time_for(inquiry)
 
-
-
     if inquiry.resolution_date!= nil 
         resolution_time = inquiry.resolution_date - inquiry.created_at
         return "#{resolution_time / 86400} days"
@@ -428,6 +426,14 @@ module InquiriesHelper
   end
 
   def num_unsubmitted(db = nil, timeframe = nil, end_date = nil)
+    # if end_date.present == false 
+    #     if db === "CCC"
+    #         if timeframe === 
+    #     elsif db === "Audatex"
+    #     else 
+    #     end
+    # end
+    
     return inquiries_for_timeframe(db, timeframe, end_date).where(submit_to_ip_date: nil).count
   end
 

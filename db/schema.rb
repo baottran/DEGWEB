@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606043600) do
+ActiveRecord::Schema.define(version: 20160608063108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,53 @@ ActiveRecord::Schema.define(version: 20160606043600) do
   add_index "inquiries", ["status"], name: "index_inquiries_on_status", using: :btree
   add_index "inquiries", ["submit_to_ip_date"], name: "index_inquiries_on_submit_to_ip_date", using: :btree
   add_index "inquiries", ["year"], name: "index_inquiries_on_year", using: :btree
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "all_count"
+    t.integer  "received_count"
+    t.integer  "submitted_count"
+    t.integer  "responded_count"
+    t.integer  "ip_change_count"
+    t.integer  "no_change_count"
+    t.decimal  "avg_response_ccc"
+    t.decimal  "avg_response_audatex"
+    t.decimal  "avg_response_mitchell"
+    t.decimal  "avg_completion_ccc"
+    t.decimal  "avg_completion_mitchell"
+    t.decimal  "avg_completion_audatex"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.decimal  "num_submitted_all_ccc"
+    t.decimal  "num_submitted_week_ccc"
+    t.decimal  "num_submitted_month_ccc"
+    t.decimal  "num_submitted_quarter_ccc"
+    t.decimal  "num_submitted_year_ccc"
+    t.decimal  "num_submitted_all_mitchell"
+    t.decimal  "num_submitted_week_mitchell"
+    t.decimal  "num_submitted_month_mitchell"
+    t.decimal  "num_submitted_quarter_mitchell"
+    t.decimal  "num_submitted_year_mitchell"
+    t.decimal  "num_submitted_all_audatex"
+    t.decimal  "num_submitted_week_audatex"
+    t.decimal  "num_submitted_month_audatex"
+    t.decimal  "num_submitted_quarter_audatex"
+    t.decimal  "num_submitted_year_audatex"
+    t.decimal  "num_unsubmitted_all_ccc"
+    t.decimal  "num_unsubmitted_week_ccc"
+    t.decimal  "num_unsubmitted_month_ccc"
+    t.decimal  "num_unsubmitted_quarter_ccc"
+    t.decimal  "num_unsubmitted_year_ccc"
+    t.decimal  "num_unsubmitted_all_mitchell"
+    t.decimal  "num_unsubmitted_week_mitchell"
+    t.decimal  "num_unsubmitted_month_mitchell"
+    t.decimal  "num_unsubmitted_quarter_mitchell"
+    t.decimal  "num_unsubmitted_year_mitchell"
+    t.decimal  "num_unsubmitted_all_audatex"
+    t.decimal  "num_unsubmitted_week_audatex"
+    t.decimal  "num_unsubmitted_month_audatex"
+    t.decimal  "num_unsubmitted_quarter_audatex"
+    t.decimal  "num_unsubmitted_year_audatex"
+  end
 
   create_table "searches", force: :cascade do |t|
     t.string   "description"

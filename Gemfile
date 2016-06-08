@@ -17,6 +17,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 gem 'bootswatch-rails'
 
+# page load 
+gem 'rack-mini-profiler'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -48,6 +51,7 @@ gem 'nokogiri'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#seed data
 gem 'faker'
 # gem 'faker-vehicle'
 
@@ -56,12 +60,16 @@ gem 'paperclip'
 # gem 'aws-sdk', '< 2.0'
 gem 'aws-sdk', '~>1.6'
 
+#environment keys
 gem 'figaro'
 
+#pagination
 gem 'will_paginate', '~> 3.0.6'
 
+# email
 gem 'postmark-rails'
 
+# read xslx spreadsheets for seed data
 gem 'roo'
 
 gem 'rails_12factor', group: :production

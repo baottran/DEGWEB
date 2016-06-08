@@ -6,7 +6,7 @@ class InquiriesController < ApplicationController
     @inquiries = find_inquiries
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
-    # InquiryMailer.test_message.deliver
+    @report = Report.find(1)
   end
 
   def find_inquiries()   
@@ -28,7 +28,6 @@ class InquiriesController < ApplicationController
       
     end
 
-
     # BUG: area of vehicle search doesn't work. For some reason it can search "Other" but not any other area of vehicle types
 
     # inquiries = inquiries.where(['area_of_vehicle LIKE ?', params[:area_of_vehicle]]) if params[:area_of_vehicle].present?
@@ -38,9 +37,12 @@ class InquiriesController < ApplicationController
   end 
 
   def find_unsubmitted_inquiries(db = nil)
-    inquiries = Inquiry.all
-    inquiries = inquiries.where(status: 'Received by DEG')
-    inquiries = inquiries.where(database: db) if db.present?
+    if db.present? 
+      inquiries = Inquiry.where(status: 'Received by DEG', database: db)
+    else
+      inquiries = Inquiry.where(status: 'Received by DEG')
+    end
+
     inquiries
   end
 
@@ -236,7 +238,7 @@ class InquiriesController < ApplicationController
     @unresolved_inquiries = @unresolved_inquiries.order(sort_column + " " + sort_direction)
     @unresolved_inquiries = @unresolved_inquiries.paginate(:per_page => 20, :page => params[:page])
 
-
+    @report = Report.find(1)
     @export = find_inquiries
 
     request.format = :csv if params[:csv]
