@@ -104,8 +104,6 @@ class Inquiry < ActiveRecord::Base
     
   end
 
-
-
   def s3_credentials
     {:bucket => ENV["aws_bucket"], :access_key_id => ENV["aws_access_key_id"], :secret_access_key => ENV["aws_secret_access_key"]}
   end
@@ -264,13 +262,23 @@ class Inquiry < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
-  CSV.generate(options) do |csv|
-    csv << column_names
-    all.each do |inquiry|
-      csv << inquiry.attributes.values_at(*column_names)
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |inquiry|
+        csv << inquiry.attributes.values_at(*column_names)
+      end
     end
   end
-end
+
+  def cached_status_count_for(status)
+    case status
+    when 'Received by DEG'
+    when 'Submitted to IP'
+    when 'IP Response Received'
+    when 'Resolved (IP Change)'
+    when 'Resolved (No IP change)'
+    end 
+  end
 
 
 

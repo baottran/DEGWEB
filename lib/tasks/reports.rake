@@ -28,16 +28,66 @@ namespace :reports do
   end
 
   task :generate => :environment do 
-  	r = Report.find(1)
-  	r.avg_response_ccc = time_to_days(avg_response_time_for("CCC"))
-  	r.avg_response_audatex = time_to_days(avg_response_time_for("Audatex"))
-  	r.avg_response_mitchell = time_to_days(avg_response_time_for("Mitchell"))
-  	r.avg_completion_ccc = time_to_days(avg_completion_time_for("CCC"))
-  	r.avg_completion_mitchell = time_to_days(avg_completion_time_for("Mitchell"))
-  	r.avg_completion_audatex = time_to_days(avg_completion_time_for("Audatex"))
-  	r.save 
+    get_response_and_completion_times
+    get_submitted_unsubmitted_counts
 
-  	p r 
+  	p Report.find(1)
+  end
+
+  # Generate Methods
+
+  def get_response_and_completion_times
+    r = Report.find(1)
+    r.avg_response_ccc = time_to_days(avg_response_time_for("CCC"))
+    r.avg_response_audatex = time_to_days(avg_response_time_for("Audatex"))
+    r.avg_response_mitchell = time_to_days(avg_response_time_for("Mitchell"))
+    r.avg_completion_ccc = time_to_days(avg_completion_time_for("CCC"))
+    r.avg_completion_mitchell = time_to_days(avg_completion_time_for("Mitchell"))
+    r.avg_completion_audatex = time_to_days(avg_completion_time_for("Audatex"))
+    r.save 
+  end
+
+  def get_submitted_unsubmitted_counts
+    r = Report.find(1)
+
+    r.num_submitted_all_ccc           = num_submitted("CCC", nil, nil)
+    r.num_submitted_week_ccc          = num_submitted("CCC", "Week", nil)               
+    r.num_submitted_month_ccc         = num_submitted("CCC", "Month", nil)
+    r.num_submitted_quarter_ccc       = num_submitted("CCC", "Quarter", nil)
+    r.num_submitted_year_ccc          = num_submitted("CCC", "Year", nil)
+            
+    r.num_submitted_all_mitchell      = num_submitted("Mitchell", nil, nil)         
+    r.num_submitted_week_mitchell     = num_submitted("Mitchell", "Week", nil)         
+    r.num_submitted_month_mitchell    = num_submitted("Mitchell", "Month", nil)       
+    r.num_submitted_quarter_mitchell  = num_submitted("Mitchell", "Quarter", nil)         
+    r.num_submitted_year_mitchell     = num_submitted("Mitchell", "Year", nil)     
+            
+    r.num_submitted_all_audatex       = num_submitted("Audatex", nil, nil)   
+    r.num_submitted_week_audatex      = num_submitted("Audatex", "Week", nil)         
+    r.num_submitted_month_audatex     = num_submitted("Audatex", "Month", nil)     
+    r.num_submitted_quarter_audatex   = num_submitted("Audatex", "Quarter", nil)       
+    r.num_submitted_year_audatex      = num_submitted("Audatex", "Year", nil)     
+
+    r.num_unsubmitted_all_ccc         = num_unsubmitted("CCC", nil, nil)
+    r.num_unsubmitted_week_ccc        = num_unsubmitted("CCC", "Week", nil)
+    r.num_unsubmitted_month_ccc       = num_unsubmitted("CCC", "Month", nil)
+    r.num_unsubmitted_quarter_ccc     = num_unsubmitted("CCC", "Quarter", nil)
+    r.num_unsubmitted_year_ccc        = num_unsubmitted("CCC", "Year", nil)
+
+    r.num_unsubmitted_all_mitchell      = num_unsubmitted("Mitchell", nil, nil)
+    r.num_unsubmitted_week_mitchell     = num_unsubmitted("Mitchell", "Week", nil)
+    r.num_unsubmitted_month_mitchell    = num_unsubmitted("Mitchell", "Month", nil)
+    r.num_unsubmitted_quarter_mitchell  = num_unsubmitted("Mitchell", "Quarter", nil)
+    r.num_unsubmitted_year_mitchell     = num_unsubmitted("Mitchell", "Year", nil)
+
+    r.num_unsubmitted_all_audatex       = num_unsubmitted("Audatex", nil, nil)
+    r.num_unsubmitted_week_audatex      = num_unsubmitted("Audatex", "Week", nil)
+    r.num_unsubmitted_month_audatex     = num_unsubmitted("Audatex", "Month", nil)
+    r.num_unsubmitted_quarter_audatex   = num_unsubmitted("Audatex", "Quarter", nil)
+    r.num_unsubmitted_year_audatex      = num_unsubmitted("Audatex", "Year", nil)
+
+    r.save 
+
   end
 
   # helper methods
@@ -84,43 +134,52 @@ namespace :reports do
     return (time / 86400).round(2)
   end
 
-  def get_submitted_unsubmitted_counts
-    r = Report.find(1)
-
-    r.num_submitted_all_ccc
-    r.num_submitted_week_ccc
-    r.num_submitted_month_ccc
-    r.num_submitted_quarter_ccc
-    r.num_submitted_year_ccc
-    r.num_submitted_all_mitchell
-    r.num_submitted_week_mitchell
-    r.num_submitted_month_mitchell
-    r.num_submitted_quarter_mitchell
-    r.num_submitted_year_mitchell
-    r.num_submitted_all_audatex
-    r.num_submitted_week_audatex
-    r.num_submitted_month_audatex
-    r.num_submitted_quarter_audatex
-    r.num_submitted_year_audatex
-    r.num_unsubmitted_all_ccc
-    r.num_unsubmitted_week_ccc
-    r.num_unsubmitted_month_ccc
-    r.num_unsubmitted_quarter_ccc
-    r.num_unsubmitted_year_ccc
-    r.num_unsubmitted_all_mitchell
-    r.num_unsubmitted_week_mitchell
-    r.num_unsubmitted_month_mitchell
-    r.num_unsubmitted_quarter_mitchell
-    r.num_unsubmitted_year_mitchell
-    r.num_unsubmitted_all_audatex
-    r.num_unsubmitted_week_audatex
-    r.num_unsubmitted_month_audatex
-    r.num_unsubmitted_quarter_audatex
-    r.num_unsubmitted_year_audatex
-
-    r.save 
-
+  def num_submitted(db = nil, timeframe = nil, end_date = nil)
+    return inquiries_for_timeframe(db, timeframe, end_date).count - num_unsubmitted(db, timeframe, end_date)
   end
+
+  def num_unsubmitted(db = nil, timeframe = nil, end_date = nil)    
+    return inquiries_for_timeframe(db, timeframe, end_date).where(submit_to_ip_date: nil).count
+  end
+
+  def inquiries_for_timeframe(db = nil, timeframe = nil, end_date = nil)
+    if timeframe.present? 
+        if timeframe === "Week"
+            start_date = (Time.now - 1.week).beginning_of_day 
+        elsif timeframe === "Month"
+            start_date = (Time.now - 1.month).beginning_of_day 
+        elsif timeframe === "Quarter"
+            start_date = (Time.now - 84.days).beginning_of_day 
+        elsif timeframe === "Year"
+            start_date = (Time.now - 1.year).beginning_of_day 
+        end
+
+        if end_date.present?
+            inquiries = Inquiry.where(created_at: start_date..Date.parse(end_date).end_of_day)
+        else
+            inquiries = Inquiry.where(created_at: start_date..Date.today.end_of_day)
+        end
+
+        inquiries = inquiries.where(database: db)
+    else
+
+        if end_date.present?
+            puts "====================="
+            puts start_date
+            puts end_date
+            puts Date.parse(end_date)
+
+            inquiries = Inquiry.where("created_at <= ?", Date.parse(end_date).end_of_day)
+        else
+            inquiries = Inquiry.where("created_at <= ?", Date.today.end_of_day)
+        end
+
+        inquiries = inquiries.where(database: db)
+    end
+
+    return inquiries
+  end
+
 
  
 end

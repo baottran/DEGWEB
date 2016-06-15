@@ -54,6 +54,7 @@
 <%= render partial: 'reporting_response_time' %>
 <br>
 
+<% cache(cache_key_for_inquiry_update) do %>
 <div class="donuts">
 <div class="panel panel-default donut-column donut-left">
 	<div class="panel-heading">Original vs Repeat</div>
@@ -212,3 +213,5 @@ var mitchell_completed = c3.generate({
 });
 
 </script>
+
+<% end %>

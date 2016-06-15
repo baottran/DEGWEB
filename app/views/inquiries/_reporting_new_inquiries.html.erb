@@ -61,6 +61,7 @@
 }
 </style>
 
+<% cache_unless(params[:date_end].present?, cache_key_for_inquiry_update) do %>
 <script>
 $(function(){
   $('#date_end').datepicker({ dateFormat: 'yy-mm-dd'});
@@ -138,8 +139,6 @@ $(function(){
 
 
 <script>
-
-<% new_inquiries_test %>
 
 var formatter;
 
@@ -277,6 +276,8 @@ $("a.btn-info").click(function(event) {
 
 
 </script>
+
+<% end %>
 
   <br>
   <div class="panel panel-default">

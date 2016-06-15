@@ -17,6 +17,8 @@
       </div>
     </div>
   </div>
+
+  <% if logged_in? %>
   <div class="panel panel-primary">
     <div class="panel-heading">Admin Actions</div>
     <div class="panel-body admin-actions">
@@ -37,8 +39,11 @@
                   method: :delete,
                   data: { confirm: 'Are you sure?' } %>
     </div>
+    <div class="show-on-web-button">
+      <checkbox></checkbox>Show on web
+    </div>
   </div>
-
+  <% end %>
 <div class="panel panel-primary">
   <div class="panel-heading">Inquiry Resolution</div>
   <div class="panel-body">
@@ -48,14 +53,18 @@
     </div>
     <div id="resolution-text">
       <p><%= @inquiry.resolution %></p>
-      <button type="submit" class="btn btn-primary btn-submit" id="resolution-edit">Edit</button>
+      <% if logged_in? %>
+        <button type="submit" class="btn btn-primary btn-submit" id="resolution-edit">Edit</button>
+      <% end %>
     </div>
   </div>
 </div>
 
 <div class="inquiry-show-form">
   <div class="inquiry-edit-button">
-    <button type="submit" class="btn btn-primary btn-submit" id="inquiry-edit">Edit</button>
+    <% if logged_in? %>
+      <button type="submit" class="btn btn-primary btn-submit" id="inquiry-edit">Edit</button>
+    <% end %>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading">Vehicle Information</div>

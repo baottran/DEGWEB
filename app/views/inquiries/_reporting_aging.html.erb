@@ -1,40 +1,43 @@
-<div class="panel panel-default">
-	<div class="panel-heading">Unresolved Inquiries by Age</div>
-	<div class="panel-body">
-		<div id="aging_chart"></div>
-	</div>
-</div>
+<% cache(cache_key_for_inquiry_update) do %>
+  <div class="panel panel-default">
+  	<div class="panel-heading">Unresolved Inquiries by Age</div>
+  	<div class="panel-body">
+  		<div id="aging_chart"></div>
+  	</div>
+  </div>
+
+  <script>
+
+  $(document).ready(function(){
+
+  var aging_chart = c3.generate({
+    bindto: "#aging_chart",
+    data: {
+        columns: <%= raw calculate_aging %>,
+        type: 'bar',
+        groups: [
+            ['< 2 weeks', '2-4 weeks', '4+ weeks']
+        ]
+    },
+    axis: {
+      x: {
+        type: 'category',
+        categories: ["Audatex", "CCC", "Mitchell"]
+      }
+    },
+    color: {
+      pattern: ['#18bc9c', '#f39c12', '#e74c3c']
+    }
+
+  });
+
+  });
+
+  </script>
+
+<% end %>
 
 
-
-<script>
-
-$(document).ready(function(){
-
-var aging_chart = c3.generate({
-	bindto: "#aging_chart",
-  data: {
-      columns: <%= raw calculate_aging %>,
-      type: 'bar',
-      groups: [
-          ['< 2 weeks', '2-4 weeks', '4+ weeks']
-      ]
-  },
-  axis: {
-		x: {
-		  type: 'category',
-		  categories: ["Audatex", "CCC", "Mitchell"]
-		}
-	},
-  color: {
-    pattern: ['#18bc9c', '#f39c12', '#e74c3c']
-  }
-
-});
-
-});
-
-</script>
 
 <div class="panel panel-default">
   	<div class="panel-heading">Unresolved Inquiries (<%= @unresolved_inquiries.count %>)</div>
