@@ -366,10 +366,6 @@ module InquiriesHelper
 
   def unsubmitted_inquiries(db = nil)
     inquiries = Inquiry.all
-    # inquiries = inquiries.where("submit_to_ip_date is NULL OR submit_to_ip_date = 'F'")
-    # inquiries = inquiries.where("resolution_date is NULL or resolution_date = 'F'")
-    # inquiries = inquiries.where("submit_to_ip_date IS NULL OR submit_to_ip_date = ?", false)
-    # inquiries = inquiries.where("resolution_date IS NULL OR resolution_date = ?", false)
     inquiries = inquiries.where(status: 'Received by DEG')
     inquiries = inquiries.where(database: db) if db.present?
     return inquiries
@@ -397,11 +393,6 @@ module InquiriesHelper
     else
 
         if end_date.present?
-            puts "====================="
-            puts start_date
-            puts end_date
-            puts Date.parse(end_date)
-
             inquiries = Inquiry.where("created_at <= ?", Date.parse(end_date).end_of_day)
         else
             inquiries = Inquiry.where("created_at <= ?", Date.today.end_of_day)
@@ -422,92 +413,11 @@ module InquiriesHelper
   end
 
   def num_submitted(db = nil, timeframe = nil, end_date = nil)
-
-    if end_date.present? 
-        return inquiries_for_timeframe(db, timeframe, end_date).count - num_unsubmitted(db, timeframe, end_date)
-    else 
-        if db === "CCC"
-            if timeframe === "Week"
-                return @report.num_submitted_week_ccc
-            elsif timeframe === "Month"
-                return @report.num_submitted_month_ccc
-            elsif timeframe === "Quarter"
-                return @report.num_submitted_quarter_ccc
-            elsif timeframe === "Year"
-                return @report.num_submitted_year_ccc
-            elsif timeframe === nil 
-                return @report.num_submitted_all_ccc
-            end        
-        elsif db === "Mitchell"
-            if timeframe === "Week"
-                return @report.num_submitted_week_mitchell
-            elsif timeframe === "Month"
-                return @report.num_submitted_month_mitchell
-            elsif timeframe === "Quarter"
-                return @report.num_submitted_quarter_mitchell
-            elsif timeframe === "Year"
-                return @report.num_submitted_year_mitchell
-            elsif timeframe === nil 
-                return @report.num_submitted_all_mitchell 
-            end        
-        elsif db === "Audatex"
-            if timeframe === "Week"
-                return @report.num_submitted_week_audatex
-            elsif timeframe === "Month"
-                return @report.num_submitted_month_audatex
-            elsif timeframe === "Quarter"
-                return @report.num_submitted_quarter_audatex
-            elsif timeframe === "Year"
-                return @report.num_submitted_year_audatex
-            elsif timeframe === nil 
-                return @report.num_submitted_all_audatex
-            end        
-        end
-    end
+    return inquiries_for_timeframe(db, timeframe, end_date).count - num_unsubmitted(db, timeframe, end_date)
   end
 
   def num_unsubmitted(db = nil, timeframe = nil, end_date = nil)
-    if end_date.present?
-        return inquiries_for_timeframe(db, timeframe, end_date).where(submit_to_ip_date: nil).count
-    else
-        if db === "CCC"
-            if timeframe === "Week"
-                return @report.num_unsubmitted_week_ccc
-            elsif timeframe === "Month"
-                return @report.num_unsubmitted_month_ccc
-            elsif timeframe === "Quarter"
-                return @report.num_unsubmitted_quarter_ccc
-            elsif timeframe === "Year"
-                return @report.num_unsubmitted_year_ccc
-            elsif timeframe === nil 
-                return @report.num_unsubmitted_all_ccc
-            end        
-        elsif db === "Mitchell"
-            if timeframe === "Week"
-                return @report.num_unsubmitted_week_mitchell
-            elsif timeframe === "Month"
-                return @report.num_unsubmitted_month_mitchell
-            elsif timeframe === "Quarter"
-                return @report.num_unsubmitted_quarter_mitchell
-            elsif timeframe === "Year"
-                return @report.num_unsubmitted_year_mitchell
-            elsif timeframe === nil 
-                return @report.num_unsubmitted_all_mitchell 
-            end        
-        elsif db === "Audatex"
-            if timeframe === "Week"
-                return @report.num_unsubmitted_week_audatex
-            elsif timeframe === "Month"
-                return @report.num_unsubmitted_month_audatex
-            elsif timeframe === "Quarter"
-                return @report.num_unsubmitted_quarter_audatex
-            elsif timeframe === "Year"
-                return @report.num_unsubmitted_year_audatex
-            elsif timeframe === nil 
-                return @report.num_unsubmitted_all_audatex
-            end        
-        end
-    end
+    return inquiries_for_timeframe(db, timeframe, end_date).where(submit_to_ip_date: nil).count
   end
 
   def total(db)
@@ -648,7 +558,6 @@ module InquiriesHelper
     reporting_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
         created_at_string = created_at_date.strftime('%Y-%m')
-        puts inquiry.id
         case inquiry.database
         when "CCC"
             ccc_dict[created_at_string] += 1
@@ -958,10 +867,5 @@ module InquiriesHelper
         max_updated_at = Inquiry.maximum(:updated_at).try(:utc).try(:to_s, :number)
         "Inquiry/last_update-#{max_updated_at}"
     end
-
-    def last_status_update 
-    end
-    
-
 
 end

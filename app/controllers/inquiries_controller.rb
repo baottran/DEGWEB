@@ -1,12 +1,15 @@
 class InquiriesController < ApplicationController
-
+  respond_to :html, :js
   helper_method :sort_column, :sort_direction
+  include InquiriesHelper
 
 	def index
     @inquiries = find_inquiries
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
     @report = Report.find(1)
+
+
   end
 
   def find_inquiries()   
@@ -251,6 +254,61 @@ class InquiriesController < ApplicationController
     # render 'reporting'
   end
 
+  def submitted_inquiries
+
+    new_report = Report.new 
+
+    new_report.num_submitted_all_ccc       = num_submitted("CCC", nil, params[:date_end])
+    new_report.num_submitted_year_ccc      = num_submitted("CCC", "Year", params[:date_end])
+    new_report.num_submitted_quarter_ccc   = num_submitted("CCC", "Quarter", params[:date_end])
+    new_report.num_submitted_month_ccc     = num_submitted("CCC", "Month", params[:date_end])
+    new_report.num_submitted_week_ccc      = num_submitted("CCC", "Week", params[:date_end])
+    new_report.num_unsubmitted_all_ccc     = num_unsubmitted("CCC", nil, params[:date_end])
+    new_report.num_unsubmitted_year_ccc    = num_unsubmitted("CCC", "Year", params[:date_end])
+    new_report.num_unsubmitted_quarter_ccc = num_unsubmitted("CCC", "Quarter", params[:date_end])
+    new_report.num_unsubmitted_month_ccc   = num_unsubmitted("CCC", "Month", params[:date_end])
+    new_report.num_unsubmitted_week_ccc    = num_unsubmitted("CCC", "Week", params[:date_end])
+
+    new_report.num_submitted_all_mitchell       = num_submitted("Mitchell", nil, params[:date_end])
+    new_report.num_submitted_year_mitchell      = num_submitted("Mitchell", "Year", params[:date_end])
+    new_report.num_submitted_quarter_mitchell   = num_submitted("Mitchell", "Quarter", params[:date_end])
+    new_report.num_submitted_month_mitchell     = num_submitted("Mitchell", "Month", params[:date_end])
+    new_report.num_submitted_week_mitchell      = num_submitted("Mitchell", "Week", params[:date_end])
+    new_report.num_unsubmitted_all_mitchell     = num_unsubmitted("Mitchell", nil, params[:date_end])
+    new_report.num_unsubmitted_year_mitchell    = num_unsubmitted("Mitchell", "Year", params[:date_end])
+    new_report.num_unsubmitted_quarter_mitchell = num_unsubmitted("Mitchell", "Quarter", params[:date_end])
+    new_report.num_unsubmitted_month_mitchell   = num_unsubmitted("Mitchell", "Month", params[:date_end])
+    new_report.num_unsubmitted_week_mitchell    = num_unsubmitted("Mitchell", "Week", params[:date_end])
+
+    new_report.num_submitted_all_audatex       = num_submitted("Audatex", nil, params[:date_end])
+    new_report.num_submitted_year_audatex      = num_submitted("Audatex", "Year", params[:date_end])
+    new_report.num_submitted_quarter_audatex   = num_submitted("Audatex", "Quarter", params[:date_end])
+    new_report.num_submitted_month_audatex     = num_submitted("Audatex", "Month", params[:date_end])
+    new_report.num_submitted_week_audatex      = num_submitted("Audatex", "Week", params[:date_end])
+    new_report.num_unsubmitted_all_audatex     = num_unsubmitted("Audatex", nil, params[:date_end])
+    new_report.num_unsubmitted_year_audatex    = num_unsubmitted("Audatex", "Year", params[:date_end])
+    new_report.num_unsubmitted_quarter_audatex = num_unsubmitted("Audatex", "Quarter", params[:date_end])
+    new_report.num_unsubmitted_month_audatex   = num_unsubmitted("Audatex", "Month", params[:date_end])
+    new_report.num_unsubmitted_week_audatex    = num_unsubmitted("Audatex", "Week", params[:date_end])
+    
+    render :json => new_report
+
+  end
+
+  def submitted_inquiries_datasets
+    all_dataset     = new_inquiries_all(params[:date_end])
+    quarter_dataset = new_inquiries_quarter(params[:date_end])
+    month_dataset   = new_inquiries_month(params[:date_end])
+    year_dataset    = new_inquiries_year(params[:date_end])
+    week_dataset    = new_inquiries_week(params[:date_end])
+
+    chart_data = { :all => all_dataset, 
+                    :quarter => quarter_dataset,
+                    :year => year_dataset,
+                    :month => month_dataset,
+                    :week => week_dataset }
+    render :json => chart_data 
+  end
 
 
 	private

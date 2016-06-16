@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   get 'reporting' => 'inquiries#reporting'
 
+  # reporting json paths
+  get 'reporting/submitted_inquiries' => 'inquiries#submitted_inquiries'
+  get 'reporting/submitted_inquiries_datasets' => 'inquiries#submitted_inquiries_datasets'
+
   patch 'inquiries/:id/resolve' => 'inquiries#resolve'
   patch 'inquiries/:id/customer' => 'inquiries#edit_customer'
   patch 'inquiries/:id/vehicle' => 'inquiries#edit_vehicle'

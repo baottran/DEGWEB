@@ -1,0 +1,377 @@
+<% cache_unless(params[:date_end].present?, cache_key_for_inquiry_update) do %>
+<script>
+$(function(){
+  $('#date_end').datepicker({ dateFormat: 'yy-mm-dd'});
+})
+
+console.log("LOADING PARTIAL");
+</script>
+
+<div class="panel panel-default">
+  	<div class="panel-heading">Submitted Inquiries</div>
+  	<div class="panel-body">
+      <div class="panel-chart" hidden="true">
+      <div class="chart-header">
+  		<div class="chart-edit-buttons">
+  			<a class="btn btn-info active-button" id="All">All</a>
+  			<a class="btn btn-info" id="Week">Week</a>
+  			<a class="btn btn-info" id="Month">Month</a>
+  			<a class="btn btn-info" id="Quarter">Quarter</a>
+  			<a class="btn btn-info" id="Year">Year</a>
+  		</div>
+          <%= form_tag reporting_path, :method => 'get', :class => 'date-form' do %>
+            <div class="date-field">
+            <%= label :date_end, "End Date" %>
+            <%= text_field_tag :date_end, "", :class => 'form-control date-end', :id => 'date_end', :placeholder => "end date" %>
+            </div>
+            <div class="date-submit">
+            <%= submit_tag "Apply", class: "btn btn-primary date-submit", html: { type: "submit", id: "date-submit"} %>
+            </div>
+          <% end %>
+      </div>
+  		<br>
+  		  <div id="chart"></div>
+  		  <br>
+  		  <div class="stats">
+  		  	<div class="database">
+  		  		<h4>Audatex</h4>
+  		  		<div class="content concept audatex">
+              <div class="right-content column">
+                  <div class="pct_submitted"></div>
+                  <div class="subtitle">inquiries submitted</div>
+              </div>
+              <div class="left-content column">
+                  <div class="num_unsubmitted"></div>
+                  <div class="subtitle">inquiries not submitted</div>
+              </div>
+  		  		</div>
+
+  		  	</div>
+  		  	<div class="database">
+  		  		<h4>CCC</h4>
+            <div class="content concept ccc">
+              <div class="right-content column">
+                  <div class="pct_submitted"></div>
+                  <div class="subtitle">inquiries submitted</div>
+              </div>
+              <div class="left-content column">
+                  <div class="num_unsubmitted"></div>
+                  <div class="subtitle">inquiries not submitted</div>
+              </div>
+            </div>
+  		  	</div>
+  		  	<div class="database">
+  		  		<h4>Mitchell</h4>
+            <div class="content concept mitchell">
+              <div class="right-content column">
+                  <div class="pct_submitted"></div>
+                  <div class="subtitle">inquiries submitted</div>
+              </div>
+              <div class="left-content column">
+                  <div class="num_unsubmitted"></div>
+                  <div class="subtitle">inquiries not submitted</div>
+              </div>
+            </div>
+  		  	</div>
+  		  </div>
+        </div> 
+        <div class="loading_placeholder">
+          <%= render partial: "loading_placeholder" %>
+        </div>
+  	</div>
+  </div>
+
+
+
+<script>
+
+var formatter;
+
+function updateFormatter(byMonth) {
+  formatter = d3.time.format(byMonth ? '%Y-%m' : '%Y-%m-%d')
+
+}
+
+var num_submitted_all_ccc,
+    num_submitted_year_ccc,
+    num_submitted_quarter_ccc,
+    num_submitted_month_ccc,
+    num_submitted_week_ccc,
+    num_unsubmitted_all_ccc,
+    num_unsubmitted_year_ccc,
+    num_unsubmitted_quarter_ccc,
+    num_unsubmitted_month_ccc,
+    num_unsubmitted_week_ccc;
+    
+var num_submitted_all_audatex,
+    num_submitted_year_audatex,
+    num_submitted_quarter_audatex,
+    num_submitted_month_audatex,
+    num_submitted_week_audatex,
+    num_unsubmitted_all_audatex,
+    num_unsubmitted_year_audatex,
+    num_unsubmitted_quarter_audatex,
+    num_unsubmitted_month_audatex,
+    num_unsubmitted_week_audatex;
+
+var num_submitted_all_mitchell,
+    num_submitted_year_mitchell,
+    num_submitted_quarter_mitchell,
+    num_submitted_month_mitchell,
+    num_submitted_week_mitchell,
+    num_unsubmitted_all_mitchell,
+    num_unsubmitted_year_mitchell,
+    num_unsubmitted_quarter_mitchell,
+    num_unsubmitted_month_mitchell,
+    num_unsubmitted_week_mitchell;
+
+var inquiries_dataset_all,
+    inquiries_dataset_year,
+    inquiries_dataset_quarter,
+    inquiries_dataset_month,
+    inquiries_dataset_week;
+
+
+updateFormatter(true);
+
+function setGraph(){
+  console.log("setting graph called");
+  $(".loading_placeholder").hide()
+  $(".panel-chart").show();
+
+  var chart = c3.generate({
+      bindto: '#chart',
+      data: {
+        x: 'x',
+        columns: inquiries_dataset_all
+      },
+      axis: {
+        x: {
+          type: 'timeseries',
+          tick: {
+              format: function (x) { // x comes in as a time string.
+                return formatter(x);
+              }
+          }
+        },
+        y: {
+          label: {
+            text: "Inquiries Submitted",
+            position: 'outer-center'
+          }
+        }
+      },
+    color: {
+      pattern: ['#18bc9c', '#f39c12', '#e74c3c']
+    }
+
+  });
+
+  $(".audatex .pct_submitted").text(num_submitted_all_audatex);
+  $(".audatex .num_unsubmitted").text(num_unsubmitted_all_audatex);
+  $(".ccc .pct_submitted").text(num_submitted_all_ccc);
+  $(".ccc .num_unsubmitted").text(num_unsubmitted_all_ccc);
+  $(".mitchell .pct_submitted").text(num_submitted_all_mitchell);
+  $(".mitchell .num_unsubmitted").text(num_unsubmitted_all_mitchell);
+
+  $("#All").click(function(event) {
+    updateFormatter(true);
+    event.preventDefault();
+    chart.load({
+      columns: inquiries_dataset_all,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+    });
+    $(".audatex .pct_submitted").text(num_submitted_all_audatex);
+    $(".audatex .num_unsubmitted").text(num_unsubmitted_all_audatex);
+    $(".ccc .pct_submitted").text(num_submitted_all_ccc);
+    $(".ccc .num_unsubmitted").text(num_unsubmitted_all_ccc);
+    $(".mitchell .pct_submitted").text(num_submitted_all_mitchell);
+    $(".mitchell .num_unsubmitted").text(num_unsubmitted_all_mitchell);
+  });
+
+  $("#Week").click(function(event) {
+    event.preventDefault();
+    updateFormatter(false);
+    chart.load({
+      columns: inquiries_dataset_week,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+    });
+    $(".audatex .pct_submitted").text(num_submitted_week_audatex);
+    $(".audatex .num_unsubmitted").text(num_unsubmitted_week_audatex);
+    $(".ccc .pct_submitted").text(num_submitted_week_ccc);
+    $(".ccc .num_unsubmitted").text(num_unsubmitted_week_ccc);
+    $(".mitchell .pct_submitted").text(num_submitted_week_mitchell);
+    $(".mitchell .num_unsubmitted").text(num_unsubmitted_week_mitchell);
+
+  });
+
+  $("#Month").click(function(event) {
+    event.preventDefault();
+    updateFormatter(false);
+    chart.load({
+      columns: inquiries_dataset_month,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+    });
+
+    $(".audatex .pct_submitted").text(num_submitted_month_audatex);
+    $(".audatex .num_unsubmitted").text(num_unsubmitted_month_audatex);
+    $(".ccc .pct_submitted").text(num_submitted_month_ccc);
+    $(".ccc .num_unsubmitted").text(num_unsubmitted_month_ccc);
+    $(".mitchell .pct_submitted").text(num_submitted_month_mitchell);
+    $(".mitchell .num_unsubmitted").text(num_unsubmitted_month_mitchell);
+
+  });
+
+  $("#Quarter").click(function(event) {
+    updateFormatter(false);
+    event.preventDefault();
+    chart.load({
+      columns: inquiries_dataset_quarter,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+    });
+    $(".audatex .pct_submitted").text(num_submitted_quarter_audatex);
+    $(".audatex .num_unsubmitted").text(num_unsubmitted_quarter_audatex);
+    $(".ccc .pct_submitted").text(num_submitted_quarter_ccc);
+    $(".ccc .num_unsubmitted").text(num_unsubmitted_quarter_ccc);
+    $(".mitchell .pct_submitted").text(num_submitted_quarter_mitchell);
+    $(".mitchell .num_unsubmitted").text(num_unsubmitted_quarter_mitchell);
+  });
+
+  $("#Year").click(function(event) {
+    updateFormatter(true);
+    event.preventDefault();
+    chart.load({
+      columns: inquiries_dataset_year,
+      unload: ['x', 'Audatex', 'Mitchell', 'CCC']
+    });
+
+    console.log("<%= inquiries_for_timeframe("Audatex", "Year").first.id %>")
+
+    $(".audatex .pct_submitted").text(num_submitted_year_audatex);
+    $(".audatex .num_unsubmitted").text(num_unsubmitted_year_audatex);
+    $(".ccc .pct_submitted").text(num_submitted_year_ccc);
+    $(".ccc .num_unsubmitted").text(num_unsubmitted_year_ccc);
+    $(".mitchell .pct_submitted").text(num_submitted_year_mitchell);
+    $(".mitchell .num_unsubmitted").text(num_unsubmitted_year_mitchell);
+  });
+}
+
+console.log("loading ajax");
+
+// change active class
+$("a.btn-info").click(function(event) {
+  $("a.btn-info").removeClass("active-button");
+  $(this).addClass("active-button");
+});
+
+//get count data 
+
+function generateEndPoint(endPointURL){
+  var endDate = $(".date-end").val();
+
+  if(endDate != ""){
+    endPointURL = endPointURL + "?date_end=" + endDate
+    console.log("found an end date");
+  } else {
+    console.log("no end date");
+  }
+  return endPointURL
+}
+
+function getSubmittedCounts(endDate){
+  console.log("date end is");
+
+  var endPointURL = generateEndPoint("/reporting/submitted_inquiries")
+
+  console.log(endPointURL);
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: endPointURL,
+    success: function(data){
+      num_submitted_all_ccc         = data.num_submitted_all_ccc;
+      num_submitted_year_ccc        = data.num_submitted_year_ccc;
+      num_submitted_quarter_ccc     = data.num_submitted_quarter_ccc;
+      num_submitted_month_ccc       = data.num_submitted_month_ccc;
+      num_submitted_week_ccc        = data.num_submitted_week_ccc;
+      num_unsubmitted_all_ccc       = data.num_unsubmitted_all_ccc;
+      num_unsubmitted_year_ccc      = data.num_unsubmitted_year_ccc;
+      num_unsubmitted_quarter_ccc   = data.num_unsubmitted_quarter_ccc;
+      num_unsubmitted_month_ccc     = data.num_unsubmitted_month_ccc;
+      num_unsubmitted_week_ccc      = data.num_unsubmitted_week_ccc;
+
+      num_submitted_all_audatex         = data.num_submitted_all_audatex;
+      num_submitted_year_audatex        = data.num_submitted_year_audatex;
+      num_submitted_quarter_audatex     = data.num_submitted_quarter_audatex;
+      num_submitted_month_audatex       = data.num_submitted_month_audatex;
+      num_submitted_week_audatex        = data.num_submitted_week_audatex;
+      num_unsubmitted_all_audatex       = data.num_unsubmitted_all_audatex;
+      num_unsubmitted_year_audatex      = data.num_unsubmitted_year_audatex;
+      num_unsubmitted_quarter_audatex   = data.num_unsubmitted_quarter_audatex;
+      num_unsubmitted_month_audatex     = data.num_unsubmitted_month_audatex;
+      num_unsubmitted_week_audatex      = data.num_unsubmitted_week_audatex;
+
+      num_submitted_all_mitchell         = data.num_submitted_all_mitchell;
+      num_submitted_year_mitchell        = data.num_submitted_year_mitchell;
+      num_submitted_quarter_mitchell     = data.num_submitted_quarter_mitchell;
+      num_submitted_month_mitchell       = data.num_submitted_month_mitchell;
+      num_submitted_week_mitchell        = data.num_submitted_week_mitchell;
+      num_unsubmitted_all_mitchell       = data.num_unsubmitted_all_mitchell;
+      num_unsubmitted_year_mitchell      = data.num_unsubmitted_year_mitchell;
+      num_unsubmitted_quarter_mitchell   = data.num_unsubmitted_quarter_mitchell;
+      num_unsubmitted_month_mitchell     = data.num_unsubmitted_month_mitchell;
+      num_unsubmitted_week_mitchell      = data.num_unsubmitted_week_mitchell;
+    },
+    error: function(data){
+      console.log("error getting submitted counts");
+    }
+  })
+}
+
+// get graph data 
+
+function getChartDatasets(){
+
+  var endPointURL = generateEndPoint("/reporting/submitted_inquiries_datasets")
+
+  $.ajax({
+    url: endPointURL,
+    type: 'GET',
+    dataType: 'json',
+    success: function(data){
+      console.log("~~~~DATASETS~~~~~");
+      console.log(data)
+      inquiries_dataset_all         = data.all;
+      inquiries_dataset_quarter     = data.quarter;
+      inquiries_dataset_year        = data.year;
+      inquiries_dataset_month       = data.month;
+      inquiries_dataset_week        = data.week; 
+      setGraph();
+    }
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+}
+
+$(document).ready(function(){
+  getSubmittedCounts();
+  getChartDatasets();
+})
+
+$(".date-submit").click(function(event){
+  event.preventDefault();
+  console.log("apply event hit");
+  $(".loading_placeholder").show();
+  $(".panel-chart").hide();
+  getSubmittedCounts();
+  getChartDatasets();
+})
+
+</script>
+
+<% end %>
+

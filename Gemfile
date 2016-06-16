@@ -51,6 +51,8 @@ gem 'nokogiri'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'responders' 
+
 #seed data
 gem 'faker'
 # gem 'faker-vehicle'
