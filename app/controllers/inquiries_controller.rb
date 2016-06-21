@@ -7,9 +7,6 @@ class InquiriesController < ApplicationController
     @inquiries = find_inquiries
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
-    @report = Report.find(1)
-
-
   end
 
   def find_inquiries()   
@@ -309,6 +306,42 @@ class InquiriesController < ApplicationController
                     :week => week_dataset }
     render :json => chart_data 
   end
+
+  def response_time 
+    avg_response_ccc      = time_to_days(avg_response_time_for("CCC"))
+    avg_response_audatex  = time_to_days(avg_response_time_for("Audatex"))
+    avg_response_mitchell = time_to_days(avg_response_time_for("Mitchell"))
+    avg_completion_ccc    = time_to_days(avg_completion_time_for("CCC"))
+    avg_completion_mitchell = time_to_days(avg_completion_time_for("Mitchell"))
+    avg_completion_audatex  = time_to_days(avg_completion_time_for("Audatex"))
+
+    response_data = { :avg_response_ccc     => avg_response_ccc,
+                      :avg_response_audatex => avg_response_audatex,
+                      :avg_response_mitchell => avg_response_mitchell,
+                      :avg_completion_ccc   => avg_completion_ccc,
+                      :avg_completion_mitchell => avg_completion_mitchell,
+                      :avg_completion_audatex  => avg_completion_audatex }
+
+    render :json => response_data
+  end
+
+  def inquiry_counts
+    all_count = Inquiry.all.count
+    received_count = Inquiry.where(status: 'Received by DEG').count
+    submitted_count = Inquiry.where(status: 'Submitted to IP').count
+    responded_count = Inquiry.where(status: 'IP Response Received').count
+    ip_change_count = Inquiry.where(status: 'Resolved (IP Change)').count 
+    no_change_count = Inquiry.where(status: 'Resolved (No IP Change)').count 
+
+    count_data = { :all     => all_count,
+                    :received   => received_count,
+                    :submitted  => submitted_count,
+                    :responded  => responded_count,
+                    :ip_change  => ip_change_count,
+                    :no_change  => no_change_count}
+
+    render :json => count_data
+  end 
 
 
 	private

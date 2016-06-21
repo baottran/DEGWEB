@@ -273,6 +273,7 @@ class Inquiry < ActiveRecord::Base
   def cached_status_count_for(status)
     case status
     when 'Received by DEG'
+
     when 'Submitted to IP'
     when 'IP Response Received'
     when 'Resolved (IP Change)'
@@ -280,6 +281,7 @@ class Inquiry < ActiveRecord::Base
     end 
   end
 
+  
 
 
   validates_attachment :attachment, :content_type => {:content_type => %w(image/jpeg image/jpg image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document)}

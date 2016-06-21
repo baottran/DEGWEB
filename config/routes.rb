@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   # reporting json paths
   get 'reporting/submitted_inquiries' => 'inquiries#submitted_inquiries'
   get 'reporting/submitted_inquiries_datasets' => 'inquiries#submitted_inquiries_datasets'
+  get 'reporting/response_time' => 'inquiries#response_time'
+  get 'reporting/inquiry_counts' => 'inquiries#inquiry_counts'
 
   patch 'inquiries/:id/resolve' => 'inquiries#resolve'
   patch 'inquiries/:id/customer' => 'inquiries#edit_customer'
