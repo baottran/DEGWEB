@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       UserMailer.signup_confirmation(@user).deliver  
   		redirect_to inquiries_path
   	else
+      flash[:error] = "Error creating new user. Please try again"
   		render 'new'
   	end
 

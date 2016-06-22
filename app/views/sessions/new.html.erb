@@ -34,6 +34,13 @@ input#session-remember-me {
   margin-top: 10px;
 }
 
+#error {
+  color: red;
+  font-size: 13px;
+  padding: 10px;
+  margin-left: 70px;
+}
+
 
 </style>
 
@@ -42,6 +49,10 @@ input#session-remember-me {
     <h3 class="panel-title">DEGWEB Admin Login</h3>
   </div>
   <div class="panel-body login-panel">
+
+  <% if flash[:danger] %>
+  <div id="error"><%= flash[:danger] %></div>
+  <% end %>
 
     <%= form_for(:session, url: login_path) do |f| %>
 

@@ -38,6 +38,14 @@ input#session-remember-me {
   font-size: 12px;
 }
 
+#error {
+  color: red;
+  font-size: 13px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
 </style>
 
 
@@ -47,6 +55,9 @@ input#session-remember-me {
   <div class="panel-heading">
     New DEGWEB Admin User
   </div>
+  <% if flash[:error] %>
+    <div id="error"><%= flash[:error] %></div>
+  <% end %>
   <div class="panel-body login-panel">
     <%= form_for(@user) do |f| %>
       <%= f.label :name %>
@@ -57,11 +68,11 @@ input#session-remember-me {
 
       <%= f.label :password %><br>
       
-      <%= f.password_field :password, class: 'form-control', placeholder: 'password' %><br>
+      <%= f.password_field :password, class: 'form-control', placeholder: 'enter password' %><br>
 
       <%= f.label :password_confirmation, "Confirm Password" %>
 
-      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'password' %><br>
+      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'confirm password' %><br>
       <span>password must be six characters</span><br>
       <br>
       <%= f.submit "Create my account", class: "btn btn-primary" %>
