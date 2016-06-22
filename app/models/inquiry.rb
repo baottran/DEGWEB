@@ -53,7 +53,8 @@ class Inquiry < ActiveRecord::Base
   scope :audatex, -> { where(database: "Audatex") }
 
   def init
-    self.status  ||= "Received by DEG"          #will set the default value only if it's nil
+    self.status  ||= "Received by DEG"
+    self.show_on_web = false           #will set the default value only if it's nil
   end
 
   def set_criteria
