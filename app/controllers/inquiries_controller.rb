@@ -11,6 +11,7 @@ class InquiriesController < ApplicationController
 
   def find_inquiries()   
     inquiries = Inquiry.all 
+    inquiries = inquiries.where(show_on_web: true) if (logged_in? === false)
     inquiries = inquiries.search(params[:search]) if params[:search].present?
     inquiries = inquiries.where(status: params[:status]) if params[:status].present? 
     inquiries = inquiries.where(database: params[:database]) if params[:database].present?

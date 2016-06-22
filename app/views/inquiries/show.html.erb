@@ -15,6 +15,11 @@
       <div class="inquiry-item">
         <strong>Status: </strong><%= @inquiry.status %>
       </div>
+    <% if logged_in? %>
+      <div class="inquiry-item">
+        <strong> Show on Web: </strong><%= @inquiry.show_on_web %>
+      </div>
+    <% end %>
     </div>
   </div>
 
@@ -51,7 +56,12 @@
     <div id="resolution-text">
       <p><%= @inquiry.resolution %></p>
       <% if logged_in? %>
-        <button type="submit" class="btn btn-primary btn-submit" id="resolution-edit">Edit</button>
+        <% if @inquiry.status != "Resolved (IP Change)" && @inquiry.status != "Resolved (No IP Change)" %>
+          <% resolution_btn_title = "Enter Resolution" %>
+        <% else %>
+          <% resolution_btn_title = "Edit Resolution" %>
+        <% end %>
+        <button type="submit" class="btn btn-primary btn-submit" id="resolution-edit"><%= resolution_btn_title %></button>
       <% end %>
     </div>
   </div>
@@ -81,11 +91,6 @@
       <div class="inquiry-item">
         <strong>VIN: </strong><%= @inquiry.vin %>
       </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-body">
-    <p><strong> Show on Web: </strong><%= @inquiry.show_on_web %></p>
     </div>
   </div>
   <div class="panel panel-default">
