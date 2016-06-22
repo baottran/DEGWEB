@@ -210,6 +210,7 @@ class InquiriesController < ApplicationController
     @inquiry.all_other_complete_time_hour = inquiry_params[:all_other_complete_time_hour]
     @inquiry.all_other_complete_time_min = inquiry_params[:all_other_complete_time_min]
     @inquiry.all_other_suggested_action = inquiry_params[:all_other_suggested_action]
+    @inquiry.show_on_web = inquiry_params[:show_on_web]
     @inquiry.save
 
     redirect_to @inquiry
@@ -308,12 +309,12 @@ class InquiriesController < ApplicationController
   end
 
   def response_time 
-    avg_response_ccc      = time_to_days(avg_response_time_for("CCC"))
-    avg_response_audatex  = time_to_days(avg_response_time_for("Audatex"))
-    avg_response_mitchell = time_to_days(avg_response_time_for("Mitchell"))
-    avg_completion_ccc    = time_to_days(avg_completion_time_for("CCC"))
-    avg_completion_mitchell = time_to_days(avg_completion_time_for("Mitchell"))
-    avg_completion_audatex  = time_to_days(avg_completion_time_for("Audatex"))
+      avg_response_ccc      = time_to_days(avg_response_time_for("CCC"))
+      avg_response_audatex  = time_to_days(avg_response_time_for("Audatex"))
+      avg_response_mitchell = time_to_days(avg_response_time_for("Mitchell"))
+      avg_completion_ccc    = time_to_days(avg_completion_time_for("CCC"))
+      avg_completion_mitchell = time_to_days(avg_completion_time_for("Mitchell"))
+      avg_completion_audatex  = time_to_days(avg_completion_time_for("Audatex"))
 
     response_data = { :avg_response_ccc     => avg_response_ccc,
                       :avg_response_audatex => avg_response_audatex,
@@ -406,7 +407,8 @@ class InquiriesController < ApplicationController
                                       :refinished_suggested_action,
                                       :all_other_procedure_steps,
                                       :all_other_complete_time_hour,
-                                      :all_other_suggested_action)
+                                      :all_other_suggested_action,
+                                      :show_on_web)
 	  end
 
     def sort_column
@@ -414,7 +416,7 @@ class InquiriesController < ApplicationController
     end
 
     def sort_direction
-      params[:direction] || "asc"
+      params[:direction] || "desc"
     end
 end
 

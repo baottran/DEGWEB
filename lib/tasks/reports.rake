@@ -34,6 +34,17 @@ namespace :reports do
   	p Report.find(1)
   end
 
+  task :show_inquiries => :environment do
+    inquiries = Inquiry.all 
+
+    inquiries.each do |i|
+      i.show_on_web = true 
+      i.save 
+    end
+
+    p "finished"
+  end
+
   # Generate Methods
 
   def get_response_and_completion_times
@@ -104,7 +115,7 @@ namespace :reports do
 
     if responded_inquiries.count != 0 
       avg_response_time = total_response_time / responded_inquiries.count
-    elsif  
+    else  
       avg_response_time = 0
     end
 

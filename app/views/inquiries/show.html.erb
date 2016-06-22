@@ -39,9 +39,6 @@
                   method: :delete,
                   data: { confirm: 'Are you sure?' } %>
     </div>
-    <div class="show-on-web-button">
-      <checkbox></checkbox>Show on web
-    </div>
   </div>
   <% end %>
 <div class="panel panel-primary">
@@ -84,6 +81,11 @@
       <div class="inquiry-item">
         <strong>VIN: </strong><%= @inquiry.vin %>
       </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <p><strong> Show on Web: </strong><%= @inquiry.show_on_web %></p>
     </div>
   </div>
   <div class="panel panel-default">

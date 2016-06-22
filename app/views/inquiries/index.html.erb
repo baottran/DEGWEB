@@ -126,46 +126,17 @@ div.pagination {
 
 
   <br>
-
-  <%= render partial: 'reporting_response_time' %>
+    <%= render partial: 'reporting_response_time' %>
 
   <div class="panel panel-default panel-search">
     <%= render 'inquiries/query_form.html.erb' %>
   </div>
   <br>
   <div class="panel panel-default panel-status">
-    <div class="btn-group btn-group-justified">
-      <%= render partial: 'status_button', locals: {status: "All"} %>
-      <%= render partial: 'status_button', locals: {status: "Received by DEG"} %>
-      <%= render partial: 'status_button', locals: {status: "Submitted to IP"} %>
-      <%= render partial: 'status_button', locals: {status: "IP Response Received"} %>
-      <%= render partial: 'status_button', locals: {status: "Resolved (IP Change)"} %>
-      <%= render partial: 'status_button', locals: {status: "Resolved (No IP Change)"} %>
-    </div>
+    <%= render 'inquiries/status_counts' %>
   </div>
 
-  <script>
-  $.ajax({
-    url: '/reporting/inquiry_counts',
-    type: 'GET',
-    dataType: 'json',
-  })
-  .done(function(data) {
-    console.log("success");
-    console.log(data);
-    $("#allCount").text(data.all);
-    $("#receivedCount").text(data.received);
-    $("#submittedCount").text(data.submitted);
-    $("#responseCount").text(data.responded);
-    $("#ipChangeCount").text(data.ip_change);
-    $("#noChangeCount").text(data.no_change);
-  })
-  .fail(function() {
-    console.log("error getting inquiry counts");
-  })
-  
-  
-  </script>
+
   
   <div class="panel panel-default right-content">
     <div class="panel-heading">Filter</div>
