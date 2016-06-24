@@ -1,0 +1,48 @@
+<style>
+  .post .form-label {
+    padding-bottom: 10px;
+  }
+
+  input.form-control {
+    width: 700px;
+  }
+
+  textarea.form-control {
+    height: 300px;
+    width: 700px;
+  }
+</style>
+
+<%= form_for @post do |f| %>
+ 
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@post.errors.count, "error") %> prohibited
+        this post from being saved:
+      </h2>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :title, :class => "post-label"%>
+    <br>
+    <%= f.text_field :title, :class => "form-control", :placeholder => "post title"%>
+  </p>
+ 
+  <p>
+    <%= f.label :text, "Content", :class=> "post-label" %><br>
+    <%= f.text_area :text, :class => "form-control", :placeholder => "content" %>
+  </p>
+ 
+  <p>
+    <%= f.submit 'Submit', :class => 'btn btn-primary'%>
+  </p>
+ 
+<% end %>

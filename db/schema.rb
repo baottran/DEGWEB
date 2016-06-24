@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608063108) do
+ActiveRecord::Schema.define(version: 20160623025733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,13 @@ ActiveRecord::Schema.define(version: 20160608063108) do
   add_index "inquiries", ["status"], name: "index_inquiries_on_status", using: :btree
   add_index "inquiries", ["submit_to_ip_date"], name: "index_inquiries_on_submit_to_ip_date", using: :btree
   add_index "inquiries", ["year"], name: "index_inquiries_on_year", using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "reports", force: :cascade do |t|
     t.integer  "all_count"

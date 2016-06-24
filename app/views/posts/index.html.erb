@@ -1,0 +1,59 @@
+<%= render 'shared/header' %>
+<style>
+.post {
+	margin: 30px;
+}
+
+.date {
+	width: 150px;
+	padding-top: 40px;
+	padding-left: 15px;
+	/*background-color: red;*/
+}
+
+.body {
+	width: 700px;
+	/*background-color: blue;*/
+}
+
+.panel-body {
+	display: flex;
+}
+
+.body div {
+	padding: 10px;
+}
+
+.nav {
+	padding-left: 30px;
+}
+</style>
+
+<div class="container">
+
+	<ul class="nav nav-pills">
+    <li class="active"><a href="/posts">Blog</a></li>
+    <li><a href="/posts/new">New Post</a></li>
+  </ul>
+  <% @posts.each do |post| %> 
+  	<div class="post panel panel-default">
+  		<div class="panel-body">
+	  		<div class="date"><%= post.created_at.strftime("%b %d %Y")   %></div>
+	  		<div class="body">
+	  			<div class="title"><h2><%= post.title %></h2></div>
+	  			<div class="text"><p><%= simple_format post.text %></p></div>
+	  			<div class="read">
+	  				<p><%= link_to "1 Responses", post_path(post) %></p>
+	  				<p><%= link_to 'Edit', edit_post_path(post) %></p>
+	  			</div>
+	  		</div>
+  		</div>
+  	</div>
+  	<hr>
+  <% end %>
+</div>
+
+<script>
+
+</script>
+<%= render 'shared/footer' %>
