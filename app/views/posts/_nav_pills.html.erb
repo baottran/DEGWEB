@@ -1,0 +1,12 @@
+<ul class="nav nav-pills">
+    <li id ="posts"><a href="/posts">Blog</a></li>
+    <li id="new"><a href="/posts/new">New Post</a></li>
+</ul>
+
+<script>
+<% if current ==="posts" %>
+	$("#posts").addClass("active");
+<% elsif current === "new" %>
+	$("#new").addClass("active");
+<% end %>
+</script>

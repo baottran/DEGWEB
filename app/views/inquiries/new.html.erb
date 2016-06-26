@@ -1,15 +1,7 @@
-<%= render 'shared/header' %>
-
 <div class="container-non-responsive form-section">
-	<ul class="nav nav-pills">
-    <li><a href="/inquiries">Request Queue</a></li>
-    <li class="active"><a href="/inquiries/new">New Inquiry</a></li>
-    <li><a href="/reporting">Reporting</a></li>
-  </ul>
+	<%= render partial: 'nav_pills', locals: {current: "new"} %>
   <br>
   <br>
   <h3>Submit a Database Inquiry</h3>
   <%= render 'form_new' %>
 </div>
-
-<%= render 'shared/footer' %>

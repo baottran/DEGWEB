@@ -1,9 +1,5 @@
-<%= render 'shared/header' %>
 <div class="container">
-	<ul class="nav nav-pills">
-    <li><a href="/posts">Blog</a></li>
-    <li class="active"><a href="/posts/new">New Post</a></li>
-  </ul>
+	<%= render partial: 'nav_pills', locals: {current: "new"} %>
 	<h2>New Post</h2>
 	<br>
 	<%= render "form" %>

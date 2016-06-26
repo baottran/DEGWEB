@@ -1,0 +1,17 @@
+<ul class="nav nav-pills">
+    <li id="queue"><a href="/inquiries">Request Queue</a></li>
+    <li id="new"><a href="/inquiries/new">New Inquiry</a></li>
+    <% if logged_in? %>
+    	<li id="reporting"><a href="/reporting">Reporting</a></li>
+    <% end %>
+</ul>
+<script>
+<% if current === "queue" %>
+	$("#queue").addClass("active");
+<% elsif current === "reporting" %>
+	$("#reporting").addClass("active");
+<% elsif current === "new" %>
+	$("#new").addClass("active");
+<% end %>
+</script>
+

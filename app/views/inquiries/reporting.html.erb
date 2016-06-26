@@ -3,7 +3,6 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-<%= render 'shared/header' %>
 <!-- <script src="assets/c3.js"></script>
 <script src="assets/d3.min.js"></script>
 <stylesheet src="assets/c3.min.css"></stylesheet -->
@@ -49,10 +48,7 @@ $('a#inquiries_link').click(function(event) {
 
 <div class="container">
 
-  <ul class="nav nav-pills">
-    <li><a href="/inquiries">Request Queue</a></li>
-    <li class="active"><a href="/reporting">Reporting</a></li>
-  </ul>
+  <%= render partial: 'nav_pills', locals: {current: "reporting"} %>
 
   <br>
 
@@ -73,11 +69,4 @@ $('a#inquiries_link').click(function(event) {
   	<%= render partial: 'reporting_new_inquiries' %>
   <% end %>
   
-  </div>
-
-
-
-
-
-
-<%= render 'shared/footer' %>
+  </div>s

@@ -1,10 +1,5 @@
-<%= render 'shared/header' %>
 <div class="container">
-<ul class="nav nav-pills">
-    <li class="active"><a href="/posts">Blog</a></li>
-    <li><a href="/posts/new">New Post</a></li>
-  </ul>
-<p>
+<%= render partial: 'nav_pills', locals: {current: "posts"} %>
   
   <h2><%= @post.title %></h2>
 </p>
@@ -15,4 +10,3 @@
 <br>
 <br>
 </div>
-<%= render 'shared/footer' %>
