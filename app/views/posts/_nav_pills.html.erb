@@ -1,6 +1,8 @@
 <ul class="nav nav-pills">
     <li id ="posts"><a href="/posts">Blog</a></li>
+    <% if logged_in? %>
     <li id="new"><a href="/posts/new">New Post</a></li>
+    <% end %>
 </ul>
 
 <script>

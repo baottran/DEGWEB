@@ -26,11 +26,19 @@
 .nav {
 	padding-left: 30px;
 }
+
+.paginate {
+	margin-left: 30px;
+}
 </style>
 
 <div class="container">
 
 	<%= render partial: 'nav_pills', locals: {current: "posts"} %>
+	<br>
+	<div class="paginate">
+		<%= will_paginate @inquiries %>
+	</div>
   <% @posts.each do |post| %> 
   	<div class="post panel panel-default">
   		<div class="panel-body">
@@ -40,7 +48,9 @@
 	  			<div class="text"><p><%= simple_format post.text %></p></div>
 	  			<div class="read">
 	  				<p><%= link_to "View Post", post_path(post), :class => "btn btn-default" %>
+	  				<% if logged_in? %>
 	  				<%= link_to 'Edit', edit_post_path(post), :class => "btn btn-info" %>
+	  				<% end %>
 	  				</p>
 	  			</div>
 	  		</div>
@@ -48,4 +58,7 @@
   	</div>
   	<hr>
   <% end %>
+  <div class="paginate">
+  	<%= will_paginate @inquiries %>
+  </div>
 </div>

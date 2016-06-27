@@ -1,0 +1,18 @@
+<ul class="nav nav-pills">
+    <li id ="about"><a href="/sponsorship">About</a></li>
+    <li id="sponsors"><a href="/sponsorship/sponsors">Our Sponsors</a></li>
+    <li id="inquiry"><a href="/sponsorship/inquiry">Sponsorship Inquiry</a></li>
+    <li id="advertising"><a href="/sponsorship/advertising">Advertising Inquiry</a></li>
+</ul>
+
+<script>
+<% if current ==="about" %>
+	$("#about").addClass("active");
+<% elsif current === "sponsors" %>
+	$("#sponsors").addClass("active");
+<% elsif current === "inquiry" %>
+	$("#inquiry").addClass("active");
+<% elsif current === "advertising" %>
+	$("#advertising").addClass("active");
+<% end %>
+</script>

@@ -29,6 +29,21 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   get 'reporting' => 'inquiries#reporting'
 
+  # static pages 
+  get 'about' => 'welcome#about'
+  get 'contact' => 'welcome#contact'
+  get 'links' => 'welcome#links'
+  get 'sponsorship' => 'welcome#sponsorship'
+  get "/sponsorship/sponsors" => 'welcome#sponsors'
+  get "/sponsorship/inquiry" => 'welcome#sponsorship_inquiry'
+  get "/sponsorship/advertising" => 'welcome#sponsorship_advertising'
+  get "toolbox" => "toolbox#index"
+  get "toolbox/tips" => "toolbox#tips"
+  get 'toolbox/knowledgebase' => 'toolbox#knowledgebase'
+  get 'toolbox/audatex' => 'toolbox/audatex'
+  get 'toolbox/ccc' => 'toolbox/ccc'
+  get 'toolbox/mitchell' => 'toolbox/mitchell'
+
   # reporting json paths
   get 'reporting/submitted_inquiries' => 'inquiries#submitted_inquiries'
   get 'reporting/submitted_inquiries_datasets' => 'inquiries#submitted_inquiries_datasets'

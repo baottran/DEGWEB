@@ -1,0 +1,24 @@
+<ul class="nav nav-pills">
+    <li id ="about"><a href="/toolbox">About</a></li>
+    <li id="tips"><a href="/toolbox/tips">Estimate Tips</a></li>
+    <li id="knowledgebase"><a href="/toolbox/knowledgebase">Knowledge Base</a></li>
+    <li id="audatex"><a href="/toolbox/audatex">Audatex</a></li>
+    <li id="ccc"><a href="/toolbox/ccc">CCC One</a></li>
+    <li id="mitchell"><a href="/toolbox/mitchell">Mitchell</a></li>
+</ul>
+
+<script>
+<% if current ==="about" %>
+	$("#about").addClass("active");
+<% elsif current === "tips" %>
+	$("#tips").addClass("active");
+<% elsif current === "knowledgebase" %>
+	$("#knowledgebase").addClass("active");
+<% elsif current === "audatex" %>
+	$("#audatex").addClass("active");
+<% elsif current === "ccc" %>
+	$("#ccc").addClass("active");
+<% elsif current === "mitchell" %>
+	$("#mitchell").addClass("active");
+<% end %>
+</script>
