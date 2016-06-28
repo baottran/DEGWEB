@@ -1,6 +1,15 @@
 
-<%= javascript_include_tag 'http://code.jquery.com/jquery-1.10.2.js' %>
+<head>
+  <title>Degweb</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'http://code.jquery.com/jquery-1.10.2.js' %>
 <%= javascript_include_tag 'http://code.jquery.com/ui/1.11.4/jquery-ui.js' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
 
 <style>
   .navbar-header {

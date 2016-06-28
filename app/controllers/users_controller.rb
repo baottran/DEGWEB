@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def new
+    p "HIHIHIHIHIHIH"
   	@user = User.new 
+    render layout: "userpages"
   end
 
   def show

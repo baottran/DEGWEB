@@ -295,11 +295,24 @@ class InquiriesController < ApplicationController
   end
 
   def submitted_inquiries_datasets
-    all_dataset     = new_inquiries_all(params[:date_end])
-    quarter_dataset = new_inquiries_quarter(params[:date_end])
-    month_dataset   = new_inquiries_month(params[:date_end])
-    year_dataset    = new_inquiries_year(params[:date_end])
-    week_dataset    = new_inquiries_week(params[:date_end])
+    all_dataset     = Rails.cache.fetch("#{cache_key_for_dataset(params[:date_end])}/all_dataset") do
+                        new_inquiries_all(params[:date_end])
+                      end 
+
+    quarter_dataset = Rails.cache.fetch("#{cache_key_for_dataset(params[:date_end])}/quarter_dataset") do
+                        new_inquiries_quarter(params[:date_end])
+                      end
+    month_dataset   = Rails.cache.fetch("#{cache_key_for_dataset(params[:date_end])}/month_dataset") do
+                        new_inquiries_month(params[:date_end])
+                      end
+
+    year_dataset    = Rails.cache.fetch("#{cache_key_for_dataset(params[:date_end])}/year_dataset") do
+                        new_inquiries_year(params[:date_end])
+                      end
+
+    week_dataset    = Rails.cache.fetch("#{cache_key_for_dataset(params[:date_end])}/week_dataset") do
+                        new_inquiries_week(params[:date_end])
+                      end
 
     chart_data = { :all => all_dataset, 
                     :quarter => quarter_dataset,

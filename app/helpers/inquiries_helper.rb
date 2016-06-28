@@ -868,4 +868,11 @@ module InquiriesHelper
         "Inquiry/last_update-#{max_updated_at}"
     end
 
+    def cache_key_for_dataset(fordate = nil)
+        if fordate === nil 
+            return Time.now.strftime("%Y%m%d%H")
+        else
+            return fordate
+        end
+    end
 end
