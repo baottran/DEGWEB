@@ -310,12 +310,34 @@ class InquiriesController < ApplicationController
   end
 
   def response_time 
-      avg_response_ccc      = time_to_days(avg_response_time_for("CCC"))
-      avg_response_audatex  = time_to_days(avg_response_time_for("Audatex"))
-      avg_response_mitchell = time_to_days(avg_response_time_for("Mitchell"))
-      avg_completion_ccc    = time_to_days(avg_completion_time_for("CCC"))
-      avg_completion_mitchell = time_to_days(avg_completion_time_for("Mitchell"))
-      avg_completion_audatex  = time_to_days(avg_completion_time_for("Audatex"))
+      # avg_response_ccc      = time_to_days(avg_response_time_for("CCC"))
+      # avg_response_audatex  = time_to_days(avg_response_time_for("Audatex"))
+      # avg_response_mitchell = time_to_days(avg_response_time_for("Mitchell"))
+      # avg_completion_ccc    = time_to_days(avg_completion_time_for("CCC"))
+      # avg_completion_mitchell = time_to_days(avg_completion_time_for("Mitchell"))
+      # avg_completion_audatex  = time_to_days(avg_completion_time_for("Audatex"))
+
+    avg_response_ccc = Rails.cache.fetch("#{cache_key_for_inquiry_update}/avg_response_ccc") do
+                          time_to_days(avg_response_time_for("CCC"))
+                        end
+    avg_response_audatex = Rails.cache.fetch("#{cache_key_for_inquiry_update}/avg_response_audatex") do
+                          time_to_days(avg_response_time_for("Audatex"))
+                        end
+    avg_response_mitchell = Rails.cache.fetch("#{cache_key_for_inquiry_update}/avg_response_mitchell") do
+                          time_to_days(avg_response_time_for("Mitchell"))
+                        end
+
+    avg_completion_ccc = Rails.cache.fetch("#{cache_key_for_inquiry_update}/avg_completion_ccc") do
+                          time_to_days(avg_completion_time_for("CCC"))
+                        end                    
+
+    avg_completion_mitchell = Rails.cache.fetch("#{cache_key_for_inquiry_update}/avg_completion_mitchell") do
+                          time_to_days(avg_completion_time_for("Mitchell"))
+                        end  
+
+    avg_completion_audatex = Rails.cache.fetch("#{cache_key_for_inquiry_update}/avg_completion_audatex") do
+                          time_to_days(avg_completion_time_for("Audatex"))
+                        end                   
 
     response_data = { :avg_response_ccc     => avg_response_ccc,
                       :avg_response_audatex => avg_response_audatex,
