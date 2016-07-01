@@ -1,11 +1,13 @@
 <script>
 
-$(function() {
-    $( document ).tooltip();
+// $(document).tooltip();
+$(document).on("ready page:change", function() {
+  $('.tooltip-icon').tooltip();
+  $('#date_start').datepicker({ dateFormat: 'yy-mm-dd'});
+  $('#date_end').datepicker({ dateFormat: 'yy-mm-dd'});
+});
 
-    $('#date_start').datepicker({ dateFormat: 'yy-mm-dd'});
-    $('#date_end').datepicker({ dateFormat: 'yy-mm-dd'});
-  });
+console.log("this index was ran");
 
 </script>
 
@@ -164,10 +166,10 @@ div.pagination {
             <td><%= inquiry.database %></td>
             <td><%= inquiry.inquiry_type %></td>
             <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
-            <td><img class="icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.description_tooltip %>"> <%= inquiry.area_of_vehicle %></td>
+            <td><img class="icon tooltip-icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.description_tooltip %>"> <%= inquiry.area_of_vehicle %></td>
             <td><%= inquiry.status %></td>
             <td><% if inquiry.resolution != nil %>
-                  <img class="icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.resolution%>">
+                  <img class="icon tooltip-icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" data-toggle="tooltip" title="<%= inquiry.resolution%>">
                 <% end %>
             </td>
             <td><%= inquiry.created_at.strftime("%-m/%-d/%y") %></td>

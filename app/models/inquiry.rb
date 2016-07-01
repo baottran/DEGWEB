@@ -133,19 +133,19 @@ class Inquiry < ActiveRecord::Base
 
 
     when 'Parts'
-      return "Area of Vehicle
-              #{parts_area_of_vehicle}
-
-              Part Name
-              #{parts_part_name}
-
-              OEM Part Number
-              #{parts_oem_part_number}
-
-              Issue Summary 
-              #{parts_issue_summary}
-
-              Suggested Action 
+      return "Area of Vehicle\n
+              #{parts_area_of_vehicle}\n
+              \n
+              Part Name\n
+              #{parts_part_name}\n
+              \n
+              OEM Part Number\n
+              #{parts_oem_part_number}\n
+              \n
+              Issue Summary \n
+              #{parts_issue_summary}\n
+              \n
+              Suggested Action \n
               #{parts_suggested_action}"
 
     when "Procedure Page Issue"

@@ -14,15 +14,18 @@
 //= require jquery_ujs
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-//= require turbolinks
+//= require jquery-ui
 //= require bootstrap-sprockets
 //= require charts
-//= require_tree .
+//= require turbolinks
 //= require c3
+//= require_tree .
+
+
+console.log("firing application js");
 
 $(document).ready(function(){
   Forms.init();
   ShowMake.init();
 });
 
-console.log("firing application js");

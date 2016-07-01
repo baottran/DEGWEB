@@ -11,3 +11,4 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( inquiries.css )
 Rails.application.config.assets.precompile += %w( logo.jpg )
+# Rails.application.config.assets.precompile += %w( jquery.js )
