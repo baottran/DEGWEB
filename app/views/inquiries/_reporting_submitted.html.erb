@@ -92,38 +92,40 @@ function updateFormatter(byMonth) {
 
 }
 
-var num_submitted_all_ccc,
-    num_submitted_year_ccc,
-    num_submitted_quarter_ccc,
-    num_submitted_month_ccc,
-    num_submitted_week_ccc,
-    num_unsubmitted_all_ccc,
-    num_unsubmitted_year_ccc,
-    num_unsubmitted_quarter_ccc,
-    num_unsubmitted_month_ccc,
-    num_unsubmitted_week_ccc;
-    
-var num_submitted_all_audatex,
-    num_submitted_year_audatex,
-    num_submitted_quarter_audatex,
-    num_submitted_month_audatex,
-    num_submitted_week_audatex,
-    num_unsubmitted_all_audatex,
-    num_unsubmitted_year_audatex,
-    num_unsubmitted_quarter_audatex,
-    num_unsubmitted_month_audatex,
-    num_unsubmitted_week_audatex;
+<% r = @report %>
 
-var num_submitted_all_mitchell,
-    num_submitted_year_mitchell,
-    num_submitted_quarter_mitchell,
-    num_submitted_month_mitchell,
-    num_submitted_week_mitchell,
-    num_unsubmitted_all_mitchell,
-    num_unsubmitted_year_mitchell,
-    num_unsubmitted_quarter_mitchell,
-    num_unsubmitted_month_mitchell,
-    num_unsubmitted_week_mitchell;
+var num_submitted_all_ccc = <%= r.num_submitted_all_ccc %>,
+    num_submitted_year_ccc = <%= r.num_submitted_year_ccc %>,
+    num_submitted_quarter_ccc = <%= r.num_submitted_quarter_ccc %>,
+    num_submitted_month_ccc = <%= r.num_submitted_month_ccc %>,
+    num_submitted_week_ccc = <%= r.num_submitted_week_ccc %>,
+    num_unsubmitted_all_ccc = <%= r.num_unsubmitted_all_ccc %>,
+    num_unsubmitted_year_ccc = <%= r.num_unsubmitted_year_ccc %>,
+    num_unsubmitted_quarter_ccc = <%= r.num_unsubmitted_quarter_ccc %>,
+    num_unsubmitted_month_ccc = <%= r.num_unsubmitted_month_ccc %>,
+    num_unsubmitted_week_ccc = <%= r.num_unsubmitted_week_ccc %>; 
+    
+var num_submitted_all_audatex = <%= r.num_submitted_all_audatex %>,
+    num_submitted_year_audatex = <%= r.num_submitted_year_audatex %>,
+    num_submitted_quarter_audatex = <%= r.num_submitted_quarter_audatex %>,
+    num_submitted_month_audatex = <%= r.num_submitted_month_audatex %>,
+    num_submitted_week_audatex = <%= r.num_submitted_week_audatex %>,
+    num_unsubmitted_all_audatex = <%= r.num_unsubmitted_all_audatex %>,
+    num_unsubmitted_year_audatex = <%= r.num_unsubmitted_year_audatex %>,
+    num_unsubmitted_quarter_audatex = <%= r.num_unsubmitted_quarter_audatex %>,
+    num_unsubmitted_month_audatex = <%= r.num_unsubmitted_month_audatex %>,
+    num_unsubmitted_week_audatex = <%= r.num_unsubmitted_week_audatex %>; 
+
+var num_submitted_all_mitchell = <%= r.num_submitted_all_mitchell %>,
+    num_submitted_year_mitchell = <%= r.num_submitted_year_mitchell %>,
+    num_submitted_quarter_mitchell = <%= r.num_submitted_quarter_mitchell %>,
+    num_submitted_month_mitchell = <%= r.num_submitted_month_mitchell %>,
+    num_submitted_week_mitchell = <%= r.num_submitted_week_mitchell %>,
+    num_unsubmitted_all_mitchell = <%= r.num_unsubmitted_all_mitchell %>,
+    num_unsubmitted_year_mitchell = <%= r.num_unsubmitted_year_mitchell %>,
+    num_unsubmitted_quarter_mitchell = <%= r.num_unsubmitted_quarter_mitchell %>,
+    num_unsubmitted_month_mitchell = <%= r.num_unsubmitted_month_mitchell %>,
+    num_unsubmitted_week_mitchell = <%= r.num_unsubmitted_week_mitchell %>;
 
 var inquiries_dataset_all,
     inquiries_dataset_year,
@@ -359,7 +361,7 @@ function getChartDatasets(){
 }
 
 $(document).ready(function(){
-  getSubmittedCounts();
+  // getSubmittedCounts();
   getChartDatasets();
 })
 

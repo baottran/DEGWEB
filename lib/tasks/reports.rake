@@ -45,7 +45,25 @@ namespace :reports do
     p "finished"
   end
 
+  task :calculate => :environment do 
+    get_response_and_completion_times
+    get_submitted_unsubmitted_counts
+    get_total_counts
+    p "done calculating report"
+  end
+
   # Generate Methods
+
+  def get_total_counts
+    r = Report.find(1)
+    r.all_count = Inquiry.all.count
+    r.received_count = Inquiry.where(status: 'Received by DEG').count
+    r.submitted_count = Inquiry.where(status: 'Submitted to IP').count
+    r.responded_count = Inquiry.where(status: 'IP Response Received').count
+    r.ip_change_count = Inquiry.where(status: 'Resolved (IP Change)').count 
+    r.no_change_count = Inquiry.where(status: 'Resolved (No IP Change)').count 
+    r.save 
+  end
 
   def get_response_and_completion_times
     r = Report.find(1)

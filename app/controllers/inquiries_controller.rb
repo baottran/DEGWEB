@@ -7,6 +7,8 @@ class InquiriesController < ApplicationController
     @inquiries = find_inquiries
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
+
+    @report = Report.find(1)
   end
 
   def find_inquiries()   

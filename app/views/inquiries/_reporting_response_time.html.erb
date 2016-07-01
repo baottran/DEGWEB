@@ -2,16 +2,16 @@
 <div class="panel panel-default response-chart">
 	<div class="panel-heading">Response and Completion Time</div>
 	<div class="panel-body gauges">
-    <div id="response_bar_chart" hidden="true"></div>
-    <div class="loading_placeholder">
-      <%= render partial: "loading_placeholder" %>
+    <div id="response_bar_chart" hidden="false"></div>
+    <div class="loading_placeholder" hidde = "true">
     </div>
 	</div>
 </div>
 
 <script>
 $(document).ready(function(){
-  callEndPoint();
+  // callEndPoint();
+  generateChart();
 });
 
 function callEndPoint(){
@@ -30,8 +30,6 @@ function callEndPoint(){
     avg_completion_ccc      = data.avg_completion_ccc;
     avg_response_mitchell   = data.avg_response_mitchell;
     avg_completion_mitchell = data.avg_completion_mitchell;
-    $("#response_bar_chart").show();
-    $(".loading_placeholder").hide();
     generateChart();
   })
   .fail(function() {
@@ -42,14 +40,17 @@ function callEndPoint(){
   });
 };
 
-var avg_response_audatex,
-    avg_completion_audatex,
-    avg_response_ccc,
-    avg_completion_ccc,
-    avg_response_mitchell,
-    avg_completion_mitchell;
+var avg_response_audatex    = <%= @report.avg_response_ccc %>,
+    avg_completion_audatex  = <%= @report.avg_completion_ccc %> ,
+    avg_response_ccc        = <%= @report.avg_response_ccc %>,
+    avg_completion_ccc      = <%= @report.avg_completion_ccc %>,
+    avg_response_mitchell   = <%= @report.avg_response_mitchell %>,
+    avg_completion_mitchell = <%= @report.avg_completion_mitchell %>
 
 function generateChart(){
+  $("#response_bar_chart").show();
+  $(".loading_placeholder").hide();
+
   var response_chart = c3.generate({
       bindto: "#response_bar_chart",
       data: {
