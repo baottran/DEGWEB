@@ -1,9 +1,11 @@
-desc "This task is called by the Heroku scheduler add-on"
-task :update_feed => :environment do
-  puts "Updating feed..."
-  puts "done."
-end
+namespace :scheduler do
+	desc "This task is called by the Heroku scheduler add-on"
+	task :update_feed => :environment do
+	  puts "Updating feed..."
+	  puts "done."
+	end
 
-task :send_reminders => :environment do
-  p "send_reminders"
+	task :send_reminders => :environment do
+	  p "send_reminders"
+	end
 end
