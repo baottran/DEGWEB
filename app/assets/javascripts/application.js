@@ -17,9 +17,10 @@
 //= require jquery-ui
 //= require bootstrap-sprockets
 //= require charts
-//= require turbolinks
+//= require forms
+//= require showMake
+//= require d3.min
 //= require c3
-//= require_tree .
 
 
 console.log("firing application js");
