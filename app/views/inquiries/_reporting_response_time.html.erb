@@ -9,10 +9,7 @@
 </div>
 
 <script>
-$(document).ready(function(){
-  // callEndPoint();
-  generateChart();
-});
+
 
 function callEndPoint(){
   $.ajax({
@@ -78,6 +75,11 @@ function generateChart(){
       }
     })
 };
+
+$(document).ready(function(){
+  // callEndPoint();
+  generateChart();
+});
 
 </script>
 <% end %>
