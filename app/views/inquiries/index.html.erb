@@ -162,7 +162,7 @@ div.pagination {
 
         <% @inquiries.each do |inquiry| %>
           <tr>
-            <td><%= link_to inquiry.id, inquiry_path(inquiry) %></td>
+            <td><%= link_to inquiry.id, inquiry_path(inquiry), target: "_newtab" %></td>
             <td><%= inquiry.database %></td>
             <td><%= inquiry.inquiry_type %></td>
             <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
