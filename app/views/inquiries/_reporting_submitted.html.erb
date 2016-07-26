@@ -4,7 +4,6 @@ $(function(){
   $('#date_end').datepicker({ dateFormat: 'yy-mm-dd'});
 })
 
-console.log("LOADING PARTIAL");
 </script>
 
 <div class="panel panel-default">
@@ -13,11 +12,11 @@ console.log("LOADING PARTIAL");
       <div class="panel-chart" hidden="true">
       <div class="chart-header">
   		<div class="chart-edit-buttons">
-  			<a class="btn btn-info active-button" id="All">All</a>
-  			<a class="btn btn-info" id="Week">Week</a>
-  			<a class="btn btn-info" id="Month">Month</a>
-  			<a class="btn btn-info" id="Quarter">Quarter</a>
-  			<a class="btn btn-info" id="Year">Year</a>
+  			<a class="btn btn-info btn-chart active-button" id="All">All</a>
+  			<a class="btn btn-info btn-chart" id="Week">Week</a>
+  			<a class="btn btn-info btn-chart" id="Month">Month</a>
+  			<a class="btn btn-info btn-chart" id="Quarter">Quarter</a>
+  			<a class="btn btn-info btn-chart" id="Year">Year</a>
   		</div>
           <%= form_tag reporting_path, :method => 'get', :class => 'date-form' do %>
             <div class="date-field">
@@ -136,10 +135,17 @@ var inquiries_dataset_all,
 
 updateFormatter(true);
 
+function resetGraphButtons(){
+  console.log("rest graph called");
+  $(".btn-chart").removeClass("active-button");
+  $("#All").addClass('active-button');
+};
+
 function setGraph(){
   console.log("setting graph called");
   $(".loading_placeholder").hide()
   $(".panel-chart").show();
+  resetGraphButtons();
 
   var chart = c3.generate({
       bindto: '#chart',

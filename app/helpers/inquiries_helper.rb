@@ -672,7 +672,8 @@ module InquiriesHelper
     ccc_dict = Hash.new 
     mitchell_dict = Hash.new 
 
-    for i in 0..30
+
+    for i in 0..31
         day_value = start_date + i.days
         day_string = day_value.strftime('%Y-%m-%d')
         x_data.append(day_string)
@@ -688,6 +689,10 @@ module InquiriesHelper
     week_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
         created_at_string = created_at_date.strftime('%Y-%m-%d')
+        p "\n =============="
+        p created_at_string
+        p ccc_dict
+
         case inquiry.database
         when "CCC"
             ccc_dict[created_at_string] += 1
