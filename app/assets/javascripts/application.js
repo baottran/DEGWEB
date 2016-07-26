@@ -14,13 +14,14 @@
 //= require jquery_ujs
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-//= require jquery-ui
+
 //= require bootstrap-sprockets
 //= require charts
 //= require forms
 //= require showMake
 //= require d3.min
 //= require c3
+//= require jquery-ui
 
 
 console.log("firing application js");
