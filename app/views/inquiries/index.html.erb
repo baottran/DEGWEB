@@ -28,7 +28,6 @@ $(document).on("ready page:change", function() {
   background-color: white;
   align-items: center;
   height: 100px;
-  margin: 10px;
   padding: 10px;
 }
 
@@ -39,9 +38,9 @@ $(document).on("ready page:change", function() {
 .panel-search {
 
   width: 920px;
-  height: 100px;
+/*  height: 100px;
   margin: 10px;
-  padding: 20px;
+  padding: 20px;*/
 }
 
 .search-item {
@@ -91,7 +90,6 @@ div.pagination {
 
 .filter-box {
   display: flex;
-  margin: 5px;
   padding-bottom: 5px;
 }
 
@@ -107,8 +105,9 @@ div.pagination {
   margin-left: 5px;
 }
 
-
 </style>
+
+
 
 <div class="container">
 
@@ -118,22 +117,32 @@ div.pagination {
     <%= render partial: 'reporting_response_time' %>
 
   <div class="panel panel-default panel-search">
-    <%= render 'inquiries/query_form.html.erb' %>
+    <div class="panel-heading">Search </div>
+    <div class="panel-body">
+      <%= render 'inquiries/query_form.html.erb' %>
+    </div>
   </div>
-  <br>
+    <div class="panel panel-default right-content">
+    <div class="panel-heading" id="filter-toggle">Filter Database (-)</div>
+    <div class="panel-body" id="filter-body">
+      <%= render 'inquiries/filter_form.html.erb' %>
+    </div>
+  </div>
   <div class="panel panel-default panel-status">
     <%= render 'inquiries/status_counts' %>
   </div>
 
-
-  
-  <div class="panel panel-default right-content">
-    <div class="panel-heading">Filter</div>
-    <div class="panel-body">
-      <%= render 'inquiries/filter_form.html.erb' %>
-    </div>
-  </div>
-
+  <script>
+    $("#filter-toggle").click(function(event){
+      console.log("got it");
+      $("#filter-body").toggle();
+      if ($("#filter-body").css('display') === "none"){
+        $("#filter-toggle").text("Filter Database (+)");
+      } else {
+        $("#filter-toggle").text("Filter Database (-)")
+      };
+    });
+  </script>
 
   <div class="content-box">
 
