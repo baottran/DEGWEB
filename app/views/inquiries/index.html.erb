@@ -114,7 +114,6 @@ div.pagination {
   <%= render partial: 'nav_pills', locals: {current: "queue"} %>
   
   <br>
-    <%= render partial: 'reporting_response_time' %>
 
   <div class="panel panel-default panel-search">
     <div class="panel-heading">Search </div>
@@ -124,7 +123,7 @@ div.pagination {
   </div>
     <div class="panel panel-default right-content">
     <div class="panel-heading" id="filter-toggle">Filter Database (-)</div>
-    <div class="panel-body" id="filter-body">
+    <div class="panel-body" id="filter-body" style="display: none;">
       <%= render 'inquiries/filter_form.html.erb' %>
     </div>
   </div>
@@ -204,4 +203,6 @@ div.pagination {
 
     </div>
   </div>
+
+  <%= render partial: 'reporting_response_time' %>
 </div>
