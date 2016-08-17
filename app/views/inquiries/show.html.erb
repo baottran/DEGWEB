@@ -33,8 +33,8 @@
         <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg disabled">Resolve (IP Change)</a>
       <% elsif @inquiry.status === "Submitted to IP" %>
         <a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-default btn-lg disabled">Submit to IP</a>
-        <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-default btn-lg disabled">Resolve (No IP Change)</a>
-        <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg disabled">Resolve (IP Change)</a>
+        <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-default btn-lg">Resolve (No IP Change)</a>
+        <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg">Resolve (IP Change)</a>
       <% else %>
         <a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-default btn-lg disabled">Submit to IP</a>
         <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-success btn-lg">Resolve (No IP Change)</a>
