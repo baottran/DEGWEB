@@ -1,4 +1,5 @@
 var ShowMake = {
+
   getElements: function() {
     this.el = {};
     this.constants = {};
@@ -50,6 +51,7 @@ var ShowMake = {
     });
 
     $("#resolution-edit").click(function(event) {
+      event.preventDefault();
       var currentResolution = $("#resolution-text").find("p").text();
       $(".inquiry-resolution").focus();
       $("#resolution-text").toggle();
