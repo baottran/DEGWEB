@@ -51,13 +51,12 @@
 <div class="panel panel-primary">
   <div class="panel-heading">Inquiry Resolution</div>
   <div class="panel-body">
-    <div id="resolution-form">
+    <div id="resolution-form" hidden=true>
       <%= render 'resolution_form' %>
-
     </div>
     <div id="resolution-text">
       <p><%= @inquiry.resolution %></p>
-      <% if logged_in? %>
+      <% if logged_in? || params[:ip] === "review" %>
         <% if @inquiry.status != "Resolved (IP Change)" && @inquiry.status != "Resolved (No IP Change)" %>
           <% resolution_btn_title = "Enter Resolution" %>
         <% else %>
@@ -210,4 +209,14 @@
     <%= render 'comments/form' %>
   </div>
 </div>
+
+<script>
+<% if params[:ip] === "review" %>
+      var currentResolution = $("#resolution-text").find("p").text();
+      $(".inquiry-resolution").focus();
+      $("#resolution-text").toggle();
+      $("#resolution-form").toggle();
+<% end %>
+
+</script>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

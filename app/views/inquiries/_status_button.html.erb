@@ -6,7 +6,7 @@
       <a href="/inquiries" class="<%= btn_class_for_status %>">
         <div class="title"></div>
         <div class="title">All</div>
-        <div id="allCount">@report.all_count</div>
+        <div id="allCount"><%= @report.all_count %></div>
       </a>
 
 <% when 'Received by DEG' %>
@@ -14,7 +14,7 @@
       <a href="/inquiries?status=Received+by+DEG" class="<%= btn_class_for_status %>">
         <div class="title">Received</div>
         <div class="title">by DEG</div>
-        <div id="receivedCount">@report.received_count</div>
+        <div id="receivedCount"><%= @report.received_count %></div>
       </a>
 
 <% when 'SuIbmitted to IP' %>
@@ -22,7 +22,7 @@
       <a href="/inquiries?status=Submitted+to+IP" class="<%= btn_class_for_status %>">
         <div class="title">Submitted</div>
         <div class="title">to IP</div>
-        <div id="submittedCount">@report.submitted_count</div>
+        <div id="submittedCount"><%= @report.submitted_count %></div>
       </a>
 
 <% when 'IP Response Received' %>
@@ -30,7 +30,7 @@
       <a href="/inquiries?status=IP+Response+Received" class="<%= btn_class_for_status %>">
         <div class="title">IP Response</div>
         <div class="title">Received</div>
-        <div id="responseCount">@report.responded_count</div>
+        <div id="responseCount"><%= @report.responded_count %></div>
       </a>
 
 <% when 'Resolved (IP Change)' %>
@@ -38,7 +38,7 @@
       <a href="/inquiries?status=Resolved+(IP+Change)" class="<%= btn_class_for_status %>">
         <div class="title">Resolved</div>
         <div class="title">(IP Change)</div>
-        <div id="ipChangeCount">@report.ip_change_count</div>
+        <div id="ipChangeCount"><%= @report.ip_change_count %></div>
       </a>
 
 <% when 'Resolved (No IP Change)' %>
@@ -46,7 +46,7 @@
       <a href="/inquiries?status=Resolved+(No+IP+Change)" class="<%= btn_class_for_status %>">
         <div class="title">Resolved</div>
         <div class="title">(No IP Change)</div>
-        <div id="noChangeCount">@report.no_change_count</div>
+        <div id="noChangeCount"><%= @report.no_change_count %></div>
       </a>
 
 <% else %>

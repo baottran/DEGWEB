@@ -11,16 +11,16 @@ class InquiryMailer < ApplicationMailer
       :subject => 'DEG - New Inquiry',
       :to => 'aaron@scrs.com', 
       :cc => 'admin@degweb.org', 
-      :bcc => 'bowtran@gmail.com, jeff.gosche@sproutdesigns.com, cameron.craig@sproutdesigns.com, jorgecgarciais@gmail.com')
+      :bcc => 'bowtran@gmail.com')
   end
 
   def email_ip(inquiry)
   	@inquiry = inquiry
   	mail(
-      :subject => 'DEG - New Inquiry',
+      :subject => 'DEG - Inquiry Needs Review',
       :to => 'aaron@scrs.com', 
       :cc => 'admin@degweb.org', 
-      :bcc => 'bowtran@gmail.com, jeff.gosche@sproutdesigns.com, cameron.craig@sproutdesigns.com, jorgecgarciais@gmail.com')
+      :bcc => 'bowtran@gmail.com')
   end
 
   def resolved(inquiry)
@@ -29,7 +29,7 @@ class InquiryMailer < ApplicationMailer
       :subject => 'DEG - Resolved',
       :to => 'aaron@scrs.com', 
       :cc => 'admin@degweb.org', 
-      :bcc => 'bowtran@gmail.com, jeff.gosche@sproutdesigns.com, cameron.craig@sproutdesigns.com, jorgecgarciais@gmail.com')
+      :bcc => 'bowtran@gmail.com')
   end
 
   def resolution_entered(inquiry)
@@ -38,7 +38,7 @@ class InquiryMailer < ApplicationMailer
       :subject => 'DEG - IP Response Received',
       :to => 'aaron@scrs.com', 
       :cc => 'admin@degweb.org', 
-      :bcc => 'bowtran@gmail.com, jeff.gosche@sproutdesigns.com, cameron.craig@sproutdesigns.com, jorgecgarciais@gmail.com')
+      :bcc => 'bowtran@gmail.com')
   end
 
 

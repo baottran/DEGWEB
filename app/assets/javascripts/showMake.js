@@ -22,7 +22,7 @@ var ShowMake = {
 
   hideEditForms: function() {
     $("#inquiry-edit-form").hide();
-    $("#resolution-form").hide();
+    // $("#resolution-form").hide();
   },
 
   toggleFormsOnClick: function() {
