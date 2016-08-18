@@ -1,0 +1,9 @@
+<h1>DEG - IP Response Received</h1>
+
+<p>
+An IP response has been received for DEG database inquiry <%= @inquiry.id %>. Please review at the following location: 
+</p>
+
+<p>
+<%= link_to "DEG Inquiry", controller: "inquiries", action: "show", id: @inquiry %>
+</p>

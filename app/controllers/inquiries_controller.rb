@@ -81,7 +81,6 @@ class InquiriesController < ApplicationController
 
     if @inquiry.save
       InquiryMailer.new_inquiry(@inquiry).deliver
-      # redirect_to @inquiry
       render 'thankyou'
     else
       render 'new'
@@ -100,7 +99,7 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Submitted to IP'
     @inquiry.submit_to_ip_date = Time.now
     @inquiry.save
-    # InquiryMailer.email_ip(@inquiry).deliver
+    InquiryMailer.email_ip(@inquiry).deliver
 
     redirect_to @inquiry
   end
@@ -110,6 +109,7 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Resolved (No IP Change)'
     @inquiry.resolution_date = Time.now
     @inquiry.save
+    InquiryMailer.resolved(@inquiry).deliver
     redirect_to @inquiry
   end
 
@@ -118,6 +118,7 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Resolved (IP Change)'
     @inquiry.resolution_date = Time.now
     @inquiry.save
+    InquiryMailer.resolved(@inquiry).deliver
     redirect_to @inquiry
   end
 
@@ -130,7 +131,7 @@ class InquiriesController < ApplicationController
       @inquiry.submit_to_ip_date = Time.now 
     end
     @inquiry.save
-
+    InquiryMailer.resolution_entered(@inquiry).deliver
     redirect_to @inquiry
   end
 

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "bao.tran@macys.com"
+  default from: "admin@degweb.org"
   layout 'mailer'
 end
