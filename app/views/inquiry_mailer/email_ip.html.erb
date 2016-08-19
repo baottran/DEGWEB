@@ -5,5 +5,5 @@ Please review the following database Inquiry and provide a resolution:
 </p>
 
 <p>
-  <%= link_to "Inquiry For Resolution", controller: "inquiries", action: "show", id: @inquiry, :ip => "review" %>
+  <%= link_to "Inquiry #{@inquiry.id} For Resolution", controller: "inquiries", action: "show", id: @inquiry, :ip => "review" %>
 </p>

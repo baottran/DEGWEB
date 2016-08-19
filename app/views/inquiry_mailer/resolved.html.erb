@@ -5,5 +5,5 @@ Your database inquiry has been marked as resolved by a DEG admin. Please review 
 </p>
 
 <p>
-<%= link_to "DEG Inquiry", controller: "inquiries", action: "show", id: @inquiry %>
+<%= link_to "DEG Inquiry #{@inquiry.id}", controller: "inquiries", action: "show", id: @inquiry %>
 </p>

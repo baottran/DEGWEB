@@ -12,7 +12,7 @@
         <strong>Tracking #: </strong><%= @inquiry.id %>
       </div>
       <div class="inquiry-item">
-        <strong>Date Submitted: </strong><%= @inquiry.created_at.to_formatted_s(:long) %>
+        <strong>Date Submitted: </strong><%= @inquiry.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%m/%d/%Y %l:%M%p EDT")     %>
       </div>
       <div class="inquiry-item">
         <strong>Status: </strong><%= @inquiry.status %>

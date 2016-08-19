@@ -4,8 +4,10 @@
     <li id="new"><a href="/inquiries/new">New Inquiry</a></li>
     <% if logged_in? %>
     	<li id="reporting"><a href="/reporting">Reporting</a></li>
+    	<li id="logout"><a href="/logout">Log Out</a></li>
     <% end %>
 </ul>
+<% end %>
 <script>
 <% if current === "queue" %>
 	$("#queue").addClass("active");
@@ -16,5 +18,11 @@
 <% end %>
 </script>
 
-<% end %>
+<style>
+#logout {
+	margin-left: 470px;
+}
+
+</style>
+
 
