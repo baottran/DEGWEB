@@ -145,8 +145,9 @@ var Forms = {
         event.preventDefault();
         $(".section-1").hide();
         $(".section-2").show();
-        $(document).scrollTop(0);
-        $("#title").focus();
+        // $(document).scrollTop(0);
+        // $("#title").focus();
+        parent.scrollTo(0,0);
         console.log("title is ", $("#title"));
 
       }
@@ -157,7 +158,8 @@ var Forms = {
       $(".section-1").show();
       $(".section-2").hide();
       // $(document).scrollTop(0);
-      $("#title").focus();
+      // $("#title").focus();
+      parent.scrollTo(0,0);
       console.log("title is ", $("#title"));
     });
   },
