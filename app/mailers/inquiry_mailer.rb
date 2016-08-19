@@ -26,9 +26,8 @@ class InquiryMailer < ApplicationMailer
   def resolved(inquiry)
     @inquiry = inquiry
     mail(
-      :subject => 'DEG - Inquiry Resolved',
-      :to => 'aaron@scrs.com', 
-      :cc => 'admin@degweb.org', 
+      :subject => "DEG - Inquiry #{@inquiry.id} Resolved",
+      :to => @inquiry.email, 
       :bcc => 'bowtran@gmail.com')
   end
 

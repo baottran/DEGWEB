@@ -131,7 +131,6 @@ class InquiriesController < ApplicationController
       @inquiry.submit_to_ip_date = Time.now 
     end
     @inquiry.save
-    InquiryMailer.resolution_entered(@inquiry).deliver
     redirect_to @inquiry
   end
 
