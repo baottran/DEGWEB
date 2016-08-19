@@ -428,7 +428,7 @@
         <div class="form-group">
           <%= f.label :refinished_surface_area, 'Estimated Part Surface Area', :class => "col-xs-3 form-label" %>
           <div class="col-xs-9">
-            <%= f.select(:refinished_surface_area, options_for_select(surface_area_in), {}, {class: 'form-control'}) %>
+            <%= f.text_field :refinished_surface_area, :class => "form-control", :placeholder => "surface area" %>
             <i>square inches</i>
           </div>
         </div>
