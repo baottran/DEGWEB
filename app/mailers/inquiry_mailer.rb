@@ -8,7 +8,7 @@ class InquiryMailer < ApplicationMailer
   def new_inquiry(inquiry)
     @inquiry = inquiry
     mail(
-      :subject => 'DEG - New Inquiry',
+      :subject => "DEG - New Inquiry",
       :to => 'aaron@scrs.com', 
       :cc => 'admin@degweb.org', 
       :bcc => 'bowtran@gmail.com')
@@ -17,7 +17,7 @@ class InquiryMailer < ApplicationMailer
   def email_ip(inquiry)
   	@inquiry = inquiry
   	mail(
-      :subject => 'DEG - Inquiry Needs Review',
+      :subject => "DEG - Inquiry #{@inquiry.id} Needs Review",
       :to => 'aaron@scrs.com', 
       :cc => 'admin@degweb.org', 
       :bcc => 'bowtran@gmail.com')
@@ -26,7 +26,7 @@ class InquiryMailer < ApplicationMailer
   def resolved(inquiry)
     @inquiry = inquiry
     mail(
-      :subject => 'DEG - Resolved',
+      :subject => 'DEG - Inquiry Resolved',
       :to => 'aaron@scrs.com', 
       :cc => 'admin@degweb.org', 
       :bcc => 'bowtran@gmail.com')

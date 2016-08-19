@@ -12,7 +12,6 @@ class Inquiry < ActiveRecord::Base
   validates :make, presence: true
   validates :model, presence: true
   validates :year, presence: true
-  validates :vin, presence: true
 
   has_attached_file :attachment,
                     :storage => :s3,
@@ -38,7 +37,7 @@ class Inquiry < ActiveRecord::Base
                     :path => "/inquiries/:id", 
                     :url => ":s3_domain_url"
 
-    has_attached_file :attachment5,
+  has_attached_file :attachment5,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
                     :path => "/inquiries/:id", 
