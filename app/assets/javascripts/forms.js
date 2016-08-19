@@ -148,7 +148,7 @@ var Forms = {
         // $(document).scrollTop(0);
         // $("#title").focus();
         parent.scrollTo(0,0);
-        console.log("title is ", $("#title"));
+        console.log("parent is ", parent);
 
       }
     });

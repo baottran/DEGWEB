@@ -182,7 +182,7 @@
         <div class="form-group">
           <%= f.label :missing_part_description, 'Missing Part Description', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_part_description, :class => "form-control" %>
+            <%= f.text_area :missing_part_description, :class => "form-control", :rows => "3" %>
           </div>
         </div>
         <div class="form-group">
@@ -194,19 +194,19 @@
         <div class="form-group">
           <%= f.label :missing_information, 'Missing Information', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_information, :class => "form-control" %>
+            <%= f.text_area :missing_information, :class => "form-control", rows: "3" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :missing_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_issue_summary, :class => "form-control" %>
+            <%= f.text_area :missing_issue_summary, :class => "form-control", rows: "10" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :missing_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :missing_suggested_action, :class => "form-control" %>
+            <%= f.text_area :missing_suggested_action, :class => "form-control", :rows => "5" %>
           </div>
         </div>
       </div>
@@ -229,7 +229,7 @@
         <div class="form-group">
           <%= f.label :parts_part_description, 'Part Description', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :parts_part_description, :class => "form-control" %>
+            <%= f.text_area :parts_part_description, :class => "form-control", :rows => "3" %>
           </div>
         </div>
         <div class="form-group">
@@ -241,13 +241,13 @@
         <div class="form-group">
           <%= f.label :parts_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :parts_issue_summary, :class => "form-control" %>
+            <<%= f.text_area :parts_issue_summary, :class => "form-control", :rows => "10" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :parts_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :parts_suggested_action, :class => "form-control" %>
+             <%= f.text_area :parts_suggested_action, :class => "form-control", :rows => "5" %>
           </div>
         </div>
       </div>
@@ -270,13 +270,13 @@
         <div class="form-group">
           <%= f.label :procedure_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :procedure_issue_summary, :class => "form-control" %>
+           <%= f.text_area :procedure_issue_summary, :class => "form-control", :rows => "10" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :procedure_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :procedure_suggested_action, :class => "form-control" %>
+            <%= f.text_area :procedure_suggested_action, :class => "form-control", :rows => "5" %>
           </div>
         </div>
       </div>
@@ -305,7 +305,7 @@
         <div class="form-group">
           <%= f.label :welded_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :welded_issue_summary, :class => "form-control" %>
+            <%= f.text_area :welded_issue_summary, :class => "form-control", :rows => "10" %>
           </div>
         </div>
         <div class="form-group">
@@ -323,7 +323,7 @@
         <div class="form-group">
           <%= f.label :welded_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :welded_procedure_steps, :class => "form-control" %>
+            <%= f.text_area :welded_procedure_steps, :class => "form-control", :rows => "5" %>
           </div>
         </div>
         <div class="form-group">
@@ -342,7 +342,7 @@
         <div class="form-group">
           <%= f.label :welded_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :welded_suggested_action, :class => "form-control" %>
+            <%= f.text_area :welded_suggested_action, :class => "form-control", :rows => "5" %>
           </div>
         </div>
       </div>
@@ -371,13 +371,13 @@
         <div class="form-group">
           <%= f.label :non_welded_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :non_welded_issue_summary, :class => "form-control" %>
+            <%= f.text_area :non_welded_issue_summary, :class => "form-control", :rows => "10" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :non_welded_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :non_welded_procedure_steps, :class => "form-control" %>
+            <%= f.text_area :non_welded_procedure_steps, :class => "form-control", :rows => "5" %>
           </div>
         </div>
         <div class="form-group">
@@ -396,7 +396,7 @@
         <div class="form-group">
           <%= f.label :non_welded_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :non_welded_suggested_action, :class => "form-control" %>
+            <%= f.text_area :non_welded_suggested_action, :class => "form-control", :rows => "5" %>
           </div>
         </div>
       </div>
@@ -413,13 +413,13 @@
         <div class="form-group">
           <%= f.label :refinished_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :refinished_issue_summary, :class => "form-control" %>
+            <%= f.text_area :refinished_issue_summary, :class => "form-control", :rows => "10" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :refinished_special_labor, 'Special Labor or Material Considerations', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :refinished_special_labor, :class => "form-control" %>
+            <%= f.text_area :refinished_special_labor, :class => "form-control" %>
           </div>
         </div>
         <div class="form-group">
@@ -432,7 +432,7 @@
         <div class="form-group">
           <%= f.label :refinished_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :refinished_suggested_action, :class => "form-control" %>
+            <%= f.text_area :refinished_suggested_action, :class => "form-control", :rows => "5" %>
           </div>
         </div>
       </div>
@@ -440,13 +440,13 @@
         <div class="form-group">
           <%= f.label :all_other_issue_summary, 'Issue Summary', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :all_other_issue_summary, :class => "form-control" %>
+            <%= f.text_area :all_other_issue_summary, :class => "form-control", :rows => "10" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :all_other_procedure_steps, 'Individual Procedure Steps', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :all_other_procedure_steps, :class => "form-control" %>
+            <%= f.text_area :all_other_procedure_steps, :class => "form-control" %>
           </div>
         </div>
         <div class="form-group">
@@ -459,7 +459,7 @@
         <div class="form-group">
           <%= f.label :all_other_suggested_action, 'Suggested Action', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
-            <%= f.text_field :all_other_suggested_action, :class => "form-control" %>
+            <%= f.text_area :all_other_suggested_action, :class => "form-control", :rows => "5" %>
           </div>
         </div>
       </div>
