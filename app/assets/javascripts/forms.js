@@ -146,7 +146,8 @@ var Forms = {
         $(".section-1").hide();
         $(".section-2").show();
         $(document).scrollTop(0);
-        $(".section-2").focus();
+        $("#title").focus();
+        console.log("title is ", $("#title"));
 
       }
     });
@@ -156,7 +157,8 @@ var Forms = {
       $(".section-1").show();
       $(".section-2").hide();
       // $(document).scrollTop(0);
-      $(".section-1").focus();
+      $("#title").focus();
+      console.log("title is ", $("#title"));
     });
   },
 
