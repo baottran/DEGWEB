@@ -100,53 +100,6 @@ var Forms = {
     this.toggleOtherMakeField();
   },
 
-  // validateRequiredFields: function() {
-
-  //   console.log("testing");
-
-  //   $('.form-next-button').attr('disabled', 'disabled');
-
-  //   $('.required-input').on('keyup mouseup', function() {
-  //     var hasAllrequiredInputs;
-  //     var hasRequiredInputsArray = [];
-  //     var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model"];
-  //     for (var i in requiredInputs) {
-  //       var hasContent = false;
-  //       if (($('#' + requiredInputs[i]).val().trim() !== '')) {
-  //         hasContent = true;
-  //       }
-  //       hasRequiredInputsArray.push(hasContent);
-  //     }
-
-  //     hasAllrequiredInputs = hasRequiredInputsArray.every(Boolean);
-
-  //     // console.log("hasAllrequiredInputs: ", hasAllrequiredInputs);
-  //     // console.log("hasRequiredInputsArray: ", hasRequiredInputsArray);
-
-  //     if (hasAllrequiredInputs) {
-  //       $('.form-next-button').removeAttr('disabled');
-  //       console.log("has all required inputs");
-  //     } else {
-  //       $('.form-next-button').attr('disabled', 'disabled');
-  //       console.log("no required inputs");
-  //     }
-  //   });
-  // },
-
-  // validateOnPush: function(){
-
-  //   // $('.form-next-button').attr('disabled', 'disabled');
-  //   $("#inquiry_title").click(function(event) {
-  //     if(Forms.missingFieldToFocus() !== ""){
-  //       console.log("does not have all required inputs. missing ", Forms.missingFieldToFocus());
-  //       $(Forms.missingFieldToFocus()).focus();
-  //       $("form").validate().element(Forms.missingFieldToFocus());
-  //     } else {
-  //       console.log("has all required inputs");
-  //     }
-  //   });
-  // },
-
   missingFieldToFocus: function(){
       var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model"];
       for (var i in requiredInputs) {
@@ -155,10 +108,6 @@ var Forms = {
         }
       }
       return ""
-  },
-
-  focusOnMissingField: function(){
-    console.log("here come at me bro");
   },
 
   checkRequiredFields: function() {
@@ -204,7 +153,8 @@ var Forms = {
       event.preventDefault();
       $(".section-1").show();
       $(".section-2").hide();
-      $(document).scrollTop(0);
+      // $(document).scrollTop(0);
+      $(".section-2").focus();
     });
   },
 
