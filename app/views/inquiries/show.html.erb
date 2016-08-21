@@ -199,13 +199,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">Notes </div>
   <div class="panel-body">
-    <% @inquiry.comments.each do |comment| %>
-      <p>
-        <p><%= comment.body %></p><br>
-        <b><%= comment.commenter %></b> at <i><%= comment.created_at.strftime("%-m/%-d/%y") %></i>
-      </p><br>
-    <% end %>
-    <hr>
     <%= render 'comments/form' %>
   </div>
 </div>

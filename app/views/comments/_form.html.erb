@@ -1,15 +1,57 @@
+<div class="inquiry-comments">
+<% @inquiry.comments.order('created_at ASC').each do |comment| %>
+      <p>
+        <p><%= comment.body %></p><br>
+        <b><%= comment.commenter %></b> at <i><%= comment.created_at.strftime("%-m/%-d/%y") %></i>
+      </p><br>
+    <% end %>
+</div>
+<hr>
 <h4>Add a comment:</h4>
 <%= form_for([@inquiry, @inquiry.comments.build]) do |f| %>
 
   <p>
     <%= f.label :body, "Comment" %><br>
-    <%= f.text_area :body, class: "form-control" %>
+    <%= f.text_area :body, class: "form-control", id: "comment-body" %>
   </p>
     <p>
     <%= f.label :commenter, "Author" %><br>
-    <%= f.text_field :commenter, class: "form-control" %>
+    <%= f.text_field :commenter, class: "form-control", id: "comment-author" %>
   </p>
   <p>
-    <%= f.submit "Submit", class: "btn btn-primary btn-submit" %>
+    <%= f.submit "Submit", class: "btn btn-primary btn-submit", id: "comment-submit" %>
   </p>
 <% end %>
+
+<script>
+$("#comment-submit").click(function(event){
+  event.preventDefault();
+
+  var commentBody = $("#comment-body").val();
+  var commentAuthor = $("#comment-author").val();
+  var endpoint = "/inquiries/<%= @inquiry.id %>/comments"
+
+  if (commentBody === "" || commentAuthor === ""){
+    alert("please enter a comment body and author");
+  } else {
+    $.ajax({
+      url: endpoint,
+      type: 'POST',
+      dataType: 'json',
+      data: {body: commentBody, author: commentAuthor}
+    })
+    .done(function() {
+      console.log("success");
+      $(".inquiry-comments").append("<p><p>" + commentBody + "</p><br><b>" + commentAuthor + "</b> at <i>" + "<%= DateTime.now.to_date.strftime("%-m/%-d/%y") %>" + "</i></p><br>");
+      $("#comment-body").val("");
+      $("#comment-author").val("");
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+  }
+})
+</script>
