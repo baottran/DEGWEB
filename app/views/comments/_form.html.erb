@@ -24,6 +24,10 @@
 <% end %>
 
 <script>
+<% if logged_in? %>
+  $("#comment-author").val("<%= current_user.name %>");
+<% end %>
+
 $("#comment-submit").click(function(event){
   event.preventDefault();
 
