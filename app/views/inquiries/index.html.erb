@@ -1,15 +1,10 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <script>
-
-// $(document).tooltip();
 $(document).on("ready page:change", function() {
   $('.tooltip-icon').tooltip();
   $('#date_start').datepicker({ dateFormat: 'yy-mm-dd'});
   $('#date_end').datepicker({ dateFormat: 'yy-mm-dd'});
-
-
 });
-
 
 </script>
 
@@ -108,8 +103,6 @@ div.pagination {
 
 </style>
 
-
-
 <div class="container">
 
   <%= render partial: 'nav_pills', locals: {current: "queue"} %>
@@ -122,12 +115,14 @@ div.pagination {
       <%= render 'inquiries/query_form.html.erb' %>
     </div>
   </div>
+  <% if logged_in? %>
     <div class="panel panel-default right-content">
-    <div class="panel-heading" id="filter-toggle">Filter Database (-)</div>
-    <div class="panel-body" id="filter-body" style="display: none;">
-      <%= render 'inquiries/filter_form.html.erb' %>
+      <div class="panel-heading" id="filter-toggle">Filter Database (-)</div>
+      <div class="panel-body" id="filter-body" style="display: none;">
+        <%= render 'inquiries/filter_form.html.erb' %>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="panel panel-default panel-status">
     <%= render 'inquiries/status_counts' %>
   </div>
