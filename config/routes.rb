@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   get 'inquiries/:id/rslve_no_chng' => 'inquiries#resolve_no_change'
   get 'inquiries/:id/rslve_ip_chng' => 'inquiries#resolve_ip_change'
   patch 'inquiries/:id/edit_status' => 'inquiries#edit_status'
+  get 'inquiries/:id/set_show_on_web' => 'inquiries#set_show_on_web'
 
   resources :users
   resources :blogs

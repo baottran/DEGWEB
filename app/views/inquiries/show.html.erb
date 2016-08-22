@@ -18,7 +18,7 @@
         <strong>Status: </strong><%= @inquiry.status %>
       </div>
     <% if logged_in? %>
-      <div class="inquiry-item">
+      <div class="inquiry-item show-value">
         <strong> Show on Web: </strong><%= @inquiry.show_on_web %>
       </div>
     <% end %>
@@ -71,7 +71,12 @@
 <div class="inquiry-show-form">
   <div class="inquiry-edit-button">
     <% if logged_in? %>
-      <button type="submit" class="btn btn-primary btn-submit" id="inquiry-edit">Edit</button>
+      Show on Web
+      <label class="switch">
+        <input id ="show-on-web" type="checkbox">
+        <div class="slider round"></div>
+      </label>
+      <button type="submit" class="btn btn-primary btn-submit" id="inquiry-edit">Edit Inquiry Details</button>
     <% end %>
   </div>
   <div class="panel panel-default">
@@ -209,6 +214,28 @@
       $(".inquiry-resolution").focus();
       $("#resolution-text").toggle();
       $("#resolution-form").toggle();
+<% end %>
+
+$("#show-on-web").click(function(event) {
+  $.ajax({
+    url: '<%= @inquiry.id %>/set_show_on_web',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    var boolText = data.show_on_web.toString()
+    $(".show-value").html("<strong>Show on Web: </strong>" + boolText);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+});
+
+<% if @inquiry.show_on_web %>
+  $("#show-on-web").prop('checked', true);
 <% end %>
 
 </script>

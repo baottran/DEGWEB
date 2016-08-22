@@ -146,9 +146,11 @@
   <div class="form-field col-xs-6">
     <div class="form-horizontal">
       <div class="form-group">
-        <%= f.label :database, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-3 form-label">
+          <span class="form-required">* </span><%= f.label :database %>
+        </div>
         <div class="col-xs-9">
-          <%= f.select(:database, options_for_select(database_types), {}, {class: 'form-control'}) %>
+          <%= f.select(:database, options_for_select(database_types), {}, {class: 'form-control required-input'}) %>
         </div>
       </div>
       <div class="form-group">
@@ -159,9 +161,11 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :inquiry_type, :class => "col-xs-3 form-label" %>
+        <div class="col-xs-3 form-label">
+          <span class="form-required">* </span><%= f.label :inquiry_type %>
+        </div>
         <div class="col-xs-9">
-          <%= f.select(:inquiry_type, options_for_select(inquiry_types), {}, {class: 'form-control'}) %>
+          <%= f.select(:inquiry_type, options_for_select(inquiry_types), {}, {class: 'form-control required-input'}) %>
         </div>
       </div>
       <div class="missing-info-form">

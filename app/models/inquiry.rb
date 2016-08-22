@@ -53,7 +53,7 @@ class Inquiry < ActiveRecord::Base
 
   def init
     self.status  ||= "Received by DEG"
-    self.show_on_web = false           #will set the default value only if it's nil
+    self.show_on_web  ||= false           #will set the default value only if it's nil
   end
 
   def set_criteria

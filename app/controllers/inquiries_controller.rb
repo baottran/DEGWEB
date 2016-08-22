@@ -382,6 +382,14 @@ class InquiriesController < ApplicationController
     render :json => count_data
   end 
 
+  def set_show_on_web
+    @inquiry = Inquiry.find(params[:id])
+    @inquiry.show_on_web = !@inquiry.show_on_web
+    @inquiry.save
+    p "setting inquiry to #{@inquiry.show_on_web}"
+    render :json => {:show_on_web => @inquiry.show_on_web }
+  end
+
 
 	private
 	  def inquiry_params
