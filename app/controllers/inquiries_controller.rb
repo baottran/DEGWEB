@@ -78,7 +78,6 @@ class InquiriesController < ApplicationController
 
 	def create
   	@inquiry = Inquiry.new(inquiry_params)
-
     if @inquiry.save
       InquiryMailer.new_inquiry(@inquiry).deliver
       render 'thankyou'
@@ -434,6 +433,7 @@ class InquiriesController < ApplicationController
                                       :resolution, 
                                       :status, 
                                       :missing_area_of_vehicle,
+                                      :missing_area_of_vehicle_other_field,
                                       :missing_part_name,
                                       :missing_part_description,
                                       :missing_oem_part_number,
@@ -441,17 +441,22 @@ class InquiriesController < ApplicationController
                                       :missing_issue_summary,
                                       :missing_suggested_action,
                                       :parts_area_of_vehicle,
+                                      :parts_area_of_vehicle_other_field,
                                       :parts_part_name,
                                       :parts_part_description,
                                       :parts_oem_part_number,
                                       :parts_issue_summary,
                                       :parts_suggested_action,
                                       :procedure_area_of_vehicle,
+                                      :procedure_area_of_vehicle_other_field,
                                       :procedure_page_number,
                                       :procedure_issue_summary,
                                       :procedure_suggested_action,
                                       :welded_area_of_vehicle,
                                       :welded_area_of_vehicle_other_field,
+                                      :welded_issue_summary,
+                                      :welded_weld_spots,
+                                      :welded_materials_involved,
                                       :welded_part_name,
                                       :welded_part_number,
                                       :welded_procedure_steps,
@@ -459,14 +464,26 @@ class InquiriesController < ApplicationController
                                       :welded_complete_time_hour,
                                       :welded_complete_time_min,
                                       :welded_suggested_action,
+                                      :non_welded_area_of_vehicle,
+                                      :non_welded_area_of_vehicle_other_field,
+                                      :non_welded_part_name,
+                                      :non_welded_part_number,
+                                      :non_welded_issue_summary,
+                                      :non_welded_procedure_steps,
+                                      :non_welded_skill_level,
+                                      :non_welded_complete_time_hour,
+                                      :non_welded_complete_time_min,
+                                      :non_welded_suggested_action,
                                       :refinished_area_of_vehicle,
                                       :refinished_area_of_vehicle_other_field,
                                       :refinished_issue_summary,
                                       :refinished_special_labor,
                                       :refinished_surface_area,
                                       :refinished_suggested_action,
+                                      :all_other_issue_summary,
                                       :all_other_procedure_steps,
                                       :all_other_complete_time_hour,
+                                      :all_other_complete_time_min,
                                       :all_other_suggested_action,
                                       :show_on_web)
 	  end
