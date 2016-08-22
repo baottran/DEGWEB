@@ -100,7 +100,7 @@ class InquiriesController < ApplicationController
     @inquiry.submit_to_ip_date = Time.now
     @inquiry.save
     InquiryMailer.email_ip(@inquiry).deliver
-
+    InquiryMailer.notify_emailed(@inquiry).deliver
     redirect_to @inquiry
   end
 

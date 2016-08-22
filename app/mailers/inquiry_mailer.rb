@@ -23,6 +23,14 @@ class InquiryMailer < ApplicationMailer
       :bcc => 'bowtran@gmail.com')
   end
 
+  def notify_emailed(inquiry)
+    @inquiry = inquiry
+    mail(
+      :subject => "DEG - Inquiry #{@inquiry.id} Emailed to IP",
+      :to => @inquiry.email, 
+      :cc => 'admin@degweb.org', 
+      :bcc => 'bowtran@gmail.com')
+
   def resolved(inquiry)
     @inquiry = inquiry
     mail(

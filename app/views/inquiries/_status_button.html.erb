@@ -6,7 +6,11 @@
       <a href="/inquiries" class="<%= btn_class_for_status %>">
         <div class="title"></div>
         <div class="title">All</div>
-        <div id="allCount"><%= @report.all_count %></div>
+        <% if logged_in? %>
+          <div id="allCount"><%= @report.all_count %></div>
+        <% else %>
+          <div id="allCount"><%= @inquiries.where(show_on_web: true).count %></div>
+        <% end %>
       </a>
 
 <% when 'Received by DEG' %>
@@ -17,7 +21,7 @@
         <div id="receivedCount"><%= @report.received_count %></div>
       </a>
 
-<% when 'SuIbmitted to IP' %>
+<% when 'Submitted to IP' %>
 
       <a href="/inquiries?status=Submitted+to+IP" class="<%= btn_class_for_status %>">
         <div class="title">Submitted</div>

@@ -1,11 +1,11 @@
-<h1>Inquiry Resolved</h1>
+<h1>Information Provider Notified</h1>
 
 <p>
-Your database inquiry has been marked as resolved by a DEG admin. Please review at the following location: 
+A request has been sent to the information provider to review your inquiry. 
 </p>
 
 <p>
-<%= link_to "DEG Inquiry #{@inquiry.id}", controller: "inquiries", action: "show", id: @inquiry %>
+  <%= link_to "Inquiry #{@inquiry.id} For Resolution", controller: "inquiries", action: "show", id: @inquiry %>
 </p>
 
 <div class="inquiry-data">
