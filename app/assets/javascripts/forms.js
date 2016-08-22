@@ -111,6 +111,10 @@ var Forms = {
   },
 
   checkRequiredFields: function() {
+    jQuery.validator.addMethod("notEqual", function(value, element, param) {
+      return this.optional(element) || value != param;
+      }, "Please specify a different (non-default) value");
+
     $("form").validate({
       rules: {
         "inquiry[name]": {required: true},
@@ -120,7 +124,7 @@ var Forms = {
         "inquiry[model]": {required: true},
         "inquiry[year]": {required: true, nowhitespace: true},
         "inquiry[database]": {required: true, nowhitespace: true},
-        "inquiry[inquiry_type]": {required: true, nowhitespace: true},
+        "inquiry[inquiry_type]": {required: true, notEqual: " "},
         "verify_email": {required: true}
       },
       messages: {
@@ -131,7 +135,7 @@ var Forms = {
         "inquiry[model]": {required: "enter a model"},
         "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},
         "inquiry[database]": {required: "select a database", nowhitespace: "select a database"},
-        "inquiry[inquiry_type]": {required: "select an inquiry type", nowhitespace: "select a database"},
+        "inquiry[inquiry_type]": {required: "select an inquiry type", notEqual: "select an inquiry type"},
         "inquiry[title]": {required: "testing"}
       }
     });
