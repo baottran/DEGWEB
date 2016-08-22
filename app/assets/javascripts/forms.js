@@ -121,7 +121,6 @@ var Forms = {
         "inquiry[year]": {required: true, nowhitespace: true},
         "inquiry[database]": {required: true, nowhitespace: true},
         "inquiry[inquiry_type]": {required: true, nowhitespace: true},
-        "inquiry[title]": {required: true},
         "verify_email": {required: true}
       },
       messages: {
