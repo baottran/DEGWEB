@@ -101,7 +101,7 @@ var Forms = {
   },
 
   missingFieldToFocus: function(){
-      var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_database", "inquiry_inquiry_type", "inquiry_title"];
+      var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_database", "inquiry_inquiry_type"];
       for (var i in requiredInputs) {
         if (($('#' + requiredInputs[i]).val().trim() === '')) {
           return '#' + requiredInputs[i]
