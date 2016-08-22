@@ -136,6 +136,8 @@ class InquiriesController < ApplicationController
 
   def edit_inquiry
 
+    p params
+
     @inquiry = Inquiry.find(params[:id])
     inquiry_params = params[:inquiry]
 
@@ -214,6 +216,11 @@ class InquiriesController < ApplicationController
     @inquiry.all_other_complete_time_min = inquiry_params[:all_other_complete_time_min]
     @inquiry.all_other_suggested_action = inquiry_params[:all_other_suggested_action]
     @inquiry.show_on_web = inquiry_params[:show_on_web]
+    @inquiry.attachment = inquiry_params[:attachment]
+    @inquiry.attachment2 = inquiry_params[:attachment2]
+    @inquiry.attachment3 = inquiry_params[:attachment3]
+    @inquiry.attachment4 = inquiry_params[:attachment4]
+    @inquiry.attachment5 = inquiry_params[:attachment5]
     @inquiry.save
 
     redirect_to @inquiry
