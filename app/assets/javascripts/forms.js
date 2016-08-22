@@ -101,7 +101,7 @@ var Forms = {
   },
 
   missingFieldToFocus: function(){
-      var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_database", "inquiry_inquiry_type"];
+      var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_database", "inquiry_inquiry_type", "inquiry_title"];
       for (var i in requiredInputs) {
         if (($('#' + requiredInputs[i]).val().trim() === '')) {
           return '#' + requiredInputs[i]
@@ -115,22 +115,25 @@ var Forms = {
       rules: {
         "inquiry[name]": {required: true},
         "inquiry[phone]": {required: true, phoneUS: true},
-        "inquiry[email]": {required: true, email: true},
+        "inquiry[email]": {required: true, email: true, equalTo: "#verify_email"},
         "inquiry[make]": {required: true, nowhitespace: true},
         "inquiry[model]": {required: true},
         "inquiry[year]": {required: true, nowhitespace: true},
-        "inquiry[database]": {required: true},
-        "inquiry[inquiry_type]": {required: true}
+        "inquiry[database]": {required: true, nowhitespace: true},
+        "inquiry[inquiry_type]": {required: true, nowhitespace: true},
+        "inquiry[title]": {required: true},
+        "verify_email": {required: true}
       },
       messages: {
         "inquiry[name]": {required: "enter a name"},
         "inquiry[phone]": {required: "enter a phone number", phoneUS: "enter a valid phone number"},
-        "inquiry[email]": {required: "enter an email", email: "enter a valid email"},
+        "inquiry[email]": {required: "enter an email", email: "enter a valid email", equalTo: "please verify email"},
         "inquiry[make]": {required: "select a make", nowhitespace: "select a make"},
         "inquiry[model]": {required: "enter a model"},
         "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},
-        "inquiry[database]": {required: "select a database"},
-        "inquiry[inquiry_type]": {required: "select an inquiry type"}
+        "inquiry[database]": {required: "select a database", nowhitespace: "select a database"},
+        "inquiry[inquiry_type]": {required: "select an inquiry type", nowhitespace: "select a database"},
+        "inquiry[title]": {required: "testing"}
       }
     });
   },

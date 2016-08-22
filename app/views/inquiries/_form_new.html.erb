@@ -88,6 +88,14 @@
           <%= f.text_field :email, :class => "form-control required-input", :placeholder => "email@host.com" %>
         </div>
       </div>
+      <div class="form-group">
+        <div class="col-xs-3 form-label">
+          <span class="form-required">* </span><label>Verify Email</label>
+        </div>
+        <div class="col-xs-9">
+          <%= f.text_field :email, :class => "form-control required-input", :placeholder => "email@host.com", :name => "verify_email", :id => "verify_email" %>
+        </div>
+      </div>
     </div>
   </div>
   <br>

@@ -61,7 +61,7 @@ var ShowMake = {
       var newResolution = $("#textArea").val();
       $("#resolution-text").find("p").text(newResolution);
       $("#resolution-form").toggle();
-      $("#resolution-text").toggle();
+      $("#resoluetion-text").toggle();
     });
 
     $("#resolution-cancel").click(function(event) {
@@ -164,7 +164,9 @@ var ShowMake = {
         "inquiry[email]": {required: true, email: true},
         "inquiry[make]": {required: true, nowhitespace: true},
         "inquiry[model]": {required: true},
-        "inquiry[year]": {required: true, nowhitespace: true}
+        "inquiry[year]": {required: true, nowhitespace: true},
+        "inquiry[database]": {required: true},
+        "inquiry[inquiry_type]": {required: true}
       },
       messages: {
         "inquiry[name]": {required: "enter a name"},
@@ -172,7 +174,9 @@ var ShowMake = {
         "inquiry[email]": {required: "enter an email", email: "enter a valid email"},
         "inquiry[make]": {required: "select a make", nowhitespace: "select a make"},
         "inquiry[model]": {required: "enter a model"},
-        "inquiry[year]": {required: "select a year", nowhitespace: "select a year"}
+        "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},
+        "inquiry[database]": {required: "select a database"},
+        "inquiry[inquiry_type]": {required: "select an inquiry type"}
       }
     });
   },

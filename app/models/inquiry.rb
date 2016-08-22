@@ -12,6 +12,8 @@ class Inquiry < ActiveRecord::Base
   validates :make, presence: true
   validates :model, presence: true
   validates :year, presence: true
+  validates :database, presence: true
+  validates :inquiry_type, presence: true
 
   has_attached_file :attachment,
                     :storage => :s3,
