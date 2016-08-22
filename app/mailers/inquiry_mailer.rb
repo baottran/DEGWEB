@@ -30,6 +30,7 @@ class InquiryMailer < ApplicationMailer
       :to => @inquiry.email, 
       :cc => 'admin@degweb.org', 
       :bcc => 'bowtran@gmail.com')
+  end
 
   def resolved(inquiry)
     @inquiry = inquiry
