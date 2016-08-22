@@ -19,7 +19,7 @@ $(document).on("ready page:change", function() {
   height: 220px;
 }
 .panel-status {
-  width: 920px;
+  width: 1020px;
   display: flex;
   background-color: white;
   align-items: center;
@@ -33,7 +33,7 @@ $(document).on("ready page:change", function() {
 
 .panel-search {
 
-  width: 920px;
+  width: 1020px;
 /*  height: 100px;
   margin: 10px;
   padding: 20px;*/
@@ -101,9 +101,19 @@ div.pagination {
   margin-left: 5px;
 }
 
+#index-container {
+  width: 1100px;
+  background-color: white;
+  margin: auto;
+}
+
+.filter-content {
+  width: 1020px;
+}
+
 </style>
 
-<div class="container">
+<div class="container" id="index-container">
 
   <%= render partial: 'nav_pills', locals: {current: "queue"} %>
   
@@ -116,7 +126,7 @@ div.pagination {
     </div>
   </div>
   <% if logged_in? %>
-    <div class="panel panel-default right-content">
+    <div class="panel panel-default right-content filter-content">
       <div class="panel-heading" id="filter-toggle">Filter Database (-)</div>
       <div class="panel-body" id="filter-body" style="display: none;">
         <%= render 'inquiries/filter_form.html.erb' %>

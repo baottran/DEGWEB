@@ -365,12 +365,19 @@ class InquiriesController < ApplicationController
   end
 
   def inquiry_counts
-    all_count = Inquiry.all.count
-    received_count = Inquiry.where(status: 'Received by DEG').count
-    submitted_count = Inquiry.where(status: 'Submitted to IP').count
-    responded_count = Inquiry.where(status: 'IP Response Received').count
-    ip_change_count = Inquiry.where(status: 'Resolved (IP Change)').count 
-    no_change_count = Inquiry.where(status: 'Resolved (No IP Change)').count 
+
+    if logged_in? 
+      inquiries = Inquiry.all
+    else
+      inquiries = Inquiry.where(show_on_web: true)
+    end
+
+    all_count = inquiries.count
+    received_count = inquiries.where(status: 'Received by DEG').count
+    submitted_count = inquiries.where(status: 'Submitted to IP').count
+    responded_count = inquiries.where(status: 'IP Response Received').count
+    ip_change_count = inquiries.where(status: 'Resolved (IP Change)').count 
+    no_change_count = inquiries.where(status: 'Resolved (No IP Change)').count 
 
     count_data = { :all     => all_count,
                     :received   => received_count,

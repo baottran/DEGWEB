@@ -9,7 +9,7 @@
         <% if logged_in? %>
           <div id="allCount"><%= @report.all_count %></div>
         <% else %>
-          <div id="allCount"><%= @inquiries.where(show_on_web: true).count %></div>
+          <div id="allCount"><%= Inquiry.where(show_on_web: true).count %></div>
         <% end %>
       </a>
 
