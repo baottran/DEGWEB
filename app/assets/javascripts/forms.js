@@ -157,10 +157,10 @@ var Forms = {
         $(".section-2").show();
         // $(document).scrollTop(0);
         // $("#title").focus();
-        parent.scrollTo(0,0);
-        console.log("parent is ", parent);
-        $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast');
-
+        // parent.scrollTo(0,0);
+        // console.log("parent is ", parent);
+        $('#inquiry_name').focus();
+        $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast')
       }
     });
 
