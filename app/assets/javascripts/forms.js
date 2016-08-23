@@ -159,7 +159,7 @@ var Forms = {
         // $("#title").focus();
         // parent.scrollTo(0,0);
         // console.log("parent is ", parent);
-        $('#inquiry_name').focus();
+        $('#inquiry_attachment').focus();
         $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast')
       }
     });
