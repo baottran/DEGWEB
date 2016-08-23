@@ -169,8 +169,9 @@ var Forms = {
       $(".section-2").hide();
       // $(document).scrollTop(0);
       // $("#title").focus();
-      parent.scrollTo(0,0);
-      console.log("title is ", $("#title"));
+      // parent.scrollTo(0,0);
+      // console.log("title is ", $("#title"));
+      $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast');
     });
   },
 

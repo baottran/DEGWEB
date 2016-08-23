@@ -129,17 +129,18 @@ div.pagination {
       <%= render 'inquiries/query_form.html.erb' %>
     </div>
   </div>
-  <% if logged_in? %>
     <div class="panel panel-default right-content filter-content">
       <div class="panel-heading" id="filter-toggle">Filter Database (-)</div>
       <div class="panel-body" id="filter-body" style="display: none;">
         <%= render 'inquiries/filter_form.html.erb' %>
       </div>
     </div>
-  <% end %>
+  <% if logged_in? %>
   <div class="panel panel-default panel-status">
     <%= render 'inquiries/status_counts' %>
   </div>
+  <% end %>
+
 
   <script>
     $("#filter-toggle").click(function(event){

@@ -9,9 +9,13 @@ Your database inquiry has been marked as resolved by a DEG admin. Please review 
 </p>
 
 <div class="inquiry-data">
+
         <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
         <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
         <p><strong>Database: </strong><%= @inquiry.database %></p>
+        <p><strong>Status: </strong><%= @inquiry.status %></p>
+        <p><strong>Resolution: </strong><%= @inquiry.resoluton %></p>
+
         <% case @inquiry.inquiry_type
           when 'Missing Information' %>
             <p><strong>Area of Vehicle: </strong><%= @inquiry.missing_area_of_vehicle %></p>
