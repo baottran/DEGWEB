@@ -159,6 +159,7 @@ var Forms = {
         // $("#title").focus();
         parent.scrollTo(0,0);
         console.log("parent is ", parent);
+        $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast');
 
       }
     });
@@ -171,7 +172,6 @@ var Forms = {
       // $("#title").focus();
       // parent.scrollTo(0,0);
       console.log("title is ", $("#title"));
-      $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast');
     });
   },
 
