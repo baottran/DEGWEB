@@ -14,7 +14,8 @@ Your database inquiry has been marked as resolved by a DEG admin. Please review 
         <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
         <p><strong>Database: </strong><%= @inquiry.database %></p>
         <p><strong>Status: </strong><%= @inquiry.status %></p>
-        <p><strong>Resolution: </strong><%= @inquiry.resoluton %></p>
+        <% p "inquiry resolution is #{@inquiry.resolution}" %>
+        <p><strong>Resolution: </strong><%= @inquiry.resolution %></p>
 
         <% case @inquiry.inquiry_type
           when 'Missing Information' %>
