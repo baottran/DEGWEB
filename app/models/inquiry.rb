@@ -18,31 +18,31 @@ class Inquiry < ActiveRecord::Base
   has_attached_file :attachment,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id", 
+                    :path => "/inquiries/:id-1", 
                     :url => ":s3_domain_url"
 
   has_attached_file :attachment2,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id", 
+                    :path => "/inquiries/:id-2", 
                     :url => ":s3_domain_url"
 
   has_attached_file :attachment3,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id", 
+                    :path => "/inquiries/:id-3", 
                     :url => ":s3_domain_url"
 
   has_attached_file :attachment4,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id", 
+                    :path => "/inquiries/:id-4", 
                     :url => ":s3_domain_url"
 
   has_attached_file :attachment5,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id", 
+                    :path => "/inquiries/:id-5", 
                     :url => ":s3_domain_url"               
 
   after_initialize :init, :set_criteria, :set_area_of_vehicle
