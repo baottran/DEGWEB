@@ -8,6 +8,22 @@ Your database inquiry has been marked as resolved by a DEG admin. Please review 
 <%= link_to "DEG Inquiry #{@inquiry.id}", controller: "inquiries", action: "show", id: @inquiry %>
 </p>
 
+<div class="inquiry-item">
+        <strong>Year: </strong><%= @inquiry.year %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Make: </strong><%= @inquiry.make %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Model: </strong><%= @inquiry.model %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Body: </strong><%= @inquiry.body_type %>
+      </div>
+      <div class="inquiry-item">
+        <strong>VIN: </strong><%= @inquiry.vin %>
+      </div>
+
 <div class="inquiry-data">
 
         <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>

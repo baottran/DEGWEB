@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+  	<div class="panel-heading">Recent Comments</div>
+  	<div class="panel-body">
+      <%= will_paginate @comments %>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th id="inq_id">Inquiry ID</th>
+            <th id="date">Date</th>
+            <th id="author">Author</th>
+            <th id="comment">Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+        	<% @comments.each do |comment| %>
+        	<tr>
+        		<td><a href= "/inquiries/<%= comment.inquiry_id %>"><%= comment.inquiry_id %></a></td>
+        		<td><%= comment.created_at.strftime("%-m/%-d/%y") %></td>
+        		<td><%= comment.commenter %></td>
+        		<td><%= comment.body %></td>
+        	</tr>
+        	<% end %>
+        </tbody>
+       </table>
+      </div>
+     </div>
+
+<style>
+#inq_id {
+	width: 75px;
+}
+#author {
+	width: 125px;
+}
+#date {
+	width: 75px;
+}
+
+</style>

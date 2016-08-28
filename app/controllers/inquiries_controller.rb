@@ -251,6 +251,12 @@ class InquiriesController < ApplicationController
     @report = Report.find(1)
     @export = find_inquiries
 
+    if params[:type] == "Comments" 
+
+      @comments = Comment.all.order(created_at: :desc).paginate(:per_page => 20, :page => params[:page])
+
+    end
+
     request.format = :csv if params[:csv]
 
     respond_to do |format|

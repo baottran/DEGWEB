@@ -8,6 +8,22 @@ A request has been sent to the information provider to review your inquiry.
   <%= link_to "Inquiry #{@inquiry.id} For Resolution", controller: "inquiries", action: "show", id: @inquiry %>
 </p>
 
+<div class="inquiry-item">
+        <strong>Year: </strong><%= @inquiry.year %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Make: </strong><%= @inquiry.make %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Model: </strong><%= @inquiry.model %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Body: </strong><%= @inquiry.body_type %>
+      </div>
+      <div class="inquiry-item">
+        <strong>VIN: </strong><%= @inquiry.vin %>
+      </div>
+
 <div class="inquiry-data">
         <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
         <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>

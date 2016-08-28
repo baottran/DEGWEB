@@ -11,6 +11,22 @@
   <%= link_to "Inquiry #{@inquiry.id}", controller: "inquiries", action: "show", id: @inquiry %>
 </p>
 
+<div class="inquiry-item">
+        <strong>Year: </strong><%= @inquiry.year %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Make: </strong><%= @inquiry.make %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Model: </strong><%= @inquiry.model %>
+      </div>
+      <div class="inquiry-item">
+        <strong>Body: </strong><%= @inquiry.body_type %>
+      </div>
+      <div class="inquiry-item">
+        <strong>VIN: </strong><%= @inquiry.vin %>
+      </div>
+
       <div class="inquiry-data">
         <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
         <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
@@ -69,7 +85,7 @@
             <p>Unknown Inquiry Type</p>
           <% end %>
       </div>
-      
+
     <p>Attached Files</p>
  <ul>
     <li>1. <a href="<%= @inquiry.attachment.url %>" target="_newpage"><%= @inquiry.attachment_file_name %></a></li>
