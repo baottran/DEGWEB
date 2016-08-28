@@ -462,11 +462,8 @@
       <p>
         <div id="file_input_container">
         <%= f.label :attachment, "Attachment 1" %>
-        <% if @inquiry.attachment_file_name %>
           <br><a href="<%= @inquiry.attachment.url %>" target="_newpage"><%= @inquiry.attachment_file_name %></a>
-        <% else %>
           <%= f.file_field :attachment%>
-        <% end %>
         </div>
       </p>
       <p>

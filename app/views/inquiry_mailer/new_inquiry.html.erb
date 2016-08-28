@@ -69,3 +69,13 @@
             <p>Unknown Inquiry Type</p>
           <% end %>
       </div>
+      
+    <p>Attached Files</p>
+ <ul>
+    <li>1. <a href="<%= @inquiry.attachment.url %>" target="_newpage"><%= @inquiry.attachment_file_name %></a></li>
+    <li>2. <a href="<%= @inquiry.attachment2.url %>" target="_newpage"><%= @inquiry.attachment2_file_name %></a></li>
+    <li>3. <a href="<%= @inquiry.attachment3.url %>" target="_newpage"><%= @inquiry.attachment3_file_name %></a></li>
+    <li>4. <a href="<%= @inquiry.attachment4.url %>" target="_newpage"><%= @inquiry.attachment4_file_name %></a></li>
+    <li>5. <a href="<%= @inquiry.attachment5.url %>" target="_newpage"><%= @inquiry.attachment5_file_name %></a></li>
+  </ul>
+</p>
