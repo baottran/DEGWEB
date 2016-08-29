@@ -21,8 +21,10 @@ var Forms = {
     var other = "Other";
     if (value === other) {
       makeOtherField.show('slow');
+      console.log("showing")
     } else {
       makeOtherField.hide();
+      console.log("hiding");
     }
   },
 
@@ -102,6 +104,25 @@ var Forms = {
 
   missingFieldToFocus: function(){
       var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_database", "inquiry_inquiry_type"];
+      
+      var selectedType = $("#inquiry_inquiry_type").val()
+
+      if (selectedType === "Missing Information"){
+        requiredInputs = requiredInputs.concat(["inquiry_missing_issue_summary","inquiry_missing_suggested_action"])
+      } else if (selectedType === "Parts"){
+        requiredInputs = requiredInputs.concat(["inquiry_parts_issue_summary","inquiry_parts_suggested_action"])
+      } else if (selectedType === "Procedure Page Issue"){
+        requiredInputs = requiredInputs.concat(["inquiry_procedure_issue_summary","inquiry_procedure_suggested_action"])
+      } else if (selectedType === "Welded Panel Operations"){
+        requiredInputs = requiredInputs.concat(["inquiry_welded_issue_summary","inquiry_welded_suggested_action"])
+      } else if (selectedType === "Non-Welded Panel Operations"){
+        requiredInputs = requiredInputs.concat(["inquiry_non_welded_issue_summary","inquiry_non_welded_suggested_action"])
+      } else if (selectedType === "Refinish Operations"){
+        requiredInputs = requiredInputs.concat(["inquiry_refinished_issue_summary","inquiry_refinished_suggested_action"])
+      } else if (selectedType === "All Other"){
+        requiredInputs = requiredInputs.concat(["inquiry_all_other_issue_summary","inquiry_all_other_suggested_action"])
+      }
+
       for (var i in requiredInputs) {
         if (($('#' + requiredInputs[i]).val().trim() === '')) {
           return '#' + requiredInputs[i]
@@ -109,6 +130,15 @@ var Forms = {
       }
       return ""
   },
+
+  requiredIfTypeIs: function(inquiry_type){
+      var selectedType = $("#inquiry_inquiry_type").val()
+        if (selectedType === inquiry_type) {
+          return true
+        } else {
+          return false 
+        }
+    },
 
   checkRequiredFields: function() {
     jQuery.validator.addMethod("notEqual", function(value, element, param) {
@@ -125,7 +155,49 @@ var Forms = {
         "inquiry[year]": {required: true, nowhitespace: true},
         "inquiry[database]": {required: true, nowhitespace: true},
         "inquiry[inquiry_type]": {required: true, notEqual: " "},
-        "verify_email": {required: true}
+        "verify_email": {required: true},
+        "inquiry[missing_issue_summary]": {required: function(){
+          return Forms.requiredIfTypeIs("Missing Information")}
+        },
+        "inquiry[missing_suggested_action]": {required: function(){
+          return Forms.requiredIfTypeIs("Missing Information")}
+        },
+        "inquiry[parts_issue_summary]": {required: function(){
+          return Forms.requiredIfTypeIs("Parts")}
+        },
+        "inquiry[parts_suggested_action]": {required: function(){
+          return Forms.requiredIfTypeIs("Parts")}
+        },
+        "inquiry[procedure_issue_summary]": {required: function(){
+          return Forms.requiredIfTypeIs("Procedure Page Issue")}
+        },
+        "inquiry[procedure_suggested_action]": {required: function(){
+          return Forms.requiredIfTypeIs("Procedure Page Issue")}
+        },
+        "inquiry[welded_issue_summary]": {required: function(){
+          return Forms.requiredIfTypeIs("Welded Panel Operations")}
+        },
+        "inquiry[welded_suggested_action]": {required: function(){
+          return Forms.requiredIfTypeIs("Welded Panel Operations")}
+        },
+        "inquiry[non_welded_issue_summary]": {required: function(){
+          return Forms.requiredIfTypeIs("Non-Welded Panel Operations")}
+        },
+        "inquiry[non_welded_suggested_action]": {required: function(){
+          return Forms.requiredIfTypeIs("Non-Welded Panel Operations")}
+        },
+        "inquiry[refinished_issue_summary]": {required: function(){
+          return Forms.requiredIfTypeIs("Refinish Operations")}
+        },
+        "inquiry[refinished_suggested_action]": {required: function(){
+          return Forms.requiredIfTypeIs("Refinish Operations")}
+        },
+        "inquiry[all_other_issue_summary]": {required: function(){
+          return Forms.requiredIfTypeIs("All Other")}
+        },
+        "inquiry[all_other_suggested_action]": {required: function(){
+          return Forms.requiredIfTypeIs("All Other")}
+        }
       },
       messages: {
         "inquiry[name]": {required: "enter a name"},
@@ -136,7 +208,8 @@ var Forms = {
         "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},
         "inquiry[database]": {required: "select a database", nowhitespace: "select a database"},
         "inquiry[inquiry_type]": {required: "select an inquiry type", notEqual: "select an inquiry type"},
-        "inquiry[title]": {required: "testing"}
+        "inquiry[missing_issue_summary]": {required: "enter an issue summary"},
+        "inquiry[missing_suggested_action]": { required: "enter a suggested action"}
       }
     });
   },
@@ -155,10 +228,6 @@ var Forms = {
         event.preventDefault();
         $(".section-1").hide();
         $(".section-2").show();
-        // $(document).scrollTop(0);
-        // $("#title").focus();
-        // parent.scrollTo(0,0);
-        // console.log("parent is ", parent);
         $('#inquiry_attachment').focus();
         $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast')
       }
@@ -168,10 +237,6 @@ var Forms = {
       event.preventDefault();
       $(".section-1").show();
       $(".section-2").hide();
-      // $(document).scrollTop(0);
-      // $("#title").focus();
-      // parent.scrollTo(0,0);
-      console.log("title is ", $("#title"));
     });
   },
 

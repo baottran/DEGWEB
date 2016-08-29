@@ -298,7 +298,7 @@ module InquiriesHelper
   def skill_levels
     [['<select>', ' '],
     ['Beginner', 'Beginner'],
-    ['Intermediate', 'Intermediate'],
+    ['Average', 'Average'],
     ['Advanced', 'Advanced'],
     ['Expert', 'Expert']]
   end

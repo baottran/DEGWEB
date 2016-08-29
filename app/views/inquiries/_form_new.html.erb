@@ -276,7 +276,7 @@
         <div class="form-group">
           <%= f.label :procedure_page_number, 'Page Number', :class => "col-xs-3 form-label" %>
           <div class="col-xs-9">
-            <%= f.select(:procedure_page_number, options_for_select(procedure_page_numbers), {}, {class: 'form-control'}) %>
+            <%= f.text_field :procedure_page_number, :class => "form-control", :placeholder => "page num" %>
           </div>
         </div>
         <div class="form-group">
@@ -323,13 +323,13 @@
         <div class="form-group">
           <%= f.label :welded_weld_spots, 'Number of Spot Welds', :class => "col-xs-3 form-label" %>
           <div class="col-xs-9">
-            <%= f.select(:welded_weld_spots, options_for_select(weld_spots), {}, {class: 'form-control'}) %>
+            <%= f.text_field :welded_weld_spots, :class => "form-control", :placeholder => "num of spot welds" %>
           </div>
         </div>
         <div class="form-group">
           <%= f.label :welded_materials_involved, 'Type of Materials Involved', :class => "col-xs-3 form-label" %>
           <div class="col-xs-9">
-            <%= f.select(:welded_materials_involved, options_for_select(weld_materials), {}, {class: 'form-control'}) %>
+            <%= f.text_area :welded_materials_involved, :class => "form-control", :rows => "5", :placeholder => "materials involved" %>
           </div>
         </div>
         <div class="form-group">
@@ -347,8 +347,10 @@
         <div class="form-group">
           <%= f.label 'Actual Time to Complete', :class => "col-xs-3 form-label" %>
           <div class="col-xs-9">
-            <%= f.select(:welded_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
-            <%= f.select(:welded_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
+             <%= f.text_field :welded_complete_time_hour, :class => "form-control", :placeholder => "hours ex. 2" %>
+             <i>hours</i>
+             <%= f.text_field :welded_complete_time_min, :class => "form-control", :placeholder => "minutes ex. 15" %>
+             <i>minutes</i>
           </div>
         </div>
         <div class="form-group">
@@ -401,9 +403,9 @@
         <div class="form-group">
           <%= f.label 'Actual Time to Complete', :class => "col-xs-3 form-label" %>
           <div class="col-xs-9">
-            <%= f.select(:non_welded_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
+            <%= f.text_field :non_welded_complete_time_hour, :class => "form-control", :placeholder => "hours ex. 2" %>
             <i>hours</i>
-            <%= f.select(:non_welded_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
+             <%= f.text_field :non_welded_complete_time_min, :class => "form-control", :placeholder => "minutes ex. 15" %>
             <i>minutes</i>
           </div>
         </div>
@@ -466,8 +468,10 @@
         <div class="form-group">
           <%= f.label 'Actual Time to Complete', :class => "col-xs-3 form-label" %>
           <div class="col-xs-9">
-            <%= f.select(:all_other_complete_time_hour, options_for_select(time_hours), {}, {class: 'form-control'}) %>
-            <%= f.select(:all_other_complete_time_min, options_for_select(time_minutes), {}, {class: 'form-control'}) %>
+          <%= f.text_field :all_other_complete_time_hour, :class => "form-control", :placeholder => "hours ex. 2" %>
+            <i>hours</i>
+             <%= f.text_field :all_other_complete_time_min, :class => "form-control", :placeholder => "minutes ex. 15" %>
+            <i>minutes</i>
           </div>
         </div>
         <div class="form-group">
