@@ -210,13 +210,17 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :missing_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :missing_issue_summary, 'Issue Summary' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :missing_issue_summary, :class => "form-control", rows: "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :missing_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :missing_suggested_action, 'Suggested Action' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :missing_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
@@ -251,13 +255,17 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :parts_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :parts_issue_summary, 'Issue Summary' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :parts_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :parts_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :parts_suggested_action, 'Suggested Action' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :parts_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
@@ -280,13 +288,17 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :procedure_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+          <span class="form-required">* </span><%= f.label :procedure_issue_summary, 'Issue Summary' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :procedure_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :procedure_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+          <span class="form-required">* </span><%= f.label :procedure_suggested_action, 'Suggested Action' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :procedure_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
@@ -315,7 +327,9 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :welded_issue_summary, 'Issue Summary' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :welded_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
@@ -354,7 +368,9 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :welded_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+          <span class="form-required">* </span><%= f.label :welded_suggested_action, 'Suggested Action' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :welded_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
@@ -383,7 +399,9 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :non_welded_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+          <span class="form-required">* </span><%= f.label :non_welded_issue_summary, 'Issue Summary' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :non_welded_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
@@ -410,7 +428,9 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :non_welded_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :non_welded_suggested_action, 'Suggested Action' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :non_welded_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
@@ -427,7 +447,9 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :refinished_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :refinished_issue_summary, 'Issue Summary' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :refinished_issue_summary, :class => "form-control", :rows => "10" , :placeholder => "issue summary" %>
           </div>
@@ -446,7 +468,9 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :refinished_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :refinished_suggested_action, 'Suggested Action' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :refinished_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
@@ -454,7 +478,9 @@
       </div>
       <div class="all-other-form">
         <div class="form-group">
-          <%= f.label :all_other_issue_summary, 'Issue Summary', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+            <span class="form-required">* </span><%= f.label :all_other_issue_summary, 'Issue Summary' %>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :all_other_issue_summary, :class => "form-control", :rows => "10", :placeholder => "issue summary" %>
           </div>
@@ -475,7 +501,9 @@
           </div>
         </div>
         <div class="form-group">
-          <%= f.label :all_other_suggested_action, 'Suggested Action', :class => "col-xs-3 form-label" %>
+          <div class="col-xs-3 form-label">
+          <span class="form-required">* </span><%= f.label :all_other_suggested_action, 'Suggested Action'%>
+          </div>
           <div class="col-xs-9">
             <%= f.text_area :all_other_suggested_action, :class => "form-control", :rows => "5", :placeholder => "suggested action" %>
           </div>
