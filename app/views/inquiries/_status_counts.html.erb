@@ -5,6 +5,7 @@
       <%= render partial: 'status_button', locals: {status: "IP Response Received"} %>
       <%= render partial: 'status_button', locals: {status: "Resolved (IP Change)"} %>
       <%= render partial: 'status_button', locals: {status: "Resolved (No IP Change)"} %>
+      <%= render partial: 'status_button', locals: {status: "Resolved (DEG Response)"} %>
 </div>
 
 <script>
@@ -22,6 +23,7 @@
     $("#responseCount").text(data.responded);
     $("#ipChangeCount").text(data.ip_change);
     $("#noChangeCount").text(data.no_change);
+    $("#degResolvedCount").text(data.deg_response);
   })
   .fail(function() {
     console.log("error getting inquiry counts");

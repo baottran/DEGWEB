@@ -33,17 +33,24 @@
         <a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-success btn-lg">Submit to IP</a>
         <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-default btn-lg disabled">Resolve (No IP Change)</a>
         <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg disabled">Resolve (IP Change)</a>
+        <a href="/inquiries/<%= @inquiry.id %>/deg_response" class="btn btn-success btn-lg">Resolve (DEG Response)</a>
       <% elsif @inquiry.status === "Submitted to IP" %>
         <a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-default btn-lg disabled">Submit to IP</a>
         <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-default btn-lg">Resolve (No IP Change)</a>
         <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-default btn-lg">Resolve (IP Change)</a>
+        <a href="/inquiries/<%= @inquiry.id %>/deg_response" class="btn btn-default btn-lg">Resolve (DEG Response)</a>
       <% else %>
         <a href="/inquiries/<%= @inquiry.id %>/email_ip" class="btn btn-default btn-lg disabled">Submit to IP</a>
         <a href="/inquiries/<%= @inquiry.id %>/rslve_no_chng" class="btn btn-success btn-lg">Resolve (No IP Change)</a>
         <a href="/inquiries/<%= @inquiry.id %>/rslve_ip_chng" class="btn btn-success btn-lg">Resolve (IP Change)</a>
+        <a href="/inquiries/<%= @inquiry.id %>/deg_response" class="btn btn-success btn-lg">Resolve (DEG Response)</a>
       <% end %>
+    </div>
+    <div class="delete-btns">
+      <a href="/inquiries/<%= @inquiry.id %>/internal_resolution" class="btn btn-warning btn-lg">Internal Resolution</a>
       <%= link_to 'Delete Inquiry', inquiry_path(@inquiry),
                   method: :delete,
+                  class: "btn btn-danger btn-lg",
                   data: { confirm: 'Are you sure?' } %>
     </div>
   </div>

@@ -234,3 +234,13 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.delete-btns {
+  display: flex;
+  justify-content: center;
+}
+
+.delete-btns a {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}

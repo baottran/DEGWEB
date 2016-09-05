@@ -133,10 +133,23 @@ class InquiriesController < ApplicationController
     redirect_to @inquiry
   end
 
+  def resolve_deg_response
+    @inquiry = Inquiry.find(params[:id])
+    @inquiry.status = 'Resolved (DEG Response)'
+    @inquiry.resolution_date = Time.now
+    @inquiry.save
+    redirect_to @inquiry
+  end
+
+  def resolve_internal
+    @inquiry = Inquiry.find(params[:id])
+    @inquiry.status = 'Internal Resolution'
+    @inquiry.show_on_web = false 
+    @inquiry.save 
+    redirect_to @inquiry
+  end
+
   def edit_inquiry
-
-    p params
-
     @inquiry = Inquiry.find(params[:id])
     inquiry_params = params[:inquiry]
 
@@ -337,13 +350,6 @@ class InquiriesController < ApplicationController
   end
 
   def response_time 
-      # avg_response_ccc      = time_to_days(avg_response_time_for("CCC"))
-      # avg_response_audatex  = time_to_days(avg_response_time_for("Audatex"))
-      # avg_response_mitchell = time_to_days(avg_response_time_for("Mitchell"))
-      # avg_completion_ccc    = time_to_days(avg_completion_time_for("CCC"))
-      # avg_completion_mitchell = time_to_days(avg_completion_time_for("Mitchell"))
-      # avg_completion_audatex  = time_to_days(avg_completion_time_for("Audatex"))
-
     avg_response_ccc = Rails.cache.fetch("#{cache_key_for_inquiry_update}/avg_response_ccc") do
                           time_to_days(avg_response_time_for("CCC"))
                         end
@@ -390,13 +396,15 @@ class InquiriesController < ApplicationController
     responded_count = inquiries.where(status: 'IP Response Received').count
     ip_change_count = inquiries.where(status: 'Resolved (IP Change)').count 
     no_change_count = inquiries.where(status: 'Resolved (No IP Change)').count 
+    deg_response_count = inquiries.where(status: 'Resolved (DEG Response)').count
 
     count_data = { :all     => all_count,
                     :received   => received_count,
                     :submitted  => submitted_count,
                     :responded  => responded_count,
                     :ip_change  => ip_change_count,
-                    :no_change  => no_change_count}
+                    :no_change  => no_change_count,
+                    :deg_response => deg_response_count }
 
     render :json => count_data
   end 

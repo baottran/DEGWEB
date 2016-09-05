@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  root 'welcome#index'
+  root 'inquiries#index'
 
   resources :inquiries do
     resources :comments
@@ -59,6 +59,9 @@ Rails.application.routes.draw do
   get 'inquiries/:id/rslve_ip_chng' => 'inquiries#resolve_ip_change'
   patch 'inquiries/:id/edit_status' => 'inquiries#edit_status'
   get 'inquiries/:id/set_show_on_web' => 'inquiries#set_show_on_web'
+  get 'inquiries/:id/deg_response' => 'inquiries#resolve_deg_response'
+  get 'inquiries/:id/internal_resolution' => 'inquiries#resolve_internal'
+
 
   resources :users
   resources :blogs

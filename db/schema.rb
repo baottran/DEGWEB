@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623025733) do
+ActiveRecord::Schema.define(version: 20160905202517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 20160623025733) do
     t.integer  "num_unsubmitted_month_audatex"
     t.integer  "num_unsubmitted_quarter_audatex"
     t.integer  "num_unsubmitted_year_audatex"
+    t.integer  "deg_resolved_count"
   end
 
   create_table "searches", force: :cascade do |t|

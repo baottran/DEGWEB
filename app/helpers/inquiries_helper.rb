@@ -13,7 +13,8 @@ module InquiriesHelper
     ['Submitted to IP', 'Submitted to IP'],
     ['IP Response Received', 'IP Response Received'],
     ['Resolved (No IP Change)', 'Resolved (No IP Change)'],
-    ['Resolved (IP Change)', 'Resolved (IP Change)']]
+    ['Resolved (IP Change)', 'Resolved (IP Change)'],
+    ['Resolved (DEG Response)', 'Resolved (DEG Response)']]
   end
 
 
@@ -363,7 +364,6 @@ module InquiriesHelper
 
   end
 
-
   def unsubmitted_inquiries(db = nil)
     inquiries = Inquiry.all
     inquiries = inquiries.where(status: 'Received by DEG')
@@ -417,7 +417,9 @@ module InquiriesHelper
   end
 
   def num_unsubmitted(db = nil, timeframe = nil, end_date = nil)
-    return inquiries_for_timeframe(db, timeframe, end_date).where(submit_to_ip_date: nil).count
+    inquiries = inquiries_for_timeframe(db, timeframe, end_date).where(submit_to_ip_date: nil)
+    inquiries = inquiries.where.not(status: 'Resolved (DEG Response)').where.not(status: 'Internal Resolution')
+    return inquiries.count
   end
 
   def total(db)
@@ -445,7 +447,7 @@ module InquiriesHelper
 
     if responded_inquiries.count != 0 
       avg_response_time = total_response_time / responded_inquiries.count
-    elsif  
+    else  
       avg_response_time = 0
     end
 

@@ -1,9 +1,4 @@
 <style>
-/*#chart {
-	width: 200px;
-	height: 300px;
-}*/
-
 #chart text {
 	font-size: 12px;
 }
@@ -33,9 +28,6 @@
 }
 .donut-column {
     width: 450px;
-    /*width: 350px;*/
-    /*flex-grow: 1;*/
-/*s*/    /*border-right: 50px;*/
     margin: 15px;
 }
 .donut-right {
@@ -142,11 +134,11 @@ var mitchell_donut = c3.generate({
 });
 
 <%  def num_open(database)
-        Inquiry.where(database: database).where(resolution_date: nil).count
+        Inquiry.where(database: database).where(resolution_date: nil).where.not(status: 'Internal Resolution').count
     end %>
 
 <%  def num_closed(database)
-        Inquiry.where(database: database).where.not(resolution_date: nil).count
+        Inquiry.where(database: database).where.not(resolution_date: nil).where.not(status: 'Internal Resolution').count
     end %>
 
 var audatex_completed = c3.generate({

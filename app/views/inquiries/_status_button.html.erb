@@ -52,7 +52,12 @@
         <div class="title">(No IP Change)</div>
         <div id="noChangeCount"><%= @report.no_change_count %></div>
       </a>
-
+<% when 'Resolved (DEG Response)' %>
+      <a href="/inquiries?status=Resolved+(DEG+Response)" class="<%= btn_class_for_status %>">
+        <div class="title">Resolved</div>
+        <div class="title">(DEG Response)</div>
+        <div id="degResolvedCount"><%= @report.deg_resolved_count %></div>
+      </a>
 <% else %>
 
 <% end %>
