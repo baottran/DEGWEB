@@ -124,8 +124,10 @@ class InquiriesController < ApplicationController
   def resolve
     @inquiry = Inquiry.find(params[:id])
     @inquiry.resolution = params[:inquiry][:resolution]
-    @inquiry.status = 'IP Response Received'
-    @inquiry.ip_response_received_date = Time.now
+    if @inquiry.status === "Submitted to IP"
+      @inquiry.status = 'IP Response Received'
+      @inquiry.ip_response_received_date = Time.now
+    end 
     if @inquiry.submit_to_ip_date === nil 
       @inquiry.submit_to_ip_date = Time.now 
     end
