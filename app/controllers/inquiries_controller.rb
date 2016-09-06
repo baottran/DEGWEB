@@ -138,6 +138,7 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Resolved (DEG Response)'
     @inquiry.resolution_date = Time.now
     @inquiry.save
+    InquiryMailer.resolved(@inquiry).deliver 
     redirect_to @inquiry
   end
 
