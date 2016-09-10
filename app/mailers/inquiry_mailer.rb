@@ -18,8 +18,8 @@ class InquiryMailer < ApplicationMailer
   	@inquiry = inquiry
   	mail(
       :subject => "DEG - Inquiry #{@inquiry.id} Needs Review",
-      :to => 'admin@degweb.org', 
-      :cc => 'admin@degweb.org', 
+      :to => 'cameron.craig@sproutdesigns.com', 
+      :cc => '', 
       :bcc => 'bowtran@gmail.com')
   end
 
