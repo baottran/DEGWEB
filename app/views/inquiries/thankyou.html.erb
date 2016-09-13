@@ -1,5 +1,5 @@
 <div class="container form-section">
-  <h3>Database Inquiry Submitted</h3>
+  <h3>Database Inquiry Submitted</h3 id="title">
   	<p>Thank you for taking the time to bring this inquiry to our attention. We appreciate your efforts help to improve collision estimate data.</p>
 
 	<p>You'll shortly receive an email confirmation of your inquiry from admin@degweb.org. To ensure you receive all DEG correspondence, please add this email address to your safe senders list.</p>
@@ -10,3 +10,9 @@
 	<a href="/inquiries/new" class="btn btn-primary">Submit another inquiry</a>
 	<a href="/inquiries" class="btn btn-default">Return to DEG Homepage</a><br><br>
 </div>
+
+<script>
+console.log("runnign");
+console.log($('#title'));
+$('html, body').animate({ scrollTop: $('#title').offset().top });
+</script>
