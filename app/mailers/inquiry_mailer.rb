@@ -10,9 +10,11 @@ class InquiryMailer < ApplicationMailer
     mail(
       :subject => "DEG - New Inquiry #{@inquiry.id}",
       :to => @inquiry.email, 
-      :cc => 'admin@degweb.org, aaron@scrs.com', 
+      :cc => '', 
       :bcc => 'bowtran@gmail.com')
   end
+
+  # admin@degweb.org, aaron@scrs.com
 
   def email_ip(inquiry)
   	@inquiry = inquiry
