@@ -63,7 +63,7 @@
     </div>
     <div id="resolution-text">
       <p><%= @inquiry.resolution %></p>
-      <% if logged_in? || (params[:ip] === "review" && @inquiry.resolution == nil) %>
+      <% if logged_in? || (params[:ip] === "review" && @inquiry.resolution === "") %>
         <% if @inquiry.status != "Resolved (IP Change)" && @inquiry.status != "Resolved (No IP Change)" %>
           <% resolution_btn_title = "Enter Resolution" %>
         <% else %>
@@ -215,7 +215,7 @@
 </div>
 
 <script>
-<% if params[:ip] === "review" %>
+<% if params[:ip] === "review" && @inquiry.resolution === "" %>
       var currentResolution = $("#resolution-text").find("p").text();
       $(".inquiry-resolution").focus();
       $("#resolution-text").toggle();
