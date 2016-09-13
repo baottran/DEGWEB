@@ -420,6 +420,11 @@ class InquiriesController < ApplicationController
     render :json => {:show_on_web => @inquiry.show_on_web }
   end
 
+  def thankyoutest
+    render 'thankyou'
+  end
+
+
 
 	private
 	  def inquiry_params

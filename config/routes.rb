@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   get 'reporting' => 'inquiries#reporting'
 
+  get 'test' => 'inquiries#thankyoutest'
+
   # static pages 
   get 'about' => 'welcome#about'
   get 'contact' => 'welcome#contact'

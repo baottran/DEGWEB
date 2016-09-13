@@ -1,5 +1,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+<form>
+<input type="checkbox" id="header" hidden=true><br>
+</form>
+
 <div class="container form-section">
   <h3>Database Inquiry Submitted</h3 id="title">
   	<p>Thank you for taking the time to bring this inquiry to our attention. We appreciate your efforts help to improve collision estimate data.</p>
@@ -16,5 +20,5 @@
 <script>
 console.log("runnign");
 console.log($('#title'));
-$('html, body').animate({ scrollTop: $('#title').offset().top });
+$('#header').focus();
 </script>
