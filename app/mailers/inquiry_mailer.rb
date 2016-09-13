@@ -18,12 +18,11 @@ class InquiryMailer < ApplicationMailer
   	@inquiry = inquiry
   	mail(
       :subject => "DEG - Inquiry #{@inquiry.id} Needs Review",
-      :to => 'aaron@scrs.com, csherred@cccis.com, sroyston@cccis.com', 
+      :to => 'aaron@scrs.com', 
       :cc => 'admin@degweb.org', 
       :bcc => 'bowtran@gmail.com')
   end
 
-  # old value is 
 
   def notify_emailed(inquiry)
     @inquiry = inquiry
