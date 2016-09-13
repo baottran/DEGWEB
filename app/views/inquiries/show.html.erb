@@ -215,7 +215,8 @@
 </div>
 
 <script>
-<% if params[:ip] === "review" && @inquiry.resolution === "" %>
+<% if (params[:ip] === "review") && (@inquiry.resolution === "" || @inquiry.resolution === nil) %>
+      console.log("showing it");
       var currentResolution = $("#resolution-text").find("p").text();
       $(".inquiry-resolution").focus();
       $("#resolution-text").toggle();
