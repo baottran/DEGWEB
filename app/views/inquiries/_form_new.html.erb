@@ -589,9 +589,16 @@
       Browse images on your desktop or cloud drive by tapping the "Add a file" button below. You can add as many files as you like. (See below for more detailed instructions on how to add files to your inquiry.)
       </p>
 
-      <a href="#" class="btn btn-default form-back-button">Back</a>
-      <%= f.submit 'Submit', :class => 'btn btn-primary' %>
-      <a href="/inquiries" class="btn btn-danger">Cancel</a><br><br>
+      <p id="saving_indicator" hidden="true">
+       Saving Inquiry.<span id="wait">.</span>
+      </p>
+      <div id="submit-buttons">
+        <a href="#" class="btn btn-default form-back-button">Back</a>
+        <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+        <a href="/inquiries" class="btn btn-danger">Cancel</a>
+      </div>
+      <br>
+      <br>
 
       <p>
       Once you've uploaded all the files you want to include with your inquiry, or if you have no files to add, select the "Submit inquiry" button to complete the process.
@@ -610,10 +617,28 @@
   <br>
 
 <% end %>
+
+<style>
+#loading_placeholder {
+      height: 50px;
+    display: flex;
+}
+</style>
+
 <script>
+
+var dots = window.setInterval( function() {
+    var wait = document.getElementById("wait");
+    if ( wait.innerHTML.length > 3 ) 
+        wait.innerHTML = "";
+    else 
+        wait.innerHTML += ".";
+    }, 300);
+
 var $myForm = $("form");
 console.log($myForm);
 $myForm.submit(function(){
+    $("#saving_indicator").toggle();
     $myForm.submit(function(){
         return false;
     });

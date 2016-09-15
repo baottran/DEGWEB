@@ -105,7 +105,7 @@ var Forms = {
   missingFieldToFocus: function(){
       var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_database", "inquiry_inquiry_type"];
       
-      var selectedType = $("#inquiry_inquiry_type").val()
+      var selectedType = $("#inquiry_inquiry_type").val();
 
       if (selectedType === "Missing Information"){
         requiredInputs = requiredInputs.concat(["inquiry_missing_issue_summary","inquiry_missing_suggested_action"])
@@ -128,6 +128,13 @@ var Forms = {
           return '#' + requiredInputs[i]
         }
       }
+
+      var vinValue = $("#inquiry_vin").val();
+
+      if (vinValue != "" && vinValue.length != 17){
+        return "#inquiry_vin"
+      }
+
       return ""
   },
 
@@ -145,6 +152,10 @@ var Forms = {
       return this.optional(element) || value != param;
       }, "Please specify a different (non-default) value");
 
+    jQuery.validator.addMethod("exactlength", function(value, element, param) {
+      return this.optional(element) || value.length == param;
+      }, "Please enter exactly {0} characters.");
+
     $("form").validate({
       rules: {
         "inquiry[name]": {required: true},
@@ -153,6 +164,7 @@ var Forms = {
         "inquiry[make]": {required: true, nowhitespace: true},
         "inquiry[model]": {required: true},
         "inquiry[year]": {required: true, nowhitespace: true},
+        "inquiry[vin]": {exactlength:17},
         "inquiry[database]": {required: true, nowhitespace: true},
         "inquiry[inquiry_type]": {required: true, notEqual: " "},
         "verify_email": {required: true},
@@ -206,6 +218,7 @@ var Forms = {
         "inquiry[make]": {required: "select a make", nowhitespace: "select a make"},
         "inquiry[model]": {required: "enter a model"},
         "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},
+        "inquiry[vin]": {exactlength:"must be 17 characters long"},
         "inquiry[database]": {required: "select a database", nowhitespace: "select a database"},
         "inquiry[inquiry_type]": {required: "select an inquiry type", notEqual: "select an inquiry type"},
         "inquiry[missing_issue_summary]": {required: "enter an issue summary"},
