@@ -515,6 +515,25 @@
       </p>
     </div>
   </div>
+  <div class="form-heading col-lg-9">
+    <h4>Resolution Date</h4>
+    <hr>
+  </div>
+  <div class="form-field col-lg-6">
+    <div class="form-horizontal">
+      <div class="form-group">
+          <%= f.label :refinished_suggested_action, 'Resolution Date', :class => "col-lg-3 form-label" %>
+          <div class="col-lg-9">
+          <% if @inquiry.resolution_date.present? %>
+            <% res_date = @inquiry.resolution_date.strftime("%Y-%m-%d") %>
+          <% else %>
+            <% res_date = "" %>
+          <% end %>
+            <%= text_field_tag :new_resolution_date, res_date, :class => 'form-control', :id => 'new_resolution_date' %>
+          </div>
+      </div>
+    </div>
+  </div>
   <div class="form-buttons-min col-lg-12">
     <%= f.submit "Save", class: "btn btn-primary btn-submit", html: { type: "submit", id: "inquiry-edit-submit"} %>
     <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>

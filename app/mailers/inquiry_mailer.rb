@@ -5,51 +5,64 @@ class InquiryMailer < ApplicationMailer
   #
   #   en.inquiry_mailer.new_inquiry.subject
   #
+
+  @prod = true 
+
   def new_inquiry(inquiry)
     @inquiry = inquiry
-    mail(
-      :subject => "DEG - New Inquiry #{@inquiry.id}",
-      :to => @inquiry.email, 
-      :cc => 'admin@degweb.org, aaron@scrs.com', 
-      :bcc => 'bowtran@gmail.com')
+    if @prod 
+      mail(
+        :subject => "DEG - New Inquiry #{@inquiry.id}",
+        :to => @inquiry.email, 
+        :cc => 'admin@degweb.org, aaron@scrs.com', 
+        :bcc => 'bowtran@gmail.com')
+    end
   end
 
   # 
 
   def email_ip(inquiry)
   	@inquiry = inquiry
-  	mail(
-      :subject => "DEG - Inquiry #{@inquiry.id} Needs Review",
-      :to => 'aaron@scrs.com', 
-      :cc => 'admin@degweb.org', 
-      :bcc => 'bowtran@gmail.com')
+    if @prod 
+    	mail(
+        :subject => "DEG - Inquiry #{@inquiry.id} Needs Review",
+        :to => 'aaron@scrs.com', 
+        :cc => 'admin@degweb.org', 
+        :bcc => 'bowtran@gmail.com')
+    end
   end
 
 
   def notify_emailed(inquiry)
     @inquiry = inquiry
+    if @prod 
     mail(
       :subject => "DEG - Inquiry #{@inquiry.id} Emailed to IP",
       :to => @inquiry.email, 
       :cc => 'admin@degweb.org', 
       :bcc => 'bowtran@gmail.com')
+   end
   end
 
   def resolved(inquiry)
     @inquiry = inquiry
+    if @prod 
     mail(
       :subject => "DEG - Inquiry #{@inquiry.id} Resolved",
       :to => @inquiry.email, 
       :bcc => 'bowtran@gmail.com')
+    end
   end
 
   def resolution_entered(inquiry)
     @inquiry = inquiry
-    mail(
-      :subject => 'DEG - IP Response Received',
-      :to => 'aaron@scrs.com', 
-      :cc => 'admin@degweb.org', 
-      :bcc => 'bowtran@gmail.com')
+    if @prod 
+      mail(
+        :subject => 'DEG - IP Response Received',
+        :to => 'aaron@scrs.com', 
+        :cc => 'admin@degweb.org', 
+        :bcc => 'bowtran@gmail.com')
+    end
   end
 
 

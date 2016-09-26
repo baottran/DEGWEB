@@ -1,5 +1,15 @@
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
 <%= render partial: 'nav_pills', locals: {current: "queue"} %>
 
+<script>
+$(document).on("ready page:change", function() {
+	console.log($("#new_resolution_date"));
+  $('#new_resolution_date').datepicker({ dateFormat: 'yy-mm-dd'});
+});
+
+
+</script>
 <h4>Edit inquiry</h4>
 
 <%= render 'form' %>

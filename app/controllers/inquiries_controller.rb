@@ -236,7 +236,22 @@ class InquiriesController < ApplicationController
     @inquiry.attachment3 = inquiry_params[:attachment3]
     @inquiry.attachment4 = inquiry_params[:attachment4]
     @inquiry.attachment5 = inquiry_params[:attachment5]
+
+    p "zzzzzz"
+    if params[:new_resolution_date] != ""
+      p "found new date"
+      parsed_date = Date.parse(params[:new_resolution_date])
+      if parsed_date != @inquiry.resolution_date
+        p "saved new date"
+        @inquiry.resolution_date = parsed_date
+      end
+    end
+
     @inquiry.save
+    p "````````"
+    p params
+    p "==========="
+    p params[:new_resolution_date]
 
     redirect_to @inquiry
   end
@@ -507,7 +522,8 @@ class InquiriesController < ApplicationController
                                       :all_other_complete_time_hour,
                                       :all_other_complete_time_min,
                                       :all_other_suggested_action,
-                                      :show_on_web)
+                                      :show_on_web,
+                                      :new_resolution_date)
 	  end
 
     def sort_column
