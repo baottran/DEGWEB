@@ -137,10 +137,10 @@
       </div>
       <div class="form-group">
         <div class="col-xs-3 form-label">
-          <%= f.label :vin, "VIN" %>
+          <span class="form-required">* </span><%= f.label :vin, "VIN" %>
         </div>
         <div class="col-xs-9">
-          <%= f.text_field :vin, :class => "form-control", :placeholder => "VIN num" %>
+          <%= f.text_field :vin, :class => "form-control required-input", :placeholder => "VIN num" %>
         </div>
       </div>
     </div>

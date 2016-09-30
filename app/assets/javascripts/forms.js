@@ -103,7 +103,7 @@ var Forms = {
   },
 
   missingFieldToFocus: function(){
-      var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_database", "inquiry_inquiry_type"];
+      var requiredInputs = ["inquiry_name", "inquiry_phone", "inquiry_email", "inquiry_make", "inquiry_year", "inquiry_model", "inquiry_vin", "inquiry_database", "inquiry_inquiry_type"];
       
       var selectedType = $("#inquiry_inquiry_type").val();
 
@@ -164,7 +164,7 @@ var Forms = {
         "inquiry[make]": {required: true, nowhitespace: true},
         "inquiry[model]": {required: true},
         "inquiry[year]": {required: true, nowhitespace: true},
-        "inquiry[vin]": {exactlength:17},
+        "inquiry[vin]": {required: true, exactlength:17},
         "inquiry[database]": {required: true, nowhitespace: true},
         "inquiry[inquiry_type]": {required: true, notEqual: " "},
         "verify_email": {required: true},
@@ -218,7 +218,7 @@ var Forms = {
         "inquiry[make]": {required: "select a make", nowhitespace: "select a make"},
         "inquiry[model]": {required: "enter a model"},
         "inquiry[year]": {required: "select a year", nowhitespace: "select a year"},
-        "inquiry[vin]": {exactlength:"must be 17 characters long"},
+        "inquiry[vin]": {required: "enter a vin", exactlength:"must be 17 characters long"},
         "inquiry[database]": {required: "select a database", nowhitespace: "select a database"},
         "inquiry[inquiry_type]": {required: "select an inquiry type", notEqual: "select an inquiry type"},
         "inquiry[missing_issue_summary]": {required: "enter an issue summary"},
