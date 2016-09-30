@@ -240,8 +240,10 @@ var Forms = {
         console.log("not disabled")
         event.preventDefault();
         $(".section-1").hide();
-        $(".section-2").show();
-        $('#inquiry_attachment').focus();
+        $(".section-2").show();  
+        window.location.hash = '#title';
+
+        // $('#inquiry_attachment').focus();
         $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast')
       }
     });

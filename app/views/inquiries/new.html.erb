@@ -3,6 +3,15 @@
 	<%= render partial: 'nav_pills', locals: {current: "new"} %>
   <br>
   <br>
+  <form>
   <h3 id ="title">Submit a Database Inquiry</h3>
+  </form>
   <%= render 'form_new' %>
 </div>
+
+<script>
+
+$(document).on("ready page:change", function() {
+  window.location.hash = '#title';
+});
+</script>
