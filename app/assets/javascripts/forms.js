@@ -241,9 +241,9 @@ var Forms = {
         event.preventDefault();
         $(".section-1").hide();
         $(".section-2").show();  
-        window.location.hash = '#title';
+        // window.location.hash = '#title';
 
-        // $('#inquiry_attachment').focus();
+        $('#new').focus();
         $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast')
       }
     });
