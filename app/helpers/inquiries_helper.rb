@@ -140,7 +140,6 @@ module InquiriesHelper
     ['SUV', 'SUV'],
     ['Coupe', 'Coupe'],
     ['Luxury', 'Luxury'],
-    ['Hybrid', 'Hybrid'],
     ['Van/Minivan', 'Van/Minivan'],
     ['Convertible', 'Convertible'],
     ['Hatchback', 'Hatchback'],

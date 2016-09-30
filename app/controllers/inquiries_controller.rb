@@ -51,6 +51,12 @@ class InquiriesController < ApplicationController
 
 	def show
     @inquiry = Inquiry.find(params[:id])
+
+    if logged_in? || @inquiry.show_on_web === true 
+      render 'show'
+    else 
+      redirect_to action: "index"
+    end
   end
 
 	def new

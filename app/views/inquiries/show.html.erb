@@ -216,12 +216,14 @@ $(document).on("ready page:change", function() {
     </div>
   </div>
 <% end %>
+<% if logged_in? || params[:ip] === "review" %>
 <div class="panel panel-default">
   <div class="panel-heading">Notes </div>
   <div class="panel-body">
     <%= render 'comments/form' %>
   </div>
 </div>
+<% end %>
 
 <script>
 <% if (params[:ip] === "review") && (@inquiry.resolution === "" || @inquiry.resolution === nil) %>
