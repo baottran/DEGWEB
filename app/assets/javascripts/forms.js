@@ -243,7 +243,7 @@ var Forms = {
         $(".section-2").show();  
         // window.location.hash = '#title';
 
-        $('#new').focus();
+        $('#hidden-top').focus();
         $('html, body').animate({ scrollTop: $('#title').offset().top }, 'fast')
       }
     });
@@ -252,6 +252,7 @@ var Forms = {
       event.preventDefault();
       $(".section-1").show();
       $(".section-2").hide();
+      $('#hidden-top').focus();
     });
   },
 

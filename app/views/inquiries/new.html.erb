@@ -2,11 +2,8 @@
 <div class="container-non-responsive form-section">
 	<%= render partial: 'nav_pills', locals: {current: "new"} %>
   <br>
-  <br>
-  <form>
-  <h3 id ="title">Submit a Database Inquiry</h3>  <div tabindex="-1" id="top-focus">.</div>
-
-  </form>
+  <div id="hidden-top" tabindex="-1" style="opacity: 0; font-size: 2px;">hi</div>
+  <h3 id ="title">Submit a Database Inquiry</h3>
   <%= render 'form_new' %>
 </div>
 
