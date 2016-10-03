@@ -24,7 +24,7 @@ $(document).on("ready page:change", function() {
       <div class="inquiry-item">
         <strong>Status: </strong><%= @inquiry.status %>
       </div>
-    <% if logged_in? %>
+    <% if admin_logged_in? %>
       <div class="inquiry-item show-value">
         <strong> Show on Web: </strong><%= @inquiry.show_on_web %>
       </div>
@@ -32,7 +32,7 @@ $(document).on("ready page:change", function() {
     </div>
   </div>
 
-  <% if logged_in? %>
+  <% if admin_logged_in? %>
   <div class="panel panel-primary">
     <div class="panel-heading">Admin Actions</div>
     <div class="panel-body admin-actions">
@@ -70,7 +70,7 @@ $(document).on("ready page:change", function() {
     </div>
     <div id="resolution-text">
       <p><%= @inquiry.resolution %></p>
-      <% if logged_in? || (params[:ip] === "review" && @inquiry.resolution === "") %>
+      <% if admin_logged_in? || (params[:ip] === "review" && @inquiry.resolution === "") %>
         <% if @inquiry.status != "Resolved (IP Change)" && @inquiry.status != "Resolved (No IP Change)" %>
           <% resolution_btn_title = "Enter Resolution" %>
         <% else %>
@@ -84,7 +84,7 @@ $(document).on("ready page:change", function() {
 
 <div class="inquiry-show-form">
   <div class="inquiry-edit-button">
-    <% if logged_in? %>
+    <% if admin_logged_in? %>
       Show on Web
       <label class="switch">
         <input id ="show-on-web" type="checkbox">
@@ -113,7 +113,7 @@ $(document).on("ready page:change", function() {
       </div>
     </div>
   </div>
-  <% if logged_in? %>
+  <% if admin_logged_in? %>
   <div class="panel panel-default">
     <div class="panel-heading">Customer Detail</div>
     <div class="panel-body">

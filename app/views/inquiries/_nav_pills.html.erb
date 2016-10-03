@@ -2,12 +2,14 @@
 <ul class="nav nav-pills">
     <li id="queue"><a href="/inquiries">Request Queue</a></li>
     <li id="new"><a href="/inquiries/new">New Inquiry</a></li>
-    <% if logged_in? %>
     	<li id="reporting"><a href="/reporting">Reporting</a></li>
+        <% if admin_logged_in? %>
+        <li id="manageusers"><a href="/users">Manage Users</a></li>
+        <% end %>
     	<li id="logout"><a href="/logout">Log Out</a></li>
-    <% end %>
 </ul>
 <% end %>
+
 <script>
 <% if current === "queue" %>
 	$("#queue").addClass("active");
@@ -15,14 +17,19 @@
 	$("#reporting").addClass("active");
 <% elsif current === "new" %>
 	$("#new").addClass("active");
+<% elsif current === "users" %>
+    $("#manageusers").addClass("active");
 <% end %>
 </script>
 
 <style>
 #logout {
-	margin-left: 530px;
+<% if admin_logged_in? %>
+    margin-left: 400px;
+<% else %>
+    margin-left: 530px;
+<% end %>
 }
-
 </style>
 
 

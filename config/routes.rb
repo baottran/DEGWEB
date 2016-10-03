@@ -63,7 +63,9 @@ Rails.application.routes.draw do
   get 'inquiries/:id/set_show_on_web' => 'inquiries#set_show_on_web'
   get 'inquiries/:id/deg_response' => 'inquiries#resolve_deg_response'
   get 'inquiries/:id/internal_resolution' => 'inquiries#resolve_internal'
-
+  post 'users/admin_new' => 'users#admin_create_user'
+  get 'password_reset/:email_key' => 'users#password_reset', as: 'reset_path'
+  post 'users/set_password' => 'users#set_password'
 
   resources :users
   resources :blogs

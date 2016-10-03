@@ -169,7 +169,7 @@ div.pagination {
             <th><%= sortable 'database', 'Estimating Platform', params[:status] %></th>
             <th><%= sortable 'inquiry_type', 'Inquiry Type', params[:status] %></th>
             <th><%= sortable 'year', 'Vehicle', params[:status] %></th>
-            <% if logged_in? %>
+            <% if admin_logged_in? %>
             <th><%= sortable 'name', 'Name', params[:status] %></th>
             <th><%= sortable 'shop_name', 'Shop', params[:status] %></th>
             <% end %>
@@ -190,7 +190,7 @@ div.pagination {
             <td><%= inquiry.database %></td>
             <td><%= inquiry.inquiry_type %></td>
             <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
-            <% if logged_in? %>
+            <% if admin_logged_in? %>
             <td><%= inquiry.name %></td>
             <td><%= inquiry.shop_name %></td>
             <% end %>

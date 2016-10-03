@@ -25,6 +25,10 @@ module SessionsHelper
     end
   end
 
+  def testing
+    p "got this"
+  end
+
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?
@@ -36,6 +40,19 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+
+  def admin_logged_in? 
+    if current_user.nil? 
+      return false 
+    else 
+      if current_user.isadmin.nil?
+        return false 
+      else
+        return current_user.isadmin === true 
+      end
+    end
+  end
+
 
   def forget
     update_attribute(:remember_digest, nil)

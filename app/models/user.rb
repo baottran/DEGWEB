@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
 	attr_accessor :remember_token
 
-	before_save { self.email = email.downcase }
+	before_save :lowercase_email, :generate_email_key
 
 	validates :name, presence: true, length: { maximum: 50 }
 
@@ -14,6 +14,20 @@ class User < ActiveRecord::Base
 
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }
+
+    # before save
+
+    def lowercase_email
+    	self.email = email.downcase
+    end
+
+    def generate_email_key
+    	self.emailkey = (0...8).map { (65 + rand(26)).chr }.join
+    end
+
+    def generate_random_password
+    	self.password = (0...8).map { (65 + rand(26)).chr }.join
+    end
 
 	# Returns the hash digest of the given string.
 	def User.digest(string)
@@ -43,5 +57,23 @@ class User < ActiveRecord::Base
 	def forget
 	    update_attribute(:remember_digest, nil)
 	end
+
+	# def confirmed
+	# 	if password.nil? 
+	# 		return false 
+	# 	else 
+	# 		return true 
+	# 	end
+	# end
+
+	# def confirmed_status
+	# 	if password.nil?
+	# 		return "confirmed"
+	# 	else 
+	# 		return "not yet confirmed"
+	# 	end
+	# end
+
+
 
 end

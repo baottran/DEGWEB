@@ -1,0 +1,80 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<div class="container" >
+
+  <%= render partial: 'inquiries/nav_pills', locals: {current: "users"} %>
+
+  <h2>Manage Users</h2>
+  <br>
+
+  <div class="panel panel-default">
+	  <div class="panel-heading">
+	  	Users
+	  </div>
+	  <div class="panel-body">
+	  <table class="table table-striped table-hover">
+	  	<thead>
+		  	<tr>
+		  		<th>Name</th>
+		  		<th>Email</th>
+		  		<th>Admin</th>
+		  		<th>Create Date</th>
+		  	</tr>
+	  	</thead>
+	  	<tbody>
+	  		<% @users.each do |user| %>
+	  		<tr>
+	  			<td><%= user.name %></td>
+	  			<td><%= user.email %></td>
+	  			<td><% if user.isadmin %>
+	  				<%= image_tag "Checkmark-10.png" %>
+	  			<% end%></td>
+	  			<td><%= user.created_at.strftime("%-m/%-d/%y") %></td>
+	  		</tr>
+	  		<% end %>
+	  	</tbody>
+	  </table>
+	  </div>
+	</div>
+	<br>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			Create New User
+		</div>
+		<div class="panel-body">
+			<% if flash[:error] %>
+		    <div id="error"><%= flash[:error] %></div>
+		    <br>
+		  <% end %>
+		  <p>An email will be sent to the user to set a password for their account</p>
+			<%= form_for @user, :url => '/users/admin_new', :method => 'post' do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Full Name' %><br>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control', placeholder: 'email@domain.com' %><br>
+
+      <%= f.check_box :isadmin %> <%= f.label :isadmin, "Admin User" %>
+      <br><br>
+      <%= f.submit "Create new account", class: "btn btn-primary" %>
+
+  	<% end %>
+		</div>
+	</div>
+</div>
+
+<style>
+#error {
+	color: red;
+}
+span {
+	color: gray;
+	font-size: 12px;
+}
+form {
+	width: 500px;
+}
+
+#user_isadmin {
+	margin-right: 10px;
+}
+</style>
