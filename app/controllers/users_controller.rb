@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include SessionsHelper
+  skip_before_filter  :verify_authenticity_token
 
   def new
   	@user = User.new 
