@@ -70,7 +70,6 @@ class UsersController < ApplicationController
   end
 
   def set_password 
-
     @user = User.find(user_params[:id])
     @user.password = user_params[:password]
 
@@ -103,6 +102,7 @@ class UsersController < ApplicationController
   end
 
   def destroy 
+    p "hitting the destroy !!!"
     user = User.find(params[:id])
     user.destroy
     redirect_to :action => 'index'
