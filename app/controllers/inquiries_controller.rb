@@ -35,10 +35,6 @@ class InquiriesController < ApplicationController
 
     # inquiries = inquiries.where(['area_of_vehicle LIKE ?', params[:area_of_vehicle]]) if params[:area_of_vehicle].present?
     # inquiries = inquiries.where(area_of_vehicle: params[:area_of_vehicle]) if params[:area_of_vehicle].present?
-    p "logging ======"
-    p "currently logged in as #{current_user.email} and isadmin is #{current_user.isadmin}"
-    p "admin logged in: #{admin_logged_in?}"
-    p "=============="
     inquiries
   end 
 
