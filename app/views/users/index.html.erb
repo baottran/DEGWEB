@@ -18,7 +18,9 @@
 		  		<th id="email">Email</th>
 		  		<th>Admin</th>
 		  		<th>Create Date</th>
+		  		<% if current_user.email === "aaron@scrs.com" %>
 		  		<th class="delete_col">Delete</th>
+		  		<% end %>
 		  	</tr>
 	  	</thead>
 	  	<tbody>
@@ -30,8 +32,10 @@
 	  				<%= image_tag "Checkmark-10.png" %>
 	  			<% end%></td>
 	  			<td><%= user.created_at.strftime("%-m/%-d/%y") %></td>
-	  			<td class="delete_col"><%= button_to "delete", {:controller => :users,
+	  			<% if current_user.email === "aaron.scrs.com" %>
+	  				<td class="delete_col"><%= button_to "delete", {:controller => :users,
       :action => 'destroy', :id => user.id }, :method => :delete %></td>
+      		<% end %>
 	  		</tr>
 	  		<% end %>
 	  	</tbody>
@@ -44,6 +48,9 @@
 			Create New User
 		</div>
 		<div class="panel-body">
+			<% if flash[:success] %> 
+				<div id="success"><%= flash[:success] %><br></div>
+			<% end %>
 			<% if flash[:error] %>
 		    <div id="error"><%= flash[:error] %></div>
 		    <br>
@@ -67,6 +74,9 @@
 </div>
 
 <style>
+#success {
+	color: green;
+}
 #error {
 	color: red;
 }

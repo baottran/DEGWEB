@@ -67,6 +67,11 @@ Rails.application.routes.draw do
   get 'password_reset/:email_key' => 'users#password_reset', as: 'reset_path'
   post 'users/set_password' => 'users#set_password'
 
+  get "/404" => "errors#not_found"
+  get "/422" => "errors#unacceptable"
+  get "/500" => "errors#internal_error"
+
+
   resources :users
   resources :blogs
 

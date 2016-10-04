@@ -53,6 +53,7 @@ class UsersController < ApplicationController
       @users = User.all
       @user = User.new 
       UserMailer.set_password(new_user).deliver
+      flash[:success] = "Email sent successfully"
       redirect_to action: 'index'
     else
       flash[:error] = "Error creating new user. please try again"
