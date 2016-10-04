@@ -63,7 +63,7 @@ input#session-remember-me {
   <% end %>
 
     <%= form_for(:session, url: login_path) do |f| %>
-      <%= f.hidden_field :form_authenticity_token %>
+      <%= token_tag nil %>
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
