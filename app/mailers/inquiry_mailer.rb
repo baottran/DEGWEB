@@ -23,9 +23,8 @@ class InquiryMailer < ApplicationMailer
   	@inquiry = inquiry
     	mail(
         :subject => "DEG - Inquiry #{@inquiry.id} Needs Review",
-        :to => 'aaron@scrs.com', 
-        :cc => 'admin@degweb.org', 
-        :bcc => 'bowtran@gmail.com')
+        :to => InformationProvider.email_list_for(@inquiry.database), 
+        :cc => 'admin@degweb.org')
   end
 
 

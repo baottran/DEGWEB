@@ -29,6 +29,8 @@ class UsersController < ApplicationController
     if logged_in? 
       @users = User.all 
       @user = User.new
+      @ips = InformationProvider.all 
+      @new_ip = InformationProvider.new 
       render 'index'
       return
     else 

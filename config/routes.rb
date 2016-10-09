@@ -74,6 +74,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :blogs
+  resources :information_providers
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

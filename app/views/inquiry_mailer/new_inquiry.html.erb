@@ -11,21 +11,11 @@
   <%= link_to "Inquiry #{@inquiry.id}", controller: "inquiries", action: "show", id: @inquiry %>
 </p>
 
-<div class="inquiry-item">
-        <strong>Year: </strong><%= @inquiry.year %>
-      </div>
-      <div class="inquiry-item">
-        <strong>Make: </strong><%= @inquiry.make %>
-      </div>
-      <div class="inquiry-item">
-        <strong>Model: </strong><%= @inquiry.model %>
-      </div>
-      <div class="inquiry-item">
-        <strong>Body: </strong><%= @inquiry.body_type %>
-      </div>
-      <div class="inquiry-item">
-        <strong>VIN: </strong><%= @inquiry.vin %>
-      </div>
+<p><strong>Year: </strong><%= @inquiry.year %></p>
+<p><strong>Make: </strong><%= @inquiry.make %></p>
+<p><strong>Model: </strong><%= @inquiry.model %></p>
+<p><strong>Body: </strong><%= @inquiry.body_type %></p>
+<p><strong>VIN: </strong><%= @inquiry.vin %></p>
 
       <div class="inquiry-data">
         <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
