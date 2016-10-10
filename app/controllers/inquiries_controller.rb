@@ -89,8 +89,10 @@ class InquiriesController < ApplicationController
 
 	def create
   	@inquiry = Inquiry.new(inquiry_params)
+    @inquiry.vin = inquiry_params[:vin].upcase
     if @inquiry.save
       InquiryMailer.new_inquiry(@inquiry).deliver
+      p "just created new inquiry with vin #{@inquiry.vin}"
       render 'thankyou'
     else
       render 'new'

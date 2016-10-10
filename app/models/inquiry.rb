@@ -47,7 +47,9 @@ class Inquiry < ActiveRecord::Base
 
   after_initialize :init, :set_criteria, :set_area_of_vehicle
 
-  after_save :set_criteria, :set_area_of_vehicle, :capitalize_vin
+  before_save :capitalize_vin, :set_criteria, :set_area_of_vehicle
+
+  # after_save :set_criteria, :set_area_of_vehicle, :capitalize_vin
 
   scope :ccc, -> { where(database: "CCC") }
   scope :mitchell, -> { where(database: "Mitchell") }
@@ -59,7 +61,7 @@ class Inquiry < ActiveRecord::Base
   end
 
   def capitalize_vin 
-    self.vin = self.vin.upcase
+    self.vin = vin.upcase
   end
 
   def set_criteria
