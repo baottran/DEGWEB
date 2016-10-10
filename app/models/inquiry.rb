@@ -47,7 +47,7 @@ class Inquiry < ActiveRecord::Base
 
   after_initialize :init, :set_criteria, :set_area_of_vehicle
 
-  after_save :set_criteria, :set_area_of_vehicle
+  after_save :set_criteria, :set_area_of_vehicle, :capitalize_vin
 
   scope :ccc, -> { where(database: "CCC") }
   scope :mitchell, -> { where(database: "Mitchell") }
@@ -56,6 +56,10 @@ class Inquiry < ActiveRecord::Base
   def init
     self.status  ||= "Received by DEG"
     self.show_on_web  ||= false           #will set the default value only if it's nil
+  end
+
+  def capitalize_vin 
+    self.vin = self.vin.upcase
   end
 
   def set_criteria

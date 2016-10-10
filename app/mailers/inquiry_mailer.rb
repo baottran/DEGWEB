@@ -33,8 +33,7 @@ class InquiryMailer < ApplicationMailer
     mail(
       :subject => "DEG - Inquiry #{@inquiry.id} Emailed to IP",
       :to => @inquiry.email, 
-      :cc => 'admin@degweb.org', 
-      :bcc => 'bowtran@gmail.com')
+      :cc => 'admin@degweb.org')
   end
 
   def resolved(inquiry)

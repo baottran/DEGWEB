@@ -139,7 +139,6 @@ module InquiriesHelper
     ['Pickup', 'Pickup'],
     ['SUV', 'SUV'],
     ['Coupe', 'Coupe'],
-    ['Luxury', 'Luxury'],
     ['Van/Minivan', 'Van/Minivan'],
     ['Convertible', 'Convertible'],
     ['Hatchback', 'Hatchback'],
