@@ -1,8 +1,15 @@
 <div class="inquiry-comments">
-<% @inquiry.comments.order('created_at ASC').each do |comment| %>
+<% @comments.order('created_at ASC').each do |comment| %>
       <p>
         <p><%= comment.body %></p><br>
-        <b><%= comment.commenter %></b> at <i><%= comment.created_at.strftime("%-m/%-d/%y") %></i>
+        <div class="comment-subtitle"><b><%= comment.commenter %></b> at <i><%= comment.created_at.strftime("%-m/%-d/%y") %></i>
+        <% if logged_in? %>
+          | <div id="comment-type"><%= comment.view_type %></div> | 
+            <div id="comment-edit"><%= link_to "Edit", controller: "comments", action: "edit", id: comment.id, inquiry_id: @inquiry.id %></div> |
+            <div id="delete"><%= link_to "Delete", {:controller => :comments,
+          :action => 'destroy', :id => comment.id, :inquiry_id => @inquiry.id}, :method => :delete %></div>
+        <% end %>
+        </div>
       </p><br>
     <% end %>
 </div>
@@ -14,10 +21,16 @@
     <%= f.label :body, "Comment" %><br>
     <%= f.text_area :body, class: "form-control", id: "comment-body" %>
   </p>
-    <p>
+  <p>
     <%= f.label :commenter, "Author" %><br>
     <%= f.text_field :commenter, class: "form-control", id: "comment-author" %>
   </p>
+  <% if logged_in? %>
+    <div id="internal-check" style="display: inline-flex">
+      <%= f.check_box :internal_only, class: "form-control", id: "comment-internal-only" %>
+      Internal Only 
+    </div>
+  <% end %>
   <p>
     <%= f.submit "Add Comment", class: "btn btn-primary btn-submit", id: "comment-submit" %>
   </p>
@@ -33,7 +46,8 @@ $("#comment-submit").click(function(event){
 
   var commentBody = $("#comment-body").val();
   var commentAuthor = $("#comment-author").val();
-  var endpoint = "/inquiries/<%= @inquiry.id %>/comments"
+  var commentInternal = $("#comment-internal-only").is(":checked");
+  var endpoint = "/inquiries/<%= @inquiry.id %>/comments";
 
   if (commentBody === "" || commentAuthor === ""){
     alert("please enter a comment body and author");
@@ -42,13 +56,15 @@ $("#comment-submit").click(function(event){
       url: endpoint,
       type: 'POST',
       dataType: 'json',
-      data: {body: commentBody, author: commentAuthor}
+      data: {body: commentBody, author: commentAuthor, internal_only: commentInternal}
     })
-    .done(function() {
+    .done(function(data) {
+      console.log("return data is ", data);
       console.log("success");
       $(".inquiry-comments").append("<p><p>" + commentBody + "</p><br><b>" + commentAuthor + "</b> at <i>" + "<%= DateTime.now.to_date.strftime("%-m/%-d/%y") %>" + "</i></p><br>");
       $("#comment-body").val("");
       $("#comment-author").val("");
+      $("#comment-internal-only").attr('checked', false); 
     })
     .fail(function() {
       console.log("error");
@@ -59,3 +75,13 @@ $("#comment-submit").click(function(event){
   }
 })
 </script>
+<style>
+.comment-subtitle {
+  display: flex
+}
+
+.comment-subtitle > * {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+</style>

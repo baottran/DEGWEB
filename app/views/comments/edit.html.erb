@@ -1,0 +1,26 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<div class="container">
+	  <%= render partial: 'inquiries/nav_pills', locals: {current: "queue"} %><br><br>
+	  <div class="panel panel-default">
+  		<div class="panel-heading">Edit Comment</div>
+  		<div class="panel-body">
+  		<%= form_for([@inquiry, @comment]) do |f| %>
+			  <p>
+			    <%= f.label :body, "Comment" %><br>
+			    <%= f.text_area :body, class: "form-control", id: "comment-body" %>
+			  </p>
+			  <p>
+			    <%= f.label :commenter, "Author" %><br>
+			    <%= f.text_field :commenter, class: "form-control", id: "comment-author" %>
+			  </p>
+			  <div id="internal-check" style="display: inline-flex">
+			    <%= f.check_box :internal_only, class: "form-control", id: "comment-internal-only" %>
+			    Internal Only 
+			  </div>
+			  <p>
+			    <%= f.submit "Update Comment", class: "btn btn-primary btn-submit", id: "comment-submit" %>
+			  </p>
+			<% end %>
+  		</div>
+  	</div>
+</div>

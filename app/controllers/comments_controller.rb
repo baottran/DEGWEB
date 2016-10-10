@@ -4,21 +4,51 @@ class CommentsController < ApplicationController
     # @comment = @inquiry.comments.create(comment_params)
     # redirect_to inquiry_path(@inquiry)
     p "hit the new comment endpoint"
-    p "param body is #{params[:body]}"
+    p "============================"
+    p params 
+    p "============================"
     @inquiry = Inquiry.find(params[:inquiry_id])
-    @inquiry.comments.create(body: params[:body], commenter: params[:author])
-    render :json => { :success => true}
+    if @inquiry.comments.create(body: params[:body], commenter: params[:author], internal_only: params[:internal_only])
+      p "-----"
+      p "after i save its "
+      p @inquiry.comments
+      p "-----"
+      render :json => { :success => true}
+    else 
+      render :json => { :success => false }
+    end
   end
 
   def destroy
+    p "hit the destroy endpoint"
     @inquiry = Inquiry.find(params[:inquiry_id])
     @comment = @inquiry.comments.find(params[:id])
     @comment.destroy
     redirect_to inquiry_path(@inquiry)
   end
 
+  def edit
+    @inquiry = Inquiry.find(params[:inquiry_id])
+    @comment = Comment.find(params[:id]) 
+  end
+
+  def update 
+    @inquiry = Inquiry.find(params[:inquiry_id])
+    @comment = Comment.find(params[:id]) 
+    @comment.body = comment_params[:body]
+    @comment.commenter = comment_params[:commenter]
+    if comment_params[:internal_only] === "1" 
+      @comment.internal_only = true 
+    else 
+      @comment.internal_only = false 
+    end
+    @comment.save 
+
+    redirect_to inquiry_path(@inquiry)
+  end
+
   private
     def comment_params
-      params.require(:comment).permit(:commenter, :body)
+      params.require(:comment).permit(:commenter, :body, :internal_only)
     end
 end
