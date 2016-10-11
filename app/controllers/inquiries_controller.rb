@@ -244,27 +244,35 @@ class InquiriesController < ApplicationController
     @inquiry.all_other_complete_time_min = inquiry_params[:all_other_complete_time_min]
     @inquiry.all_other_suggested_action = inquiry_params[:all_other_suggested_action]
     @inquiry.show_on_web = inquiry_params[:show_on_web]
-    @inquiry.attachment = inquiry_params[:attachment]
-    @inquiry.attachment2 = inquiry_params[:attachment2]
-    @inquiry.attachment3 = inquiry_params[:attachment3]
-    @inquiry.attachment4 = inquiry_params[:attachment4]
-    @inquiry.attachment5 = inquiry_params[:attachment5]
 
-    p "zzzzzz"
+    if !@inquiry.attachment.present?
+      @inquiry.attachment = inquiry_params[:attachment]
+    end
+
+    if !@inquiry.attachment2.present?
+      @inquiry.attachment2 = inquiry_params[:attachment2]
+    end
+
+    if !@inquiry.attachment3.present?
+      @inquiry.attachment3 = inquiry_params[:attachment3]
+    end
+
+    if !@inquiry.attachment4.present?
+      @inquiry.attachment4 = inquiry_params[:attachment4]
+    end
+    
+    if !@inquiry.attachment5.present?
+      @inquiry.attachment5 = inquiry_params[:attachment5]
+    end
+
     if params[:new_resolution_date] != ""
-      p "found new date"
       parsed_date = Date.parse(params[:new_resolution_date])
       if parsed_date != @inquiry.resolution_date
-        p "saved new date"
         @inquiry.resolution_date = parsed_date
       end
     end
 
     @inquiry.save
-    p "````````"
-    p params
-    p "==========="
-    p params[:new_resolution_date]
 
     redirect_to @inquiry
   end
