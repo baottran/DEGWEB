@@ -7,13 +7,20 @@ class CommentsController < ApplicationController
     p "============================"
     p params 
     p "============================"
+
+    comment = Comment.new 
+    comment.body = params[:body]
+    comment.commenter = params[:author]
+    comment.internal_only = params[:internal_only]
+
+
     @inquiry = Inquiry.find(params[:inquiry_id])
-    if @inquiry.comments.create(body: params[:body], commenter: params[:author], internal_only: params[:internal_only])
+    if @inquiry.comments.push(comment)
       p "-----"
       p "after i save its "
-      p @inquiry.comments
+      p comment
       p "-----"
-      render :json => { :success => true}
+      render :json => { :success => true, :inquiry_id => @inquiry.id, :comment_id => comment.id }
     else 
       render :json => { :success => false }
     end
