@@ -9,84 +9,81 @@ Please review the following database Inquiry and provide a resolution:
 </p>
 
 <% if @inquiry.database != "CCC" %>
-        <p><strong>Name: </strong><%= @inquiry.name %></p>
-        <p><strong>Title: </strong><%= @inquiry.title %></p>
-        <p><strong>Shop Name: </strong><%= @inquiry.shop_name %></p>
-        <p><strong>Address Line 1: </strong><%= @inquiry.address_1 %></p>
-        <p><strong>Address Line 2: </strong><%= @inquiry.address_2 %></p>
-        <p><strong>City: </strong><%= @inquiry.city %></p>
-        <p><strong>Zip Code: </strong><%= @inquiry.zip_code %></p>
-        <p><strong>State: </strong><%= @inquiry.state %></p>
-        <p><strong>Phone: </strong><%= @inquiry.phone %></p>
-        <p><strong>Fax: </strong><%= @inquiry.fax %></p>
-        <p><strong>Email: </strong><%= @inquiry.email %></p>
-        <br>
+  <p><strong>Name: </strong><%= @inquiry.name %></p>
+  <p><strong>Title: </strong><%= @inquiry.title %></p>
+  <p><strong>Shop Name: </strong><%= @inquiry.shop_name %></p>
+  <p><strong>Address Line 1: </strong><%= @inquiry.address_1 %></p>
+  <p><strong>Address Line 2: </strong><%= @inquiry.address_2 %></p>
+  <p><strong>City: </strong><%= @inquiry.city %></p>
+  <p><strong>Zip Code: </strong><%= @inquiry.zip_code %></p>
+  <p><strong>State: </strong><%= @inquiry.state %></p>
+  <p><strong>Phone: </strong><%= @inquiry.phone %></p>
+  <p><strong>Fax: </strong><%= @inquiry.fax %></p>
+  <p><strong>Email: </strong><%= @inquiry.email %></p>
+  <br>
 <% end %>
 
 <p><strong>Year: </strong><%= @inquiry.year %></p>
 <p><strong>Make: </strong><%= @inquiry.make %></p>
 <p><strong>Model: </strong><%= @inquiry.model %></p>
 <p><strong>Body: </strong><%= @inquiry.body_type %></p>
-<p><strong>VIN: </strong><%= @inquiry.vin %></p>
-      
-<div class="inquiry-data">
-        <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
-        <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
-        <p><strong>Database: </strong><%= @inquiry.database %></p>
-        <% case @inquiry.inquiry_type
-          when 'Missing Information' %>
-            <p><strong>Area of Vehicle: </strong><%= @inquiry.missing_area_of_vehicle %></p>
-            <p><strong>Missing Part Name: </strong><%= @inquiry.missing_part_name %></p>
-            <p><strong>Missing Part Description: </strong><%= @inquiry.missing_part_description %></p>
-            <p><strong>OEM Part Number: </strong><%= @inquiry.missing_oem_part_number %></p>
-            <p><strong>Missing Information: </strong><%= @inquiry.missing_information %></p>
-            <p><strong>Issue Summary: </strong><%= @inquiry.missing_issue_summary %></p>
-            <p><strong>Suggested Action: </strong><%= @inquiry.missing_suggested_action %></p>
-          <% when 'Parts' %>
-            <p><strong>Area of Vehicle: </strong><%= @inquiry.parts_area_of_vehicle %></p>
-            <p><strong>Part Name: </strong><%= @inquiry.parts_part_name %></p>
-            <p><strong>Part Description: </strong><%= @inquiry.parts_part_description %></p>
-            <p><strong>OEM Part Number: </strong><%= @inquiry.parts_oem_part_number %></p>
-            <p><strong>Issue Summary: </strong><%= @inquiry.parts_issue_summary %></p>
-            <p><strong>Suggested Action: </strong><%= @inquiry.parts_suggested_action %></p>
-          <% when 'Procedure Page Issue' %>
-            <p><strong>Area of Vehicle: </strong><%= @inquiry.procedure_area_of_vehicle %></p>
-            <p><strong>Page #: </strong><%= @inquiry.procedure_page_number %></p>
-            <p><strong>Issue Summary: </strong><%= @inquiry.procedure_issue_summary %></p>
-            <p><strong>Suggested Action: </strong><%= @inquiry.procedure_suggested_action %></p>
-          <% when 'Welded Panel Operations' %>
-            <p><strong>Area of Vehicle: </strong><%= @inquiry.welded_area_of_vehicle %><%= @inquiry.welded_area_of_vehicle_other_field%></p>
-   					<p><strong>Part Name: </strong><%= @inquiry.welded_part_name %></p>
-   					<p><strong>Part Number: </strong><%= @inquiry.welded_part_number %></p>
-   					<p><strong>Issue Summary: </strong><%= @inquiry.welded_issue_summary %></p>
-   					<p><strong>Individual Procedure Steps: </strong><%= @inquiry.welded_procedure_steps %></p>
-   					<p><strong>Technician Skill Level: </strong><%= @inquiry.welded_skill_level %></p>
-   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.welded_complete_time_hour %> hours <%= @inquiry.welded_complete_time_min %> minutes</p>
-   					<p><strong>Suggested Action: </strong><%= @inquiry.welded_suggested_action %></p>
-          <% when 'Non-Welded Panel Operations' %>
-            <p><strong>Area of Vehicle: </strong><%= @inquiry.non_welded_area_of_vehicle %><%= @inquiry.non_welded_area_of_vehicle_other_field%></p>
-   					<p><strong>Part Name: </strong><%= @inquiry.non_welded_part_name %></p>
-   					<p><strong>Part Number: </strong><%= @inquiry.non_welded_part_number %></p>
-   					<p><strong>Issue Summary: </strong><%= @inquiry.non_welded_issue_summary %></p>
-   					<p><strong>Individual Procedure Steps: </strong><%= @inquiry.non_welded_procedure_steps %></p>
-   					<p><strong>Technician Skill Level: </strong><%= @inquiry.non_welded_skill_level %></p>
-   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.non_welded_complete_time_hour %> hours <%= @inquiry.non_welded_complete_time_min %> minutes</p>
-   					<p><strong>Suggested Action: </strong><%= @inquiry.non_welded_suggested_action %></p>
-          <% when 'Refinish Operations' %>
-            <p><strong>Area of Vehicle: </strong><%= @inquiry.refinished_area_of_vehicle %><%= @inquiry.refinished_area_of_vehicle_other_field%></p>
-   					<p><strong>Issue Summary: </strong><%= @inquiry.refinished_issue_summary %></p>
-   					<p><strong>Special Labor or Material Considerations: </strong><%= @inquiry.refinished_special_labor %></p>
-   					<p><strong>Estimated Part Surface Area: </strong><%= @inquiry.refinished_surface_area %> square inches</p>
-   					<p><strong>Suggested Action: </strong><%= @inquiry.refinished_suggested_action %></p>
-          <% when 'All Other' %>
-            <p><strong>Issue Summary: </strong><%= @inquiry.all_other_issue_summary%></p>
-   					<p><strong>Individual Procedure Steps: </strong><%= @inquiry.all_other_procedure_steps %></p>
-   					<p><strong>Actual Time To Complete: </strong><%= @inquiry.all_other_complete_time_hour %> hours <%= @inquiry.all_other_complete_time_min %> minutes</p>
-   					<p><strong>Suggested Action: </strong><%= @inquiry.all_other_suggested_action %></p>
-          <% else %>
-            <p>Unknown Inquiry Type</p>
-          <% end %>
-      </div>
+<p><strong>VIN: </strong><%= @inquiry.vin %></p>    
+<p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
+<p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
+<p><strong>Database: </strong><%= @inquiry.database %></p>
+<% case @inquiry.inquiry_type
+  when 'Missing Information' %>
+    <p><strong>Area of Vehicle: </strong><%= @inquiry.missing_area_of_vehicle %></p>
+    <p><strong>Missing Part Name: </strong><%= @inquiry.missing_part_name %></p>
+    <p><strong>Missing Part Description: </strong><%= @inquiry.missing_part_description %></p>
+    <p><strong>OEM Part Number: </strong><%= @inquiry.missing_oem_part_number %></p>
+    <p><strong>Missing Information: </strong><%= @inquiry.missing_information %></p>
+    <p><strong>Issue Summary: </strong><%= @inquiry.missing_issue_summary %></p>
+    <p><strong>Suggested Action: </strong><%= @inquiry.missing_suggested_action %></p>
+  <% when 'Parts' %>
+    <p><strong>Area of Vehicle: </strong><%= @inquiry.parts_area_of_vehicle %></p>
+    <p><strong>Part Name: </strong><%= @inquiry.parts_part_name %></p>
+    <p><strong>Part Description: </strong><%= @inquiry.parts_part_description %></p>
+    <p><strong>OEM Part Number: </strong><%= @inquiry.parts_oem_part_number %></p>
+    <p><strong>Issue Summary: </strong><%= @inquiry.parts_issue_summary %></p>
+    <p><strong>Suggested Action: </strong><%= @inquiry.parts_suggested_action %></p>
+  <% when 'Procedure Page Issue' %>
+    <p><strong>Area of Vehicle: </strong><%= @inquiry.procedure_area_of_vehicle %></p>
+    <p><strong>Page #: </strong><%= @inquiry.procedure_page_number %></p>
+    <p><strong>Issue Summary: </strong><%= @inquiry.procedure_issue_summary %></p>
+    <p><strong>Suggested Action: </strong><%= @inquiry.procedure_suggested_action %></p>
+  <% when 'Welded Panel Operations' %>
+    <p><strong>Area of Vehicle: </strong><%= @inquiry.welded_area_of_vehicle %><%= @inquiry.welded_area_of_vehicle_other_field%></p>
+			<p><strong>Part Name: </strong><%= @inquiry.welded_part_name %></p>
+			<p><strong>Part Number: </strong><%= @inquiry.welded_part_number %></p>
+			<p><strong>Issue Summary: </strong><%= @inquiry.welded_issue_summary %></p>
+			<p><strong>Individual Procedure Steps: </strong><%= @inquiry.welded_procedure_steps %></p>
+			<p><strong>Technician Skill Level: </strong><%= @inquiry.welded_skill_level %></p>
+			<p><strong>Actual Time To Complete: </strong><%= @inquiry.welded_complete_time_hour %> hours <%= @inquiry.welded_complete_time_min %> minutes</p>
+			<p><strong>Suggested Action: </strong><%= @inquiry.welded_suggested_action %></p>
+  <% when 'Non-Welded Panel Operations' %>
+    <p><strong>Area of Vehicle: </strong><%= @inquiry.non_welded_area_of_vehicle %><%= @inquiry.non_welded_area_of_vehicle_other_field%></p>
+			<p><strong>Part Name: </strong><%= @inquiry.non_welded_part_name %></p>
+			<p><strong>Part Number: </strong><%= @inquiry.non_welded_part_number %></p>
+			<p><strong>Issue Summary: </strong><%= @inquiry.non_welded_issue_summary %></p>
+			<p><strong>Individual Procedure Steps: </strong><%= @inquiry.non_welded_procedure_steps %></p>
+			<p><strong>Technician Skill Level: </strong><%= @inquiry.non_welded_skill_level %></p>
+			<p><strong>Actual Time To Complete: </strong><%= @inquiry.non_welded_complete_time_hour %> hours <%= @inquiry.non_welded_complete_time_min %> minutes</p>
+			<p><strong>Suggested Action: </strong><%= @inquiry.non_welded_suggested_action %></p>
+  <% when 'Refinish Operations' %>
+    <p><strong>Area of Vehicle: </strong><%= @inquiry.refinished_area_of_vehicle %><%= @inquiry.refinished_area_of_vehicle_other_field%></p>
+			<p><strong>Issue Summary: </strong><%= @inquiry.refinished_issue_summary %></p>
+			<p><strong>Special Labor or Material Considerations: </strong><%= @inquiry.refinished_special_labor %></p>
+			<p><strong>Estimated Part Surface Area: </strong><%= @inquiry.refinished_surface_area %> square inches</p>
+			<p><strong>Suggested Action: </strong><%= @inquiry.refinished_suggested_action %></p>
+  <% when 'All Other' %>
+    <p><strong>Issue Summary: </strong><%= @inquiry.all_other_issue_summary%></p>
+			<p><strong>Individual Procedure Steps: </strong><%= @inquiry.all_other_procedure_steps %></p>
+			<p><strong>Actual Time To Complete: </strong><%= @inquiry.all_other_complete_time_hour %> hours <%= @inquiry.all_other_complete_time_min %> minutes</p>
+			<p><strong>Suggested Action: </strong><%= @inquiry.all_other_suggested_action %></p>
+  <% else %>
+    <p>Unknown Inquiry Type</p>
+<% end %>
 
 <p>Attached Files</p>
  <ul>
