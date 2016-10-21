@@ -107,9 +107,11 @@ $(document).on("ready page:change", function() {
       <div class="inquiry-item">
         <strong>Body: </strong><%= @inquiry.body_type %>
       </div>
+      <% if logged_in? %>
       <div class="inquiry-item">
         <strong>VIN: </strong><%= @inquiry.vin %>
       </div>
+      <% end %>
     </div>
   </div>
   <% if admin_logged_in? %>
