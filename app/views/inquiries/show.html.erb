@@ -107,7 +107,7 @@ $(document).on("ready page:change", function() {
       <div class="inquiry-item">
         <strong>Body: </strong><%= @inquiry.body_type %>
       </div>
-      <% if logged_in? %>
+      <% if logged_in? || (params[:ip] === "review") %>
       <div class="inquiry-item">
         <strong>VIN: </strong><%= @inquiry.vin %>
       </div>

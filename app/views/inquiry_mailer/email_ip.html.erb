@@ -8,21 +8,6 @@ Please review the following database Inquiry and provide a resolution:
   <%= link_to "Inquiry #{@inquiry.id} For Resolution", controller: "inquiries", action: "show", id: @inquiry, :ip => "review" %>
 </p>
 
-<% if @inquiry.database != "CCC" %>
-  <p><strong>Name: </strong><%= @inquiry.name %></p>
-  <p><strong>Title: </strong><%= @inquiry.title %></p>
-  <p><strong>Shop Name: </strong><%= @inquiry.shop_name %></p>
-  <p><strong>Address Line 1: </strong><%= @inquiry.address_1 %></p>
-  <p><strong>Address Line 2: </strong><%= @inquiry.address_2 %></p>
-  <p><strong>City: </strong><%= @inquiry.city %></p>
-  <p><strong>Zip Code: </strong><%= @inquiry.zip_code %></p>
-  <p><strong>State: </strong><%= @inquiry.state %></p>
-  <p><strong>Phone: </strong><%= @inquiry.phone %></p>
-  <p><strong>Fax: </strong><%= @inquiry.fax %></p>
-  <p><strong>Email: </strong><%= @inquiry.email %></p>
-  <br>
-<% end %>
-
 <p><strong>Year: </strong><%= @inquiry.year %></p>
 <p><strong>Make: </strong><%= @inquiry.make %></p>
 <p><strong>Model: </strong><%= @inquiry.model %></p>
