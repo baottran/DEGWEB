@@ -83,6 +83,10 @@ $("#comment-submit").click(function(event){
       $(".inquiry-comments").append(commentItem);
       $("#comment-body").val("");
       $("#comment-author").val("");
+
+      <% if logged_in? %>
+        $("#comment-author").val("<%= current_user.name %>");
+      <% end %>
       $("#comment-internal-only").attr('checked', false); 
     })
     .fail(function() {
