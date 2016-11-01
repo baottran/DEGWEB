@@ -70,31 +70,31 @@ class Inquiry < ActiveRecord::Base
 
     if inquiry_type === 'Missing Information'
 
-      search_data = search_data + "#{missing_part_name} #{missing_part_description} #{missing_issue_summary} #{missing_area_of_vehicle} #{missing_area_of_vehicle_other_field}"
+      search_data = search_data + "#{missing_oem_part_number} #{missing_information} #{missing_part_name} #{missing_part_description} #{missing_issue_summary} #{missing_area_of_vehicle} #{missing_area_of_vehicle_other_field}"
 
     elsif inquiry_type === 'Parts'
 
-      search_data = search_data + "#{parts_area_of_vehicle} #{parts_area_of_vehicle_other_field} #{parts_part_name} #{parts_part_description} #{parts_issue_summary} #{parts_suggested_action}"
+      search_data = search_data + "#{parts_area_of_vehicle} #{parts_area_of_vehicle_other_field} #{parts_part_name} #{parts_part_description} #{parts_oem_part_number} #{parts_issue_summary} #{parts_suggested_action}"
 
     elsif inquiry_type === "Procedure Page Issue"
       
-      search_data = search_data + "#{procedure_area_of_vehicle} #{procedure_area_of_vehicle_other_field} #{procedure_issue_summary}"
+      search_data = search_data + "#{procedure_area_of_vehicle} #{procedure_area_of_vehicle_other_field} #{procedure_issue_summary} #{procedure_suggested_action}"
 
     elsif inquiry_type === 'Welded Panel Operations'
 
-      search_data = search_data + "#{welded_area_of_vehicle} #{welded_area_of_vehicle_other_field} #{welded_part_name} #{welded_issue_summary}"
+      search_data = search_data + "#{welded_area_of_vehicle} #{welded_area_of_vehicle_other_field} #{welded_part_name} #{welded_part_number} #{welded_issue_summary} #{welded_weld_spots} #{welded_materialis_involved} #{welded_procedure_steps} #{welded_skill_level} #{welded_suggested_action}"
 
     elsif inquiry_type === 'Non-Welded Panel Operations'
 
-      search_data = search_data + "#{non_welded_area_of_vehicle} #{non_welded_area_of_vehicle_other_field} #{non_welded_part_name} #{non_welded_issue_summary}"
+      search_data = search_data + "#{non_welded_area_of_vehicle} #{non_welded_area_of_vehicle_other_field} #{non_welded_part_name} #{non_welded_issue_summary} #{non_welded_procedure_steps} #{non_welded_skill_level} #{non_welded_suggested_action}"
 
     elsif inquiry_type === 'Refinish Operations'
 
-      search_data = search_data + "#{refinished_area_of_vehicle} #{refinished_area_of_vehicle_other_field} #{refinished_issue_summary}"
+      search_data = search_data + "#{refinished_area_of_vehicle} #{refinished_area_of_vehicle_other_field} #{refinished_issue_summary} #{refinished_special_labor} #{refinished_surface_area} #{refinished_suggested_action}"
 
     elsif inquiry_type === 'All Other'
 
-      search_data = search_data + "#{all_other_issue_summary}"
+      search_data = search_data + "#{all_other_issue_summary} #{all_other_procedure_steps} #{all_other_suggested_action}"
 
     end
 
