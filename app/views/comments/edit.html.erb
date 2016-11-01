@@ -13,10 +13,12 @@
 			    <%= f.label :commenter, "Author" %><br>
 			    <%= f.text_field :commenter, class: "form-control", id: "comment-author" %>
 			  </p>
+			  <% if logged_in? %>
 			  <div id="internal-check" style="display: inline-flex">
 			    <%= f.check_box :internal_only, class: "form-control", id: "comment-internal-only" %>
 			    Internal Only 
 			  </div>
+			  <% end %>
 			  <p>
 			    <%= f.submit "Update Comment", class: "btn btn-primary btn-submit", id: "comment-submit" %>
 			  </p>
