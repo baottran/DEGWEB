@@ -48,6 +48,18 @@ namespace :reports do
     p "finished"
   end
 
+  task :update_search => :environment do 
+
+    inquiries = Inquiry.all 
+
+    inquiries.each do |i|
+      i.set_criteria
+      i.save 
+    end
+
+    p 'finished'
+  end
+
   task :calculate => :environment do 
     get_response_and_completion_times
     get_submitted_unsubmitted_counts

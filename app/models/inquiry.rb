@@ -66,7 +66,7 @@ class Inquiry < ActiveRecord::Base
 
   def set_criteria
 
-    search_data = "#{year} #{make} #{model} #{inquiry_type} "
+    search_data = "#{year} #{make} #{model} #{inquiry_type} #{id}"
 
     if inquiry_type === 'Missing Information'
 
@@ -96,6 +96,10 @@ class Inquiry < ActiveRecord::Base
 
       search_data = search_data + "#{all_other_issue_summary}"
 
+    end
+
+    if resolution !== nil 
+      search_data = search_data + "#{resolution}"
     end
           
     self.search_criteria = search_data.downcase
