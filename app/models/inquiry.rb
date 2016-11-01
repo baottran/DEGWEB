@@ -82,7 +82,7 @@ class Inquiry < ActiveRecord::Base
 
     elsif inquiry_type === 'Welded Panel Operations'
 
-      search_data = search_data + "#{welded_area_of_vehicle} #{welded_area_of_vehicle_other_field} #{welded_part_name} #{welded_part_number} #{welded_issue_summary} #{welded_weld_spots} #{welded_materialis_involved} #{welded_procedure_steps} #{welded_skill_level} #{welded_suggested_action}"
+      search_data = search_data + "#{welded_area_of_vehicle} #{welded_area_of_vehicle_other_field} #{welded_part_name} #{welded_part_number} #{welded_issue_summary} #{welded_weld_spots} #{welded_materials_involved} #{welded_procedure_steps} #{welded_skill_level} #{welded_suggested_action}"
 
     elsif inquiry_type === 'Non-Welded Panel Operations'
 
