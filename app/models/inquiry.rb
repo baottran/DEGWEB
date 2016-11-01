@@ -98,7 +98,7 @@ class Inquiry < ActiveRecord::Base
 
     end
 
-    if resolution !== nil 
+    if resolution != nil 
       search_data = search_data + "#{resolution}"
     end
           
