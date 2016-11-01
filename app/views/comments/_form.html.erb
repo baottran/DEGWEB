@@ -49,12 +49,6 @@ $("#comment-submit").click(function(event){
   var commentInternal = $("#comment-internal-only").is(":checked");
   var endpoint = "/inquiries/<%= @inquiry.id %>/comments?ip=review";
 
-  <% if params[:ip] === "review" %>
-  var userIsIp = true 
-  <% else %>
-  var userIsIp = false 
-  <% end %>
-
   if (commentBody === "" || commentAuthor === ""){
     alert("please enter a comment body and author");
   } else {
@@ -62,7 +56,7 @@ $("#comment-submit").click(function(event){
       url: endpoint,
       type: 'POST',
       dataType: 'json',
-      data: {body: commentBody, author: commentAuthor, internal_only: commentInternal, ip: userIsIp}
+      data: {body: commentBody, author: commentAuthor, internal_only: commentInternal}
     })
     .done(function(data) {
       console.log("return data is ", data);
