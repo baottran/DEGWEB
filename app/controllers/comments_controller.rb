@@ -28,10 +28,12 @@ class CommentsController < ApplicationController
 
   def destroy
     p "hit the destroy endpoint"
+    p "params are #{params}"
     @inquiry = Inquiry.find(params[:inquiry_id])
     @comment = @inquiry.comments.find(params[:id])
     @comment.destroy
-    redirect_to inquiry_path(@inquiry)
+
+    redirect_to inquiry_path(@inquiry, :ip => "review") 
   end
 
   def edit
@@ -51,11 +53,11 @@ class CommentsController < ApplicationController
     end
     @comment.save 
 
-    redirect_to inquiry_path(@inquiry)
+    redirect_to inquiry_path(@inquiry, :ip => "review")
   end
 
   private
     def comment_params
-      params.require(:comment).permit(:commenter, :body, :internal_only)
+      params.require(:comment).permit(:commenter, :body, :internal_only, :ip)
     end
 end
