@@ -468,8 +468,12 @@
       <p>
         <div id="file_input_container">
         <%= f.label :attachment, "Attachment 1" %>
+        <% if @inquiry.attachment_file_name %>
           <br><a href="<%= @inquiry.attachment.url %>" target="_newpage"><%= @inquiry.attachment_file_name %></a>
+          <br><button type="button" id="a1" class="delete-btn">Delete Attachment</button>
+        <% else %>
           <%= f.file_field :attachment%>
+        <% end %>
         </div>
       </p>
       <p>
@@ -477,6 +481,7 @@
         <%= f.label :attachment2, "Attachment 2" %>
         <% if @inquiry.attachment2_file_name %>
           <br><a href="<%= @inquiry.attachment2.url %>" target="_newpage"><%= @inquiry.attachment2_file_name %></a>
+          <br><button type="button" id="a2" class="delete-btn">Delete Attachment</button>
         <% else %>
           <%= f.file_field :attachment2%>
         <% end %>
@@ -487,6 +492,7 @@
         <%= f.label :attachment3, "Attachment 3" %>
         <% if @inquiry.attachment3_file_name %>
           <br><a href="<%= @inquiry.attachment3.url %>" target="_newpage"><%= @inquiry.attachment3_file_name %></a>
+          <br><button type="button" id="a3" class="delete-btn">Delete Attachment</button>
         <% else %>
           <%= f.file_field :attachment3%>
         <% end %>
@@ -497,6 +503,7 @@
         <%= f.label :attachment4, "Attachment 4" %>
         <% if @inquiry.attachment4_file_name %>
           <br><a href="<%= @inquiry.attachment4.url %>" target="_newpage"><%= @inquiry.attachment4_file_name %></a>
+          <br><button type="button" id="a4" class="delete-btn">Delete Attachment</button>
         <% else %>
           <%= f.file_field :attachment4 %>
         <% end %>
@@ -508,6 +515,7 @@
         <%= f.label :attachment5, "Attachment 5" %>
         <% if @inquiry.attachment5_file_name %>
           <br><a href="<%= @inquiry.attachment5.url %>" target="_newpage"><%= @inquiry.attachment5_file_name %></a>
+          <br><button type="button" id="a5" class="delete-btn">Delete Attachment</button>
         <% else %>
           <%= f.file_field :attachment5 %>
         <% end %>
@@ -539,3 +547,34 @@
     <a href="/inquiries/<%= @inquiry.id %>" class="btn btn-default">Cancel</a>
   </div>
 <% end %>
+
+<script> 
+
+$(".delete-btn").click(function(event) {
+  console.log("clicked", this.id);
+  var attachmentNum = this.id;
+  if (confirm('Are you sure you want to delete this attachment?')) {
+        console.log("confirmed");
+
+        var attachmentNum = this.id;
+        var inquiry_id = <%= @inquiry.id %>;
+        var deletePath =  inquiry_id + "/delete_attachment/" + attachmentNum;
+
+        $.ajax({
+          url: deletePath,
+          type: 'POST',
+        })
+        .done(function(data) {
+          console.log("success", data);
+          location.reload();
+        })
+        .fail(function() {
+          console.log("error");
+        })
+        .always(function() {
+          console.log("complete");
+        });
+        
+    }
+});
+</script>

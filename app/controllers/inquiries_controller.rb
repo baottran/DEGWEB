@@ -460,6 +460,31 @@ class InquiriesController < ApplicationController
     render 'thankyou'
   end
 
+  def delete_attachment 
+    @inquiry = Inquiry.find(params[:id])
+    p "\n==========="
+    p "hit the delete #{params}"
+    p "============\n"
+
+    attach_num = params[:attach_num]
+
+    if attach_num === "a1" 
+      @inquiry.attachment = nil 
+    elsif attach_num === "a2"
+      @inquiry.attachment2 = nil 
+    elsif attach_num === "a3"
+      @inquiry.attachment3 = nil 
+    elsif attach_num === "a4"
+      @inquiry.attachment4 = nil 
+    elsif attach_num === "a5"
+      @inquiry.attachment5 = nil 
+    end
+
+    @inquiry.save 
+      
+    render :json => {:success => true }
+  end
+
 
 
 	private
