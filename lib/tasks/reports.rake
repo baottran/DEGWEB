@@ -53,7 +53,7 @@ namespace :reports do
     inquiries = Inquiry.all 
 
     inquiries.each do |i|
-      i.set_criteria
+      i.set_admin_search_criteria
       i.save 
     end
 

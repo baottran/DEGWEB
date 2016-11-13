@@ -45,9 +45,9 @@ class Inquiry < ActiveRecord::Base
                     :path => "/inquiries/:id/:basename.:extension", 
                     :url => ":s3_domain_url"               
 
-  after_initialize :init, :set_criteria, :set_area_of_vehicle
+  after_initialize :init, :set_criteria, :set_area_of_vehicle, :set_admin_search_criteria
 
-  before_save :capitalize_vin, :set_criteria, :set_area_of_vehicle
+  before_save :capitalize_vin, :set_criteria, :set_area_of_vehicle, :set_admin_search_criteria
 
   # after_save :set_criteria, :set_area_of_vehicle, :capitalize_vin
 
@@ -105,6 +105,16 @@ class Inquiry < ActiveRecord::Base
     self.search_criteria = search_data.downcase
   end
 
+  def set_admin_search_criteria 
+    search_data = self.search_criteria
+
+    search_data = search_data + "#{name} #{title} #{shop_name} #{address_1} #{address_2} #{city} #{zip_code} #{phone} #{fax} #{email}"
+
+    self.admin_search_criteria = search_data.downcase
+
+    p "set admin search criteria !!!!!!!!!!!!!!"
+  end
+
   def self.search(search)
     inquiries = Inquiry.all 
 
@@ -114,6 +124,16 @@ class Inquiry < ActiveRecord::Base
       inquiries
     end
     
+  end
+
+  def self.admin_search(search)
+    inquiries = Inquiry.all 
+
+    if search 
+      inquiries.where(['admin_search_criteria LIKE ?', "%#{search.downcase}%"])
+    else
+      inquiries
+    end
   end
 
   def s3_credentials
