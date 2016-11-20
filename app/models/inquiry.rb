@@ -112,7 +112,6 @@ class Inquiry < ActiveRecord::Base
 
     self.admin_search_criteria = search_data.downcase
 
-    p "set admin search criteria !!!!!!!!!!!!!!"
   end
 
   def self.search(search)
@@ -143,7 +142,7 @@ class Inquiry < ActiveRecord::Base
   def time_to_resolve_days
 
     if resolution_date!= nil 
-      resolution_time_days = (resolution_date - created_at) / 86400
+      resolution_time_days = (resolution_date.beginning_of_day - created_at.beginning_of_day) / 86400
       return "#{resolution_time_days.round(0)} days"
     end
   end

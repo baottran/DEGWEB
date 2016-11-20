@@ -123,6 +123,12 @@ div.pagination {
   
   <br>
 
+  <% if flash[:resolved] %>
+    <div class="alert alert-dismissible alert-success" style="width: 1020px">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Success!</strong> Inquiry resolution saved. 
+    </div>
+  <% end %>
   <div class="panel panel-default panel-search">
     <div class="panel-heading">Search </div>
     <div class="panel-body">

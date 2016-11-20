@@ -154,6 +154,7 @@ class InquiriesController < ApplicationController
       @inquiry.submit_to_ip_date = Time.now 
     end
     @inquiry.save
+    flash[:resolved] = "Resolution saved."
     redirect_to @inquiry
   end
 
