@@ -75,6 +75,9 @@ gem 'postmark-rails'
 # read xslx spreadsheets for seed data
 gem 'roo'
 
+# business days calculation
+gem 'business_time'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do

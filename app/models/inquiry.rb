@@ -142,8 +142,17 @@ class Inquiry < ActiveRecord::Base
   def time_to_resolve_days
 
     if resolution_date!= nil 
-      resolution_time_days = (resolution_date.beginning_of_day - created_at.beginning_of_day) / 86400
-      return "#{resolution_time_days.round(0)} days"
+      # res_date = resolution_date.beginning_of_day
+      # created_at_date = created_at.beginning_of_day
+      # res_days = created_at_date.business_dates_unitl(res_date)
+
+      create_date = Date.parse(created_at.beginning_of_day.to_s)
+      complete_date = Date.parse(resolution_date.beginning_of_day.to_s)
+      res_days = create_date.business_dates_until(complete_date)
+      return "#{res_days.count} days"
+
+      # resolution_time_days = (resolution_date.beginning_of_day - created_at.beginning_of_day) / 86400
+      # return "#{resolution_time_days.round(0)} days"
     end
   end
 
