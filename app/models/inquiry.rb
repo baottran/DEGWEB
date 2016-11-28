@@ -139,21 +139,29 @@ class Inquiry < ActiveRecord::Base
     {:bucket => ENV["aws_bucket"], :access_key_id => ENV["aws_access_key_id"], :secret_access_key => ENV["aws_secret_access_key"]}
   end
 
-  def time_to_resolve_days
-
-    if resolution_date!= nil 
-      # res_date = resolution_date.beginning_of_day
-      # created_at_date = created_at.beginning_of_day
-      # res_days = created_at_date.business_dates_unitl(res_date)
-
-      create_date = Date.parse(created_at.beginning_of_day.to_s)
-      complete_date = Date.parse(resolution_date.beginning_of_day.to_s)
-      res_days = create_date.business_dates_until(complete_date)
-      return "#{res_days.count} days"
-
-      # resolution_time_days = (resolution_date.beginning_of_day - created_at.beginning_of_day) / 86400
-      # return "#{resolution_time_days.round(0)} days"
+  def time_to_resolve
+    if resolution_date === nil 
+      return nil 
     end
+
+    if completion_days != nil 
+      return completion_days
+    end 
+
+    create_date = Date.parse(created_at.beginning_of_day.to_s)
+    complete_date = Date.parse(resolution_date.beginning_of_day.to_s)
+    res_days = create_date.business_dates_until(complete_date)
+
+    return res_days.count 
+  end
+
+
+  def time_to_resolve_days
+    if self.time_to_resolve === nil 
+      return nil 
+    end
+
+    return "#{self.time_to_resolve} days"
   end
 
   def description_tooltip

@@ -282,6 +282,17 @@ class InquiriesController < ApplicationController
       end
     end
 
+    if (inquiry_params[:completion_days] != "" && @inquiry.resolution_date != nil)
+      if inquiry_params[:completion_days] === "0"
+        @inquiry.completion_days = 0 
+      else  
+        completion_days_int = inquiry_params[:completion_days].to_i 
+        if completion_days_int != 0 
+          @inquiry.completion_days = completion_days_int
+        end
+      end
+    end
+
     @inquiry.save
 
     redirect_to @inquiry
@@ -579,7 +590,8 @@ class InquiriesController < ApplicationController
                                       :all_other_complete_time_min,
                                       :all_other_suggested_action,
                                       :show_on_web,
-                                      :new_resolution_date)
+                                      :new_resolution_date,
+                                      :completion_days)
 	  end
 
     def sort_column
