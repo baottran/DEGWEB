@@ -152,6 +152,12 @@ class Inquiry < ActiveRecord::Base
     complete_date = Date.parse(resolution_date.beginning_of_day.to_s)
     res_days = create_date.business_dates_until(complete_date)
 
+    p "\n==========="
+    p create_date
+    p complete_date
+    p "days: #{res_days.count}"
+    p "#{res_days}"
+
     return res_days.count 
   end
 
