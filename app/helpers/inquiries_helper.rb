@@ -491,7 +491,9 @@ module InquiriesHelper
   end
 
   def calculate_time_unresolved(inquiry)
-    time_unresolved = Time.now - inquiry.created_at
+    current_time = Date.today
+    create_date = Date.parse(inquiry.created_at.beginning_of_day.to_s)
+    time_unresolved = create_date.business_dates_until(current_time).count 
     return time_unresolved
   end
 

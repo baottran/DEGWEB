@@ -73,7 +73,7 @@ $(document).ready(function(){
             <td><% if inquiry.submit_to_ip_date != nil %>
                   <%= inquiry.submit_to_ip_date.strftime("%-m/%-d/%y") %>
                 <% end %></td>
-            <td><%= time_to_days(calculate_time_unresolved(inquiry)) %> Days</td>
+            <td><%= calculate_time_unresolved(inquiry) %> Days</td>
           
           </tr>
         <% end %>
