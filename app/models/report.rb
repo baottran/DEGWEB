@@ -49,6 +49,10 @@ class Report < ActiveRecord::Base
     return total_completion_time / completed_inquiries.count  
   end
 
+  def self.test_this
+    p "got it"
+  end
+
 
 
   private 
