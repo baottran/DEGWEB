@@ -63,10 +63,10 @@ namespace :reports do
   task :calculate => :environment do 
     # Report.test_this
     Report.set_response_and_completion_times
-    # get_response_and_completion_times
-    # get_submitted_unsubmitted_counts
-    # get_total_counts
-    p "done calcualting report"
+    get_response_and_completion_times
+    get_submitted_unsubmitted_counts
+    get_total_counts
+    p "\n=========\ndone calcualting reports\n=========\n"
   end
 
   # Generate Methods
