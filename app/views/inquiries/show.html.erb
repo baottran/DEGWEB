@@ -122,6 +122,7 @@ $(document).on("ready page:change", function() {
       <% end %>
     </div>
   </div>
+  
   <% if admin_logged_in? %>
   <div class="panel panel-default">
     <div class="panel-heading">Customer Detail</div>
@@ -142,6 +143,17 @@ $(document).on("ready page:change", function() {
     </div>
   </div>
   <% end %>
+
+  <% if @inquiry.old_description.present? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">Inquiry Details (from old database)</div>
+    <div class="panel-body normalize">
+      <%= @inquiry.old_description %>
+    </div>
+  </div>
+  <% end %>
+
+
   <div class="panel panel-default">
     <div class="panel-heading">Database Inquiry</div>
     <div class="panel-body">
@@ -244,6 +256,8 @@ $(document).on("ready page:change", function() {
       $("#resolution-text").toggle();
       $("#resolution-form").toggle();
 <% end %>
+
+$('.normalize').html($('.normalize').text().replace(/\n\r?/g, '<br />'))
 
 $("#show-on-web").click(function(event) {
   $.ajax({

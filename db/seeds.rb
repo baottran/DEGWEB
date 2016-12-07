@@ -281,62 +281,7 @@ def read_excel
 						admin_initial_time_ip: 'AdminInitialTimeIP',
 						admin_resolve_time: 'AdminResolveDateDescrip') do |i|
 
-		# database_categories.append(i[:admin_description_short])
-
-		# if i[:database] === ""
-		# 	other_1.append(i[:id])
-		# end
-
-		# if i[:database] === "Database"
-		# 	other_2.append(i[:id])
-		# end
-
-		# format = "%m/%d/%Y"
-
-		# retries = 0 
-
-		# begin 
-		# 	if i[:date_submitted] != "DateSubmitted"
-		# 		date = Date.strptime(i[:date_submitted], "%m/%d/%Y")
-		# 	end
-		# rescue ArgumentError
-		# 	p "date didnt work with id #{i[:id]} for date: #{i[:date_submitted]}"
-		# rescue TypeError
-		# 	p "try 1: date didnt work with id #{i[:id]} for date: #{i[:date_submitted]}"
-			 
-		# end
-
-		# begin 
-		# 	if i[:date_submitted] != "DateSubmitted"
-		# 		date = Date.strptime(i[:date_submitted], "%Y-%m-%d")
-		# 	end
-		# rescue ArgumentError
-		# 	p "date didnt work with id #{i[:id]} for date: #{i[:date_submitted]}"
-		# rescue TypeError
-		# 	p "try 2: date didnt work with id #{i[:id]} for date: #{i[:date_submitted]}"
-		# 	p i[:date_submitted]
-		# 	p "#{i[:date_submitted]}"
-		# 	p i[:date_submitted].instance_of? Date
-		# 	p i[:date_submitted].class 
-			 
-		# end
-
-		# if (i[:admin_resolve_date].instance_of? Date) === false 
-		# 	# p "try 1: date didnt work with id #{i[:id]} for date: #{i[:admin_resolve_date]}"
-		# 	if i[:admin_resolve_date] != nil 
-		# 		p i[:admin_resolve_date].class 
-		# 		p i[:admin_resolve_date]
-		# 	end
-		# else 
-		# 	database_categories.append(i[:admin_resolve_date])
-		# end
-
-
-		# database_categories.append(date)
-
-
 		create_inquiry_from_spreadsheet_data(i)
-
 
 	end
 
@@ -364,38 +309,38 @@ def create_inquiry_from_spreadsheet_data(i)
 		if i[:db_category] === "DatabaseCategory_Refinish"
 			inquiry.inquiry_type = 'Refinish Operations'
 			inquiry.refinished_area_of_vehicle = i[:admin_description_short]
-			inquiry.refinished_issue_summary = i[:db_inquiry_text]
-			inquiry.refinished_suggested_action = i[:admin_description_full]
+			# inquiry.refinished_issue_summary = i[:db_inquiry_text]
+			# inquiry.refinished_suggested_action = i[:admin_description_full]
 
 		elsif i[:db_category] === "DatabaseCategory_MissingInfo"
 			inquiry.inquiry_type = 'Missing Information'
 			inquiry.missing_area_of_vehicle = i[:admin_description_short]
-			inquiry.missing_issue_summary = i[:db_inquiry_text]
-			inquiry.missing_suggested_action = i[:admin_description_full]
+			# inquiry.missing_issue_summary = i[:db_inquiry_text]
+			# inquiry.missing_suggested_action = i[:admin_description_full]
 
 		elsif i[:db_category] === "DatabaseCategory_WeldedPanel"
 			inquiry.inquiry_type = 'Welded Panel Operations'
 			inquiry.welded_area_of_vehicle = i[:admin_description_short]
-			inquiry.welded_issue_summary = i[:db_inquiry_text]
-			inquiry.welded_suggested_action = i[:admin_description_full]
+			# inquiry.welded_issue_summary = i[:db_inquiry_text]
+			# inquiry.welded_suggested_action = i[:admin_description_full]
 
 		elsif i[:db_category] === "DatabaseCategory_MissingParts"
 			inquiry.inquiry_type = 'Parts'
 			inquiry.parts_area_of_vehicle = i[:admin_description_short]
-			inquiry.parts_issue_summary = i[:db_inquiry_text]
-			inquiry.parts_suggested_action = i[:admin_description_full]
+			# inquiry.parts_issue_summary = i[:db_inquiry_text]
+			# inquiry.parts_suggested_action = i[:admin_description_full]
 
 		elsif i[:db_category] === "DatabaseCategory_ProcedurePage"
 			inquiry.inquiry_type = 'Procedure Page Issue'
 			inquiry.procedure_area_of_vehicle = i[:admin_description_short]
-			inquiry.procedure_issue_summary = i[:db_inquiry_text]
-			inquiry.procedure_suggested_action = i[:admin_description_full]
+			# inquiry.procedure_issue_summary = i[:db_inquiry_text]
+			# inquiry.procedure_suggested_action = i[:admin_description_full]
 
 		elsif i[:db_category] === "DatabaseCategory_NonWeldedPart"
 			inquiry.inquiry_type = 'Non-Welded Panel Operations'
 			inquiry.non_welded_area_of_vehicle = i[:admin_description_short]
-			inquiry.non_welded_issue_summary = i[:db_inquiry_text]
-			inquiry.non_welded_suggested_action = i[:admin_description_full]
+			# inquiry.non_welded_issue_summary = i[:db_inquiry_text]
+			# inquiry.non_welded_suggested_action = i[:admin_description_full]
 
 		else 
 			inquiry.inquiry_type = 'All Other'
@@ -465,19 +410,40 @@ def create_inquiry_from_spreadsheet_data(i)
 		end
 
 		inquiry.resolution 	= i[:admin_resolve_description_full] 
-		inquiry.show_on_web = i[:admin_show_on_web] 				
+		inquiry.show_on_web = i[:admin_show_on_web] 		
+		inquiry.old_description = i[:admin_description_full]		
 
 		inquiry.save 
 
 		comment = Comment.new 
 		comment.commenter = "Admin"
-		comment.body = "Some notes from previous database entry: Body Type: #{i[:body_style]}. Product Serial: #{i[:product_serial]}. Inquiry Text: #{i[:db_inquiry_text]}. Notes: #{i[:notes]}. Admin Initial Time IP: #{i[:admin_initial_time_ip]}. Admin Resolve Time: #{i[:admin_resolve_time]}"
+		comment.body = "Some notes from previous database entry: Body Type: #{i[:body_style]}. Product Serial: #{i[:product_serial]}. Notes: #{i[:notes]}. Admin Initial Time IP: #{i[:admin_initial_time_ip]}. Admin Resolve Time: #{i[:admin_resolve_time]}"
 
 		inquiry.comments.push(comment)
 
 		comment.save 
 end
 
+def analyze_cell 
+	spreadsheet = Roo::Excelx.new("./lib/assets/DEG_EXPORT-20160513.xlsx")
+	p "read teh spreadsheet"
+	p "#{spreadsheet.row(2)[26]}"
+	p "#{spreadsheet.row(2)[25]}"
+
+	i = Inquiry.find(3)
+
+	text = spreadsheet.row(10)[25]
+	i.old_description = text
+	i.save
+	p "====done===="
+
+end
+
 
 read_excel
+
+p "done"
+# analyze_cell
+
+
 
