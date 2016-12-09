@@ -415,8 +415,9 @@ def create_inquiry_from_spreadsheet_data(i)
 
 		comment = Comment.new 
 		comment.commenter = "Admin"
+		comment.body = ""
 
-		if i[:body_style].present? 
+		if i[:body_style].present?
 			comment.body = comment.body + "Body Type: #{i[:body_style]}, "
 		end
 
