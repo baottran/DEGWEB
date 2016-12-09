@@ -468,6 +468,12 @@ end
 
 read_excel
 setup_users
+setup_reports
+
+def setup_reports
+	r = Report.new
+	r.save 
+end
 
 
 p "done"
