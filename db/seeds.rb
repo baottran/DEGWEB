@@ -470,10 +470,111 @@ def setup_reports
 	r.save 
 end
 
+def setup_report_data
 
-read_excel
-setup_users
-setup_reports
+	# submitted to ip 
+	p "in it"
+
+	20.times do |i|
+		p "creating new"
+		i = Inquiry.new 
+		i.database = ["CCC", "Audatex", "Mitchell"].sample 
+		i.inquiry_type = ["All Other", "Refinish Operations", "Missing Information"].sample
+		i.year = ["2009", "2014", "2015"].sample
+		i.make = ["Mercedes-Benz", "Jeep", "Toyota", "Honda"].sample
+		i.model = ["test1", "test2"].sample
+		i.email = "test@test.com"
+		i.phone = "4445553333"
+		i.vin = "ABC"
+		i.name = ["Example User 1", "Example User 2", "Example User 3"].sample
+
+
+		i.submit_to_ip_date = Time.now - [3, 25, 55, 150].sample.days
+		i.status = "Submitted to IP"
+		i.created_at = i.submit_to_ip_date - [3, 25, 55, 150].sample.days
+
+		if i.save 
+			p "saved as #{i.id}"
+		else 
+			p "couldn't make it"
+		end
+	end
+
+	 # resolved original
+
+	10.times do |i|
+		p "creating new"
+		i = Inquiry.new 
+		i.database = ["CCC", "Audatex", "Mitchell"].sample 
+		i.inquiry_type = ["All Other", "Refinish Operations", "Missing Information"].sample
+		i.year = ["2009", "2014", "2015"].sample
+		i.make = ["Mercedes-Benz", "Jeep", "Toyota", "Honda"].sample
+		i.model = ["test1", "test2"].sample
+		i.email = "test@test.com"
+		i.phone = "4445553333"
+		i.vin = "ABC"
+		i.name = ["Example User 1", "Example User 2", "Example User 3"].sample
+
+
+		i.submit_to_ip_date = Time.now - [6, 25, 55, 150].sample.days
+		i.created_at = i.submit_to_ip_date - [6, 25, 55, 150].sample.days
+		i.resolution_date = i.submit_to_ip_date + [3, 5].sample.days
+
+		i.status = "Resolved (IP Change)"
+
+
+		if i.save 
+			p "saved as #{i.id}"
+		else 
+			p "couldn't make it"
+		end
+	end
+
+	p "done"
+
+
+	 # resolved repeat 
+
+	 10.times do |i|
+		p "creating new"
+		i = Inquiry.new 
+		i.database = ["CCC", "Audatex", "Mitchell"].sample 
+		i.inquiry_type = ["All Other", "Refinish Operations", "Missing Information"].sample
+		i.year = ["2009", "2014", "2015"].sample
+		i.make = ["Mercedes-Benz", "Jeep", "Toyota", "Honda"].sample
+		i.model = ["test1", "test2"].sample
+		i.email = "test@test.com"
+		i.phone = "4445553333"
+		i.vin = "ABC"
+		i.name = ["Example User 1", "Example User 2", "Example User 3"].sample
+
+
+		i.submit_to_ip_date = Time.now - [6, 25, 55, 150].sample.days
+		i.created_at = i.submit_to_ip_date - [6, 25, 55, 150].sample.days
+		i.resolution_date = i.submit_to_ip_date + [3, 5].sample.days
+
+		i.status = "Resolved (No IP Change)"
+
+
+		if i.save 
+			p "saved as #{i.id}"
+		else 
+			p "couldn't make it"
+		end
+	end
+
+
+
+end
+
+
+
+# read_excel
+# setup_users
+# setup_reports
+setup_report_data
+
+
 
 
 
