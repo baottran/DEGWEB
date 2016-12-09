@@ -9,7 +9,7 @@
 require 'csv'
 require 'roo'
 
-User.create(name: "Bao Tran", email: "bowtran@gmail.com", password: "railstest", password_confirmation: "railstest")
+
 
 seed_vehicle_makes = [ ['Acura', 'Acura'],
                   ['Alfa Romeo', 'Alfa Romeo'],
@@ -456,6 +456,12 @@ def analyze_cell
 
 end
 
+def setup_users
+	# User.create(name: "Bao Tran", email: "bowtran@gmail.com", password: "railstest", password_confirmation: "railstest", isadmin: false)
+	User.create(name: "Bao Tran", email: "bao.tran@macys.com", password: "railstest", password_confirmation: "railstest", isadmin: true)
+end
+
+setup_users
 
 # read_excel
 

@@ -51,7 +51,13 @@ function generateChart(){
   
 };
 
-var response_chart = c3.generate({
+
+
+$(document).ready(function(){
+  // callEndPoint();
+  generateChart();
+
+  var response_chart = c3.generate({
       bindto: "#response_bar_chart",
       data: {
           columns: [
@@ -76,9 +82,9 @@ var response_chart = c3.generate({
       color: {
         pattern: ['#18bc9c', '#f39c12', '#e74c3c']
       }
-    })
+    });
 
-$("#all-toggle").click(function(event) {
+  $("#all-toggle").click(function(event) {
   event.preventDefault();
 
   response_chart.load({
@@ -140,12 +146,7 @@ $("#year-toggle").click(function(event) {
               ['Mitchell', <%= @report.avg_response_mitchell_year %>, <%= @report.avg_completion_mitchell_year %>]
           ]
   });
-  
 });
-
-$(document).ready(function(){
-  // callEndPoint();
-  generateChart();
 });
 
 </script>

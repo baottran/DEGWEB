@@ -120,8 +120,8 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Submitted to IP'
     @inquiry.submit_to_ip_date = Time.now
     @inquiry.save
-    InquiryMailer.email_ip(@inquiry).deliver
-    InquiryMailer.notify_emailed(@inquiry).deliver
+    # InquiryMailer.email_ip(@inquiry).deliver
+    # InquiryMailer.notify_emailed(@inquiry).deliver
     redirect_to @inquiry
   end
 
@@ -130,7 +130,7 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Resolved (No IP Change)'
     @inquiry.resolution_date = Time.now
     @inquiry.save
-    InquiryMailer.resolved(@inquiry).deliver
+    # InquiryMailer.resolved(@inquiry).deliver
     redirect_to @inquiry
   end
 
@@ -139,7 +139,7 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Resolved (IP Change)'
     @inquiry.resolution_date = Time.now
     @inquiry.save
-    InquiryMailer.resolved(@inquiry).deliver
+    # InquiryMailer.resolved(@inquiry).deliver
     redirect_to @inquiry
   end
 
@@ -163,7 +163,7 @@ class InquiriesController < ApplicationController
     @inquiry.status = 'Resolved (DEG Response)'
     @inquiry.resolution_date = Time.now
     @inquiry.save
-    InquiryMailer.resolved(@inquiry).deliver 
+    # InquiryMailer.resolved(@inquiry).deliver 
     redirect_to @inquiry
   end
 
