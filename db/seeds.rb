@@ -457,13 +457,16 @@ def analyze_cell
 end
 
 def setup_users
-	# User.create(name: "Bao Tran", email: "bowtran@gmail.com", password: "railstest", password_confirmation: "railstest", isadmin: false)
+	User.create(name: "Bao Tran", email: "bowtran@gmail.com", password: "railstest", password_confirmation: "railstest", isadmin: false)
 	User.create(name: "Bao Tran", email: "bao.tran@macys.com", password: "railstest", password_confirmation: "railstest", isadmin: true)
+	User.create(name: "Cameron Craig", email: "cameron.craig@sproutdesigns.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
+	User.create(name: "Art", email: "admin@degweb.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
+	User.create(name: "Jorge", email: "orgecgarciais@gmail.com", , password: "degweb", password_confirmation: "degweb", isadmin: true)
 end
 
 setup_users
 
-# read_excel
+read_excel
 
 p "done"
 # analyze_cell
