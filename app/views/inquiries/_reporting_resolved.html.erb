@@ -42,6 +42,12 @@
 
 </style>
 
+<a class="btn btn-info" id="all-toggle">All</a>
+<a class="btn btn-info" id="week-toggle">Week</a>
+<a class="btn btn-info" id="month-toggle">Month</a>
+<a class="btn btn-info" id="quarter-toggle">Quarter</a>
+<a class="btn btn-info" id="year-toggle">Year</a>
+<br><br>
 <%= render partial: 'reporting_response_time' %>
 <br>
 
@@ -77,8 +83,8 @@ var audatex_donut = c3.generate({
 		bindto: "#audatex_donut",
     data: {
         columns: [
-            ['original', <%= num_original("Audatex") %>],
-            ['repeat', <%= num_repeat("Audatex") %>],
+            ['original', <%= @report.num_original_audatex_all %>],
+            ['repeat', <%= @report.num_repeat_audatex_all %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -90,15 +96,20 @@ var audatex_donut = c3.generate({
     },
     color: {
         pattern: ['#3498db', '#f39c12']
-    }
+    },
+    label: {
+        format: function (value, ratio, id) {
+          return d3.format(value);
+        }
+      }
 });
 
 var ccc_donut = c3.generate({
 	bindto: "#ccc_donut",
     data: {
         columns: [
-            ['original', <%= num_original("CCC") %>],
-            ['repeat', <%= num_repeat("CCC") %>],
+            ['original', <%= @report.num_original_ccc_all %>],
+            ['repeat', <%= @report.num_repeat_ccc_all %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -117,8 +128,8 @@ var mitchell_donut = c3.generate({
 	bindto: "#mitchell_donut",
     data: {
         columns: [
-            ['original', <%= num_original("Mitchell") %>],
-            ['repeat', <%= num_repeat("Mitchell") %>],
+            ['original', <%= @report.num_original_mitchell_all %>],
+            ['repeat', <%= @report.num_repeat_mitchell_all %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -133,20 +144,12 @@ var mitchell_donut = c3.generate({
     }
 });
 
-<%  def num_open(database)
-        Inquiry.where(database: database).where(resolution_date: nil).where.not(status: 'Internal Resolution').count
-    end %>
-
-<%  def num_closed(database)
-        Inquiry.where(database: database).where.not(resolution_date: nil).where.not(status: 'Internal Resolution').count
-    end %>
-
 var audatex_completed = c3.generate({
         bindto: "#audatex_completed",
     data: {
         columns: [
-            ['open', <%= num_open("Audatex") %>],
-            ['resolved', <%= num_closed("Audatex") %>],
+            ['open', <%= @report.num_open_audatex_all %>],
+            ['resolved', <%= @report.num_resolved_audatex_all %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -165,8 +168,8 @@ var ccc_completed = c3.generate({
         bindto: "#ccc_completed",
     data: {
         columns: [
-            ['open', <%= num_open("CCC") %>],
-            ['resolved', <%= num_closed("CCC") %>],
+            ['open', <%= @report.num_open_ccc_all %>],
+            ['resolved', <%= @report.num_resolved_ccc_all %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -185,8 +188,8 @@ var mitchell_completed = c3.generate({
         bindto: "#mitchell_completed",
     data: {
         columns: [
-            ['open', <%= num_open("Mitchell") %>],
-            ['resolved', <%= num_closed("Mitchell") %>],
+            ['open', <%= @report.num_open_mitchell_all %>],
+            ['resolved', <%= @report.num_resolved_mitchell_all %>],
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -200,6 +203,212 @@ var mitchell_completed = c3.generate({
         pattern: ['#3498db', '#f39c12']
     }
 });
+
+
+$("#all-toggle").click(function(event){
+    event.preventDefault();
+        console.log("all pressed");
+
+    audatex_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_audatex_all %>],
+            ['resolved', <%= @report.num_resolved_audatex_all %>]
+        ]
+    });
+    ccc_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_ccc_all %>],
+            ['resolved', <%= @report.num_resolved_ccc_all %>]
+        ]
+    });
+    mitchell_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_mitchell_all %>],
+            ['resolved', <%= @report.num_resolved_mitchell_all %>]
+        ]
+    });
+    audatex_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_audatex_all %>],
+            ['repeat', <%=@report.num_repeat_audatex_all %>],
+        ]
+    });
+    ccc_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_ccc_all %>],
+            ['repeat', <%=@report.num_repeat_ccc_all %>],
+        ]
+    });
+    mitchell_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_mitchell_all %>],
+            ['repeat', <%=@report.num_repeat_mitchell_all %>],
+        ]
+    });
+});
+
+
+$("#week-toggle").click(function(event){
+    event.preventDefault();
+    audatex_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_audatex_week %>],
+            ['resolved', <%= @report.num_resolved_audatex_week %>]
+        ]
+    });
+    ccc_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_ccc_week %>],
+            ['resolved', <%= @report.num_resolved_ccc_week %>]
+        ]
+    });
+    mitchell_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_mitchell_week %>],
+            ['resolved', <%= @report.num_resolved_mitchell_week %>]
+        ]
+    });
+    audatex_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_audatex_week %>],
+            ['repeat', <%=@report.num_repeat_audatex_week %>],
+        ]
+    });
+    ccc_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_ccc_week %>],
+            ['repeat', <%=@report.num_repeat_ccc_week %>],
+        ]
+    });
+    mitchell_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_mitchell_week %>],
+            ['repeat', <%=@report.num_repeat_mitchell_week %>],
+        ]
+    });
+});
+
+$("#quarter-toggle").click(function(event){
+    event.preventDefault();
+    audatex_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_audatex_quarter %>],
+            ['resolved', <%= @report.num_resolved_audatex_quarter %>]
+        ]
+    });
+    ccc_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_ccc_quar %>],
+            ['resolved', <%= @report.num_resolved_ccc_quar %>]
+        ]
+    });
+    mitchell_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_mitchell_quar %>],
+            ['resolved', <%= @report.num_resolved_mitchell_quar %>]
+        ]
+    });
+    audatex_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_audatex_quarter %>],
+            ['repeat', <%=@report.num_repeat_audatex_quarter %>],
+        ]
+    });
+    ccc_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_ccc_quarter %>],
+            ['repeat', <%=@report.num_repeat_ccc_quarter %>],
+        ]
+    });
+    mitchell_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_mitchell_quarter %>],
+            ['repeat', <%=@report.num_repeat_mitchell_quarter %>],
+        ]
+    });
+});
+
+$("#month-toggle").click(function(event){
+    event.preventDefault();
+    audatex_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_audatex_month %>],
+            ['resolved', <%= @report.num_resolved_audatex_month %>]
+        ]
+    });
+    ccc_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_ccc_month %>],
+            ['resolved', <%= @report.num_resolved_ccc_month %>]
+        ]
+    });
+    mitchell_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_mitchell_month %>],
+            ['resolved', <%= @report.num_resolved_mitchell_month %>]
+        ]
+    });
+    audatex_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_audatex_month %>],
+            ['repeat', <%=@report.num_repeat_audatex_month %>],
+        ]
+    });
+    ccc_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_ccc_month %>],
+            ['repeat', <%=@report.num_repeat_ccc_month %>],
+        ]
+    });
+    mitchell_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_mitchell_month %>],
+            ['repeat', <%=@report.num_repeat_mitchell_month %>],
+        ]
+    });
+});
+
+$("#year-toggle").click(function(event){
+    event.preventDefault();
+    audatex_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_audatex_year %>],
+            ['resolved', <%= @report.num_resolved_audatex_year %>]
+        ]
+    });
+    ccc_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_ccc_year %>],
+            ['resolved', <%= @report.num_resolved_ccc_year %>]
+        ]
+    });
+    mitchell_completed.load({
+        columns:[
+            ['open', <%= @report.num_open_mitchell_year %>],
+            ['resolved', <%= @report.num_resolved_mitchell_year %>]
+        ]
+    });
+    audatex_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_audatex_year %>],
+            ['repeat', <%=@report.num_repeat_audatex_year %>],
+        ]
+    });
+    ccc_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_ccc_year %>],
+            ['repeat', <%=@report.num_repeat_ccc_year %>],
+        ]
+    });
+    mitchell_donut.load({
+        columns:[
+            ['original', <%= @report.num_original_mitchell_year %>],
+            ['repeat', <%=@report.num_repeat_mitchell_year %>],
+        ]
+    });
+});
+
+
 
 });
 

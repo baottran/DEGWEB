@@ -68,6 +68,10 @@ class Inquiry < ActiveRecord::Base
 
     search_data = "#{year} #{make} #{model} #{inquiry_type} #{id}"
 
+    if old_description.present?
+      search_data += "#{old_description} "
+    end
+
     if inquiry_type === 'Missing Information'
 
       search_data = search_data + "#{missing_oem_part_number} #{missing_information} #{missing_part_name} #{missing_part_description} #{missing_issue_summary} #{missing_area_of_vehicle} #{missing_area_of_vehicle_other_field}"
@@ -340,6 +344,53 @@ class Inquiry < ActiveRecord::Base
     when 'Resolved (No IP change)'
     end 
   end
+
+  def self.database(db)
+    where(database: db)
+  end
+
+  def self.open 
+    where(resolution_date: nil)
+  end
+
+  def self.closed
+    where.not(resolution_date: nil)
+  end
+
+  def self.not_internal
+    where.not(status: 'Internal Resolution')
+  end
+
+  def self.start_date_for(period)
+    end_date = Time.now
+    if period == "week"
+      return (end_date - 1.week).beginning_of_day
+    elsif period == "month"
+      return (end_date - 1.month).beginning_of_day
+    elsif period == "quarter"
+      return (end_date - 3.months).beginning_of_day
+    elsif period == "year"
+      return (end_date - 1.year).beginning_of_day
+    end
+  end
+
+  def self.resolved_in_last(period)
+    end_date = Time.now
+    start_date = start_date_for(period)
+
+    return where(resolution_date: start_date..end_date)
+  end
+
+  def self.unresolved_in_last(period)
+    end_date = Time.now
+    start_date = start_date_for(period)
+
+    return where(resolution_date: nil). where(created_at: start_date..end_date)
+  end
+
+        
+
+
 
   
 

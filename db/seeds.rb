@@ -345,7 +345,7 @@ def create_inquiry_from_spreadsheet_data(i)
 		else 
 			inquiry.inquiry_type = 'All Other'
 			inquiry.all_other_suggested_action = i[:admin_description_short] + i[:admin_description_full]
-			inquiry.all_other_issue_summary = i[:db_inquiry_text]
+			# inquiry.all_other_issue_summary = i[:db_inquiry_text]
 		end
 
 
@@ -389,8 +389,6 @@ def create_inquiry_from_spreadsheet_data(i)
 			inquiry.status = "Resolved (IP Change)"
 		end
 			 	
-
-
 		if (i[:date_submitted].instance_of? Date) 
 			inquiry.created_at = i[:date_submitted]
 		else 
@@ -417,7 +415,26 @@ def create_inquiry_from_spreadsheet_data(i)
 
 		comment = Comment.new 
 		comment.commenter = "Admin"
-		comment.body = "Some notes from previous database entry: Body Type: #{i[:body_style]}. Product Serial: #{i[:product_serial]}. Notes: #{i[:notes]}. Admin Initial Time IP: #{i[:admin_initial_time_ip]}. Admin Resolve Time: #{i[:admin_resolve_time]}"
+
+		if i[:body_style].present? 
+			comment.body += "Body Type: #{i[:body_style]}, "
+		end
+
+		if i[:product_serial].present? 
+			comment.body += "Body Type: #{i[:body_style]}, "
+		end
+
+		if i[:notes].present? 
+			comment.body += "Notes: #{i[:notes]}, " 
+		end
+
+		if i[:admin_initial_time_ip].present?
+			comment.body += "Admin Initial Time IP: #{i[:admin_initial_time_ip]}" 
+		end
+
+		if i[:admin_resolve_time].present? 
+			comment.body += "Admin Resolve Time: #{i[:admin_resolve_time]}"
+		end
 
 		inquiry.comments.push(comment)
 
@@ -440,7 +457,7 @@ def analyze_cell
 end
 
 
-read_excel
+# read_excel
 
 p "done"
 # analyze_cell

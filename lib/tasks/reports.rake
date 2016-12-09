@@ -62,10 +62,14 @@ namespace :reports do
 
   task :calculate => :environment do 
      "\n=========\nstart calcualting reports\n=========\n"
-    # Report.test_this
+
     Report.set_response_and_completion_times
-    get_submitted_unsubmitted_counts
-    get_total_counts
+    Report.set_open_and_closed_counts
+    Report.set_original_repeat_counts
+    
+
+    # get_submitted_unsubmitted_counts
+    # get_total_counts
     p "\n=========\ndone calcualting reports\n=========\n"
   end
 

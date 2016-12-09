@@ -5,7 +5,7 @@
     <div id="response_bar_chart" hidden="false"></div>
     <div class="loading_placeholder" hidden = "true">
     </div>
-	</div>
+	</div>quit
 </div>
 
 <script>
@@ -48,7 +48,10 @@ function generateChart(){
   $("#response_bar_chart").show();
   $(".loading_placeholder").hide();
 
-  var response_chart = c3.generate({
+  
+};
+
+var response_chart = c3.generate({
       bindto: "#response_bar_chart",
       data: {
           columns: [
@@ -74,7 +77,71 @@ function generateChart(){
         pattern: ['#18bc9c', '#f39c12', '#e74c3c']
       }
     })
-};
+
+$("#all-toggle").click(function(event) {
+  event.preventDefault();
+
+  response_chart.load({
+    columns: [
+              ['Audatex', avg_response_audatex, avg_completion_audatex],
+              ['CCC', avg_response_ccc, avg_completion_ccc],
+              ['Mitchell', avg_response_mitchell, avg_completion_mitchell]
+          ]
+  });
+
+});
+
+$("#week-toggle").click(function(event) {
+  event.preventDefault();
+
+  response_chart.load({
+    columns: [
+              ['Audatex', <%= @report.avg_response_audatex_week %>, <%= @report.avg_completion_audatex_week %>],
+              ['CCC', <%= @report.avg_response_ccc_week %>, <%= @report.avg_completion_ccc_week %>],
+              ['Mitchell', <%= @report.avg_response_mitchell_week %>, <%= @report.avg_completion_mitchell_week %>]
+          ]
+  });
+  
+});
+
+$("#month-toggle").click(function(event) {
+  event.preventDefault();
+
+  response_chart.load({
+    columns: [
+              ['Audatex', <%= @report.avg_response_audatex_month %>, <%= @report.avg_completion_audatex_month %>],
+              ['CCC', <%= @report.avg_response_ccc_month %>, <%= @report.avg_completion_ccc_month %>],
+              ['Mitchell', <%= @report.avg_response_mitchell_month %>, <%= @report.avg_completion_mitchell_month %>]
+          ]
+  });
+  
+});
+
+$("#quarter-toggle").click(function(event) {
+  event.preventDefault();
+
+  response_chart.load({
+    columns: [
+              ['Audatex', <%= @report.avg_response_audatex_quarter %>, <%= @report.avg_completion_audatex_quarter %>],
+              ['CCC', <%= @report.avg_response_ccc_quarter %>, <%= @report.avg_completion_ccc_quarter %>],
+              ['Mitchell', <%= @report.avg_response_mitchell_quarter %>, <%= @report.avg_completion_mitchell_quarter %>]
+          ]
+  });
+  
+});
+
+$("#year-toggle").click(function(event) {
+  event.preventDefault();
+
+  response_chart.load({
+    columns: [
+              ['Audatex', <%= @report.avg_response_audatex_year %>, <%= @report.avg_completion_audatex_year %>],
+              ['CCC', <%= @report.avg_response_ccc_year %>, <%= @report.avg_completion_ccc_year %>],
+              ['Mitchell', <%= @report.avg_response_mitchell_year %>, <%= @report.avg_completion_mitchell_year %>]
+          ]
+  });
+  
+});
 
 $(document).ready(function(){
   // callEndPoint();
