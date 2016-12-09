@@ -465,15 +465,17 @@ def setup_users
 	User.create(name: "Jorge", email: "orgecgarciais@gmail.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
 end
 
+def setup_reports
+	r = Report.new
+	r.save 
+end
+
 
 read_excel
 setup_users
 setup_reports
 
-def setup_reports
-	r = Report.new
-	r.save 
-end
+
 
 
 p "done"
