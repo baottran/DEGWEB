@@ -417,23 +417,23 @@ def create_inquiry_from_spreadsheet_data(i)
 		comment.commenter = "Admin"
 
 		if i[:body_style].present? 
-			comment.body += "Body Type: #{i[:body_style]}, "
+			comment.body = comment.body + "Body Type: #{i[:body_style]}, "
 		end
 
 		if i[:product_serial].present? 
-			comment.body += "Body Type: #{i[:body_style]}, "
+			comment.body = comment.body + "Body Type: #{i[:body_style]}, "
 		end
 
 		if i[:notes].present? 
-			comment.body += "Notes: #{i[:notes]}, " 
+			comment.body = comment.body + "Notes: #{i[:notes]}, " 
 		end
 
 		if i[:admin_initial_time_ip].present?
-			comment.body += "Admin Initial Time IP: #{i[:admin_initial_time_ip]}" 
+			comment.body = comment.body + "Admin Initial Time IP: #{i[:admin_initial_time_ip]}" 
 		end
 
 		if i[:admin_resolve_time].present? 
-			comment.body += "Admin Resolve Time: #{i[:admin_resolve_time]}"
+			comment.body = comment.body + "Admin Resolve Time: #{i[:admin_resolve_time]}"
 		end
 
 		inquiry.comments.push(comment)
