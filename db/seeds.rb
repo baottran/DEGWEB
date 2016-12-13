@@ -250,7 +250,10 @@ def read_excel
 	database_categories = []
 	other_1 = []
 	other_2 = []
-	spreadsheet.each(	id: 'RFRID', 
+
+	counter = 0 
+
+	spreadsheet.each(	id: 'DB_Index', 
 						name: 'Name', 
 						title: 'Title', 
 						shop: 'Shop', 
@@ -279,21 +282,44 @@ def read_excel
 						admin_resolve_date: 'AdminResolveDate',
 						admin_show_on_web: 'AdminShowOnWeb',
 						admin_initial_time_ip: 'AdminInitialTimeIP',
+						admin_resolve_descrip: 'AdminResolveDescrip',
 						admin_resolve_time: 'AdminResolveDateDescrip') do |i|
 
 		create_inquiry_from_spreadsheet_data(i)
 
+		# counter += 1 
+
+		# if counter > 20 
+		# 	break 
+		# end 
+
+		ActiveRecord::Base.connection.tables.each do |t|
+			ActiveRecord::Base.connection.reset_pk_sequence!(t)
+		end
+
 	end
 
-
-
+	
 end
 
 
 
 def create_inquiry_from_spreadsheet_data(i)
 
+		id = i[:id]
+
+		if id === 151 
+			p "invalid email"
+			return
+		end
+		
+		# if id === 151 || id === 220 || id === 221
+		# 	p "invalid email!"
+		# 	return
+		# end
+
 		inquiry 			= Inquiry.new 
+		inquiry.id 			= i[:id]
 		inquiry.name 		= i[:name]
 		inquiry.title 		= i[:title]
 		inquiry.shop_name 	= i[:shop]
@@ -305,48 +331,30 @@ def create_inquiry_from_spreadsheet_data(i)
 		inquiry.make		= i[:make] 
 		inquiry.model		= i[:model] 
 		inquiry.vin			= i[:vin] 
+		inquiry.client_id	= i[:product_serial]
+
+		# Inquiry Type 
 
 		if i[:db_category] === "DatabaseCategory_Refinish"
 			inquiry.inquiry_type = 'Refinish Operations'
-			inquiry.refinished_area_of_vehicle = i[:admin_description_short]
-			# inquiry.refinished_issue_summary = i[:db_inquiry_text]
-			# inquiry.refinished_suggested_action = i[:admin_description_full]
-
 		elsif i[:db_category] === "DatabaseCategory_MissingInfo"
 			inquiry.inquiry_type = 'Missing Information'
-			inquiry.missing_area_of_vehicle = i[:admin_description_short]
-			# inquiry.missing_issue_summary = i[:db_inquiry_text]
-			# inquiry.missing_suggested_action = i[:admin_description_full]
-
 		elsif i[:db_category] === "DatabaseCategory_WeldedPanel"
 			inquiry.inquiry_type = 'Welded Panel Operations'
-			inquiry.welded_area_of_vehicle = i[:admin_description_short]
-			# inquiry.welded_issue_summary = i[:db_inquiry_text]
-			# inquiry.welded_suggested_action = i[:admin_description_full]
-
 		elsif i[:db_category] === "DatabaseCategory_MissingParts"
 			inquiry.inquiry_type = 'Parts'
-			inquiry.parts_area_of_vehicle = i[:admin_description_short]
-			# inquiry.parts_issue_summary = i[:db_inquiry_text]
-			# inquiry.parts_suggested_action = i[:admin_description_full]
-
 		elsif i[:db_category] === "DatabaseCategory_ProcedurePage"
 			inquiry.inquiry_type = 'Procedure Page Issue'
-			inquiry.procedure_area_of_vehicle = i[:admin_description_short]
-			# inquiry.procedure_issue_summary = i[:db_inquiry_text]
-			# inquiry.procedure_suggested_action = i[:admin_description_full]
-
 		elsif i[:db_category] === "DatabaseCategory_NonWeldedPart"
 			inquiry.inquiry_type = 'Non-Welded Panel Operations'
-			inquiry.non_welded_area_of_vehicle = i[:admin_description_short]
-			# inquiry.non_welded_issue_summary = i[:db_inquiry_text]
-			# inquiry.non_welded_suggested_action = i[:admin_description_full]
-
 		else 
 			inquiry.inquiry_type = 'All Other'
-			inquiry.all_other_suggested_action = i[:admin_description_short] + i[:admin_description_full]
-			# inquiry.all_other_issue_summary = i[:db_inquiry_text]
 		end
+
+		# description setting 
+
+		inquiry.old_description = i[:admin_description_short] + "\n\n" + i[:admin_description_full]		
+
 
 
 		if i[:database] === "Audatex" || i[:database] === "Mitchell"
@@ -354,7 +362,8 @@ def create_inquiry_from_spreadsheet_data(i)
 		elsif i[:database] === "CCC/Motor"
 			inquiry.database = "CCC"
 		else
-			inquiry.database = "Undefined"
+			p "couldn't create inquiry id #{i[:id]} :: invalid database type"
+			return
 		end 
 
 		if i[:body_style2] === "Van"
@@ -377,12 +386,17 @@ def create_inquiry_from_spreadsheet_data(i)
 			inquiry.body_type = "Undefined"
 		end
 
-		if i[:admin_resolve_status] === "Recieved" || i[:admin_resolve_status] === "Received"
+		if i[:admin_resolve_descrip] === "No Change"
+			inquiry.status = "Resolved (No IP Change)"
+		elsif i[:admin_resolve_descrip] === "DEG Response"
+			inquiry.status = "Resolved (DEG Response)"
+		elsif i[:admin_resolve_status] === "Recieved" || i[:admin_resolve_status] === "Received"
 			inquiry.status = "Received by DEG"
 		elsif i[:admin_resolve_status] === "No Change"
 			inquiry.status = "Resolved (No IP Change)"
 		elsif i[:admin_resolve_status] === "" || i[:admin_resolve_status] === "i" || i[:admin_resolve_status] === " " || i[:admin_resolve_status] === "AdminResolveStatus"
-			inquiry.status = "Undefined"
+			p "couldn't create inquiry id #{i[:id]} :: invalid admin resolve status"
+			return 
 		elsif i[:admin_resolve_status] === "Submitted"
 			inquiry.status = "Submitted to IP"
 		else 
@@ -392,36 +406,53 @@ def create_inquiry_from_spreadsheet_data(i)
 		if (i[:date_submitted].instance_of? Date) 
 			inquiry.created_at = i[:date_submitted]
 		else 
-			# p "couldn't set date for #{i[:id]}"
+			p "couldn't create inquiry id #{i[:id]} :: invalid create_date"
+			return
 		end
 
 		if (i[:date_submit_ip].instance_of? Date) 
 			inquiry.submit_to_ip_date = i[:date_submit_ip]
 		else 
-			# p "couldn't set date for #{i[:id]}"
+			p "couldn't create inquiry id #{i[:id]} :: invalid submit_to_ip_date"
+			return
 		end
 
 		if (i[:admin_resolve_date].instance_of? Date)
 			inquiry.resolution_date = i[:admin_resolve_date]
 		else 
-			# p "couldn't set resolution date for #{i[:id]}"
+			p "couldn't create inquiry id #{i[:id]} :: invalid resolution date"
+			return 
 		end
 
-		inquiry.resolution 	= i[:admin_resolve_description_full] 
-		inquiry.show_on_web = i[:admin_show_on_web] 		
-		inquiry.old_description = i[:admin_description_full]		
 
-		inquiry.save 
+
+		inquiry.resolution 	= i[:admin_resolve_descrip] + "\n\n" + i[:admin_resolve_description_full] 
+		inquiry.show_on_web = i[:admin_show_on_web] 	
+
+		if i[:admin_resolve_time].present? 
+			resolve_string = i[:admin_resolve_time]
+			resolve_string_downcase = resolve_string.downcase 
+			resolve_string_downcase.slice! "days"
+			resolve_string_downcase.slice! "day"
+			inquiry.completion_days = resolve_string_downcase.to_i 
+		end	
+ 
+		inquiry.transferred_from_old_db = true
+
+		if inquiry.save!
+			p "successfully created i #{inquiry.id} original id #{i[:id]}"
+		else 
+			p "error #{i[:id]}"
+		end
+
+		# need to reload in order to set id
+		inquiry.reload.id  
 
 		comment = Comment.new 
 		comment.commenter = "Admin"
 		comment.body = ""
 
 		if i[:body_style].present?
-			comment.body = comment.body + "Body Type: #{i[:body_style]}, "
-		end
-
-		if i[:product_serial].present? 
 			comment.body = comment.body + "Body Type: #{i[:body_style]}, "
 		end
 
@@ -524,7 +555,7 @@ def setup_report_data
 
 
 		if i.save 
-			p "saved as #{i.id}"
+			p "saved as #{i.id} but num is #{i[:id]}"
 		else 
 			p "couldn't make it"
 		end
@@ -569,9 +600,9 @@ end
 
 
 
-# read_excel
-# setup_users
-# setup_reports
+read_excel
+setup_users
+setup_reports
 setup_report_data
 
 

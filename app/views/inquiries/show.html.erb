@@ -144,16 +144,28 @@ $(document).on("ready page:change", function() {
   </div>
   <% end %>
 
-  <% if @inquiry.old_description.present? %>
+  
+
+  <% if @inquiry.transferred_from_old_db === true %>
+    <div class="panel panel-default">
+    <div class="panel-heading">Inquiry Type</div>
+    <div class="panel-body">
+      <div class="inquiry-data">
+        <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
+        <% if logged_in? || (params[:ip] === "review") %>
+        <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div class="panel panel-default">
     <div class="panel-heading">Inquiry Details</div>
     <div class="panel-body normalize">
       <%= @inquiry.old_description %>
     </div>
   </div>
-  <% end %>
 
-
+  <% else %>
   <div class="panel panel-default">
     <div class="panel-heading">Database Inquiry</div>
     <div class="panel-body">
@@ -220,6 +232,7 @@ $(document).on("ready page:change", function() {
     </div>
   </div>
 </div>
+<% end %>
 
 <div class="panel panel-success" id="inquiry-edit-form">
   <div class="panel-heading">Edit Inquiry Fields</div>

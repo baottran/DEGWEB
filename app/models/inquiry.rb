@@ -1,19 +1,19 @@
 class Inquiry < ActiveRecord::Base
   has_many :comments, dependent: :destroy
-  validates :name, presence: true
-  validates :phone, presence: true
+  # validates :name, presence: true
+  # validates :phone, presence: true
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :email, presence: true,
-                    length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX }
+  # # validates :email, presence: true,
+  # #                   length: { maximum: 255 }
+  # #                   # format: { with: VALID_EMAIL_REGEX }
 
-  validates :make, presence: true
-  validates :model, presence: true
-  validates :year, presence: true
-  validates :database, presence: true
-  validates :inquiry_type, presence: true
+  # validates :make, presence: true
+  # validates :model, presence: true
+  # validates :year, presence: true
+  # validates :database, presence: true
+  # validates :inquiry_type, presence: true
 
   has_attached_file :attachment,
                     :storage => :s3,
