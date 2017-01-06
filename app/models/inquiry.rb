@@ -182,6 +182,10 @@ class Inquiry < ActiveRecord::Base
 
   def description_tooltip
 
+    if self.transferred_from_old_db === true 
+      return self.old_description
+    end
+
     case inquiry_type
 
     when 'Missing Information'
