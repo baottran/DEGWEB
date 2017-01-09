@@ -524,6 +524,7 @@
     </div>
   </div>
 
+  <% if @inquiry.transferred_from_old_db %>
   <div class="form-heading col-lg-9">
     <h4>Inquiry Description (from old database)</h4>
     <hr>
@@ -538,6 +539,7 @@
       </div>
     </div>
   </div>
+  <% end %>
 
   <div class="form-heading col-lg-9">
     <h4>Resolution Date</h4>
