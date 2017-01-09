@@ -285,13 +285,22 @@ def read_excel
 						admin_resolve_descrip: 'AdminResolveDescrip',
 						admin_resolve_time: 'AdminResolveDateDescrip') do |i|
 
-		create_inquiry_from_spreadsheet_data(i)
+		# create_inquiry_from_spreadsheet_data(i)
 
-		# counter += 1 
+		counter += 1 
 
-		# if counter > 20 
-		# 	break 
-		# end 
+
+
+		p "submit for id #{i[:id]}"
+		
+		p i[:date_submitted]
+		p i[:date_submitted].class
+		p i[:date_submitted].in_time_zone('Eastern Time (US & Canada)').strftime("%m/%d/%Y %l:%M%p EDT") 
+
+
+		if counter > 5
+			break 
+		end 
 
 		ActiveRecord::Base.connection.tables.each do |t|
 			ActiveRecord::Base.connection.reset_pk_sequence!(t)
@@ -601,9 +610,9 @@ end
 
 
 read_excel
-setup_users
-setup_reports
-setup_report_data
+# setup_users
+# setup_reports
+# setup_report_data
 
 
 
