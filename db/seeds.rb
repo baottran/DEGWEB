@@ -243,7 +243,7 @@ end
 # lib/assets/DEG_EXPORT-20160513.xlsx
 
 def read_excel
-	spreadsheet = Roo::Excelx.new("./lib/assets/DEG_EXPORT-20160513.xlsx")
+	spreadsheet = Roo::Excelx.new("./lib/assets/1-16-2017-Backup.xlsx")
 	puts "read the spreasheet"
 	header = spreadsheet.row(1)
 	count = 0 
@@ -285,22 +285,7 @@ def read_excel
 						admin_resolve_descrip: 'AdminResolveDescrip',
 						admin_resolve_time: 'AdminResolveDateDescrip') do |i|
 
-		# create_inquiry_from_spreadsheet_data(i)
-
-		counter += 1 
-
-
-
-		p "submit for id #{i[:id]}"
-		
-		p i[:date_submitted]
-		p i[:date_submitted].class
-		p i[:date_submitted].in_time_zone('Eastern Time (US & Canada)').strftime("%m/%d/%Y %l:%M%p EDT") 
-
-
-		if counter > 5
-			break 
-		end 
+		create_inquiry_from_spreadsheet_data(i)
 
 		ActiveRecord::Base.connection.tables.each do |t|
 			ActiveRecord::Base.connection.reset_pk_sequence!(t)
@@ -362,9 +347,8 @@ def create_inquiry_from_spreadsheet_data(i)
 
 		# description setting 
 
-		inquiry.old_description = i[:admin_description_short] + "\n\n" + i[:admin_description_full]		
-
-
+		inquiry.short_desc = i[:admin_description_short]
+		inquiry.old_description = i[:admin_description_full]		
 
 		if i[:database] === "Audatex" || i[:database] === "Mitchell"
 			inquiry.database = i[:database]
@@ -610,8 +594,8 @@ end
 
 
 read_excel
-# setup_users
-# setup_reports
+setup_users
+setup_reports
 # setup_report_data
 
 

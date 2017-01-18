@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213054622) do
+ActiveRecord::Schema.define(version: 20170116232854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 20161213054622) do
     t.integer  "num_resolved_mitchell_quar"
     t.integer  "num_resolved_mitchell_year"
     t.boolean  "transferred_from_old_db"
+    t.string   "short_desc"
   end
 
   add_index "inquiries", ["created_at"], name: "index_inquiries_on_created_at", using: :btree

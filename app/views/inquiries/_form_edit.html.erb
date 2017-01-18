@@ -526,13 +526,21 @@
 
   <% if @inquiry.transferred_from_old_db %>
   <div class="form-heading col-lg-9">
-    <h4>Inquiry Description (from old database)</h4>
+    <h4>Inquiry Details (from old database)</h4>
     <hr>
   </div>
-  <div class="form-field col-lg-6">
+    <div class="form-field col-lg-6">
     <div class="form-horizontal">
       <div class="form-group">
-          <%= f.label :old_description, 'Description', :class => "col-lg-3 form-label" %>
+          <%= f.label :short_desc, 'Description', :class => "col-lg-3 form-label" %>
+          <div class="col-lg-9">
+          <%= f.text_field :short_desc, :class => 'form-control'%>
+          </div>
+      </div>
+    </div>
+    <div class="form-horizontal">
+      <div class="form-group">
+          <%= f.label :old_description, 'Details', :class => "col-lg-3 form-label" %>
           <div class="col-lg-9">
           <%= f.text_area :old_description, :class => 'form-control', :id => 'new_resolution_date', :rows => 15%>
           </div>

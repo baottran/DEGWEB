@@ -200,7 +200,12 @@ div.pagination {
             <td><%= inquiry.name %></td>
             <td><%= inquiry.shop_name %></td>
             <% end %>
-            <td><img class="icon tooltip-icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.description_tooltip %>"> <%= inquiry.area_of_vehicle %></td>
+            <td><img class="icon tooltip-icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.description_tooltip %>"> 
+            <% if inquiry.transferred_from_old_db %>
+              <%= inquiry.short_desc %>
+            <% else %>
+              <%= inquiry.area_of_vehicle %>
+            <% end %></td>
             <td><%= inquiry.status %></td>
             <td><% if inquiry.resolution != "" %>
                   <img class="icon tooltip-icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" data-toggle="tooltip" title="<%= inquiry.resolution%>">

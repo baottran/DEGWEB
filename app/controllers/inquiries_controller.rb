@@ -255,6 +255,7 @@ class InquiriesController < ApplicationController
     @inquiry.all_other_suggested_action = inquiry_params[:all_other_suggested_action]
     @inquiry.show_on_web = inquiry_params[:show_on_web]
     @inquiry.old_description = inquiry_params[:old_description]
+    @inquiry.short_desc = inquiry_params[:short_desc]
 
     if !@inquiry.attachment.present?
       @inquiry.attachment = inquiry_params[:attachment]
@@ -586,7 +587,8 @@ class InquiriesController < ApplicationController
                                       :show_on_web,
                                       :new_resolution_date,
                                       :completion_days,
-                                      :old_description)
+                                      :old_description,
+                                      :short_desc)
 	  end
 
     def sort_column

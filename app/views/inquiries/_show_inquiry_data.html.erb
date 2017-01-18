@@ -1,12 +1,13 @@
   <% if @inquiry.transferred_from_old_db %>
     <div class="panel panel-default">
-    <div class="panel-heading">Inquiry Type</div>
+    <div class="panel-heading">Inquiry Description</div>
     <div class="panel-body">
       <div class="inquiry-data">
         <p><strong>Inquiry Type: </strong><%= @inquiry.inquiry_type %></p>
         <% if logged_in? || (params[:ip] === "review") %>
         <p><strong>Client ID:</strong><%= @inquiry.client_id %></p>
         <% end %>
+        <p><strong>Description:</strong> <%= @inquiry.short_desc %></p>
       </div>
     </div>
   </div>
