@@ -1,0 +1,120 @@
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<style>
+#weekly {
+  background-color: #333333;
+}
+</style>
+
+<div class="container">
+  <%= render partial: 'nav_pills', locals: {current: "reporting"} %>
+  <br>
+
+  <div class="btn-group btn-group-justified">
+      <%= render partial: 'reporting_button', locals: {report: "New Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Resolved Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Aging Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Comments"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Weekly"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Export as Report"} %>
+  </div>
+
+  <% beginning_of_week = Date.today.beginning_of_week(:monday).strftime("%A, %b %d %Y") %>
+
+  <h2>Report for week beginning on <%= beginning_of_week %></h2><br>
+
+  <div class="panel panel-default">
+  	<div class="panel-heading">Inquiries Received (since <%= beginning_of_week %>)</div>
+  	<div class="panel-body">
+  		<p>Number of total inquiries received: <%= @r.weekly_received_total %></p>
+      <%= render  partial: "/reports/bar_graph", 
+                  locals: { name: 'num_received', 
+                            title: 'Inquiries Received',
+                            audatex: @r.weekly_received_audatex, 
+                            ccc: @r.weekly_received_ccc,
+                            mitchell: @r.weekly_received_mitchell } %>
+  	</div>
+  </div>
+
+    <div class="panel panel-default">
+  	<div class="panel-heading">Inquiries Submitted (since <%= beginning_of_week %>)</div>
+  	<div class="panel-body">
+  		<p>Number of total inquiries submitted <%= @r.weekly_submitted_total %></p>
+  		<%= render  partial: "/reports/bar_graph", 
+                  locals: { name: 'num_submitted', 
+                            title: 'Inquiries Submitted',
+                            audatex: @r.weekly_submitted_audatex, 
+                            ccc: @r.weekly_submitted_ccc,
+                            mitchell: @r.weekly_submitted_mitchell } %>
+  	</div>
+  </div>
+
+   <div class="panel panel-default">
+  	<div class="panel-heading">Inquiries that haven’t been submitted and are older than 2 days</div>
+  	<div class="panel-body">
+  		<%= render partial: "/reports/inquiries_list",
+                 locals: { inquiries: @unsubmitted_inquiries } %>
+  	</div>
+  </div>
+
+  <div class="panel panel-default">
+  	<div class="panel-heading">Resolved Inquiries (since <%= beginning_of_week %>)</div>
+  	<div class="panel-body">
+  		<p>Number of total inquiries resolved <%= @r.weekly_resolved_total %></p>
+      <%= render  partial: "/reports/bar_graph", 
+                  locals: { name: 'num_resolved', 
+                            title: 'Inquiries Resolved',
+                            audatex: @r.weekly_resolved_audatex, 
+                            ccc: @r.weekly_resolved_ccc,
+                            mitchell: @r.weekly_resolved_mitchell } %>>
+  	</div>
+  </div>
+ 
+  <div class="panel panel-default">
+  	<div class="panel-heading">Unresolved Inquiries (since <%= beginning_of_week %>)</div>
+  	<div class="panel-body">
+  		<p>Total Unresolved Inquiries: <%= @r.num_open_audatex_all + @r.num_open_mitchell_all + @r.num_open_ccc_all %></p>
+      <%= render  partial: "/reports/bar_graph", 
+                  locals: { name: 'unresolved', 
+                            title: 'Inquiries Unresolved (total)',
+                            audatex: @r.num_open_audatex_all, 
+                            mitchell: @r.num_open_mitchell_all, 
+                            ccc: @r.num_open_ccc_all } %>
+  	</div>
+  </div>
+
+  <div class="panel panel-default">
+  	<div class="panel-heading">List of all unresolved inquiries</div>
+  	<div class="panel-body">
+      <%= render partial: "/reports/inquiries_list",
+                 locals: { inquiries: @unresolved_inquiries } %>
+  	</div>
+  </div>
+
+  <div class="panel panel-default">
+  	<div class="panel-heading">Average time from “Inquiry Received by DEG” to “Inquiry Submitted to IP” (by IP)(running 30 day average)</div>
+  	<div class="panel-body">
+     <%= render  partial: "/reports/bar_graph", 
+                  locals: { name: 'avg_submit_time', 
+                            title: 'Avg Submit Time',
+                            audatex: ('%.2f' % @r.weekly_avg_submit_time_audatex), 
+                            mitchell: ('%.2f' % @r.weekly_avg_submit_time_mitchell), 
+                            ccc: ('%.2f' % @r.weekly_avg_submit_time_ccc) } %>
+
+    </div>
+  </div>
+ 
+
+<div class="panel panel-default">
+    <div class="panel-heading">Average time from “Inquiry Submitted to IP” to “Inquiry Resolved” (by IP)(running 30 day average)</div>
+    <div class="panel-body">
+      <%= render  partial: "/reports/bar_graph", 
+                  locals: { name: 'avg_resolve_time', 
+                            title: 'Avg Resolution Time',
+                            audatex: ('%.2f' % @r.weekly_avg_resolve_time_audatex), 
+                            mitchell: ('%.2f' % @r.weekly_avg_resolve_time_mitchell), 
+                            ccc: ('%.2f' % @r.weekly_avg_resolve_time_ccc) } %>
+    </div>
+  </div>
+
+
+</div>

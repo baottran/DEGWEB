@@ -64,4 +64,10 @@ class InquiryMailer < ApplicationMailer
       :track_opens => 'true')
   end
 
+  def weekly_report 
+    mail(
+      :subject => "DEG Weekly Snapshot",
+      :to => 'bowtran@gmail.com')
+  end
+
 end

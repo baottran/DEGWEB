@@ -1,0 +1,43 @@
+
+	<% if inquiries.count != 0 %>
+      <%= will_paginate inquiries %>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th><%= sortable 'id', "#", params[:status] %></th>
+            <th><%= sortable 'database', 'Estimating Platform', params[:status] %></th>
+            <th><%= sortable 'inquiry_type', 'Inquiry Type', params[:status] %></th>
+            <th><%= sortable 'year', 'Vehicle', params[:status] %></th>
+            <th>Inquiry Description</th>
+            <th><%= sortable 'status', 'Status', params[:status] %></th>
+            <th><%= sortable 'created_at', 'Origination Date', params[:status] %></th>
+            <th><%= sortable 'submit_to_ip_date', 'Submission Date', params[:status] %>
+            <th>Total Time Unresolved</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <% inquiries.each do |inquiry| %>
+          <tr>
+            <td><%= link_to inquiry.id, inquiry_path(inquiry), target: "_newtab" %></td>
+            <td><%= inquiry.database %></td>
+            <td><%= inquiry.inquiry_type %></td>
+            <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
+            <td><img class="icon tooltip-icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.description_tooltip %>"> <%= inquiry.area_of_vehicle %></td>
+            <td><%= inquiry.status %></td>
+            <td><%= inquiry.created_at.strftime("%-m/%-d/%y") %></td>
+            <td><% if inquiry.submit_to_ip_date != nil %>
+                  <%= inquiry.submit_to_ip_date.strftime("%-m/%-d/%y") %>
+                <% end %></td>
+            <td><%= calculate_time_unresolved(inquiry) %> Days</td>
+          
+          </tr>
+        <% end %>
+
+        </tbody>
+      </table>
+      <% else %>
+        <p>0 records </p>
+      <% end %>
+    <%= will_paginate inquiries %>
+  	

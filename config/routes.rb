@@ -73,6 +73,8 @@ Rails.application.routes.draw do
   get "/422" => "errors#unacceptable"
   get "/500" => "errors#internal_error"
 
+  get 'reporting/weekly_snapshot' => 'inquiries#weekly_snapshot'
+
 
   resources :users
   resources :blogs

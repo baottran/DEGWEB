@@ -208,6 +208,79 @@ class Report < ActiveRecord::Base
     return inquiries.where(status: 'Resolved (No IP Change)').where(resolution_date: start_date..end_date).count
   end
 
+  def self.generate_weekly_report
+    r = Report.find(1)
+
+    week_start = self.weekly_report_start_date
+    end_date = DateTime.now 
+
+    # inquiries received by IP 
+
+    r.weekly_received_ccc  = Inquiry.where(database: 'CCC').where(created_at: week_start..end_date).count
+    r.weekly_received_audatex  = Inquiry.where(database: 'Audatex').where(created_at: week_start..end_date).count
+    r.weekly_received_mitchell  = Inquiry.where(database: 'Mitchell').where(created_at: week_start..end_date).count
+
+    # total inquiries received
+
+    r.weekly_received_total = r.weekly_received_ccc + r.weekly_received_audatex + r.weekly_received_mitchell
+
+    # inquiries submitted
+
+    r.weekly_submitted_ccc      = Inquiry.where(database: 'CCC').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_submitted_audatex  = Inquiry.where(database: 'Audatex').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_submitted_mitchell = Inquiry.where(database: 'Mitchell').where(submit_to_ip_date: week_start..end_date).count
+
+    r.weekly_submitted_total    = r.weekly_submitted_ccc + r.weekly_submitted_audatex + r.weekly_submitted_mitchell
+
+    r.weekly_resolved_ccc       = Inquiry.where(database: 'CCC').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_resolved_audatex   = Inquiry.where(database: 'Audatex').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_resolved_mitchell  = Inquiry.where(database: 'Mitchell').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_resolved_total     = r.weekly_resolved_ccc + r.weekly_resolved_audatex + r.weekly_resolved_mitchell
+
+    r.weekly_avg_submit_time_ccc      = self.weekly_avg_submit_time('CCC')
+    r.weekly_avg_submit_time_audatex  = self.weekly_avg_submit_time('Audatex')
+    r.weekly_avg_submit_time_mitchell = self.weekly_avg_submit_time('Mitchell')
+
+    r.weekly_avg_resolve_time_audatex = self.weekly_avg_resolve_time('Audatex')
+    r.weekly_avg_resolve_time_ccc     = self.weekly_avg_resolve_time('CCC')
+    r.weekly_avg_resolve_time_mitchell = self.weekly_avg_resolve_time('Mitchell')
+
+    r.save 
+  end
+
+
+  def self.weekly_report_start_date
+    return Date.today.beginning_of_week(:monday)
+  end
+
+  def self.weekly_avg_submit_time(db)
+    inquiries = Inquiry.where(database: 'CCC').where(submit_to_ip_date: (Date.today - 30.days)..Date.today)
+    total_time = 0 
+
+    inquiries.each do |i|
+      create_date = Date.parse(i.created_at.to_s)
+      submit_date = Date.parse(i.submit_to_ip_date.to_s)
+      submit_time = create_date.business_dates_until(submit_date).count 
+      total_time += submit_time 
+    end
+
+    return total_time.to_f / 30 
+  end
+
+  def self.weekly_avg_resolve_time(db)
+    inquiries = Inquiry.where(database: db).where(resolution_date: (Date.today - 30.days)..Date.today)
+    total_time = 0
+
+    inquiries.each do |i|
+      create_date = Date.parse(i.created_at.to_s)
+      resolution_date = Date.parse(i.resolution_date.to_s)
+      res_time = create_date.business_dates_until(resolution_date).count
+      total_time += res_time
+    end
+
+    return total_time.to_f / 30 
+  end
+
 
 
   private 

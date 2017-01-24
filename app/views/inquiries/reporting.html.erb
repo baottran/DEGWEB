@@ -54,6 +54,7 @@ $('a#inquiries_link').click(function(event) {
       <%= render partial: 'reporting_button', locals: {report: "Resolved Inquiries"} %>
       <%= render partial: 'reporting_button', locals: {report: "Aging Inquiries"} %>
       <%= render partial: 'reporting_button', locals: {report: "Comments"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Weekly"} %>
       <%= render partial: 'reporting_button', locals: {report: "Export as Report"} %>
   </div>
   <br>
@@ -69,4 +70,4 @@ $('a#inquiries_link').click(function(event) {
   	<%= render partial: 'reporting_new_inquiries' %>
   <% end %>
   
-  </div>s
+  </div>

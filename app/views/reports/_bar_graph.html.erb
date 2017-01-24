@@ -1,0 +1,43 @@
+<div id="<%= name %>"></div>
+<script>
+
+$(document).ready(function(){
+  // callEndPoint();
+  var response_chart = c3.generate({
+      bindto: '#<%= name %>',
+      data: {
+          columns: [
+              ['Audatex', <%= audatex %>],
+              ['CCC', <%= ccc %>],
+              ['Mitchell',<%= mitchell %>]
+          ],
+          type: 'bar'
+      },
+      axis: {
+        y: {
+          label: {
+             text: 'Days',
+             position: 'outer-center',
+          }
+        },
+        x: {
+          type: 'category',
+          categories: ['<%= title %>']
+        }
+      },
+      color: {
+        pattern: ['#18bc9c', '#f39c12', '#e74c3c']
+      }
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+	#bar_chart {
+		height: 200px;
+	}
+
+
+</style>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116232854) do
+ActiveRecord::Schema.define(version: 20170123231215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -320,6 +320,28 @@ ActiveRecord::Schema.define(version: 20170116232854) do
     t.integer  "avg_completion_audatex_month"
     t.integer  "avg_completion_audatex_quarter"
     t.integer  "avg_completion_audatex_year"
+    t.integer  "weekly_received_ccc"
+    t.integer  "weekly_received_mitchell"
+    t.integer  "weekly_received_audatex"
+    t.integer  "weekly_received_total"
+    t.integer  "weekly_submitted_ccc"
+    t.integer  "weekly_submitted_mitchell"
+    t.integer  "weekly_submitted_audatex"
+    t.integer  "weekly_submitted_total"
+    t.integer  "weekly_resolved_ccc"
+    t.integer  "weekly_resolved_mitchell"
+    t.integer  "weekly_resolved_audatex"
+    t.integer  "weekly_resolved_total"
+    t.integer  "weekly_unresolved_ccc"
+    t.integer  "weekly_unresolved_mitchell"
+    t.integer  "weekly_unresolved_audatex"
+    t.integer  "weekly_unresolved_total"
+    t.decimal  "weekly_avg_submit_time_ccc"
+    t.decimal  "weekly_avg_submit_time_mitchell"
+    t.decimal  "weekly_avg_submit_time_audatex"
+    t.decimal  "weekly_avg_resolve_time_ccc"
+    t.decimal  "weekly_avg_resolve_time_mitchell"
+    t.decimal  "weekly_avg_resolve_time_audatex"
   end
 
   create_table "searches", force: :cascade do |t|

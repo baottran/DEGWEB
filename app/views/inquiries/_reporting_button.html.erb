@@ -28,7 +28,11 @@
       <div class="title">Recent</div>
         <div class="title">Comments</div>
       </a>
-
+<% when 'Weekly' %>
+      <a href="/reporting/weekly_snapshot" id="weekly" class="<%= btn_class_for_reporting %>">
+        <div class="title">Week</div>
+        <div class="title">Snapshot</div>
+      </a>
 <% when 'Export as Report' %>
 
       <a href="/reporting?type=Export+as+Report" class="<%= btn_class_for_reporting %>">

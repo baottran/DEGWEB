@@ -62,7 +62,7 @@ namespace :reports do
 
   task :calculate => :environment do 
      "\n=========\nstart calcualting reports\n=========\n"
-
+    Report.generate_weekly_report
     Report.set_response_and_completion_times
     Report.set_open_and_closed_counts
     Report.set_original_repeat_counts
@@ -70,6 +70,11 @@ namespace :reports do
     get_total_counts
     p "\n=========\ndone calcualting reports\n=========\n"
   end
+
+  task :send_snapshot => :environment do 
+    InquiryMailer.weekly_report.deliver 
+  end
+
 
   # Generate Methods
 
@@ -125,7 +130,6 @@ namespace :reports do
     r.num_unsubmitted_year_audatex      = num_unsubmitted("Audatex", "Year", nil)
 
     r.save 
-
   end
 
 end

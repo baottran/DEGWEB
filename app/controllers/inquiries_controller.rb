@@ -342,6 +342,19 @@ class InquiriesController < ApplicationController
     # render 'reporting'
   end
 
+  def weekly_snapshot
+
+    @r = Report.find(1)
+
+    @unresolved_inquiries = find_unresolved_inquiries
+    @unresolved_inquiries = @unresolved_inquiries.order(sort_column + " " + sort_direction)
+    @unresolved_inquiries = @unresolved_inquiries.paginate(:per_page => 10, :page => params[:page])
+
+    @unsubmitted_inquiries = Inquiry.where("created_at < ?", 2.days.ago).where(submit_to_ip_date: nil)
+    @unsubmitted_inquiries = @unsubmitted_inquiries.order(sort_column + " " + sort_direction)
+    @unsubmitted_inquiries = @unsubmitted_inquiries.paginate(:per_page => 10, :page => params[:page])
+  end
+
   def submitted_inquiries
 
     new_report = Report.new 

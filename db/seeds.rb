@@ -587,16 +587,105 @@ def setup_report_data
 		end
 	end
 
+end
+
+def setup_weekly_report_data
+
+	# not submitted 
+
+	10.times do |i|
+		p "creating new"
+		i = Inquiry.new 
+		i.database = ["CCC", "Audatex", "Mitchell"].sample 
+		i.inquiry_type = ["All Other", "Refinish Operations", "Missing Information"].sample
+		i.year = ["2009", "2014", "2015"].sample
+		i.make = ["Mercedes-Benz", "Jeep", "Toyota", "Honda"].sample
+		i.model = ["test1", "test2"].sample
+		i.email = "test@test.com"
+		i.phone = "4445553333"
+		i.vin = "ABC"
+		i.name = ["Example User 1", "Example User 2", "Example User 3"].sample
+
+		i.created_at = DateTime.now - [0, 1, 2, 3, 4, 5].sample.days
+
+		i.status = "Received by DEG"
+
+		if i.save 
+			p "saved as #{i.id}"
+		else 
+			p "couldn't make it"
+		end 
+	end
+
+	# submitted
+
+	10.times do |i|
+		p "creating new"
+		i = Inquiry.new 
+		i.database = ["CCC", "Audatex", "Mitchell"].sample 
+		i.inquiry_type = ["All Other", "Refinish Operations", "Missing Information"].sample
+		i.year = ["2009", "2014", "2015"].sample
+		i.make = ["Mercedes-Benz", "Jeep", "Toyota", "Honda"].sample
+		i.model = ["test1", "test2"].sample
+		i.email = "test@test.com"
+		i.phone = "4445553333"
+		i.vin = "ABC"
+		i.name = ["Example User 1", "Example User 2", "Example User 3"].sample
+
+		i.submit_to_ip_date = DateTime.now - [0, 1, 2, 3, 4, 5].sample.days
+		i.created_at = i.submit_to_ip_date - [0, 1, 2, 3, 4, 5].sample.days
+
+		i.status = "Submitted to IP"
 
 
+		if i.save 
+			p "saved as #{i.id}"
+		else 
+			p "couldn't make it"
+		end 
+	end
+
+	# resolved 
+
+	10.times do |i|
+		p "creating new"
+		i = Inquiry.new 
+		i.database = ["CCC", "Audatex", "Mitchell"].sample 
+		i.inquiry_type = ["All Other", "Refinish Operations", "Missing Information"].sample
+		i.year = ["2009", "2014", "2015"].sample
+		i.make = ["Mercedes-Benz", "Jeep", "Toyota", "Honda"].sample
+		i.model = ["test1", "test2"].sample
+		i.email = "test@test.com"
+		i.phone = "4445553333"
+		i.vin = "ABC"
+		i.name = ["Example User 1", "Example User 2", "Example User 3"].sample
+
+
+		i.resolution_date = DateTime.now - [0, 1, 2, 3, 4, 5].sample.days
+		i.submit_to_ip_date = i.resolution_date - [0, 1, 2, 3, 4, 5].sample.days
+		i.created_at = i.submit_to_ip_date - [0, 1, 2, 3, 4, 5].sample.days
+
+		i.status = "Submitted to IP"
+
+
+		if i.save 
+			p "saved as #{i.id}"
+		else 
+			p "couldn't make it"
+		end 
+	end
 end
 
 
 
-read_excel
-setup_users
-setup_reports
+
+
+
+# read_excel
+# setup_users
+# setup_reports
 # setup_report_data
+setup_weekly_report_data
 
 
 
