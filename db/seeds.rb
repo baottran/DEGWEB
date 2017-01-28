@@ -243,7 +243,7 @@ end
 # lib/assets/DEG_EXPORT-20160513.xlsx
 
 def read_excel
-	spreadsheet = Roo::Excelx.new("./lib/assets/1-16-2017-Backup.xlsx")
+	spreadsheet = Roo::Excelx.new("./lib/assets/inquiries_20170127.xlsx")
 	puts "read the spreasheet"
 	header = spreadsheet.row(1)
 	count = 0 
@@ -302,10 +302,10 @@ def create_inquiry_from_spreadsheet_data(i)
 
 		id = i[:id]
 
-		if id === 151 
-			p "invalid email"
-			return
-		end
+		# if id === 151 
+		# 	p "invalid email"
+		# 	return
+		# end
 		
 		# if id === 151 || id === 220 || id === 221
 		# 	p "invalid email!"
@@ -681,11 +681,11 @@ end
 
 
 
-# read_excel
-# setup_users
-# setup_reports
+read_excel
+setup_users
+setup_reports
 # setup_report_data
-setup_weekly_report_data
+# setup_weekly_report_data
 
 
 
