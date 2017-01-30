@@ -342,6 +342,18 @@ class InquiriesController < ApplicationController
     # render 'reporting'
   end
 
+  def download_errors
+
+    request.format = :csv 
+
+    @errors = Error.all 
+
+    respond_to do |format|
+      format.csv { send_data @errors.to_csv, filename: 'errorlog.csv' }
+    end
+  end
+
+
   def weekly_snapshot
 
     @r = Report.find(1)
