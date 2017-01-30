@@ -296,11 +296,40 @@ def read_excel
 	
 end
 
+def create_error(i, msg, field, value, resolution)
+
+	e = Error.new 
+
+	if i[:id].present? 
+		e.inquiry_num = i[:id]
+	end
+
+	if msg.present? 
+		e.error_msg = msg
+	end
+
+	if field.present? 
+		e.error_field = field
+	end
+
+	if value.present?
+		p "value is #{value}"
+		e.error_value = value 
+	elsif msg != "success"
+		e.error_value = "nil"
+	end
+
+	if resolution.present? 
+		e.resolution = resolution 
+	end
+
+	e.save 
+end
 
 
 def create_inquiry_from_spreadsheet_data(i)
 
-		id = i[:id]
+		# id = i[:id]
 
 		# if id === 151 
 		# 	p "invalid email"
@@ -311,6 +340,16 @@ def create_inquiry_from_spreadsheet_data(i)
 		# 	p "invalid email!"
 		# 	return
 		# end
+
+		# if i[:id] === 3648
+		# 	return 
+		# end
+
+		if Inquiry.where(id: i[:id]).first != nil 
+			p "!!! did not create inquiry with id #{i[:id]}"
+			create_error(i, "duplicate id", "DB_ID",i[:id], "did not create")
+			return 
+		end
 
 		inquiry 			= Inquiry.new 
 		inquiry.id 			= i[:id]
@@ -355,8 +394,8 @@ def create_inquiry_from_spreadsheet_data(i)
 		elsif i[:database] === "CCC/Motor"
 			inquiry.database = "CCC"
 		else
-			p "couldn't create inquiry id #{i[:id]} :: invalid database type"
-			return
+			inquiry.database = "Mitchell"
+			create_error(i, "missing database type of Audatex, Mitchell, or CCC", "Database", i[:database], "setting database to Mitchell")
 		end 
 
 		if i[:body_style2] === "Van"
@@ -388,8 +427,8 @@ def create_inquiry_from_spreadsheet_data(i)
 		elsif i[:admin_resolve_status] === "No Change"
 			inquiry.status = "Resolved (No IP Change)"
 		elsif i[:admin_resolve_status] === "" || i[:admin_resolve_status] === "i" || i[:admin_resolve_status] === " " || i[:admin_resolve_status] === "AdminResolveStatus"
-			p "couldn't create inquiry id #{i[:id]} :: invalid admin resolve status"
-			return 
+			inquiry.status = "Internal Resolution"
+			create_error(i, "cannot determine status as Resolved (No IP Channge) or Resolved (IP Change)", "AdminResolveStatus", i[:admin_resolve_status], "setting status to Internal Resolution")
 		elsif i[:admin_resolve_status] === "Submitted"
 			inquiry.status = "Submitted to IP"
 		else 
@@ -399,22 +438,21 @@ def create_inquiry_from_spreadsheet_data(i)
 		if (i[:date_submitted].instance_of? Date) 
 			inquiry.created_at = i[:date_submitted]
 		else 
-			p "couldn't create inquiry id #{i[:id]} :: invalid create_date"
-			return
+			create_error(i, "cannot determine date inquiry was submitted", "DateSubmitted", i[:date_submitted], "setting date submit date to today")
 		end
 
 		if (i[:date_submit_ip].instance_of? Date) 
 			inquiry.submit_to_ip_date = i[:date_submit_ip]
-		else 
-			p "couldn't create inquiry id #{i[:id]} :: invalid submit_to_ip_date"
-			return
+		elsif inquiry.status != "Internal Resolution"
+			inquiry.submit_to_ip_date = Date.today
+			create_error(i, "cant find date submitted", "DateSubmitIP",i[:date_submit_ip], "setting date submitted to today")
 		end
 
 		if (i[:admin_resolve_date].instance_of? Date)
 			inquiry.resolution_date = i[:admin_resolve_date]
 		else 
-			p "couldn't create inquiry id #{i[:id]} :: invalid resolution date"
-			return 
+			inquiry.resolution_date = Date.today
+			create_error(i, "can't find date resolved", "AdminResolveDate",i[:admin_resolve_date], "setting date resolved to today")
 		end
 
 
@@ -432,6 +470,10 @@ def create_inquiry_from_spreadsheet_data(i)
  
 		inquiry.transferred_from_old_db = true
 
+		create_error(i, "success", "", "", "")
+
+		# p "trying to create inquiry with id #{i[:id]}"
+
 		if inquiry.save!
 			p "successfully created i #{inquiry.id} original id #{i[:id]}"
 		else 
@@ -440,6 +482,8 @@ def create_inquiry_from_spreadsheet_data(i)
 
 		# need to reload in order to set id
 		inquiry.reload.id  
+
+		# p "successfully loaded inquiry id #{inquiry.id} and #{i[:id]}"
 
 		comment = Comment.new 
 		comment.commenter = "Admin"
@@ -484,9 +528,9 @@ end
 def setup_users
 	User.create(name: "Bao Tran", email: "bowtran@gmail.com", password: "railstest", password_confirmation: "railstest", isadmin: false)
 	User.create(name: "Bao Tran", email: "bao.tran@macys.com", password: "railstest", password_confirmation: "railstest", isadmin: true)
-	User.create(name: "Cameron Craig", email: "cameron.craig@sproutdesigns.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
-	User.create(name: "Art", email: "admin@degweb.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
-	User.create(name: "Jorge", email: "orgecgarciais@gmail.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
+	# User.create(name: "Cameron Craig", email: "cameron.craig@sproutdesigns.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
+	# User.create(name: "Art", email: "admin@degweb.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
+	# User.create(name: "Jorge", email: "orgecgarciais@gmail.com", password: "degweb", password_confirmation: "degweb", isadmin: true)
 end
 
 def setup_reports
@@ -683,7 +727,7 @@ end
 
 read_excel
 setup_users
-setup_reports
+# setup_reports
 # setup_report_data
 # setup_weekly_report_data
 

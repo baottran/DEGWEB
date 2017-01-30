@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   get "/500" => "errors#internal_error"
 
   get 'reporting/weekly_snapshot' => 'inquiries#weekly_snapshot'
-
+  get 'error_log' => 'inquiries#download_errors'
 
   resources :users
   resources :blogs

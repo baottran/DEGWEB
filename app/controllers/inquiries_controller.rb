@@ -3,7 +3,7 @@ class InquiriesController < ApplicationController
   helper_method :sort_column, :sort_direction
   include InquiriesHelper
 
-  before_filter :set_construction 
+  # before_filter :set_construction 
 
 
   def set_construction
