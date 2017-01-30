@@ -3,6 +3,14 @@ class InquiriesController < ApplicationController
   helper_method :sort_column, :sort_direction
   include InquiriesHelper
 
+  before_filter :set_construction 
+
+
+  def set_construction
+    render 'construction'
+  end
+
+
 	def index
     @inquiries = find_inquiries
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
