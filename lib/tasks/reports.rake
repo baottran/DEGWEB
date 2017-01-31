@@ -75,6 +75,31 @@ namespace :reports do
     InquiryMailer.weekly_report.deliver 
   end
 
+  task :fix => :environment do 
+
+    received = [[10383, 26], [10384, 26], [10385, 27], [10386, 27], [10387, 27], [10388, 27], [10389, 27], [10390, 27], [10391, 27]]
+
+    received.each do |inquiry_num, day|
+      i = Inquiry.find(inquiry_num)
+      i.status = "Received by DEG"
+      i.created_at = Date.new(2017,01,day)
+      i.submit_to_ip_date = nil 
+      i.resolution_date = nil 
+      i.save 
+      p "saved #{inquiry_num}"
+    end
+
+    submitted = [10360, 10352, 10344, 10334, 10273, 10198, 10116, 10095, 9991, 9946, 9817, 9801, 9708]
+
+    submitted.each do |inquiry_num|
+      i = Inquiry.find(inquiry_num)
+      i.resolution_date = nil 
+      i.save
+    end
+
+    p "done"
+  end
+
 
   # Generate Methods
 
