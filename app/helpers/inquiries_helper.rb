@@ -376,7 +376,7 @@ module InquiriesHelper
         inquiries = inquiries.where(database: db)
     end
 
-    return inquiries
+    return inquiries.new_db
   end
 
   def percent_submitted(db = nil, timeframe = nil)
@@ -393,7 +393,7 @@ module InquiriesHelper
 
   def num_unsubmitted(db = nil, timeframe = nil, end_date = nil)
     inquiries = inquiries_for_timeframe(db, timeframe, end_date).where(submit_to_ip_date: nil)
-    inquiries = inquiries.where.not(status: 'Resolved (DEG Response)').where.not(status: 'Internal Resolution')
+    inquiries = inquiries.where.not(status: 'Resolved (DEG Response)').where.not(status: 'Internal Resolution').new_db
     return inquiries.count
   end
 

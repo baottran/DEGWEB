@@ -48,7 +48,7 @@ class Report < ActiveRecord::Base
     start_date = start_date_for(period)
     end_date = Time.now 
     
-    inquiries = Inquiry.where(database: db)
+    inquiries = Inquiry.new_db.where(database: db)
     responded_inquiries = inquiries.where.not(submit_to_ip_date: nil).where(submit_to_ip_date: start_date..end_date)
 
     if responded_inquiries.count == 0 
@@ -72,7 +72,7 @@ class Report < ActiveRecord::Base
     start_date = start_date_for(period)
     end_date = Time.now 
     
-    inquiries = Inquiry.where(database: db)
+    inquiries = Inquiry.new_db.where(database: db)
     completed_inquiries = inquiries.where.not(resolution_date: nil).where(resolution_date: start_date..end_date)
 
     if completed_inquiries.count == 0 
@@ -177,23 +177,23 @@ class Report < ActiveRecord::Base
   end
 
   def self.num_open(database)
-    return Inquiry.database(database).open.not_internal 
+    return Inquiry.new_db.database(database).open.not_internal 
   end 
 
   def self.num_closed(database)
-    return Inquiry.database(database).closed.not_internal 
+    return Inquiry.new_db.database(database).closed.not_internal 
   end 
 
   def self.count_resolved_in(database, period)
-    return Inquiry.database(database).resolved_in_last(period).count
+    return Inquiry.new_db.database(database).resolved_in_last(period).count
   end
 
   def self.count_unresolved_in(database, period)
-    return Inquiry.database(database).unresolved_in_last(period).count 
+    return Inquiry.new_db.database(database).unresolved_in_last(period).count 
   end
 
   def self.num_original(db, period)
-    inquiries = Inquiry.database(db)
+    inquiries = Inquiry.database(db).new_db
     start_date = start_date_for(period)
     end_date = Time.now 
 
@@ -201,7 +201,7 @@ class Report < ActiveRecord::Base
   end
 
   def self.num_repeat(db, period)
-    inquiries = Inquiry.database(db)
+    inquiries = Inquiry.database(db).new_db
     start_date = start_date_for(period)
     end_date = Time.now 
     
@@ -226,15 +226,15 @@ class Report < ActiveRecord::Base
 
     # inquiries submitted
 
-    r.weekly_submitted_ccc      = Inquiry.where(database: 'CCC').where(submit_to_ip_date: week_start..end_date).count
-    r.weekly_submitted_audatex  = Inquiry.where(database: 'Audatex').where(submit_to_ip_date: week_start..end_date).count
-    r.weekly_submitted_mitchell = Inquiry.where(database: 'Mitchell').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_submitted_ccc      = Inquiry.new_db.where(database: 'CCC').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_submitted_audatex  = Inquiry.new_db.where(database: 'Audatex').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_submitted_mitchell = Inquiry.new_db.where(database: 'Mitchell').where(submit_to_ip_date: week_start..end_date).count
 
     r.weekly_submitted_total    = r.weekly_submitted_ccc + r.weekly_submitted_audatex + r.weekly_submitted_mitchell
 
-    r.weekly_resolved_ccc       = Inquiry.where(database: 'CCC').where(submit_to_ip_date: week_start..end_date).count
-    r.weekly_resolved_audatex   = Inquiry.where(database: 'Audatex').where(submit_to_ip_date: week_start..end_date).count
-    r.weekly_resolved_mitchell  = Inquiry.where(database: 'Mitchell').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_resolved_ccc       = Inquiry.new_db.where(database: 'CCC').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_resolved_audatex   = Inquiry.new_db.where(database: 'Audatex').where(submit_to_ip_date: week_start..end_date).count
+    r.weekly_resolved_mitchell  = Inquiry.new_db.where(database: 'Mitchell').where(submit_to_ip_date: week_start..end_date).count
     r.weekly_resolved_total     = r.weekly_resolved_ccc + r.weekly_resolved_audatex + r.weekly_resolved_mitchell
 
     r.weekly_avg_submit_time_ccc      = self.weekly_avg_submit_time('CCC')
@@ -254,7 +254,7 @@ class Report < ActiveRecord::Base
   end
 
   def self.weekly_avg_submit_time(db)
-    inquiries = Inquiry.where(database: 'CCC').where(submit_to_ip_date: (Date.today - 30.days)..Date.today)
+    inquiries = Inquiry.new_db.where(database: db).where(submit_to_ip_date: (Date.today - 30.days)..Date.today)
     total_time = 0 
 
     inquiries.each do |i|
@@ -268,7 +268,7 @@ class Report < ActiveRecord::Base
   end
 
   def self.weekly_avg_resolve_time(db)
-    inquiries = Inquiry.where(database: db).where(resolution_date: (Date.today - 30.days)..Date.today)
+    inquiries = Inquiry.new_db.where(database: db).where(resolution_date: (Date.today - 30.days)..Date.today)
     total_time = 0
 
     inquiries.each do |i|
@@ -283,7 +283,7 @@ class Report < ActiveRecord::Base
 
   def self.set_total_counts 
     r = Report.find(1)
-    r.all_count = Inquiry.all.count
+    r.all_count = Inquiry.new_db.all.count
     r.received_count = Inquiry.new_db.where(status: 'Received by DEG').count
     r.submitted_count = Inquiry.new_db.where(status: 'Submitted to IP').count
     r.responded_count = Inquiry.new_db.where(status: 'IP Response Received').count
@@ -293,47 +293,47 @@ class Report < ActiveRecord::Base
     r.save 
   end
 
-  def get_submitted_unsubmitted_counts
-    r = Report.find(1)
+  # def self.set_submitted_unsubmitted_counts
+  #   r = Report.find(1)
 
-    r.num_submitted_all_ccc           = num_submitted("CCC", nil, nil)
-    r.num_submitted_week_ccc          = num_submitted("CCC", "Week", nil)               
-    r.num_submitted_month_ccc         = num_submitted("CCC", "Month", nil)
-    r.num_submitted_quarter_ccc       = num_submitted("CCC", "Quarter", nil)
-    r.num_submitted_year_ccc          = num_submitted("CCC", "Year", nil)
+  #   r.num_submitted_all_ccc           = num_submitted("CCC", nil, nil)
+  #   r.num_submitted_week_ccc          = num_submitted("CCC", "Week", nil)               
+  #   r.num_submitted_month_ccc         = num_submitted("CCC", "Month", nil)
+  #   r.num_submitted_quarter_ccc       = num_submitted("CCC", "Quarter", nil)
+  #   r.num_submitted_year_ccc          = num_submitted("CCC", "Year", nil)
             
-    r.num_submitted_all_mitchell      = num_submitted("Mitchell", nil, nil)         
-    r.num_submitted_week_mitchell     = num_submitted("Mitchell", "Week", nil)         
-    r.num_submitted_month_mitchell    = num_submitted("Mitchell", "Month", nil)       
-    r.num_submitted_quarter_mitchell  = num_submitted("Mitchell", "Quarter", nil)         
-    r.num_submitted_year_mitchell     = num_submitted("Mitchell", "Year", nil)     
+  #   r.num_submitted_all_mitchell      = num_submitted("Mitchell", nil, nil)         
+  #   r.num_submitted_week_mitchell     = num_submitted("Mitchell", "Week", nil)         
+  #   r.num_submitted_month_mitchell    = num_submitted("Mitchell", "Month", nil)       
+  #   r.num_submitted_quarter_mitchell  = num_submitted("Mitchell", "Quarter", nil)         
+  #   r.num_submitted_year_mitchell     = num_submitted("Mitchell", "Year", nil)     
             
-    r.num_submitted_all_audatex       = num_submitted("Audatex", nil, nil)   
-    r.num_submitted_week_audatex      = num_submitted("Audatex", "Week", nil)         
-    r.num_submitted_month_audatex     = num_submitted("Audatex", "Month", nil)     
-    r.num_submitted_quarter_audatex   = num_submitted("Audatex", "Quarter", nil)       
-    r.num_submitted_year_audatex      = num_submitted("Audatex", "Year", nil)     
+  #   r.num_submitted_all_audatex       = num_submitted("Audatex", nil, nil)   
+  #   r.num_submitted_week_audatex      = num_submitted("Audatex", "Week", nil)         
+  #   r.num_submitted_month_audatex     = num_submitted("Audatex", "Month", nil)     
+  #   r.num_submitted_quarter_audatex   = num_submitted("Audatex", "Quarter", nil)       
+  #   r.num_submitted_year_audatex      = num_submitted("Audatex", "Year", nil)     
 
-    r.num_unsubmitted_all_ccc         = num_unsubmitted("CCC", nil, nil)
-    r.num_unsubmitted_week_ccc        = num_unsubmitted("CCC", "Week", nil)
-    r.num_unsubmitted_month_ccc       = num_unsubmitted("CCC", "Month", nil)
-    r.num_unsubmitted_quarter_ccc     = num_unsubmitted("CCC", "Quarter", nil)
-    r.num_unsubmitted_year_ccc        = num_unsubmitted("CCC", "Year", nil)
+  #   r.num_unsubmitted_all_ccc         = num_unsubmitted("CCC", nil, nil)
+  #   r.num_unsubmitted_week_ccc        = num_unsubmitted("CCC", "Week", nil)
+  #   r.num_unsubmitted_month_ccc       = num_unsubmitted("CCC", "Month", nil)
+  #   r.num_unsubmitted_quarter_ccc     = num_unsubmitted("CCC", "Quarter", nil)
+  #   r.num_unsubmitted_year_ccc        = num_unsubmitted("CCC", "Year", nil)
 
-    r.num_unsubmitted_all_mitchell      = num_unsubmitted("Mitchell", nil, nil)
-    r.num_unsubmitted_week_mitchell     = num_unsubmitted("Mitchell", "Week", nil)
-    r.num_unsubmitted_month_mitchell    = num_unsubmitted("Mitchell", "Month", nil)
-    r.num_unsubmitted_quarter_mitchell  = num_unsubmitted("Mitchell", "Quarter", nil)
-    r.num_unsubmitted_year_mitchell     = num_unsubmitted("Mitchell", "Year", nil)
+  #   r.num_unsubmitted_all_mitchell      = num_unsubmitted("Mitchell", nil, nil)
+  #   r.num_unsubmitted_week_mitchell     = num_unsubmitted("Mitchell", "Week", nil)
+  #   r.num_unsubmitted_month_mitchell    = num_unsubmitted("Mitchell", "Month", nil)
+  #   r.num_unsubmitted_quarter_mitchell  = num_unsubmitted("Mitchell", "Quarter", nil)
+  #   r.num_unsubmitted_year_mitchell     = num_unsubmitted("Mitchell", "Year", nil)
 
-    r.num_unsubmitted_all_audatex       = num_unsubmitted("Audatex", nil, nil)
-    r.num_unsubmitted_week_audatex      = num_unsubmitted("Audatex", "Week", nil)
-    r.num_unsubmitted_month_audatex     = num_unsubmitted("Audatex", "Month", nil)
-    r.num_unsubmitted_quarter_audatex   = num_unsubmitted("Audatex", "Quarter", nil)
-    r.num_unsubmitted_year_audatex      = num_unsubmitted("Audatex", "Year", nil)
+  #   r.num_unsubmitted_all_audatex       = num_unsubmitted("Audatex", nil, nil)
+  #   r.num_unsubmitted_week_audatex      = num_unsubmitted("Audatex", "Week", nil)
+  #   r.num_unsubmitted_month_audatex     = num_unsubmitted("Audatex", "Month", nil)
+  #   r.num_unsubmitted_quarter_audatex   = num_unsubmitted("Audatex", "Quarter", nil)
+  #   r.num_unsubmitted_year_audatex      = num_unsubmitted("Audatex", "Year", nil)
 
-    r.save 
-  end
+  #   r.save 
+  # end
 
 
 
