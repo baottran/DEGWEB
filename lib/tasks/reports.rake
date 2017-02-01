@@ -67,7 +67,7 @@ namespace :reports do
     Report.set_open_and_closed_counts
     Report.set_original_repeat_counts
     get_submitted_unsubmitted_counts
-    get_total_counts
+    Report.set_total_counts
     p "\n=========\ndone calcualting reports\n=========\n"
   end
 
@@ -100,20 +100,28 @@ namespace :reports do
     p "done"
   end
 
+  task :fix2 => :environment do 
+
+    i = Inquiry.where(status: "Received by DEG")
+
+    inqs = []
+
+    i.each do |inq|
+      if i.resolution_date > (Date.today - 2.days)
+        i.status = "Received by DEG"
+        i.submit_to_ip_date = nil 
+        i.save 
+        inqs.push(i.id) 
+      end
+    end
+
+    p "fixed ids #{inqs}"
+
+  end
+
 
   # Generate Methods
 
-  def get_total_counts
-    r = Report.find(1)
-    r.all_count = Inquiry.all.count
-    r.received_count = Inquiry.where(status: 'Received by DEG').count
-    r.submitted_count = Inquiry.where(status: 'Submitted to IP').count
-    r.responded_count = Inquiry.where(status: 'IP Response Received').count
-    r.ip_change_count = Inquiry.where(status: 'Resolved (IP Change)').count 
-    r.no_change_count = Inquiry.where(status: 'Resolved (No IP Change)').count
-    r.deg_resolved_count = Inquiry.where(status: 'Resolved (DEG Response)').count 
-    r.save 
-  end
 
   def get_submitted_unsubmitted_counts
     r = Report.find(1)

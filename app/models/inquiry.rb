@@ -54,6 +54,7 @@ class Inquiry < ActiveRecord::Base
   scope :ccc, -> { where(database: "CCC") }
   scope :mitchell, -> { where(database: "Mitchell") }
   scope :audatex, -> { where(database: "Audatex") }
+  scope :new_db, -> { where.not(transferred_from_old_db: true) }
 
   def init
     self.status  ||= "Received by DEG"
