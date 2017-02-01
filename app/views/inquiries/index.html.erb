@@ -211,12 +211,12 @@ div.pagination {
                   <img class="icon tooltip-icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" data-toggle="tooltip" title="<%= inquiry.resolution%>">
                 <% end %>
             </td>
-            <td><%= inquiry.created_at.strftime("%-m/%-d/%y") %></td>
+            <td><%= inquiry.created_at.in_time_zone('EST').strftime("%m/%d/%Y") %></td>
             <td><% if inquiry.submit_to_ip_date != nil %>
-                  <%= inquiry.submit_to_ip_date.strftime("%-m/%-d/%y") %>
+                  <%= inquiry.submit_to_ip_date.in_time_zone('EST').strftime("%m/%d/%Y") %>
                 <% end %></td>
             <td><% if inquiry.resolution_date != nil %>
-                  <%= inquiry.resolution_date.strftime("%-m/%-d/%y") %>
+                  <%= inquiry.resolution_date.in_time_zone('EST').strftime("%m/%d/%Y") %>
                 <% end %></td>
             <td><%= inquiry.time_to_resolve_days %></td>
           

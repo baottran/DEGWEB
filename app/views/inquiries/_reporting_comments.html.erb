@@ -15,7 +15,7 @@
         	<% @comments.each do |comment| %>
         	<tr>
         		<td><a href= "/inquiries/<%= comment.inquiry_id %>"><%= comment.inquiry_id %></a></td>
-        		<td><%= comment.created_at.strftime("%-m/%-d/%y") %></td>
+        		<td><%= comment.created_at.in_time_zone('EST').strftime("%m/%d/%Y") %></td>
         		<td><%= comment.commenter %></td>
         		<td><%= comment.body %></td>
         	</tr>
