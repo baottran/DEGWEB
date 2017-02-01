@@ -109,7 +109,7 @@ namespace :reports do
     is.each do |i|
       if i.resolution_date != nil 
         if i.resolution_date > (Date.today - 3.days)
-          i.status = "Received by DEG"
+          i.status = "Internal Resolution"
           i.submit_to_ip_date = nil 
           i.save 
           inqs.push(i.id) 
