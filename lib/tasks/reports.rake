@@ -107,14 +107,14 @@ namespace :reports do
     inqs = []
 
     is.each do |i|
-      # if inq.resolution_date != nil 
+      if inq.resolution_date != nil 
         if i.resolution_date > (Date.today - 2.days)
           i.status = "Received by DEG"
           i.submit_to_ip_date = nil 
           i.save 
           inqs.push(i.id) 
         end
-      # end
+      end
     end
 
     p "fixed ids #{inqs}"
