@@ -528,9 +528,9 @@ module InquiriesHelper
     # put data into group 
 
     if chosen_end_date.present?
-        reporting_inquiries = Inquiry.where("created_at <= ?", Date.parse(chosen_end_date).end_of_day)
+        reporting_inquiries = Inquiry.where("created_at <= ?", Date.parse(chosen_end_date).end_of_day).new_db
     else 
-        reporting_inquiries = Inquiry.all
+        reporting_inquiries = Inquiry.new_db
     end
     
 
@@ -596,7 +596,7 @@ module InquiriesHelper
 
     # put data into group 
 
-    week_inquiries = Inquiry.where(created_at: start_date..end_date)
+    week_inquiries = Inquiry.where(created_at: start_date..end_date).new_db
 
     week_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
@@ -663,7 +663,7 @@ module InquiriesHelper
 
     # put data into group 
 
-    week_inquiries = Inquiry.where(created_at: start_date..end_date)
+    week_inquiries = Inquiry.where(created_at: start_date..end_date).new_db
 
     week_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
@@ -734,7 +734,7 @@ module InquiriesHelper
 
     # put data into group 
 
-    quarter_inquiries = Inquiry.where(created_at: start_date..end_date)
+    quarter_inquiries = Inquiry.where(created_at: start_date..end_date).new_db
 
     quarter_inquiries.each do |inquiry|
         created_at_date = inquiry.created_at.beginning_of_day
@@ -805,7 +805,7 @@ module InquiriesHelper
     
         # put data into group 
     
-        year_inquiries = Inquiry.where(created_at: start_date..end_date)
+        year_inquiries = Inquiry.where(created_at: start_date..end_date).new_db
     
         year_inquiries.each do |inquiry|
             created_at_date = inquiry.created_at.beginning_of_day
