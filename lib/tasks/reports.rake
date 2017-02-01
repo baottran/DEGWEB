@@ -102,19 +102,19 @@ namespace :reports do
 
   task :fix2 => :environment do 
 
-    i = Inquiry.where(status: "Received by DEG")
+    is = Inquiry.where(status: "Received by DEG")
 
     inqs = []
 
-    i.each do |inq|
-      if i.resolution_date != nil 
+    is.each do |i|
+      # if inq.resolution_date != nil 
         if i.resolution_date > (Date.today - 2.days)
           i.status = "Received by DEG"
           i.submit_to_ip_date = nil 
           i.save 
           inqs.push(i.id) 
         end
-      end
+      # end
     end
 
     p "fixed ids #{inqs}"
