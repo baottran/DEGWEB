@@ -56,6 +56,8 @@ class Inquiry < ActiveRecord::Base
   scope :audatex, -> { where(database: "Audatex") }
   scope :new_db, -> { where.not(transferred_from_old_db: true) }
 
+  scoped_search on: [:search_criteria]
+
   def init
     self.status  ||= "Received by DEG"
     self.show_on_web  ||= false           #will set the default value only if it's nil
@@ -123,9 +125,9 @@ class Inquiry < ActiveRecord::Base
     inquiries = Inquiry.all 
 
     if search 
-      inquiries.where(['search_criteria LIKE ?', "%#{search.downcase}%"])
+      return inquiries.search_for(search)
     else
-      inquiries
+      return inquiries
     end
     
   end
@@ -134,9 +136,9 @@ class Inquiry < ActiveRecord::Base
     inquiries = Inquiry.all 
 
     if search 
-      inquiries.where(['admin_search_criteria LIKE ?', "%#{search.downcase}%"])
+      return inquiries.search_for(search)
     else
-      inquiries
+      return inquiries
     end
   end
 

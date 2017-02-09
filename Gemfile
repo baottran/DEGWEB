@@ -72,6 +72,9 @@ gem 'will_paginate', '~> 3.0.6'
 # email
 gem 'postmark-rails'
 
+# search
+gem 'scoped_search'
+
 # read xslx spreadsheets for seed data
 gem 'roo'
 
