@@ -54,7 +54,7 @@ class Inquiry < ActiveRecord::Base
   scope :ccc, -> { where(database: "CCC") }
   scope :mitchell, -> { where(database: "Mitchell") }
   scope :audatex, -> { where(database: "Audatex") }
-  scope :new_db, -> { where.not(transferred_from_old_db: true) }
+  scope :new_db, -> { where(transferred_from_old_db: nil) }
 
   scoped_search on: [:search_criteria]
 
