@@ -499,7 +499,7 @@ module InquiriesHelper
 
 
   def new_inquiries_all(chosen_end_date = nil)
-    start_date = Inquiry.all.order('created_at ASC').first.created_at
+    start_date = Inquiry.new_db.order('created_at ASC').first.created_at
 
     if chosen_end_date.present? 
         current_date = Date.parse(chosen_end_date).end_of_day
