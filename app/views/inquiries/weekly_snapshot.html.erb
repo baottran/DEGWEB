@@ -73,7 +73,7 @@
   </div>
  
   <div class="panel panel-default">
-  	<div class="panel-heading">Unresolved Inquiries (since <%= beginning_of_week %>)</div>
+  	<div class="panel-heading">Unresolved Inquiries</div>
   	<div class="panel-body">
   		<p>Total Unresolved Inquiries: <%= @r.num_open_audatex_all + @r.num_open_mitchell_all + @r.num_open_ccc_all %></p>
       <%= render  partial: "/reports/bar_graph", 
