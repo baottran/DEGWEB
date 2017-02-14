@@ -264,7 +264,7 @@ class Report < ActiveRecord::Base
       total_time += submit_time 
     end
 
-    return total_time.to_f / 30 
+    return total_time.to_f / inquiries.count.to_f 
   end
 
   def self.weekly_avg_resolve_time(db)
@@ -278,7 +278,7 @@ class Report < ActiveRecord::Base
       total_time += res_time
     end
 
-    return total_time.to_f / 30 
+    return total_time.to_f / inquiries.count.to_f
   end
 
   def self.set_total_counts 
