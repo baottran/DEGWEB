@@ -1,6 +1,8 @@
 
 	<% if inquiries.count != 0 %>
-      <%= will_paginate inquiries %>
+      <% if hide_paginate != true %>
+        <%= will_paginate inquiries %>
+      <% end %>
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -39,5 +41,8 @@
       <% else %>
         <p>0 records </p>
       <% end %>
-    <%= will_paginate inquiries %>
+    <% if hide_paginate != true %>
+      <%= will_paginate inquiries %>
+    <% end %>
+
   	

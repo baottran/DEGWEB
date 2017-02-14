@@ -24,9 +24,9 @@ class InquiriesController < ApplicationController
 
     if params[:search].present?
       if logged_in? 
-        inquiries = inquiries.admin_search(params[:search])
+        inquiries = Inquiry.admin_search(params[:search])
       else
-        inquiries = inquiries.search(params[:search])
+        inquiries = Inquiry.search(params[:search])
       end
     end
 
@@ -52,6 +52,7 @@ class InquiriesController < ApplicationController
 
     # inquiries = inquiries.where(['area_of_vehicle LIKE ?', params[:area_of_vehicle]]) if params[:area_of_vehicle].present?
     # inquiries = inquiries.where(area_of_vehicle: params[:area_of_vehicle]) if params[:area_of_vehicle].present?
+
     inquiries
   end 
 
@@ -318,7 +319,7 @@ class InquiriesController < ApplicationController
   end
 
   def find_unresolved_inquiries
-    inquiries = Inquiry.where(resolution_date: nil)
+    inquiries = Inquiry.new_db.open.not_internal 
     inquiries
   end
 
@@ -335,9 +336,7 @@ class InquiriesController < ApplicationController
     @export = find_inquiries
 
     if params[:type] == "Comments" 
-
       @comments = Comment.all.order(created_at: :desc).paginate(:per_page => 20, :page => params[:page])
-
     end
 
     request.format = :csv if params[:csv]
@@ -367,9 +366,21 @@ class InquiriesController < ApplicationController
     @r = Report.find(1)
 
     @unresolved_inquiries = find_unresolved_inquiries
-    @unresolved_inquiries = @unresolved_inquiries.order(sort_column + " " + sort_direction)
+    @unresolved_inquiries = @unresolved_inquiries.not_internal.order(sort_column + " " + sort_direction)
     @unresolved_inquiries = @unresolved_inquiries.paginate(:per_page => 10, :page => params[:page])
 
+    @unsubmitted_inquiries = Inquiry.where("created_at < ?", 2.days.ago).where(submit_to_ip_date: nil)
+    @unsubmitted_inquiries = @unsubmitted_inquiries.not_internal.order(sort_column + " " + sort_direction)
+    @unsubmitted_inquiries = @unsubmitted_inquiries.paginate(:per_page => 10, :page => params[:page])
+  end
+
+  def unresolved_list
+    @unresolved_inquiries = find_unresolved_inquiries
+    @unresolved_inquiries = @unresolved_inquiries.order(sort_column + " " + sort_direction)
+    @unresolved_inquiries = @unresolved_inquiries.paginate(:per_page => 10, :page => params[:page])
+  end
+
+  def unsubmitted_list
     @unsubmitted_inquiries = Inquiry.where("created_at < ?", 2.days.ago).where(submit_to_ip_date: nil)
     @unsubmitted_inquiries = @unsubmitted_inquiries.order(sort_column + " " + sort_direction)
     @unsubmitted_inquiries = @unsubmitted_inquiries.paginate(:per_page => 10, :page => params[:page])
@@ -625,10 +636,16 @@ class InquiriesController < ApplicationController
 	  end
 
     def sort_column
+      if params[:sort] === ""
+        return "id"
+      end
       params[:sort] || "id"
     end
 
     def sort_direction
+      if params[:direction] === ""
+        return "desc"
+      end
       params[:direction] || "desc"
     end
 end

@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   get 'reporting/submitted_inquiries_datasets' => 'inquiries#submitted_inquiries_datasets'
   get 'reporting/response_time' => 'inquiries#response_time'
   get 'reporting/inquiry_counts' => 'inquiries#inquiry_counts'
+  get 'reporting/unresolved_list' => 'inquiries#unresolved_list'
+  get 'reporting/unsubmitted_list' => 'inquiries#unsubmitted_list'
 
   patch 'inquiries/:id/resolve' => 'inquiries#resolve'
   patch 'inquiries/:id/customer' => 'inquiries#edit_customer'

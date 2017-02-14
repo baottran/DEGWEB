@@ -1,0 +1,30 @@
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<style>
+#weekly {
+  background-color: #333333;
+}
+</style>
+
+<div class="container">
+  <%= render partial: 'nav_pills', locals: {current: "reporting"} %>
+  <br>
+
+  <div class="btn-group btn-group-justified">
+      <%= render partial: 'reporting_button', locals: {report: "New Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Resolved Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Aging Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Comments"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Weekly"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Export as Report"} %>
+  </div>
+
+  <br>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Inquiries that haven’t been submitted and are older than 2 days</div>
+    <div class="panel-body">
+      <%= render partial: "/reports/inquiries_list",
+                 locals: { inquiries: @unsubmitted_inquiries.not_internal, hide_paginate: false } %>
+    </div>
+  </div>
+</div>

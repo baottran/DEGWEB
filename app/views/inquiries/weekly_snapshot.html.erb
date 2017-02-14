@@ -52,7 +52,9 @@
   	<div class="panel-heading">Inquiries that haven’t been submitted and are older than 2 days</div>
   	<div class="panel-body">
   		<%= render partial: "/reports/inquiries_list",
-                 locals: { inquiries: @unsubmitted_inquiries } %>
+                 locals: { hide_paginate: true, inquiries: @unsubmitted_inquiries } %>
+      <br>
+      <%= link_to "View all #{@unsubmitted_inquiries.count} unsubmitted inquiries", controller: "inquiries", action: "unsubmitted_list" %>
   	</div>
   </div>
 
@@ -65,7 +67,8 @@
                             title: 'Inquiries Resolved',
                             audatex: @r.weekly_resolved_audatex, 
                             ccc: @r.weekly_resolved_ccc,
-                            mitchell: @r.weekly_resolved_mitchell } %>>
+                            mitchell: @r.weekly_resolved_mitchell } %>
+
   	</div>
   </div>
  
@@ -86,7 +89,9 @@
   	<div class="panel-heading">List of all unresolved inquiries</div>
   	<div class="panel-body">
       <%= render partial: "/reports/inquiries_list",
-                 locals: { inquiries: @unresolved_inquiries } %>
+                 locals: { hide_paginate: true, inquiries: @unresolved_inquiries } %>
+      <br>
+      <%= link_to "View all #{@unresolved_inquiries.count} unresolved inquiries", controller: "inquiries", action: "unresolved_list" %>
   	</div>
   </div>
 

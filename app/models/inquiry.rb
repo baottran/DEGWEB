@@ -55,6 +55,9 @@ class Inquiry < ActiveRecord::Base
   scope :mitchell, -> { where(database: "Mitchell") }
   scope :audatex, -> { where(database: "Audatex") }
   scope :new_db, -> { where(transferred_from_old_db: nil) }
+  scope :not_internal, -> { where.not(status: 'Internal Resolution') }
+  scope :open, -> { where(resolution_date: nil) }
+  scope :closed, -> { where.not(resolution_date: nil) }
 
   scoped_search on: [:search_criteria]
 
@@ -354,18 +357,6 @@ class Inquiry < ActiveRecord::Base
 
   def self.database(db)
     where(database: db)
-  end
-
-  def self.open 
-    where(resolution_date: nil)
-  end
-
-  def self.closed
-    where.not(resolution_date: nil)
-  end
-
-  def self.not_internal
-    where.not(status: 'Internal Resolution')
   end
 
   def self.start_date_for(period)
