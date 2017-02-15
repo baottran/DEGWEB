@@ -3,6 +3,7 @@
 
 $(document).ready(function(){
   // callEndPoint();
+  console.log("hi");
   var response_chart = c3.generate({
       bindto: '#<%= name %>',
       data: {
@@ -16,9 +17,10 @@ $(document).ready(function(){
       axis: {
         y: {
           label: {
-             text: 'Days',
-             position: 'outer-center',
-          }
+             text: "<%= y_label %>",
+             position: 'outer-center'
+          },
+          tick: { format: d3.format("d") }
         },
         x: {
           type: 'category',

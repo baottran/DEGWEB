@@ -29,6 +29,7 @@
       <%= render  partial: "/reports/bar_graph", 
                   locals: { name: 'num_received', 
                             title: 'Inquiries Received',
+                            y_label: 'Inquiries',
                             audatex: @r.weekly_received_audatex, 
                             ccc: @r.weekly_received_ccc,
                             mitchell: @r.weekly_received_mitchell } %>
@@ -42,6 +43,7 @@
   		<%= render  partial: "/reports/bar_graph", 
                   locals: { name: 'num_submitted', 
                             title: 'Inquiries Submitted',
+                            y_label: 'Inquiries',
                             audatex: @r.weekly_submitted_audatex, 
                             ccc: @r.weekly_submitted_ccc,
                             mitchell: @r.weekly_submitted_mitchell } %>
@@ -65,6 +67,7 @@
       <%= render  partial: "/reports/bar_graph", 
                   locals: { name: 'num_resolved', 
                             title: 'Inquiries Resolved',
+                            y_label: 'Inquiries',
                             audatex: @r.weekly_resolved_audatex, 
                             ccc: @r.weekly_resolved_ccc,
                             mitchell: @r.weekly_resolved_mitchell } %>
@@ -79,6 +82,7 @@
       <%= render  partial: "/reports/bar_graph", 
                   locals: { name: 'unresolved', 
                             title: 'Inquiries Unresolved (total)',
+                            y_label: 'Inquiries',
                             audatex: @r.num_open_audatex_all, 
                             mitchell: @r.num_open_mitchell_all, 
                             ccc: @r.num_open_ccc_all } %>
@@ -101,6 +105,7 @@
      <%= render  partial: "/reports/bar_graph", 
                   locals: { name: 'avg_submit_time', 
                             title: 'Avg Submit Time',
+                            y_label: 'Days',
                             audatex: ('%.2f' % @r.weekly_avg_submit_time_audatex), 
                             mitchell: ('%.2f' % @r.weekly_avg_submit_time_mitchell), 
                             ccc: ('%.2f' % @r.weekly_avg_submit_time_ccc) } %>
@@ -115,6 +120,7 @@
       <%= render  partial: "/reports/bar_graph", 
                   locals: { name: 'avg_resolve_time', 
                             title: 'Avg Resolution Time',
+                            y_label: 'Days',
                             audatex: ('%.2f' % @r.weekly_avg_resolve_time_audatex), 
                             mitchell: ('%.2f' % @r.weekly_avg_resolve_time_mitchell), 
                             ccc: ('%.2f' % @r.weekly_avg_resolve_time_ccc) } %>
