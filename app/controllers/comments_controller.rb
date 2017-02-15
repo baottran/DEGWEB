@@ -20,6 +20,9 @@ class CommentsController < ApplicationController
       p "after i save its "
       p comment
       p "-----"
+
+      InquiryMailer.comment_entered(comment, @inquiry)
+
       render :json => { :success => true, :inquiry_id => @inquiry.id, :comment_id => comment.id }
     else 
       render :json => { :success => false }
