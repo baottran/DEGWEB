@@ -234,5 +234,89 @@ div.pagination {
     </div>
   </div>
 
-  <%= render partial: 'reporting_response_time' %>
+<div class="panel panel-default response-chart">
+  <div class="panel-heading">Response and Completion Time</div>
+  <div class="panel-body gauges">
+    <div id="response_bar_chart" hidden="false"></div>
+    <div class="loading_placeholder" hidden = "true">
+    </div>
+  </div>
 </div>
+
+<script>
+
+function callEndPoint(){
+  $.ajax({
+    url: '/reporting/response_time',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    console.log("data is ");
+    console.log(data);
+
+    avg_response_audatex    = data.avg_response_audatex;
+    avg_completion_audatex  = data.avg_completion_audatex;
+    avg_response_ccc        = data.avg_response_ccc;
+    avg_completion_ccc      = data.avg_completion_ccc;
+    avg_response_mitchell   = data.avg_response_mitchell;
+    avg_completion_mitchell = data.avg_completion_mitchell;
+    generateChart();
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+};
+
+var avg_response_audatex    = <%= @report.avg_response_ccc %>,
+    avg_completion_audatex  = <%= @report.avg_completion_ccc %> ,
+    avg_response_ccc        = <%= @report.avg_response_ccc %>,
+    avg_completion_ccc      = <%= @report.avg_completion_ccc %>,
+    avg_response_mitchell   = <%= @report.avg_response_mitchell %>,
+    avg_completion_mitchell = <%= @report.avg_completion_mitchell %>
+
+function generateChart(){
+  $("#response_bar_chart").show();
+  $(".loading_placeholder").hide();
+
+  
+};
+
+
+
+$(document).ready(function(){
+  // callEndPoint();
+  generateChart();
+
+  var response_chart = c3.generate({
+      bindto: "#response_bar_chart",
+      data: {
+          columns: [
+              ['Audatex', avg_completion_audatex],
+              ['CCC', avg_completion_ccc],
+              ['Mitchell', avg_completion_mitchell]
+          ],
+          type: 'bar'
+      },
+      axis: {
+        y: {
+          label: {
+             text: 'Days',
+             position: 'outer-center',
+          }
+        },
+        x: {
+          type: 'category',
+          categories: ['Avg Resolution Time']
+        }
+      },
+      color: {
+        pattern: ['#18bc9c', '#f39c12', '#e74c3c']
+      }
+    });
+});
+
+</script>
