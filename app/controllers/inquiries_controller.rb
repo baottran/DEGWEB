@@ -336,7 +336,7 @@ class InquiriesController < ApplicationController
     @export = find_inquiries
 
     if params[:type] == "Comments" 
-      @comments = Comment.where("created_at < ?", 30.days.ago).order(created_at: :desc).paginate(:per_page => 20, :page => params[:page])
+      @comments = Comment.where("created_at > ?", 30.days.ago).order(created_at: :desc).paginate(:per_page => 20, :page => params[:page])
     end
 
     request.format = :csv if params[:csv]

@@ -54,10 +54,14 @@ class InquiryMailer < ApplicationMailer
     @comment = comment
     @inquiry = inquiry
 
+    p "in the comment email"
+
     admin_email_list = User.where(isadmin: true).map{ |u| u.email }.select{ |e| e != "aaron@scrs.com" }.join(", ")
     mail(
       :subject => 'DEG - New Comment',
       :to => admin_email_list)
+
+    p "out the comment email"
   end
 
 

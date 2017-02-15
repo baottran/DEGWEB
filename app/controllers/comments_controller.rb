@@ -1,28 +1,19 @@
 class CommentsController < ApplicationController
-  def create
-    # @inquiry = Inquiry.find(params[:inquiry_id])
-    # @comment = @inquiry.comments.create(comment_params)
-    # redirect_to inquiry_path(@inquiry)
-    p "hit the new comment endpoint"
-    p "============================"
-    p params 
-    p "============================"
 
+  def create
     comment = Comment.new 
     comment.body = params[:body]
     comment.commenter = params[:author]
     comment.internal_only = params[:internal_only]
 
-
     @inquiry = Inquiry.find(params[:inquiry_id])
+
+    p "preparing to send - in controller"
+    p "------------"
+
+    InquiryMailer.comment_entered(comment, @inquiry).deliver
+
     if @inquiry.comments.push(comment)
-      p "-----"
-      p "after i save its "
-      p comment
-      p "-----"
-
-      InquiryMailer.comment_entered(comment, @inquiry)
-
       render :json => { :success => true, :inquiry_id => @inquiry.id, :comment_id => comment.id }
     else 
       render :json => { :success => false }
@@ -30,8 +21,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    p "hit the destroy endpoint"
-    p "params are #{params}"
     @inquiry = Inquiry.find(params[:inquiry_id])
     @comment = @inquiry.comments.find(params[:id])
     @comment.destroy
