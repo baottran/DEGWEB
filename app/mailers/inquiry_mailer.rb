@@ -49,6 +49,17 @@ class InquiryMailer < ApplicationMailer
         :to => 'admin@degweb.org')
   end
 
+  def comment_entered(comment, inquiry)
+
+    @comment = comment
+    @inquiry = inquiry
+
+    admin_email_list = User.where(isadmin: true).map{ |u| u.email }.select{ |e| e != "aaron@scrs.com" }.join(", ")
+    mail(
+      :subject => 'DEG - New Comment',
+      :to => admin_email_list)
+  end
+
 
 
   def test_message
