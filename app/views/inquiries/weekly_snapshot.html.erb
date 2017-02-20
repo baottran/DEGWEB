@@ -18,7 +18,7 @@
       <%= render partial: 'reporting_button', locals: {report: "Export as Report"} %>
   </div>
 
-  <% beginning_of_week = Date.today.beginning_of_week(:monday).strftime("%A, %b %d %Y") %>
+  <% beginning_of_week = (Date.today - 7.days).beginning_of_week(:monday).strftime("%A, %b %d %Y") %>
 
   <h2>Report for week beginning on <%= beginning_of_week %></h2><br>
 
@@ -37,7 +37,7 @@
   </div>
 
     <div class="panel panel-default">
-  	<div class="panel-heading">Inquiries Submitted (since <%= beginning_of_week %>)</div>
+  	<div class="panel-heading">Inquiries Submitted (for week of <%= beginning_of_week %>)</div>
   	<div class="panel-body">
   		<p>Number of total inquiries submitted <%= @r.weekly_submitted_total %></p>
   		<%= render  partial: "/reports/bar_graph", 
@@ -61,7 +61,7 @@
   </div>
 
   <div class="panel panel-default">
-  	<div class="panel-heading">Resolved Inquiries (since <%= beginning_of_week %>)</div>
+  	<div class="panel-heading">Resolved Inquiries (for week of <%= beginning_of_week %>)</div>
   	<div class="panel-body">
   		<p>Number of total inquiries resolved <%= @r.weekly_resolved_total %></p>
       <%= render  partial: "/reports/bar_graph", 
