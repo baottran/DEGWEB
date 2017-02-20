@@ -76,9 +76,12 @@ class InquiryMailer < ApplicationMailer
   end
 
   def weekly_report 
+
+    joc_email_list = User.all.map{ |u| u.email }.join(", ")
+
     mail(
       :subject => "DEG Weekly Report",
-      :to => 'bowtran@gmail.com')
+      :to => joc_email_list)
   end
 
 end
