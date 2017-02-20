@@ -81,7 +81,7 @@ class InquiryMailer < ApplicationMailer
 
     mail(
       :subject => "DEG Weekly Report",
-      :to => joc_email_list)
+      :bcc => "bowtran@gmail.com")
   end
 
 end
