@@ -250,7 +250,7 @@ class Report < ActiveRecord::Base
 
 
   def self.weekly_report_start_date
-    return Date.today.beginning_of_week(:monday)
+    return Date.today - 7.days
   end
 
   def self.weekly_avg_submit_time(db)
