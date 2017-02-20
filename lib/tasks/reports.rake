@@ -72,7 +72,9 @@ namespace :reports do
   end
 
   task :send_snapshot => :environment do 
-    InquiryMailer.weekly_report.deliver 
+    if Time.now.wday === 1 
+      InquiryMailer.weekly_report.deliver 
+    end
   end
 
   task :fix => :environment do 
