@@ -212,7 +212,7 @@ class Report < ActiveRecord::Base
     r = Report.find(1)
 
     week_start = self.weekly_report_start_date
-    end_date = DateTime.now 
+    end_date = week_start + 7.days 
 
     # inquiries received by IP 
 
@@ -250,7 +250,7 @@ class Report < ActiveRecord::Base
 
 
   def self.weekly_report_start_date
-    return Date.today - 7.days
+    return (Date.today. - 7.days).beginning_of_week(:monday)
   end
 
   def self.weekly_avg_submit_time(db)
