@@ -106,9 +106,9 @@
                   locals: { name: 'avg_submit_time', 
                             title: 'Avg Submit Time',
                             y_label: 'Days',
-                            audatex: ('%.2f' % @r.weekly_avg_submit_time_audatex), 
-                            mitchell: ('%.2f' % @r.weekly_avg_submit_time_mitchell), 
-                            ccc: ('%.2f' % @r.weekly_avg_submit_time_ccc) } %>
+                            audatex: (@r.weekly_avg_submit_time_audatex.round), 
+                            mitchell: (@r.weekly_avg_submit_time_mitchell.round), 
+                            ccc: (@r.weekly_avg_submit_time_ccc.round) } %>
 
     </div>
   </div>
@@ -121,9 +121,9 @@
                   locals: { name: 'avg_resolve_time', 
                             title: 'Avg Resolution Time',
                             y_label: 'Days',
-                            audatex: ('%.2f' % @r.weekly_avg_resolve_time_audatex), 
-                            mitchell: ('%.2f' % @r.weekly_avg_resolve_time_mitchell), 
-                            ccc: ('%.2f' % @r.weekly_avg_resolve_time_ccc) } %>
+                            audatex: @r.weekly_avg_resolve_time_audatex.round, 
+                            mitchell: @r.weekly_avg_resolve_time_mitchell.round, 
+                            ccc: @r.weekly_avg_resolve_time_ccc.round } %>
     </div>
   </div>
 
