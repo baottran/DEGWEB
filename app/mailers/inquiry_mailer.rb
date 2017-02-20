@@ -77,7 +77,7 @@ class InquiryMailer < ApplicationMailer
 
   def weekly_report 
     mail(
-      :subject => "DEG Weekly Snapshot",
+      :subject => "DEG Weekly Report",
       :to => 'bowtran@gmail.com')
   end
 
