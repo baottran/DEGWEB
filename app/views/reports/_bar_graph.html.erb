@@ -18,7 +18,8 @@ $(document).ready(function(){
           label: {
              text: "<%= y_label %>",
              position: 'outer-center'
-          }
+          },
+          tick: { format: d3.format("d") }
         },
         x: {
           type: 'category',
