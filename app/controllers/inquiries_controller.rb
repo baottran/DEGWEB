@@ -287,7 +287,7 @@ class InquiriesController < ApplicationController
     end
 
     if params[:new_resolution_date] != ""
-      parsed_date = Date.parse(params[:new_resolution_date])
+      parsed_date = Date.parse(params[:new_resolution_date]).in_time_zone('EST')
       if parsed_date != @inquiry.resolution_date
         @inquiry.resolution_date = parsed_date
       end
