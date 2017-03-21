@@ -202,9 +202,13 @@ class Inquiry < ActiveRecord::Base
               #{missing_part_name}
               
               Missing Part Description
-              #{missing_part_description}"
+              #{missing_part_description}
 
+              Issue Summary
+              #{missing_issue_summary}
 
+              Suggested Action
+              #{missing_suggested_action}"
     when 'Parts'
       return "Area of Vehicle\n
               #{parts_area_of_vehicle}\n
