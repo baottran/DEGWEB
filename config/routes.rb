@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   get 'reporting/inquiry_counts' => 'inquiries#inquiry_counts'
   get 'reporting/unresolved_list' => 'inquiries#unresolved_list'
   get 'reporting/unsubmitted_list' => 'inquiries#unsubmitted_list'
+  get 'reporting/avg_submit_list' => 'inquiries#avg_submit_list'
 
   patch 'inquiries/:id/resolve' => 'inquiries#resolve'
   patch 'inquiries/:id/customer' => 'inquiries#edit_customer'

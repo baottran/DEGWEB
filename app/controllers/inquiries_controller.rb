@@ -386,6 +386,22 @@ class InquiriesController < ApplicationController
     @unsubmitted_inquiries = @unsubmitted_inquiries.paginate(:per_page => 10, :page => params[:page])
   end
 
+  def avg_submit_list
+    @inquiries = Inquiry.new_db.where(submit_to_ip_date: (Date.today - 30.days)..Date.today)
+
+    if params[:db].present? 
+      @inquiries = @inquiries.where(database: params[:db])
+    end
+
+    @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
+
+    @r = Report.find(1)
+  end
+
+  def avg_resolve_list
+
+  end
+
   def submitted_inquiries
 
     new_report = Report.new 

@@ -109,7 +109,8 @@
                             audatex: (@r.weekly_avg_submit_time_audatex.round), 
                             mitchell: (@r.weekly_avg_submit_time_mitchell.round), 
                             ccc: (@r.weekly_avg_submit_time_ccc.round) } %>
-
+      <br>
+      <%= link_to "View all submitted Inquiries", controller: "inquiries", action: "avg_submit_list" %>
     </div>
   </div>
  

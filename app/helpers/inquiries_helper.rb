@@ -448,6 +448,13 @@ module InquiriesHelper
     return avg_completion_time
   end
 
+  def calculate_submit_time(i)
+    create_date = Date.parse(i.created_at.to_s)
+    submit_date = Date.parse(i.submit_to_ip_date.to_s)
+    submit_time = create_date.business_dates_until(submit_date).count 
+    return submit_time
+  end
+
 
   def time_to_days(time)
     return (time / 86400).round(2)

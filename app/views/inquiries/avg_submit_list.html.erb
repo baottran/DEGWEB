@@ -1,0 +1,94 @@
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<style>
+#weekly {
+  background-color: #333333;
+}
+</style>
+
+<div class="container">
+  <%= render partial: 'nav_pills', locals: {current: "reporting"} %>
+  <br>
+
+  <div class="btn-group btn-group-justified">
+      <%= render partial: 'reporting_button', locals: {report: "New Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Resolved Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Aging Inquiries"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Comments"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Weekly"} %>
+      <%= render partial: 'reporting_button', locals: {report: "Export as Report"} %>
+  </div>
+  <br>
+  <div class="panel panel-default">
+    <div class="panel-heading">Graph</div>
+    <div class="panel-body">
+    <%= render  partial: "/reports/bar_graph", 
+                  locals: { name: 'avg_submit_time', 
+                            title: 'Avg Submit Time',
+                            y_label: 'Days',
+                            audatex: (@r.weekly_avg_submit_time_audatex.round), 
+                            mitchell: (@r.weekly_avg_submit_time_mitchell.round), 
+                            ccc: (@r.weekly_avg_submit_time_ccc.round) } %>
+    </div>
+  </div>
+  <br>
+
+  <div class="btn-group btn-group-justified">
+      <a href="/reporting/avg_submit_list?db=Audatex" class="<%= btn_class_for_reporting %>">
+        <div class="title">Audatex</div>
+      </a>
+      <a href="/reporting/avg_submit_list?db=CCC" class="<%= btn_class_for_reporting %>">
+        <div class="title">CCC</div>
+      </a>
+      <a href="/reporting/avg_submit_list?db=Mitchell" class="<%= btn_class_for_reporting %>">
+        <div class="title">Mitchell</div>
+      </a>
+  </div>
+  <br>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Average time from “Inquiry Received by DEG” to “Inquiry Submitted to IP” (by IP)(running 30 day average)</div>
+    <div class="panel-body">
+      <% if @inquiries.count != 0 %>
+        <%= will_paginate @inquiries %>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th><%= sortable 'id', "#", params[:status] %></th>
+            <th><%= sortable 'database', 'Estimating Platform', params[:status] %></th>
+            <th><%= sortable 'inquiry_type', 'Inquiry Type', params[:status] %></th>
+            <th><%= sortable 'year', 'Vehicle', params[:status] %></th>
+            <th>Inquiry Description</th>
+            <th><%= sortable 'status', 'Status', params[:status] %></th>
+            <th><%= sortable 'created_at', 'Origination Date', params[:status] %></th>
+            <th><%= sortable 'submit_to_ip_date', 'Submission Date', params[:status] %>
+            <th>Total Time To Submit</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <% @inquiries.each do |inquiry| %>
+          <tr>
+            <td><%= link_to inquiry.id, inquiry_path(inquiry), target: "_newtab" %></td>
+            <td><%= inquiry.database %></td>
+            <td><%= inquiry.inquiry_type %></td>
+            <td><%= inquiry.year %> <%= inquiry.make %> <%= inquiry.model %></td>
+            <td><img class="icon tooltip-icon icons8-Search-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA0klEQVQoU62SjQ0BURCEv6uADlABOqACSqADKqAEHaADJdDBdUAJVEBGdi/vbZzchU1e7uftTGZmt+CHKgJ2AmwAPVV34ASs7T1rT8ELYA8cgYM194Et0AHGkcDBaroCSwNGM2fgCUzTCwfvgFEiN4KdfADc/NLBYtaRxLqSf1lTBu/6C1iyh9FTIuGr7CaByatkV/VpVBqTzgPoWQ4KszRl8p559m8txwqY2Q8RyNLcbGUEccPqku7aNJRLRdAULNKU4KKdaAN2As1Z1sq24MzWC9IUMRAfAtjoAAAAAElFTkSuQmCC" width="15" height="15" title="<%= inquiry.description_tooltip %>"> <%= inquiry.area_of_vehicle %></td>
+            <td><%= inquiry.status %></td>
+            <td><%= inquiry.created_at.strftime("%-m/%-d/%y") %></td>
+            <td><% if inquiry.submit_to_ip_date != nil %>
+                  <%= inquiry.submit_to_ip_date.strftime("%-m/%-d/%y") %>
+                <% end %></td>
+            <td><%= calculate_submit_time(inquiry) %> Days</td>
+          
+          </tr>
+        <% end %>
+
+        </tbody>
+      </table>
+      <% else %>
+        <p>0 records </p>
+      <% end %>
+      <%= will_paginate @inquiries %>
+    </div>
+  </div>
+</div>
