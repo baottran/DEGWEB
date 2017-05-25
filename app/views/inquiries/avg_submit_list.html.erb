@@ -19,7 +19,7 @@
   </div>
   <br>
   <div class="panel panel-default">
-    <div class="panel-heading">Graph</div>
+    <div class="panel-heading">Average time from “Inquiry Received by DEG” to “Inquiry Submitted to IP” (by IP)(running 30 day average)</div>
     <div class="panel-body">
     <%= render  partial: "/reports/bar_graph", 
                   locals: { name: 'avg_submit_time', 
@@ -46,7 +46,7 @@
   <br>
 
   <div class="panel panel-default">
-    <div class="panel-heading">Average time from “Inquiry Received by DEG” to “Inquiry Submitted to IP” (by IP)(running 30 day average)</div>
+    <div class="panel-heading">Inquiry List (<%= @inquiries.count %>)</div>
     <div class="panel-body">
       <% if @inquiries.count != 0 %>
         <%= will_paginate @inquiries %>
