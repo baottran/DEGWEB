@@ -80,7 +80,7 @@
             <td><% if inquiry.resolution_date != nil %>
                   <%= inquiry.resolution_date.strftime("%-m/%-d/%y") %>
                 <% end %></td>
-            <td><%= calculate_submit_time(inquiry) %> Days</td>
+            <td><%= calculate_resolution_time(inquiry) %> Days</td>
           
           </tr>
         <% end %>
