@@ -456,9 +456,9 @@ module InquiriesHelper
   end
 
   def calculate_resolution_time(i)
-    create_date = Date.parse(i.created_at.to_s)
+    submit_date = Date.parse(i.submit_to_ip_date.to_s)
       resolution_date = Date.parse(i.resolution_date.to_s)
-      res_time = create_date.business_dates_until(resolution_date).count
+      res_time = submit_date.business_dates_until(resolution_date).count
     return res_time
   end
 
