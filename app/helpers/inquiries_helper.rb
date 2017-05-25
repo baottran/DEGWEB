@@ -3,8 +3,8 @@ module InquiriesHelper
   def filter_date_types
     [['<select>', ' '],
     ['Origination Date', 'created_at'],
-    ['Submission Date', ''],
-    ['Resolution Date', '']]
+    ['Submission Date', 'submit_to_ip_date'],
+    ['Resolution Date', 'resolution_date']]
   end
 
   def inquiry_statuses
