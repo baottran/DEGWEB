@@ -399,7 +399,15 @@ class InquiriesController < ApplicationController
   end
 
   def avg_resolve_list
+    @inquiries = Inquiry.new_db.where(resolution_date: (Date.today - 30.days)..Date.today)
 
+    if params[:db].present? 
+      @inquiries = @inquiries.where(database: params[:db])
+    end
+
+    @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
+
+    @r = Report.find(1)
   end
 
   def submitted_inquiries

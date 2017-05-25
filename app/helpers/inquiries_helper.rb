@@ -455,6 +455,13 @@ module InquiriesHelper
     return submit_time
   end
 
+  def calculate_resolution_time(i)
+    create_date = Date.parse(i.created_at.to_s)
+      resolution_date = Date.parse(i.resolution_date.to_s)
+      res_time = create_date.business_dates_until(resolution_date).count
+    return res_time
+  end
+
 
   def time_to_days(time)
     return (time / 86400).round(2)

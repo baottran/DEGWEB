@@ -125,6 +125,8 @@
                             audatex: @r.weekly_avg_resolve_time_audatex.round, 
                             mitchell: @r.weekly_avg_resolve_time_mitchell.round, 
                             ccc: @r.weekly_avg_resolve_time_ccc.round } %>
+                            <br>
+      <%= link_to "View all resolved Inquiries", controller: "inquiries", action: "avg_resolve_list" %>
     </div>
   </div>
 
