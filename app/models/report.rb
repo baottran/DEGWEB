@@ -272,9 +272,9 @@ class Report < ActiveRecord::Base
     total_time = 0
 
     inquiries.each do |i|
-      create_date = Date.parse(i.created_at.to_s)
+      submit_date = Date.parse(i.submit_to_ip_date.to_s)
       resolution_date = Date.parse(i.resolution_date.to_s)
-      res_time = create_date.business_dates_until(resolution_date).count
+      res_time = submit_date.business_dates_until(resolution_date).count
       total_time += res_time
     end
 
