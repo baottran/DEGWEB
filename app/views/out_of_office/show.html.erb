@@ -1,0 +1,100 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<div class="container" >
+
+	<%= render partial: 'inquiries/nav_pills', locals: {current: "out_of_office"} %>
+
+	<h2>Out of Office</h2>
+	<br>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			Message
+		</div>
+		<div class="panel-body">
+			<%= form_for @status, url: {action: "set"} do |f| %>
+			<%= f.label :text %>
+			<%= f.text_area :text, class: 'form-control', :rows => '5', :placeholder => 'Enter out of office message' %><br>
+			<div class="select-item">
+				<%= f.label :activated, 'activated', :class => "col-lg-3 form-label" %>
+					<%= f.check_box :activated %>
+			</div>	
+			<br><br>
+			<div class="select-item">
+				<%= f.label :can_create_inquiries, 'can create new inquiries', :class => "col-lg-3 form-label" %>
+					<%= f.check_box :can_create_inquiries %>
+			</div>
+			<br><br>
+			<%= f.submit 'Save Status', class: "btn btn-primary", id: 'save-btn' %>
+			<% end %>
+		</div>
+	</div>
+
+	<style>
+		#success {
+			color: green;
+		}
+		#error {
+			color: red;
+		}
+
+		.select-item {
+			height: 30px;
+			float: right;
+		}
+
+		.form-label {
+			width: 200px;
+		}
+
+		#save-btn {
+			margin-left: 510px;
+		}
+
+		select {
+			width: 200px;
+		}
+		span {
+			color: gray;
+			font-size: 12px;
+		}
+		form {
+			width: 700px;
+		}
+
+		#user_isadmin {
+			margin-right: 10px;
+		}
+
+		th {
+			padding-right: 30px;
+		}
+
+/*table {
+	width: 200px;
+}*/
+
+#email {
+	width: 300px;
+}
+
+.button_to {
+	width: 50px;
+}
+
+.left-table {
+	width: 460px;
+}
+
+.right-form {
+	margin-left: 20px;
+	width: 400px;
+}
+
+#users-wrapper {
+	display: flex;
+}
+
+#ips-wrapper {
+	display: flex;
+}
+</style>

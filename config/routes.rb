@@ -77,6 +77,9 @@ Rails.application.routes.draw do
   get "/422" => "errors#unacceptable"
   get "/500" => "errors#internal_error"
 
+  get 'out_of_office' => 'out_of_office#show'
+  patch 'out_of_office/update' => 'out_of_office#set'
+
   get 'reporting/weekly_snapshot' => 'inquiries#weekly_snapshot'
   get 'error_log' => 'inquiries#download_errors'
 

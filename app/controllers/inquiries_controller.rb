@@ -83,6 +83,12 @@ class InquiriesController < ApplicationController
   end
 
 	def new
+    @status = Status.shared
+
+    if @status.activated 
+      flash["status"] = @status.text
+    end
+
     @inquiry = Inquiry.new
 	end
 

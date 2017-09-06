@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  text: MyText
+  'on': 
+  can_create_inquiries: 
+
+two:
+  type: 
+  text: MyText
+  'on': 
+  can_create_inquiries: 
