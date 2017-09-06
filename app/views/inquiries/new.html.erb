@@ -10,7 +10,7 @@
 		</div>
 		<br><br>
 	<% end %>
-	<% if @status.can_create_inquiries && @status.activated %>
+	<% if (!@status.can_create_inquiries && @status.activated) == false %>
 	<h3 id ="title">Submit a Database Inquiry</h3>
 	<%= render 'form_new' %>
 	<% end %>
@@ -22,3 +22,8 @@
 	font-size: 15px;
 }
 </style>
+<!-- 
+create = true, activated = false, yes
+create = false, activated = true, no
+create = false, activated = false, yes
+create = true, activated = true, yes  -->
