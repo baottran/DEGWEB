@@ -10,7 +10,7 @@
 		</div>
 		<br><br>
 	<% end %>
-	<% if @status.can_create_inquiries %>
+	<% if @status.can_create_inquiries && @status.activated %>
 	<h3 id ="title">Submit a Database Inquiry</h3>
 	<%= render 'form_new' %>
 	<% end %>
