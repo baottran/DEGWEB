@@ -96,4 +96,6 @@ group :development do
   gem 'spring'
 end
 
+gem 'recaptcha', require: 'recaptcha/rails'
+
 ruby "2.0.0"
