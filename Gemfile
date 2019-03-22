@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5.1'
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.21'
 end
 
 group :development, :test do
@@ -96,6 +96,6 @@ group :development do
   gem 'spring'
 end
 
-gem 'recaptcha', require: 'recaptcha/rails'
+gem "recaptcha", require: "recaptcha/rails"
 
-ruby "2.0.0"
+ruby "2.3.0"

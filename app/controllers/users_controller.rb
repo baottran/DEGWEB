@@ -13,8 +13,8 @@ class UsersController < ApplicationController
 
   def create 
   	@user = User.new(user_params)
-  	
-  	if @user.save 
+
+  	if verify_recaptcha(model: @user) && !@user.save
       log_in @user 
   		flash[:success] = "Welcome to the Sample App!"
       UserMailer.signup_confirmation(@user).deliver  

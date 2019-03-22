@@ -90,6 +90,7 @@ class InquiriesController < ApplicationController
     end
 
     @inquiry = Inquiry.new
+
 	end
 
   def edit
@@ -114,11 +115,12 @@ class InquiriesController < ApplicationController
 	def create
   	@inquiry = Inquiry.new(inquiry_params)
     @inquiry.vin = inquiry_params[:vin].upcase
-    if @inquiry.save
+    if @inquiry.save && verify_recaptcha(model: @inquiry)
       InquiryMailer.new_inquiry(@inquiry).deliver
       p "just created new inquiry with vin #{@inquiry.vin}"
       render 'thankyou'
     else
+      #flash.now[:error] = "Please verify with Recaptcha and try again"
       render 'new'
     end
 	end

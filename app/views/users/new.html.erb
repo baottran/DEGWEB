@@ -77,6 +77,11 @@ input#session-remember-me {
       <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'confirm password' %><br>
       <span>password must be six characters</span><br>
       <br>
+      <div>
+        <br />
+        <div class="g-recaptcha" data-sitekey="6LcLnZYUAAAAAPJyKQ1pRZy41JVtCfvvr-BKIarq"></div>
+        <br />
+      </div>
       <%= f.submit "Create my account", class: "btn btn-primary" %>
 
 
