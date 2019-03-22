@@ -8,6 +8,13 @@ class SearchesController < ApplicationController
 		puts search_item.description
 		@inquiries = search_result
 		@search = Search.new
+		if !verify_recaptcha(model: @search) || !@search.save
+			#print "Thank You.  Successful search with Recaptcha"
+			render "new"
+		else
+			flash.now[:error] = "Please try again."
+		end
+		end
 		puts search_result
 		puts "*********************"
 		render "inquiries/index"

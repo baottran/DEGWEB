@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :searches
 
+
   get 'inquiries/:id/attach' => 'inquiries#attach'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
@@ -83,7 +84,10 @@ Rails.application.routes.draw do
   get 'reporting/weekly_snapshot' => 'inquiries#weekly_snapshot'
   get 'error_log' => 'inquiries#download_errors'
 
-  resources :users
+  # Fix Exiting
+  # /Users/chinguyen/.rvm/gems/ruby-2.3.0@DEGWEB/gems/activesupport-4.2.5.1/lib/active_support/dependencies.rb:268:in `load': /Users/chinguyen/Desktop/DEGWEB/config/routes.rb:87: syntax error, unexpected [, expecting keyword_do or '{' or '(' (SyntaxError)
+  #   resources :users, only [:new, :create]
+  resources :users, only: [:new, :create]
   resources :blogs
   resources :information_providers
 
