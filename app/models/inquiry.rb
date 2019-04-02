@@ -1,49 +1,49 @@
 class Inquiry < ActiveRecord::Base
   has_many :comments, dependent: :destroy
-  # validates :name, presence: true
-  # validates :phone, presence: true
+  validates :name, presence: true
+  validates :phone, presence: true
 
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  # # validates :email, presence: true,
-  # #                   length: { maximum: 255 }
-  # #                   # format: { with: VALID_EMAIL_REGEX }
+  # validates :email, presence: true,
+  #                   length: { maximum: 255 }
+  #                   # format: { with: VALID_EMAIL_REGEX }
 
-  # validates :make, presence: true
-  # validates :model, presence: true
-  # validates :year, presence: true
-  # validates :database, presence: true
-  # validates :inquiry_type, presence: true
+  validates :make, presence: true
+  validates :model, presence: true
+  validates :year, presence: true
+  validates :database, presence: true
+  validates :inquiry_type, presence: true
 
   has_attached_file :attachment,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id/:basename.:extension", 
+                    :path => "/inquiries/:id/:basename.:extension",
                     :url => ":s3_domain_url"
 
   has_attached_file :attachment2,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id/:basename.:extension", 
+                    :path => "/inquiries/:id/:basename.:extension",
                     :url => ":s3_domain_url"
 
   has_attached_file :attachment3,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id/:basename.:extension", 
+                    :path => "/inquiries/:id/:basename.:extension",
                     :url => ":s3_domain_url"
 
   has_attached_file :attachment4,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id/:basename.:extension", 
+                    :path => "/inquiries/:id/:basename.:extension",
                     :url => ":s3_domain_url"
 
   has_attached_file :attachment5,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :path => "/inquiries/:id/:basename.:extension", 
-                    :url => ":s3_domain_url"               
+                    :path => "/inquiries/:id/:basename.:extension",
+                    :url => ":s3_domain_url"
 
   after_initialize :init, :set_criteria, :set_area_of_vehicle, :set_admin_search_criteria
 
@@ -397,6 +397,6 @@ class Inquiry < ActiveRecord::Base
   
 
 
-  validates_attachment :attachment, :content_type => {:content_type => %w(image/jpeg image/jpg image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document)}
+  # validates_attachment :attachment, :content_type => {:content_type => %w(image/jpeg image/jpg image/png application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document)}
 
 end

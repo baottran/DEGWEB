@@ -514,7 +514,7 @@
   </div>
 
   <div class="col-xs-9">
-
+<!--    <div class="g-recaptcha" data-sitekey="6LcLnZYUAAAAAPJyKQ1pRZy41JVtCfvvr-BKIarq" data-callback="verifyCaptcha"></div>-->
     <br>
     <div class="form-buttons-max col-xs-offset-2">
       <a href="#" class="btn btn-primary form-next-button">Next</a>
@@ -575,7 +575,8 @@
       </p>
 
       <script>
-
+          // Uncaught ReferenceError: $ is not defined
+          // at new:1126
       $('#clear_attachment').click(function(event) {
         /* Act on the event */
         event.preventDefault();
@@ -593,8 +594,9 @@
       <p id="saving_indicator" hidden="true">
        Saving Inquiry.<span id="wait">.</span>
       </p>
-    <div class="g-recaptcha" data-sitekey="6LcLnZYUAAAAAPJyKQ1pRZy41JVtCfvvr-BKIarq"></div>
-      <div id="submit-buttons">
+      <div class="g-recaptcha" data-sitekey="6LcLnZYUAAAAAPJyKQ1pRZy41JVtCfvvr-BKIarq" data-callback="enableBtn"></div>
+      <div id="g-recaptcha-error"></div>
+      <div id="submit-buttons" input type="hidden" name="dummy" value="Submit" id="button1">
         <a href="#" class="btn btn-default form-back-button">Back</a>
         <%= f.submit 'Submit', :class => 'btn btn-primary' %>
         <a href="/inquiries" class="btn btn-danger">Cancel</a>
@@ -632,8 +634,21 @@
 }
 </style>
 
-<script>
 
+<script src='https://www.google.com/recaptcha/api.js'>
+
+    // function submitUserForm() {
+    //     var response = grecaptcha.getResponse();
+    //     if(response.length == 0) {
+    //         document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    //
+    // function verifyCaptcha() {
+    //     document.getElementById('g-recaptcha-error').innerHTML = '';
+    // }
 var dots = window.setInterval( function() {
     var wait = document.getElementById("wait");
     if ( wait.innerHTML.length > 3 ) 

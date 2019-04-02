@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-
+ruby "2.3.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.7'
 
 group :production do
-  gem 'pg', '~> 0.21'
+  gem 'pg', '0.20.0'
 end
 
 group :development, :test do
@@ -98,4 +98,4 @@ end
 
 gem "recaptcha", require: "recaptcha/rails"
 
-ruby "2.3.0"
+# ruby "2.3.0"
