@@ -5,7 +5,7 @@
 		<div class="search-item">
     		<%= text_field_tag :search, params[:search], :class=> "form-control search-text" %>
     	</div>
-        <div class="g-recaptcha" data-sitekey="6LcLnZYUAAAAAPJyKQ1pRZy41JVtCfvvr-BKIarq"></div>
+        <div class="g-recaptcha" data-sitekey="6LcLnZYUAAAAAPJyKQ1pRZy41JVtCfvvr-BKIarq" data-callback="verifyCaptcha"></div>
     	<div class="search-submit">
    		<%= submit_tag "Search", :name => nil, :class=> 'btn btn-primary' %>
    		<%= link_to "Clear", inquiries_path, :class => 'btn btn-default' %>

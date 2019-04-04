@@ -231,7 +231,14 @@ var Forms = {
   toggleAddFileForm: function(){
     $(".section-2").hide();
     $(".form-next-button").click(function(event){
-
+        function verifyCaptcha(){
+            document.getElementById("button1").disabled = false;
+        }
+        // var rcres = grecaptcha.getResponse();
+        // if(rcres.length){
+        //     grecaptcha.reset();
+        // }else{
+        //     showHideMsg("Please verify reCAPTCHA","error");
       if(Forms.missingFieldToFocus() !== ""){
         console.log("does not have all required inputs. missing ", Forms.missingFieldToFocus());
         $(Forms.missingFieldToFocus()).focus();

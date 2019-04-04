@@ -73,7 +73,9 @@ class InquiryMailer < ApplicationMailer
       :from => 'bao.tran@macys.com',
       :html_body => '<strong>Hello</strong> dear Postmark user.',
       :track_opens => 'true')
-  end
+    end
+
+
 
   def weekly_report 
 
@@ -84,4 +86,7 @@ class InquiryMailer < ApplicationMailer
       :bcc => joc_email_list)
   end
 
+  print test_message
 end
+
+print test_message
