@@ -106,4 +106,5 @@ end
 
 gem "recaptcha", require: "recaptcha/rails"
 
+gem "turnout"
 # ruby "2.3.0"
