@@ -12,6 +12,9 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+# maintenance page for site enhancements
+gem "turnout"
+
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
