@@ -593,7 +593,7 @@
       <p id="saving_indicator" hidden="true">
        Saving Inquiry.<span id="wait">.</span>
       </p>
-      <div id="submit-buttons">
+      <div id="submit-buttons" input type="hidden" name="dummy" value="something">
         <a href="#" class="btn btn-default form-back-button">Back</a>
         <%= f.submit 'Submit', :class => 'btn btn-primary' %>
         <a href="/inquiries" class="btn btn-danger">Cancel</a>
