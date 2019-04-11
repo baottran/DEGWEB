@@ -69,8 +69,8 @@ class InquiryMailer < ApplicationMailer
   def test_message
     mail(
       :subject => 'Hello from Postmark',
-      :to  => 'bowtran@gmail.com',
-      :from => 'bao.tran@macys.com',
+      :to  => 'chinguyen2018@gmail.com',
+      :from => 'admin@degweb.org',
       :html_body => '<strong>Hello</strong> dear Postmark user.',
       :track_opens => 'true')
   end
