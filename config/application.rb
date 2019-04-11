@@ -24,6 +24,11 @@ module Degweb
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.exceptions_app = self.routes
+    
+    # Set Postmark as your preferred mail delivery method via config/application.rb
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { :api_token => Rails.application.secrets.postmark_api_token }
+
 
   end
 end
