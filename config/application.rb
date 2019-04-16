@@ -27,7 +27,7 @@ module Degweb
     
     # Set Postmark as your preferred mail delivery method via config/application.rb
     config.action_mailer.delivery_method = :postmark
-    config.action_mailer.postmark_settings = { :api_token => Rails.application.secrets.postmark_api_token }
+    config.action_mailer.postmark_settings = { :api_token => "b054ecef-c344-4834-93ee-950ac9b81b16" }
 
 
   end
