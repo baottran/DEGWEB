@@ -61,10 +61,11 @@ gem 'responders'
 gem 'faker'
 # gem 'faker-vehicle'
 
-#attachments and amazon s3
-gem 'paperclip'
+#attachments and amazon s3 (When updating, update with aws-sdk
+gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 # gem 'aws-sdk', '< 2.0'
-gem 'aws-sdk', '~>1.6'
+# gem 'aws-sdk', '~>1.6'
+gem 'aws-sdk', '~> 2'
 
 #environment keys
 gem 'figaro'
