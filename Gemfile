@@ -75,10 +75,10 @@ gem 'faker'
 
 # For a walkthrough of upgrading from 4 to *5* (not 6) and aws-sdk >= 2.0 you can watch
 # http://rubythursday.com/episodes/ruby-snack-27-upgrade-paperclip-and-aws-sdk-in-prep-for-rails-5
-gem 'paperclip'
+gem 'paperclip', '~>6.1.0'
 # gem 'aws-sdk', '< 2.0'
 # gem 'aws-sdk', '~>1.6'
-gem 'aws-sdk', '~> 2'
+gem 'aws-sdk', '~> 3.0.1'
 
 #environment keys
 gem 'figaro'
