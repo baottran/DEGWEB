@@ -97,6 +97,12 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+  # run 'bundle' then initialize Guard config with 'guard init bundler'
+  gem 'guard-bundler', require: false
+  
+  # run 'guard init rspec'
+  gem 'guard-rspec', require: false
 end
 
 ruby "2.0.0"
