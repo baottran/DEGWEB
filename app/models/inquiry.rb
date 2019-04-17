@@ -18,6 +18,7 @@ class Inquiry < ActiveRecord::Base
   has_attached_file :attachment,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
+                    :s3_region: ENV["aws_region"],
                     :s3_protocol => 'https',
                     :path => "/inquiries/:id/:basename.:extension", 
                     :url => ":s3_domain_url"
@@ -25,6 +26,7 @@ class Inquiry < ActiveRecord::Base
   has_attached_file :attachment2,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
+                    :s3_region: ENV["aws_region"],
                     :s3_protocol => 'https',
                     :path => "/inquiries/:id/:basename.:extension", 
                     :url => ":s3_domain_url"
@@ -32,6 +34,7 @@ class Inquiry < ActiveRecord::Base
   has_attached_file :attachment3,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
+                    :s3_region: ENV["aws_region"],
                     :s3_protocol => 'https',
                     :path => "/inquiries/:id/:basename.:extension", 
                     :url => ":s3_domain_url"
@@ -39,6 +42,7 @@ class Inquiry < ActiveRecord::Base
   has_attached_file :attachment4,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
+                    :s3_region: ENV["aws_region"],
                     :s3_protocol => 'https',
                     :path => "/inquiries/:id/:basename.:extension", 
                     :url => ":s3_domain_url"
@@ -46,6 +50,7 @@ class Inquiry < ActiveRecord::Base
   has_attached_file :attachment5,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
+                    :s3_region: ENV["aws_region"],
                     :s3_protocol => 'https',
                     :path => "/inquiries/:id/:basename.:extension", 
                     :url => ":s3_domain_url"               
