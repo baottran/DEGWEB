@@ -105,4 +105,4 @@ group :development do
   gem 'guard-rspec', require: false
 end
 
-ruby "2.0.0"
+ruby "2.3.0"
