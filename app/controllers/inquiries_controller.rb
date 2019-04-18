@@ -277,20 +277,20 @@ class InquiriesController < ApplicationController
       @inquiry.attachment = inquiry_params[:attachment]
     end
 
-    if !@inquiry.attachment2.present?
-      @inquiry.attachment2 = inquiry_params[:attachment2]
-    end
+#     if !@inquiry.attachment2.present?
+#       @inquiry.attachment2 = inquiry_params[:attachment2]
+#     end
 
-    if !@inquiry.attachment3.present?
-      @inquiry.attachment3 = inquiry_params[:attachment3]
-    end
+#     if !@inquiry.attachment3.present?
+#       @inquiry.attachment3 = inquiry_params[:attachment3]
+#     end
 
-    if !@inquiry.attachment4.present?
-      @inquiry.attachment4 = inquiry_params[:attachment4]
-    end
+#     if !@inquiry.attachment4.present?
+#       @inquiry.attachment4 = inquiry_params[:attachment4]
+#     end
     
-    if !@inquiry.attachment5.present?
-      @inquiry.attachment5 = inquiry_params[:attachment5]
+#     if !@inquiry.attachment5.present?
+#       @inquiry.attachment5 = inquiry_params[:attachment5]
     end
 
     if params[:new_resolution_date] != ""
