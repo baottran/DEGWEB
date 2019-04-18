@@ -271,9 +271,10 @@ function callEndPoint(){
   });
 };
 
-var avg_completion_audatex  = <%= @report.weekly_avg_resolve_time_audatex.round %> ,
-    avg_completion_ccc      = <%= @report.weekly_avg_resolve_time_ccc.round  %>,
-    avg_completion_mitchell = <%= @report.weekly_avg_resolve_time_mitchell.round %>
+  // comment out following variables for inital rails s in local server 3000
+// var avg_completion_audatex  = <%= @report.weekly_avg_resolve_time_audatex.round %> ,
+//     avg_completion_ccc      = <%= @report.weekly_avg_resolve_time_ccc.round  %>,
+//     avg_completion_mitchell = <%= @report.weekly_avg_resolve_time_mitchell.round %>
 
 function generateChart(){
   $("#response_bar_chart").show();
