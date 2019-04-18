@@ -679,6 +679,7 @@ class InquiriesController < ApplicationController
       end
       params[:direction] || "desc"
     end
-end
+#comment out due to SyntaxError
+# end
 
 
