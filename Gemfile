@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
+# gem 'rails', '4.2.5.1'
+gem 'rails', 5.2.3
 
 group :production do
   gem 'pg'
@@ -119,4 +120,5 @@ group :development do
   gem 'guard-rspec', require: false
 end
 
+# ruby '2.3.0'
 ruby "2.6.0"
