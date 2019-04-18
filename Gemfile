@@ -9,6 +9,8 @@ gem 'rails', '4.2.5.1'
 # (= 4.2.5.1)', in any of the sources.
 # gem install bundler (on initial clone of project)
 
+gem 'bundler'
+
 group :production do
   gem 'pg'
 end
