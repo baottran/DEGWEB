@@ -12,7 +12,7 @@ gem 'rails', '5.0'
 gem 'bundler'
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.20.0'
 end
 
 group :development, :test do
