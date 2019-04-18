@@ -14,6 +14,10 @@ class Inquiry < ActiveRecord::Base
   # validates :year, presence: true
   # validates :database, presence: true
   # validates :inquiry_type, presence: true
+  
+  # errors with s3_region when trying to run on local server 
+  # :s3_region: ENV["aws_region"],
+  # :s3_protocol => 'https',
 
   has_attached_file :attachment,
                     :storage => :s3,
