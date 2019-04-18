@@ -7,7 +7,8 @@ gem 'rails', '4.2.5.1'
 
 #which is required by gem 'rails
 # (= 4.2.5.1)', in any of the sources.
-gem 'bundler (>= 1.3.0, < 2.0)'
+# gem install bundler (on initial clone of project)
+
 group :production do
   gem 'pg'
 end
