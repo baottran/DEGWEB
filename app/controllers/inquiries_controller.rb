@@ -16,7 +16,8 @@ class InquiriesController < ApplicationController
     @inquiries = @inquiries.order(sort_column + " " + sort_direction)
     @inquiries = @inquiries.paginate(:per_page => 20, :page => params[:page])
 
-    @report = Report.find(1)
+		# comment out due to inital rails s with no report on running on local server
+#     @report = Report.find(1)
   end
 
   def find_inquiries()   
